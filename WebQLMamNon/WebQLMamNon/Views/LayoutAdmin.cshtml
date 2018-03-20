@@ -56,7 +56,7 @@
                                     <a><i class="fa fa-home"></i> Quản lý giáo viên  <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="index.html">Điểm danh</a></li>
-                                        <li><a @Url.Action("Index","GiaoVien")>Giáo viên</a></li>
+                                        <li><a href="@Url.Action("Index","GiaoVien")">Giáo viên</a></li>
                                         <li><a href="index3.html">Tính lương</a></li>
                                         <li><a href="index3.html">Phân lớp</a></li>
                                     </ul>
@@ -73,10 +73,11 @@
                                     <a><i class="fa fa-desktop"></i> Điểm danh học sinh <span class="fa fa-chevron-down"></span></a>
                                 </li>
                                 <li>
-                                    <a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
+                                    <a><i class="fa fa-table"></i> Quản lý lớp <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="tables.html">Tables</a></li>
-                                        <li><a href="tables_dynamic.html">Table Dynamic</a></li>
+                                        <li><a href="@Url.Action("Index","LopHoc",new { id="L01"})">Mầm</a></li>
+                                        <li><a href="@Url.Action("Index","LopHoc",new { id="L02"})">Chồi</a></li>
+                                        <li><a href="@Url.Action("Index","LopHoc",new { id="L03"})">Lá</a></li>
                                     </ul>
                                 </li>
                                 <li>

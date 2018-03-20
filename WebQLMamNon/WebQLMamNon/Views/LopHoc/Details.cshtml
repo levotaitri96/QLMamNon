@@ -1,0 +1,43 @@
+﻿@model WebQLMamNon.Models.Tbl_LopHoc
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tbl_LopHoc</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenLop)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenLop)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.soLuongHS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soLuongHS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_LoaiLop.tenLoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_LoaiLop.tenLoai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maLop }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

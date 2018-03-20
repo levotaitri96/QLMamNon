@@ -162,6 +162,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\GiaoVienController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LopHocController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2374,6 +2375,11 @@
     <Content Include="Views\GiaoVien\Details.cshtml" />
     <Content Include="Views\GiaoVien\Edit.cshtml" />
     <Content Include="Views\GiaoVien\Index.cshtml" />
+    <Content Include="Views\LopHoc\Create.cshtml" />
+    <Content Include="Views\LopHoc\Delete.cshtml" />
+    <Content Include="Views\LopHoc\Details.cshtml" />
+    <Content Include="Views\LopHoc\Edit.cshtml" />
+    <Content Include="Views\LopHoc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

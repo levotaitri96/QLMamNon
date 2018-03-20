@@ -1,0 +1,49 @@
+﻿@model WebQLMamNon.Models.Tbl_LopHoc
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Tbl_LopHoc</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenLop)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenLop)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.soLuongHS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soLuongHS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_LoaiLop.tenLoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_LoaiLop.tenLoai)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

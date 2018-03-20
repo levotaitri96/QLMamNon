@@ -5,39 +5,39 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="affa0ed54c8b49c68491058c63bb6ea1" Name="Diagram1">
-        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_BaiViet" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_DiemDanh" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_GiaoVien" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_HocPhi" Width="1.5" PointX="6" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_HocSinh" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_LoaiLop" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_LopHoc" Width="1.5" PointX="3.75" PointY="22.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_NamHoc" Width="1.5" PointX="3.75" PointY="25.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_PhanCong" Width="1.5" PointX="6" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_PhanLop" Width="1.5" PointX="6" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_TaiKhoan" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_ThangHoc" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_TienLuong" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_BaiViet_Tbl_GiaoVien" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_DiemDanh_Tbl_GiaoVien" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_DiemDanh_Tbl_HocSinh" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_DiemDanh_Tbl_LoaiLop" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_DiemDanh_Tbl_LopHoc" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_DiemDanh_Tbl_NamHoc" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_DiemDanh_Tbl_ThangHoc" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_GiaoVien" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_TaiKhoan_Tbl_GiaoVien" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_TienLuong_Tbl_GiaoVien" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_HocPhi_Tbl_HocSinh" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_HocPhi_Tbl_LoaiLop" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_PhanLop_Tbl_HocSinh" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_LopHoc_Tbl_LoaiLop" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_LoaiLop" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_PhanLop_Tbl_LoaiLop" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_LopHoc" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_PhanLop_Tbl_LopHoc" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_NamHoc" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_PhanLop_Tbl_NamHoc" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_BaiViet" Width="1.5" PointX="5.25" PointY="18.5" />
+        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_DiemDanh" Width="1.5" PointX="5.25" PointY="10.125" />
+        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_GiaoVien" Width="1.5" PointX="3" PointY="18.625" />
+        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_HocPhi" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_HocSinh" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_LoaiLop" Width="1.5" PointX="0.75" PointY="6.875" />
+        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_LopHoc" Width="1.5" PointX="3" PointY="14.5" />
+        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_NamHoc" Width="1.5" PointX="3" PointY="10.625" />
+        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_PhanCong" Width="1.5" PointX="8.25" PointY="10.625" />
+        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_PhanLop" Width="1.5" PointX="5.25" PointY="14.625" />
+        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_TaiKhoan" Width="1.5" PointX="5.25" PointY="21.375" />
+        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_ThangHoc" Width="1.5" PointX="3" PointY="4.25" />
+        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_TienLuong" Width="1.5" PointX="5.25" PointY="24.125" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_BaiViet_Tbl_GiaoVien" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_DiemDanh_Tbl_GiaoVien" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_DiemDanh_Tbl_HocSinh" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_DiemDanh_Tbl_LoaiLop" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_DiemDanh_Tbl_LopHoc" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_DiemDanh_Tbl_NamHoc" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_DiemDanh_Tbl_ThangHoc" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_GiaoVien" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_TaiKhoan_Tbl_GiaoVien" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_TienLuong_Tbl_GiaoVien" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_HocPhi_Tbl_HocSinh" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_HocPhi_Tbl_LoaiLop" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_PhanLop_Tbl_HocSinh" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_LopHoc_Tbl_LoaiLop" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_LoaiLop" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_PhanLop_Tbl_LoaiLop" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_LopHoc" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_PhanLop_Tbl_LopHoc" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_NamHoc" />
+        <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_PhanLop_Tbl_NamHoc" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
