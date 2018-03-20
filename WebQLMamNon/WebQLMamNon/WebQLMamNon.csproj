@@ -90,6 +90,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -158,10 +160,64 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\GiaoVienController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QLMamNonData.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLMamNonData.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QLMamNonData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QLMamNonData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLMamNonData.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_BaiViet.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_DiemDanh.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_GiaoVien.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_HocPhi.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_HocSinh.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_LoaiLop.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_LopHoc.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_NamHoc.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_PhanCong.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_PhanLop.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_TaiKhoan.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_ThangHoc.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_TienLuong.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -181,6 +237,16 @@
     <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Models\QLMamNonData.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLMamNonData.edmx</DependentUpon>
+      <LastGenOutput>QLMamNonData.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\QLMamNonData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLMamNonData.edmx</DependentUpon>
+      <LastGenOutput>QLMamNonData.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -204,6 +270,13 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <EntityDeploy Include="Models\QLMamNonData.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QLMamNonData.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\QLMamNonData.edmx.diagram">
+      <DependentUpon>QLMamNonData.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
@@ -242,59 +315,6 @@
     <Content Include="vendors\bootstrap-daterangepicker\website\index.html" />
     <Content Include="vendors\bootstrap-daterangepicker\website\website.css" />
     <Content Include="vendors\bootstrap-daterangepicker\website\website.js" />
-    <Content Include="vendors\bootstrap-datetimepicker\build\css\bootstrap-datetimepicker-standalone.css" />
-    <Content Include="vendors\bootstrap-datetimepicker\build\css\bootstrap-datetimepicker.css" />
-    <Content Include="vendors\bootstrap-datetimepicker\build\css\bootstrap-datetimepicker.min.css" />
-    <Content Include="vendors\bootstrap-datetimepicker\build\js\bootstrap-datetimepicker.min.js" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\android-chrome-144x144.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\android-chrome-192x192.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\android-chrome-36x36.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\android-chrome-48x48.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\android-chrome-72x72.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\android-chrome-96x96.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\apple-touch-icon-114x114.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\apple-touch-icon-120x120.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\apple-touch-icon-144x144.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\apple-touch-icon-152x152.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\apple-touch-icon-180x180.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\apple-touch-icon-57x57.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\apple-touch-icon-60x60.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\apple-touch-icon-72x72.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\apple-touch-icon-76x76.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\apple-touch-icon-precomposed.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\apple-touch-icon.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\base.html" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\browserconfig.xml" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\content.html" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\css\base.css" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\css\prettify-1.0.css" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\favicon-16x16.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\favicon-32x32.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\favicon-96x96.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\favicon.ico" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\js\base.js" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\js\prettify-1.0.min.js" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\mstile-144x144.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\mstile-150x150.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\mstile-310x150.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\mstile-310x310.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\mstile-70x70.png" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\nav.html" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\toc.html" />
-    <Content Include="vendors\bootstrap-datetimepicker\Gruntfile.js" />
-    <Content Include="vendors\bootstrap-datetimepicker\src\js\bootstrap-datetimepicker.js" />
-    <Content Include="vendors\bootstrap-datetimepicker\src\nuget\NuGet.exe" />
-    <Content Include="vendors\bootstrap-datetimepicker\tasks\bump_version.js" />
-    <Content Include="vendors\bootstrap-datetimepicker\test\publicApiSpec.js" />
-    <Content Include="vendors\bootstrap-datetimepicker\test\screen-capture\base.html" />
-    <Content Include="vendors\bootstrap-datetimepicker\test\screen-capture\compile.js" />
-    <Content Include="vendors\bootstrap-datetimepicker\test\screen-capture\index.js" />
-    <Content Include="vendors\bootstrap-datetimepicker\test\screen-capture\t1.html" />
-    <Content Include="vendors\bootstrap-datetimepicker\test\screen-capture\t2.html" />
-    <Content Include="vendors\bootstrap-datetimepicker\test\screen-capture\t3.html" />
-    <Content Include="vendors\bootstrap-datetimepicker\test\screen-capture\t4.html" />
-    <Content Include="vendors\bootstrap-datetimepicker\test\screen-capture\t5.html" />
-    <Content Include="vendors\bootstrap-datetimepicker\test\timezoneDataHelper.js" />
     <Content Include="vendors\bootstrap-progressbar\bootstrap-progressbar.js" />
     <Content Include="vendors\bootstrap-progressbar\bootstrap-progressbar.min.js" />
     <Content Include="vendors\bootstrap-progressbar\css\bootstrap-progressbar-2.0.0.css" />
@@ -2069,33 +2089,6 @@
     <Content Include="vendors\bootstrap-daterangepicker\example\browserify\README.md" />
     <Content Include="vendors\bootstrap-daterangepicker\package.json" />
     <Content Include="vendors\bootstrap-daterangepicker\README.md" />
-    <Content Include="vendors\bootstrap-datetimepicker\bower.json" />
-    <Content Include="vendors\bootstrap-datetimepicker\component.json" />
-    <Content Include="vendors\bootstrap-datetimepicker\composer.json" />
-    <Content Include="vendors\bootstrap-datetimepicker\CONTRIBUTING.md" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\ChangeLog.md" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\ContributorsGuide.md" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\Events.md" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\Extras.md" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\FAQ.md" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\Functions.md" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\index.md" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\Installing.md" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\Options.md" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\theme\manifest.json" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\Version 4 Changelog.md" />
-    <Content Include="vendors\bootstrap-datetimepicker\docs\Version 4 Contributors guide.md" />
-    <Content Include="vendors\bootstrap-datetimepicker\LICENSE" />
-    <Content Include="vendors\bootstrap-datetimepicker\mkdocs.yml" />
-    <Content Include="vendors\bootstrap-datetimepicker\package.json" />
-    <Content Include="vendors\bootstrap-datetimepicker\README.md" />
-    <Content Include="vendors\bootstrap-datetimepicker\src\less\bootstrap-datetimepicker-build.less" />
-    <Content Include="vendors\bootstrap-datetimepicker\src\less\_bootstrap-datetimepicker.less" />
-    <Content Include="vendors\bootstrap-datetimepicker\src\nuget\Bootstrap.v3.Datetimepicker.CSS.nuspec" />
-    <Content Include="vendors\bootstrap-datetimepicker\src\nuget\Bootstrap.v3.Datetimepicker.nuspec" />
-    <Content Include="vendors\bootstrap-datetimepicker\src\nuget\install.ps1" />
-    <Content Include="vendors\bootstrap-datetimepicker\src\sass\bootstrap-datetimepicker-build.scss" />
-    <Content Include="vendors\bootstrap-datetimepicker\src\sass\_bootstrap-datetimepicker.scss" />
     <Content Include="vendors\bootstrap-progressbar\.bower.json" />
     <Content Include="vendors\bootstrap-progressbar\bower.json" />
     <Content Include="vendors\bootstrap-progressbar\CHANGELOG.md" />
@@ -2376,11 +2369,14 @@
     <Content Include="vendors\skycons\.gitignore" />
     <Content Include="vendors\skycons\README.md" />
     <Content Include="Views\LayoutAdmin.cshtml" />
-    <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\GiaoVien\Create.cshtml" />
+    <Content Include="Views\GiaoVien\Delete.cshtml" />
+    <Content Include="Views\GiaoVien\Details.cshtml" />
+    <Content Include="Views\GiaoVien\Edit.cshtml" />
+    <Content Include="Views\GiaoVien\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -2392,6 +2388,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
