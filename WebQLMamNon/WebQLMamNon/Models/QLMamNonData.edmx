@@ -66,7 +66,7 @@
           <Property Name="hoTenCha" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="hoTenMe" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="hoTen" Type="nvarchar" MaxLength="10" />
-          <Property Name="soDTNha" Type="int" />
+          <Property Name="soDTNha" Type="nvarchar" MaxLength="50" />
           <Property Name="ngaySinh" Type="datetime" />
           <Property Name="email" Type="nvarchar" MaxLength="50" />
           <Property Name="diaChi" Type="nvarchar" MaxLength="70" />
@@ -109,6 +109,7 @@
           <Property Name="maLop" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="maLoai" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="maGV" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="trangThai" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Tbl_PhanLop">
           <Key>
@@ -658,7 +659,7 @@
           <Property Name="hoTenCha" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="hoTenMe" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="hoTen" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="soDTNha" Type="Int32" />
+          <Property Name="soDTNha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ngaySinh" Type="DateTime" Precision="3" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="diaChi" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
@@ -716,6 +717,7 @@
           <Property Name="maLop" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="maLoai" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="maGV" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="trangThai" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Tbl_GiaoVien" Relationship="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_GiaoVien" FromRole="Tbl_PhanCong" ToRole="Tbl_GiaoVien" />
           <NavigationProperty Name="Tbl_LoaiLop" Relationship="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_LoaiLop" FromRole="Tbl_PhanCong" ToRole="Tbl_LoaiLop" />
           <NavigationProperty Name="Tbl_LopHoc" Relationship="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_LopHoc" FromRole="Tbl_PhanCong" ToRole="Tbl_LopHoc" />
@@ -1007,7 +1009,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1111,6 +1113,7 @@
           <EntitySetMapping Name="Tbl_PhanCong">
             <EntityTypeMapping TypeName="QuanLyMamNonModel.Tbl_PhanCong">
               <MappingFragment StoreEntitySet="Tbl_PhanCong">
+                <ScalarProperty Name="trangThai" ColumnName="trangThai" />
                 <ScalarProperty Name="maGV" ColumnName="maGV" />
                 <ScalarProperty Name="maLoai" ColumnName="maLoai" />
                 <ScalarProperty Name="maLop" ColumnName="maLop" />

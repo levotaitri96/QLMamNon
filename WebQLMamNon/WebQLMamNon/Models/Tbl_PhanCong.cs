@@ -18,6 +18,7 @@ namespace WebQLMamNon.Models
         public string maLop { get; set; }
         public string maLoai { get; set; }
         public string maGV { get; set; }
+        public string trangThai { get; set; }
     
         public virtual Tbl_GiaoVien Tbl_GiaoVien { get; set; }
         public virtual Tbl_LoaiLop Tbl_LoaiLop { get; set; }

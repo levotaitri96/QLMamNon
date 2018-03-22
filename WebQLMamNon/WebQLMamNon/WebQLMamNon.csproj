@@ -163,9 +163,11 @@
     <Compile Include="Controllers\GiaoVienController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LopHocController.cs" />
+    <Compile Include="Controllers\PhanLopController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelViewPhanCong.cs" />
     <Compile Include="Models\QLMamNonData.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2380,6 +2382,7 @@
     <Content Include="Views\LopHoc\Details.cshtml" />
     <Content Include="Views\LopHoc\Edit.cshtml" />
     <Content Include="Views\LopHoc\Index.cshtml" />
+    <Content Include="Views\PhanLop\Indexpl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

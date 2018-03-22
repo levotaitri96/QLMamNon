@@ -26,7 +26,7 @@ namespace WebQLMamNon.Models
         public string hoTenCha { get; set; }
         public string hoTenMe { get; set; }
         public string hoTen { get; set; }
-        public Nullable<int> soDTNha { get; set; }
+        public string soDTNha { get; set; }
         public Nullable<System.DateTime> ngaySinh { get; set; }
         public string email { get; set; }
         public string diaChi { get; set; }
