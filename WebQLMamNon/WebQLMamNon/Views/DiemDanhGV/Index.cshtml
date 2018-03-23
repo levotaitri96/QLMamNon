@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WebQLMamNon.Models.Tbl_DiemDanh>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+@if (TempData["dd"] != null)
+{
+    <script>
+        alert("Ngày Điểm Danh Hôm Nay Đã Tạo");
+    </script>
+}
+<p>
+    @Html.ActionLink("Tạo Mới Bảng Điểm Danh", "DiemDanhNgay")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ngayDiemDanh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_NamHoc.tenNamHoc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_ThangHoc.tenThang)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngayDiemDanh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_NamHoc.tenNamHoc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_ThangHoc.tenThang)
+        </td>
+        <td>
+            @using (Html.BeginForm("DiemDanh", "DiemDanhGV", new { id = item.maDiemDanh }, FormMethod.Get))
+            {
+                <input style="float:left" type="submit" value="Chi tiết điểm danh" />
+            }
+        </td>
+    </tr>
+}
+
+</table>

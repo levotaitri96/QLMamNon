@@ -14,19 +14,19 @@ namespace WebQLMamNon.Models
     
     public partial class Tbl_DiemDanh
     {
-        public string maNamHoc { get; set; }
-        public System.DateTime ngayDiemDanh { get; set; }
-        public string maHS { get; set; }
-        public string maLop { get; set; }
-        public string maLoai { get; set; }
-        public string trangThai { get; set; }
-        public string maGV { get; set; }
-        public string maThang { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tbl_DiemDanh()
+        {
+            this.Tbl_ChiTietDiemDanh = new HashSet<Tbl_ChiTietDiemDanh>();
+        }
     
-        public virtual Tbl_GiaoVien Tbl_GiaoVien { get; set; }
-        public virtual Tbl_HocSinh Tbl_HocSinh { get; set; }
-        public virtual Tbl_LoaiLop Tbl_LoaiLop { get; set; }
-        public virtual Tbl_LopHoc Tbl_LopHoc { get; set; }
+        public string maNamHoc { get; set; }
+        public string ngayDiemDanh { get; set; }
+        public string maThang { get; set; }
+        public int maDiemDanh { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_ChiTietDiemDanh> Tbl_ChiTietDiemDanh { get; set; }
         public virtual Tbl_NamHoc Tbl_NamHoc { get; set; }
         public virtual Tbl_ThangHoc Tbl_ThangHoc { get; set; }
     }

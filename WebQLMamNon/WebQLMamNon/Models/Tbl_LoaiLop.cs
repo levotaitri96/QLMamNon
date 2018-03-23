@@ -17,7 +17,7 @@ namespace WebQLMamNon.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tbl_LoaiLop()
         {
-            this.Tbl_DiemDanh = new HashSet<Tbl_DiemDanh>();
+            this.Tbl_ChiTietDiemDanh = new HashSet<Tbl_ChiTietDiemDanh>();
             this.Tbl_HocPhi = new HashSet<Tbl_HocPhi>();
             this.Tbl_LopHoc = new HashSet<Tbl_LopHoc>();
             this.Tbl_PhanCong = new HashSet<Tbl_PhanCong>();
@@ -30,7 +30,7 @@ namespace WebQLMamNon.Models
         public int hocPhi { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_DiemDanh> Tbl_DiemDanh { get; set; }
+        public virtual ICollection<Tbl_ChiTietDiemDanh> Tbl_ChiTietDiemDanh { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_HocPhi> Tbl_HocPhi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

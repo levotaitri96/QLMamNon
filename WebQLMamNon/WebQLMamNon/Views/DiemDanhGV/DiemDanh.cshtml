@@ -1,0 +1,71 @@
+﻿@model IEnumerable<WebQLMamNon.Models.Tbl_ChiTietDiemDanh>
+
+@{
+    ViewBag.Title = "DiemDanh";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+
+<h2>DiemDanh</h2>
+@Html.Hidden("loai", this.Request.RawUrl)
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.trangThai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_DiemDanh.maNamHoc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_GiaoVien.trinhDo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_HocSinh.hoTenCha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_LoaiLop.tenLoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_LopHoc.tenLop)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.trangThai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_DiemDanh.maNamHoc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_GiaoVien.trinhDo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_GiaoVien.hoTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_LoaiLop.tenLoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_LopHoc.tenLop)
+        </td>
+        <td>
+            @using (Html.BeginForm("DoiTrangThaiDiemDanh", "DiemDanhGV", new { id = item.maChiTietDiemDanh }, FormMethod.Get))
+            {
+                if (item.trangThai == "Có")
+                {
+                    <input style="float:left" type="submit" value="Hủy" />
+                    @Html.Hidden("loai", this.Request.RawUrl)
+                }
+                else
+                {
+                    <input style="float:left" type="submit" value="Điểm Danh" />
+                    @Html.Hidden("loai", this.Request.RawUrl)
+                }
+            }
+        </td>
+    </tr>
+}
+
+</table>
