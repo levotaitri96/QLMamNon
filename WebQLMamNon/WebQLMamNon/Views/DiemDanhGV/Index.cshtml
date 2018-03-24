@@ -5,13 +5,20 @@
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Bảng Điểm Danh</h2>
 @if (TempData["dd"] != null)
 {
     <script>
         alert("Ngày Điểm Danh Hôm Nay Đã Tạo");
     </script>
 }
+<td>
+    @using (Html.BeginForm("DiemDanh", "DiemDanhGV",FormMethod.Get))
+            {
+        <input style="float:left" type="submit" value="Chi tiết điểm danh" />
+    }
+</td>
+
 <p>
     @Html.ActionLink("Tạo Mới Bảng Điểm Danh", "DiemDanhNgay")
 </p>

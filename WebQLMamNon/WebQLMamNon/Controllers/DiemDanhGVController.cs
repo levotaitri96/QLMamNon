@@ -74,14 +74,14 @@ namespace WebQLMamNon.Controllers
         public ActionResult DoiTrangThaiDiemDanh(int id,string loai)
         {
             var list = db.Tbl_ChiTietDiemDanh.Where(x => x.maChiTietDiemDanh == id).FirstOrDefault();
-            if(list.trangThai=="Không")
+            if(list.trangThai=="Vắng")
             {
                 list.trangThai = "Có";
                 db.SaveChanges();
             }
             else
             {
-                list.trangThai = "Không";
+                list.trangThai = "Vắng";
                 db.SaveChanges();
             }
             return Redirect(loai);
