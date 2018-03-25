@@ -12,27 +12,23 @@
         alert("Ngày Điểm Danh Hôm Nay Đã Tạo");
     </script>
 }
-<td>
-    @using (Html.BeginForm("DiemDanh", "DiemDanhGV",FormMethod.Get))
-            {
-        <input style="float:left" type="submit" value="Chi tiết điểm danh" />
-    }
-</td>
-
 <p>
-    @Html.ActionLink("Tạo Mới Bảng Điểm Danh", "DiemDanhNgay")
+    @using (Html.BeginForm("DiemDanhNgay", "DiemDanhGV",FormMethod.Get))
+            {
+        <input style="float:left" type="submit" value="Tạo mới bảng điểm danh" />
+    }
 </p>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ngayDiemDanh)
+            Ngày
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tbl_NamHoc.tenNamHoc)
+            Tháng
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tbl_ThangHoc.tenThang)
+            Năm học
         </th>
         <th></th>
     </tr>
@@ -43,15 +39,15 @@
             @Html.DisplayFor(modelItem => item.ngayDiemDanh)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Tbl_NamHoc.tenNamHoc)
+            @Html.DisplayFor(modelItem => item.Tbl_ThangHoc.tenThang)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Tbl_ThangHoc.tenThang)
+            @Html.DisplayFor(modelItem => item.Tbl_NamHoc.tenNamHoc)
         </td>
         <td>
             @using (Html.BeginForm("DiemDanh", "DiemDanhGV", new { id = item.maDiemDanh }, FormMethod.Get))
             {
-                <input style="float:left" type="submit" value="Chi tiết điểm danh" />
+                <input style="float:left" type="submit" value="Chi tiết" />
             }
         </td>
     </tr>

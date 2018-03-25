@@ -129,7 +129,7 @@ namespace WebQLMamNon.Controllers
                          join pl in db.Tbl_PhanLop
                          on hs.maHS equals pl.maHS
                          join lop in db.Tbl_LopHoc
-                         on pl.maLop equals lop.maLop 
+                         on pl.maLop equals lop.maLop
                          select new Tbl_HocSinh into nấdfa
         }
     }

@@ -14,9 +14,61 @@ namespace WebQLMamNon.Controllers
 
         public ActionResult Indexpl()
         {
-            ViewBag.maLop = new SelectList(db.Tbl_LopHoc, "maLop", "tenLop");
-            ViewBag.maGV = new SelectList(db.Tbl_GiaoVien, "maGV", "hoTen");
+            // giáo viên đã được phân công lớp thì sẽ không hiển thị trong list
+            XuLiLoadGVCB();
+            XuLiLoadLopCB();
             return View(db.Tbl_PhanCong.ToList());
+        }
+        public void XuLiLoadGVCB()
+        {
+            List<ModelGiaoVien> lstgv = new List<ModelGiaoVien>();
+            foreach (var g in db.Tbl_GiaoVien)
+            {
+                int dem = 0;
+
+                foreach (var item in db.Tbl_PhanCong)
+                {
+                    if (g.maGV == item.maGV)
+                    {
+                        dem++;
+                    }
+
+                }
+                if (dem == 0)
+                {
+
+                    ModelGiaoVien gv = new ModelGiaoVien();
+                    gv.maGV = g.maGV;
+                    gv.hoTen = g.hoTen;
+                    lstgv.Add(gv);
+                }
+
+            }
+            ViewBag.maGV = new SelectList(lstgv, "maGV", "hoTen");
+        }
+        public void XuLiLoadLopCB()
+        {
+            List<ModelLopHoc> lslh = new List<ModelLopHoc>();
+            foreach(var lh in db.Tbl_LopHoc)
+            {
+                int dem = 0;
+                foreach(var item in db.Tbl_PhanCong)
+                {
+                    if(lh.maLop == item.maLop)
+                    {
+                        dem++;
+                    }
+                }
+                if(dem !=2)
+                {
+                    ModelLopHoc mdlh = new ModelLopHoc();
+                    mdlh.maLop = lh.maLop;
+                    mdlh.tenLop = lh.tenLop;
+                    lslh.Add(mdlh);
+                }
+            }
+           
+            ViewBag.maLop = new SelectList(lslh, "maLop", "tenLop");
         }
         // phân công 1 lớp chỉ có 1 giáo viên
         public ActionResult PhanCong(string maLop,string maGV)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -49,6 +50,16 @@ namespace WebQLMamNon.Controllers
         {
             if (ModelState.IsValid)
             {
+                //code create hình ảnh
+                var posted = Request.Files["hinhAnh"];
+                if (Request.Files != null)
+                {
+                    const string pathStoredImage = "~/images/";
+                    var imageName = Path.GetFileName(posted.FileName);
+                    var filePath = pathStoredImage + imageName;
+                    posted.SaveAs(Server.MapPath(filePath));
+                    tbl_GiaoVien.hinhAnh = posted.FileName;
+                }
                 db.Tbl_GiaoVien.Add(tbl_GiaoVien);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -77,13 +88,24 @@ namespace WebQLMamNon.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maGV,trinhDo,hoTen,soDT,ngaySinh,email,diaChi,gioiTinh,hinhAnh")] Tbl_GiaoVien tbl_GiaoVien)
+        public ActionResult Edit([Bind(Include = "maGV,trinhDo,hoTen,soDT,ngaySinh,email,diaChi,gioiTinh,hinhAnh")] Tbl_GiaoVien tbl_GiaoVien,string fp)
         {
             if (ModelState.IsValid)
-            {
-                db.Entry(tbl_GiaoVien).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+            { 
+                if(fp=="")
+                {
+                    db.Entry(tbl_GiaoVien).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                if(fp!="")
+                {
+                    db.Entry(tbl_GiaoVien).State = EntityState.Modified;
+                    tbl_GiaoVien.hinhAnh = fp;
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
             }
             return View(tbl_GiaoVien);
         }

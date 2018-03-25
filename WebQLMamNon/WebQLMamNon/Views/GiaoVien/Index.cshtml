@@ -11,34 +11,30 @@
     <input type="submit" value="Thêm giáo viên" />
 
 }
+<br />
 
-
-
-<table class="table">
+<table class="table" border="1">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.trinhDo)
+            Họ và tên
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.hoTen)
+            Ngày sinh
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.soDT)
+            Giới tính
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ngaySinh)
+            Trình độ
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.email)
+            Số DT
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.diaChi)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.gioiTinh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hinhAnh)
+            Địa chỉ
         </th>
         <th></th>
     </tr>
@@ -46,16 +42,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.trinhDo)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.hoTen)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.soDT)
+            @Html.DisplayFor(modelItem => item.ngaySinh)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ngaySinh)
+            @Html.DisplayFor(modelItem => item.gioiTinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.trinhDo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soDT)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.email)
@@ -64,15 +63,9 @@
             @Html.DisplayFor(modelItem => item.diaChi)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.gioiTinh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.hinhAnh)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.maGV }) |
-            @Html.ActionLink("Details", "Details", new { id=item.maGV }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.maGV })
+            <a href="@Url.Action("Edit", "GiaoVien",new { id = item.maGV })"><i class="fa fa-wrench"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+            <a href="@Url.Action("Details", "GiaoVien",new { id = item.maGV })"><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+            <a href="@Url.Action("Delete", "GiaoVien",new { id = item.maGV })"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
         </td>
     </tr>
 }

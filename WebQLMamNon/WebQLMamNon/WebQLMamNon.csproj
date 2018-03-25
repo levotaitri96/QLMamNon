@@ -170,6 +170,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelGiaoVien.cs" />
+    <Compile Include="Models\ModelLopHoc.cs" />
     <Compile Include="Models\ModelViewPhanCong.cs" />
     <Compile Include="Models\QLMamNonData.Context.cs">
       <AutoGen>True</AutoGen>
@@ -190,6 +192,9 @@
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_ChiTietDiemDanh.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_ChiTietLuong.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_DiemDanh.cs">
@@ -247,6 +252,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\Image.jpg" />
     <Content Include="Models\QLMamNonData.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QLMamNonData.edmx</DependentUpon>

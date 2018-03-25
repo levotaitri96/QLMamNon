@@ -81,11 +81,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.hinhAnh, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.hinhAnh, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.hinhAnh, "", new { @class = "text-danger" })
-            </div>
+            <label class="form-label">Hình ảnh:</label><input type="file" id="hinhAnh" name="hinhAnh" class="form-control">
         </div>
 
         <div class="form-group">

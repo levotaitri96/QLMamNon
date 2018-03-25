@@ -27,6 +27,7 @@ namespace WebQLMamNon.Models
     
         public virtual DbSet<Tbl_BaiViet> Tbl_BaiViet { get; set; }
         public virtual DbSet<Tbl_ChiTietDiemDanh> Tbl_ChiTietDiemDanh { get; set; }
+        public virtual DbSet<Tbl_ChiTietLuong> Tbl_ChiTietLuong { get; set; }
         public virtual DbSet<Tbl_DiemDanh> Tbl_DiemDanh { get; set; }
         public virtual DbSet<Tbl_GiaoVien> Tbl_GiaoVien { get; set; }
         public virtual DbSet<Tbl_HocPhi> Tbl_HocPhi { get; set; }

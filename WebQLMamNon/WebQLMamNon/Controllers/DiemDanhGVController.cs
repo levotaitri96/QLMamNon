@@ -29,46 +29,42 @@ namespace WebQLMamNon.Controllers
             }
             else
             {
+                TempData["ngay"] = b;
+                TempData["thang"] = a;
+                TempData["nam"] = y;
                 Tbl_DiemDanh diemdanh = new Tbl_DiemDanh();
                 diemdanh.maNamHoc = y;
                 diemdanh.maThang = a;
                 diemdanh.ngayDiemDanh = b;
                 db.Tbl_DiemDanh.Add(diemdanh);
                 db.SaveChanges();
+                TaoDiemDanh();
             }
             return RedirectToAction("Index");
+        }
+        public void TaoDiemDanh()
+        {
+           string ngay= TempData["ngay"].ToString();
+           string thang= TempData["thang"].ToString();
+           string nam=TempData["nam"].ToString();
+           var diemdanh = db.Tbl_DiemDanh.Where(x => x.ngayDiemDanh == ngay && x.maThang == thang && x.maNamHoc == nam).FirstOrDefault();
+           var listpc = db.Tbl_PhanCong.ToList();
+           foreach (var item in listpc)
+            {
+                Tbl_ChiTietDiemDanh chitiet = new Tbl_ChiTietDiemDanh();
+                chitiet.maDiemDanh = diemdanh.maDiemDanh;
+                chitiet.trangThai = "Vắng";
+                chitiet.maGV = item.maGV;
+                chitiet.maLoai = item.maLoai;
+                chitiet.maLop = item.maLop;
+                db.Tbl_ChiTietDiemDanh.Add(chitiet);
+                db.SaveChanges();
+            }
         }
         public ActionResult DiemDanh(int id)
         {
           
-            DateTime dt = DateTime.Now;
-            string y = String.Format("{0:yyyy}", dt);
-            string a= String.Format("{0:MM}", dt);
-            string b = String.Format("{0:dd}", dt);
-            var nh = db.Tbl_NamHoc.Where(x => x.maNamHoc == y).FirstOrDefault();
-            var th = db.Tbl_ThangHoc.Where(x => x.maThang == a).FirstOrDefault();
-            var listpc = db.Tbl_PhanCong.ToList();
-            var ct = db.Tbl_ChiTietDiemDanh.Where(x => x.maDiemDanh == id).FirstOrDefault();
-            if(ct != null)
-            {
-                return View(db.Tbl_ChiTietDiemDanh.ToList());
-            }
-            foreach(var item in listpc)
-            {
-                Tbl_DiemDanh diemdanh = db.Tbl_DiemDanh.Where(x => x.ngayDiemDanh == b && x.maThang == a && x.maNamHoc == y).FirstOrDefault();
-                if (diemdanh != null)
-                {
-                    Tbl_ChiTietDiemDanh chitiet = new Tbl_ChiTietDiemDanh();
-                    chitiet.maDiemDanh = id;
-                    chitiet.trangThai = "Vắng";
-                    chitiet.maGV = item.maGV;
-                    chitiet.maLoai = item.maLoai;
-                    chitiet.maLop = item.maLop;
-                    db.Tbl_ChiTietDiemDanh.Add(chitiet);
-                    db.SaveChanges();
-                }              
-            }
-            return View(db.Tbl_ChiTietDiemDanh.ToList());
+            return View(db.Tbl_ChiTietDiemDanh.ToList().Where(x => x.maDiemDanh == id));
 
         }
         public ActionResult DoiTrangThaiDiemDanh(int id,string loai)
