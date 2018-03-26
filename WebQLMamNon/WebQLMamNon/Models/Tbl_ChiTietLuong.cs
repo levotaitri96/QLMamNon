@@ -15,10 +15,12 @@ namespace WebQLMamNon.Models
     public partial class Tbl_ChiTietLuong
     {
         public int maChiTietLuong { get; set; }
-        public Nullable<int> maLuong { get; set; }
+        public int maLuong { get; set; }
         public Nullable<int> soNgayLam { get; set; }
         public Nullable<double> soTien { get; set; }
+        public string maGV { get; set; }
     
+        public virtual Tbl_GiaoVien Tbl_GiaoVien { get; set; }
         public virtual Tbl_TienLuong Tbl_TienLuong { get; set; }
     }
 }

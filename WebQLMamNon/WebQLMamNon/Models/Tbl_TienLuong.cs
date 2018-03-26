@@ -21,13 +21,11 @@ namespace WebQLMamNon.Models
         }
     
         public int maLuong { get; set; }
-        public string maGV { get; set; }
         public string maThang { get; set; }
         public string maNamHoc { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_ChiTietLuong> Tbl_ChiTietLuong { get; set; }
-        public virtual Tbl_GiaoVien Tbl_GiaoVien { get; set; }
         public virtual Tbl_NamHoc Tbl_NamHoc { get; set; }
         public virtual Tbl_ThangHoc Tbl_ThangHoc { get; set; }
     }

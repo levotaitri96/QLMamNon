@@ -70,16 +70,20 @@ namespace WebQLMamNon.Controllers
         public ActionResult DoiTrangThaiDiemDanh(int id,string loai)
         {
             var list = db.Tbl_ChiTietDiemDanh.Where(x => x.maChiTietDiemDanh == id).FirstOrDefault();
+            var listgv = db.Tbl_ChiTietLuong.Where(x => x.maGV == list.maGV).FirstOrDefault();
             if(list.trangThai=="Vắng")
             {
                 list.trangThai = "Có";
+                listgv.soNgayLam++;
                 db.SaveChanges();
             }
             else
             {
                 list.trangThai = "Vắng";
+                listgv.soNgayLam--;
                 db.SaveChanges();
             }
+          
             return Redirect(loai);
         }
     }

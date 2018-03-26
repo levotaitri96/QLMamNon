@@ -162,7 +162,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DiemDanhGVController.cs" />
     <Compile Include="Controllers\GiaoVienController.cs" />
-    <Compile Include="Controllers\HocSinhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LopHocController.cs" />
     <Compile Include="Controllers\PhanLopController.cs" />
@@ -1576,15 +1575,11 @@
     <Content Include="Views\PhanLop\Indexpl.cshtml" />
     <Content Include="Views\DiemDanhGV\DiemDanh.cshtml" />
     <Content Include="Views\DiemDanhGV\Index.cshtml" />
-    <Content Include="Views\HocSinh\Create.cshtml" />
-    <Content Include="Views\HocSinh\Delete.cshtml" />
-    <Content Include="Views\HocSinh\Details.cshtml" />
-    <Content Include="Views\HocSinh\Edit.cshtml" />
-    <Content Include="Views\HocSinh\Index.cshtml" />
+    <Content Include="Views\TinhLuong\Index.cshtml" />
+    <Content Include="Views\TinhLuong\ChiTietLuong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\TinhLuong\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
