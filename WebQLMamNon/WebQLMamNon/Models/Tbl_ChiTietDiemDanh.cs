@@ -18,7 +18,7 @@ namespace WebQLMamNon.Models
         public string trangThai { get; set; }
         public Nullable<int> maDiemDanh { get; set; }
         public string maGV { get; set; }
-        public string maHS { get; set; }
+        public Nullable<int> maHS { get; set; }
         public string maLoai { get; set; }
         public string maLop { get; set; }
     

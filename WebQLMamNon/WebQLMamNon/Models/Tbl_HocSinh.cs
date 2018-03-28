@@ -22,7 +22,7 @@ namespace WebQLMamNon.Models
             this.Tbl_PhanLop = new HashSet<Tbl_PhanLop>();
         }
     
-        public string maHS { get; set; }
+        public int maHS { get; set; }
         public string hoTenCha { get; set; }
         public string hoTenMe { get; set; }
         public string hoTen { get; set; }
@@ -32,11 +32,13 @@ namespace WebQLMamNon.Models
         public string diaChi { get; set; }
         public string gioiTinh { get; set; }
         public string hinhAnh { get; set; }
+        public string maLoai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_ChiTietDiemDanh> Tbl_ChiTietDiemDanh { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_HocPhi> Tbl_HocPhi { get; set; }
+        public virtual Tbl_LoaiLop Tbl_LoaiLop { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_PhanLop> Tbl_PhanLop { get; set; }
     }

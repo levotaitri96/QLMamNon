@@ -17,7 +17,7 @@ namespace WebQLMamNon.Models
         public string maNamHoc { get; set; }
         public string maLop { get; set; }
         public string maLoai { get; set; }
-        public string maHS { get; set; }
+        public int maHS { get; set; }
     
         public virtual Tbl_HocSinh Tbl_HocSinh { get; set; }
         public virtual Tbl_LoaiLop Tbl_LoaiLop { get; set; }

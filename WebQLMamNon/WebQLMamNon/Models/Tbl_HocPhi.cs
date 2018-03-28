@@ -16,7 +16,7 @@ namespace WebQLMamNon.Models
     {
         public System.DateTime tenHocPhi { get; set; }
         public int soNgayHoc { get; set; }
-        public string maHS { get; set; }
+        public int maHS { get; set; }
         public string soTien { get; set; }
         public string maLoai { get; set; }
     

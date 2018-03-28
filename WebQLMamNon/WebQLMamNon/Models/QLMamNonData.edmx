@@ -23,7 +23,7 @@
           <Property Name="trangThai" Type="nvarchar" MaxLength="10" />
           <Property Name="maDiemDanh" Type="int" />
           <Property Name="maGV" Type="nvarchar" MaxLength="10" />
-          <Property Name="maHS" Type="nvarchar" MaxLength="10" />
+          <Property Name="maHS" Type="int" />
           <Property Name="maLoai" Type="nvarchar" MaxLength="10" />
           <Property Name="maLop" Type="nvarchar" MaxLength="10" />
         </EntityType>
@@ -66,7 +66,7 @@
           </Key>
           <Property Name="tenHocPhi" Type="date" Nullable="false" />
           <Property Name="soNgayHoc" Type="int" Nullable="false" />
-          <Property Name="maHS" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="maHS" Type="int" Nullable="false" />
           <Property Name="soTien" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="maLoai" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
@@ -74,8 +74,8 @@
           <Key>
             <PropertyRef Name="maHS" />
           </Key>
-          <Property Name="maHS" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="hoTenCha" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="maHS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hoTenCha" Type="nvarchar" MaxLength="50" />
           <Property Name="hoTenMe" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="hoTen" Type="nvarchar" MaxLength="10" />
           <Property Name="soDTNha" Type="nvarchar" MaxLength="50" />
@@ -84,6 +84,7 @@
           <Property Name="diaChi" Type="nvarchar" MaxLength="70" />
           <Property Name="gioiTinh" Type="nvarchar" MaxLength="10" />
           <Property Name="hinhAnh" Type="nvarchar" MaxLength="500" />
+          <Property Name="maLoai" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Tbl_LoaiLop">
           <Key>
@@ -133,7 +134,7 @@
           <Property Name="maNamHoc" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="maLop" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="maLoai" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="maHS" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="maHS" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Tbl_TaiKhoan">
           <Key>
@@ -299,6 +300,18 @@
               <PropertyRef Name="maLoai" />
             </Principal>
             <Dependent Role="Tbl_HocPhi">
+              <PropertyRef Name="maLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_HocSinh_Tbl_LoaiLop">
+          <End Role="Tbl_LoaiLop" Type="Self.Tbl_LoaiLop" Multiplicity="0..1" />
+          <End Role="Tbl_HocSinh" Type="Self.Tbl_HocSinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_LoaiLop">
+              <PropertyRef Name="maLoai" />
+            </Principal>
+            <Dependent Role="Tbl_HocSinh">
               <PropertyRef Name="maLoai" />
             </Dependent>
           </ReferentialConstraint>
@@ -511,6 +524,10 @@
             <End Role="Tbl_LoaiLop" EntitySet="Tbl_LoaiLop" />
             <End Role="Tbl_HocPhi" EntitySet="Tbl_HocPhi" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tbl_HocSinh_Tbl_LoaiLop" Association="Self.FK_Tbl_HocSinh_Tbl_LoaiLop">
+            <End Role="Tbl_LoaiLop" EntitySet="Tbl_LoaiLop" />
+            <End Role="Tbl_HocSinh" EntitySet="Tbl_HocSinh" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tbl_LopHoc_Tbl_LoaiLop" Association="Self.FK_Tbl_LopHoc_Tbl_LoaiLop">
             <End Role="Tbl_LoaiLop" EntitySet="Tbl_LoaiLop" />
             <End Role="Tbl_LopHoc" EntitySet="Tbl_LopHoc" />
@@ -636,6 +653,10 @@
             <End Role="Tbl_LoaiLop" EntitySet="Tbl_LoaiLop" />
             <End Role="Tbl_HocPhi" EntitySet="Tbl_HocPhi" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tbl_HocSinh_Tbl_LoaiLop" Association="QuanLyMamNonModel.FK_Tbl_HocSinh_Tbl_LoaiLop">
+            <End Role="Tbl_LoaiLop" EntitySet="Tbl_LoaiLop" />
+            <End Role="Tbl_HocSinh" EntitySet="Tbl_HocSinh" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tbl_PhanLop_Tbl_HocSinh" Association="QuanLyMamNonModel.FK_Tbl_PhanLop_Tbl_HocSinh">
             <End Role="Tbl_HocSinh" EntitySet="Tbl_HocSinh" />
             <End Role="Tbl_PhanLop" EntitySet="Tbl_PhanLop" />
@@ -696,7 +717,7 @@
           <Property Name="trangThai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="maDiemDanh" Type="Int32" />
           <Property Name="maGV" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="maHS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="maHS" Type="Int32" />
           <Property Name="maLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="maLop" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Tbl_DiemDanh" Relationship="QuanLyMamNonModel.FK_Tbl_ChiTietDiemDanh_Tbl_DiemDanh" FromRole="Tbl_ChiTietDiemDanh" ToRole="Tbl_DiemDanh" />
@@ -754,7 +775,7 @@
           </Key>
           <Property Name="tenHocPhi" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="soNgayHoc" Type="Int32" Nullable="false" />
-          <Property Name="maHS" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="maHS" Type="Int32" Nullable="false" />
           <Property Name="soTien" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="maLoai" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Tbl_HocSinh" Relationship="QuanLyMamNonModel.FK_Tbl_HocPhi_Tbl_HocSinh" FromRole="Tbl_HocPhi" ToRole="Tbl_HocSinh" />
@@ -764,8 +785,8 @@
           <Key>
             <PropertyRef Name="maHS" />
           </Key>
-          <Property Name="maHS" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="hoTenCha" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="maHS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hoTenCha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="hoTenMe" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="hoTen" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="soDTNha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -774,8 +795,10 @@
           <Property Name="diaChi" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
           <Property Name="gioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="hinhAnh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="maLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Tbl_ChiTietDiemDanh" Relationship="QuanLyMamNonModel.FK_Tbl_ChiTietDiemDanh_Tbl_HocSinh" FromRole="Tbl_HocSinh" ToRole="Tbl_ChiTietDiemDanh" />
           <NavigationProperty Name="Tbl_HocPhi" Relationship="QuanLyMamNonModel.FK_Tbl_HocPhi_Tbl_HocSinh" FromRole="Tbl_HocSinh" ToRole="Tbl_HocPhi" />
+          <NavigationProperty Name="Tbl_LoaiLop" Relationship="QuanLyMamNonModel.FK_Tbl_HocSinh_Tbl_LoaiLop" FromRole="Tbl_HocSinh" ToRole="Tbl_LoaiLop" />
           <NavigationProperty Name="Tbl_PhanLop" Relationship="QuanLyMamNonModel.FK_Tbl_PhanLop_Tbl_HocSinh" FromRole="Tbl_HocSinh" ToRole="Tbl_PhanLop" />
         </EntityType>
         <EntityType Name="Tbl_LoaiLop">
@@ -788,6 +811,7 @@
           <Property Name="hocPhi" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Tbl_ChiTietDiemDanh" Relationship="QuanLyMamNonModel.FK_Tbl_ChiTietDiemDanh_Tbl_LoaiLop" FromRole="Tbl_LoaiLop" ToRole="Tbl_ChiTietDiemDanh" />
           <NavigationProperty Name="Tbl_HocPhi" Relationship="QuanLyMamNonModel.FK_Tbl_HocPhi_Tbl_LoaiLop" FromRole="Tbl_LoaiLop" ToRole="Tbl_HocPhi" />
+          <NavigationProperty Name="Tbl_HocSinh" Relationship="QuanLyMamNonModel.FK_Tbl_HocSinh_Tbl_LoaiLop" FromRole="Tbl_LoaiLop" ToRole="Tbl_HocSinh" />
           <NavigationProperty Name="Tbl_LopHoc" Relationship="QuanLyMamNonModel.FK_Tbl_LopHoc_Tbl_LoaiLop" FromRole="Tbl_LoaiLop" ToRole="Tbl_LopHoc" />
           <NavigationProperty Name="Tbl_PhanCong" Relationship="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_LoaiLop" FromRole="Tbl_LoaiLop" ToRole="Tbl_PhanCong" />
           <NavigationProperty Name="Tbl_PhanLop" Relationship="QuanLyMamNonModel.FK_Tbl_PhanLop_Tbl_LoaiLop" FromRole="Tbl_LoaiLop" ToRole="Tbl_PhanLop" />
@@ -843,7 +867,7 @@
           <Property Name="maNamHoc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="maLop" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="maLoai" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="maHS" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="maHS" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Tbl_HocSinh" Relationship="QuanLyMamNonModel.FK_Tbl_PhanLop_Tbl_HocSinh" FromRole="Tbl_PhanLop" ToRole="Tbl_HocSinh" />
           <NavigationProperty Name="Tbl_LoaiLop" Relationship="QuanLyMamNonModel.FK_Tbl_PhanLop_Tbl_LoaiLop" FromRole="Tbl_PhanLop" ToRole="Tbl_LoaiLop" />
           <NavigationProperty Name="Tbl_LopHoc" Relationship="QuanLyMamNonModel.FK_Tbl_PhanLop_Tbl_LopHoc" FromRole="Tbl_PhanLop" ToRole="Tbl_LopHoc" />
@@ -1043,6 +1067,18 @@
               <PropertyRef Name="maLoai" />
             </Principal>
             <Dependent Role="Tbl_HocPhi">
+              <PropertyRef Name="maLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_HocSinh_Tbl_LoaiLop">
+          <End Type="QuanLyMamNonModel.Tbl_LoaiLop" Role="Tbl_LoaiLop" Multiplicity="0..1" />
+          <End Type="QuanLyMamNonModel.Tbl_HocSinh" Role="Tbl_HocSinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_LoaiLop">
+              <PropertyRef Name="maLoai" />
+            </Principal>
+            <Dependent Role="Tbl_HocSinh">
               <PropertyRef Name="maLoai" />
             </Dependent>
           </ReferentialConstraint>
@@ -1247,6 +1283,7 @@
           <EntitySetMapping Name="Tbl_HocSinh">
             <EntityTypeMapping TypeName="QuanLyMamNonModel.Tbl_HocSinh">
               <MappingFragment StoreEntitySet="Tbl_HocSinh">
+                <ScalarProperty Name="maLoai" ColumnName="maLoai" />
                 <ScalarProperty Name="hinhAnh" ColumnName="hinhAnh" />
                 <ScalarProperty Name="gioiTinh" ColumnName="gioiTinh" />
                 <ScalarProperty Name="diaChi" ColumnName="diaChi" />
