@@ -162,6 +162,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DiemDanhGVController.cs" />
     <Compile Include="Controllers\GiaoVienController.cs" />
+    <Compile Include="Controllers\HocSinhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LopHocController.cs" />
     <Compile Include="Controllers\PhanLopController.cs" />
@@ -170,6 +171,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelGiaoVien.cs" />
+    <Compile Include="Models\ModelHocSinh.cs" />
     <Compile Include="Models\ModelLopHoc.cs" />
     <Compile Include="Models\ModelViewPhanCong.cs" />
     <Compile Include="Models\QLMamNonData.Context.cs">
@@ -243,6 +245,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\custom.css" />
     <Content Include="Content\css\custom.min.css" />
+    <Content Include="Content\css\multi-level-menu.css" />
     <Content Include="Content\js\custom.js" />
     <Content Include="Content\js\custom.min.js" />
     <Content Include="favicon.ico" />
@@ -1577,6 +1580,13 @@
     <Content Include="Views\DiemDanhGV\Index.cshtml" />
     <Content Include="Views\TinhLuong\Index.cshtml" />
     <Content Include="Views\TinhLuong\ChiTietLuong.cshtml" />
+    <Content Include="Views\HocSinh\Create.cshtml" />
+    <Content Include="Views\HocSinh\Index.cshtml" />
+    <Content Include="Views\HocSinh\IndexPhanLopHS.cshtml" />
+    <Content Include="Views\HocSinh\LoadHS.cshtml" />
+    <Content Include="Views\HocSinh\Delete.cshtml" />
+    <Content Include="Views\HocSinh\Edit.cshtml" />
+    <Content Include="Views\HocSinh\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

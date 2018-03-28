@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebQLMamNon.Models.Tbl_HocSinh>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+    <link href="~/Content/css/multi-level-menu.css" rel="stylesheet" />
+
+    //List<WebQLMamNon.Models.Tbl_LoaiLop> tempListLoaiLop = ViewBag.lstLoai;
+    //List<WebQLMamNon.Models.Tbl_LopHoc> tempListLopHoc = ViewBag.lstLop;
+}
+<h2>Qu?n lý H?c Sinh</h2>
+
+<div class="navigation">
+    <ul>
+        <li class="has-sub">
+            <a href="#">Danh sách </a>
+            <ul>
+                @foreach (var _loai in ViewBag.lstLoai)
+                {
+                    <li class="has-sub">
+                        <a>@_loai.tenLoai</a>
+                        <ul>
+                            @foreach (var lop in ViewBag.lstLop)
+                            {
+                                if (_loai.maLoai == lop.maLoai)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("LoadHS","HocSinh",new {@id=lop.maLop})">@lop.tenLop</a>
+                                    </li>
+                                }
+
+                            }
+
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </li>
+
+    </ul>
+</div>
+<div class="navigation">
+    <ul>
+        <li class="has-sub">
+            <a href="@Url.Action("Create","HocSinh")">Thêm mới học sinh</a>
+        </li>
+    </ul>
+</div>
+
