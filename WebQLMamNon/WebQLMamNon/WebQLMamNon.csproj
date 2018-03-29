@@ -170,6 +170,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelChiTietDiemDanh.cs" />
     <Compile Include="Models\ModelGiaoVien.cs" />
     <Compile Include="Models\ModelHocSinh.cs" />
     <Compile Include="Models\ModelLopHoc.cs" />
@@ -1588,6 +1589,7 @@
     <Content Include="Views\HocSinh\Delete.cshtml" />
     <Content Include="Views\HocSinh\Edit.cshtml" />
     <Content Include="Views\HocSinh\Details.cshtml" />
+    <Content Include="Views\TinhLuong\CalendarDiemDanh.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

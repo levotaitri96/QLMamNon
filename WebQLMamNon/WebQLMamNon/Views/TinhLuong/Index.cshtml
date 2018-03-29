@@ -36,6 +36,8 @@
             @using (Html.BeginForm("ChiTietLuong", "TinhLuong", new { id = item.maLuong }, FormMethod.Get))
             {
                 <input class="btn btn-danger" style="font-size:12px" type="submit" value="Xem bảng lương" />
+                <input type="hidden" id="thang" name="thang" value="@item.maThang"/>
+                <input type="hidden" id="nam" name="nam" value="@item.maNamHoc"/>
             }
         </td>
     </tr>

@@ -84,11 +84,35 @@ namespace WebQLMamNon.Controllers
                 db.SaveChanges();
             }
         }
-        public ActionResult ChiTietLuong(int id)
+        public ActionResult ChiTietLuong(int id,string thang,string nam)
         {
-          
+            TempData["thangct"] = thang;
+            TempData["namct"] = nam;
             return View(db.Tbl_ChiTietLuong.ToList().Where(x => x.maLuong == id));
 
+        }
+        public ActionResult CalendarDiemDanh(string id)
+        {
+            List<ModelChiTietDiemDanh> lst = new List<ModelChiTietDiemDanh>();
+            var ctdd = db.Tbl_ChiTietDiemDanh.ToList().Where(x => x.maGV == id);
+            foreach(var item in ctdd)
+            {
+                foreach(var i in db.Tbl_DiemDanh.ToList())
+                {
+                    if(item.maDiemDanh==i.maDiemDanh)
+                    {
+                        ModelChiTietDiemDanh mdct = new ModelChiTietDiemDanh();
+                        mdct.nam = i.maNamHoc;
+                        mdct.thang = i.maThang;
+                        mdct.ngay = i.ngayDiemDanh;
+                        mdct.trangThai = item.trangThai;
+                        lst.Add(mdct);
+                    }
+                }
+            }
+            string thang = TempData["thangct"].ToString();
+            string nam = TempData["namct"].ToString();
+            return View(lst.ToList().Where(x=>x.thang==thang && x.nam==nam));
         }
 
     }

@@ -29,7 +29,7 @@
        
         <td>
            
-        @using (Html.BeginForm("ChiTietLuong", "TinhLuong", FormMethod.Get))
+        @using (Html.BeginForm("CalendarDiemDanh", "TinhLuong",new { id=item.maGV} ,FormMethod.Get))
         {
             <input class="btn btn-danger" style="font-size:12px" type="submit" value="Lịch sử điểm danh" />
         }

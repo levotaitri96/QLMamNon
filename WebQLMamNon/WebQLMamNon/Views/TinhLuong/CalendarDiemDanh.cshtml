@@ -1,0 +1,31 @@
+﻿@model IEnumerable<WebQLMamNon.Models.ModelChiTietDiemDanh>
+@{
+    ViewBag.Title = "CalendarDiemDanh";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+
+<h2>CalendarDiemDanh</h2>
+<table class="table" border="1">
+  
+  
+     
+     @foreach (var item in Model)
+     {
+        <tr>
+            @if (item.trangThai == "Có")
+            {
+            <td style="background:orange">@item.ngay-@item.thang-@item.nam</td>
+            }
+            else
+            {
+            <td>@item.ngay-@item.thang-@item.nam</td>
+            }
+        </tr>
+     }
+
+
+        
+</table>
+
+
+
