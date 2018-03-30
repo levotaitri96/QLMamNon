@@ -76,7 +76,7 @@
         <div class="form-group">
             Hình ảnh:
             <div class="col-md-10">
-                <img src="~/images/@Html.DisplayFor(model => model.hinhAnh)" alt="Generic placeholder image">
+                <img src="~/images/@Html.DisplayFor(model => model.hinhAnh)"  style = "width:200px;height:200px " alt="Generic placeholder image">
                 @Html.EditorFor(model => model.hinhAnh, new { htmlAttributes = new { @class = "form-control" } })
                 <input type="file" id="fp" name="fp" class="form-control">
                 @Html.ValidationMessageFor(model => model.hinhAnh, "", new { @class = "text-danger" })

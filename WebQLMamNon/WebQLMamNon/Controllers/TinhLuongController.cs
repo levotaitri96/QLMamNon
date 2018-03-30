@@ -86,8 +86,8 @@ namespace WebQLMamNon.Controllers
         }
         public ActionResult ChiTietLuong(int id,string thang,string nam)
         {
-            TempData["thangct"] = thang;
-            TempData["namct"] = nam;
+            Session["thangct"] = thang;
+            Session["namct"] = nam;
             return View(db.Tbl_ChiTietLuong.ToList().Where(x => x.maLuong == id));
 
         }
@@ -110,8 +110,8 @@ namespace WebQLMamNon.Controllers
                     }
                 }
             }
-            string thang = TempData["thangct"].ToString();
-            string nam = TempData["namct"].ToString();
+            string thang = Session["thangct"].ToString();
+            string nam = Session["namct"].ToString();
             return View(lst.ToList().Where(x=>x.thang==thang && x.nam==nam));
         }
 

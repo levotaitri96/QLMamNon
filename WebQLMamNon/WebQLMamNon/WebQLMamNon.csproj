@@ -166,7 +166,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LopHocController.cs" />
     <Compile Include="Controllers\PhanCongController.cs" />
+    <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Controllers\TinhLuongController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -244,12 +246,41 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\comments.css" />
     <Content Include="Content\css\custom.css" />
     <Content Include="Content\css\custom.min.css" />
+    <Content Include="Content\css\flexslider.css" />
+    <Content Include="Content\css\jquery.tweet.css" />
+    <Content Include="Content\css\lessframework.css" />
+    <Content Include="Content\css\loginform.css" />
     <Content Include="Content\css\multi-level-menu.css" />
+    <Content Include="Content\css\reset.css" />
+    <Content Include="Content\css\skin.css" />
+    <Content Include="Content\css\social.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\superfish.css" />
+    <Content Include="Content\css\widgets.css" />
     <Content Include="Content\giaovien.css" />
+    <Content Include="Content\js\css3-mediaqueries.js" />
     <Content Include="Content\js\custom.js" />
     <Content Include="Content\js\custom.min.js" />
+    <Content Include="Content\js\form-validation.js" />
+    <Content Include="Content\js\imagesloaded.js" />
+    <Content Include="Content\js\jquery-1.6.4.min.js" />
+    <Content Include="Content\js\jquery.flexslider-min.js" />
+    <Content Include="Content\js\jquery.tweet.js" />
+    <Content Include="Content\js\modernizr.js" />
+    <Content Include="Content\js\moveform.js" />
+    <Content Include="Content\js\poshytip-1.1\jquery.poshytip.js" />
+    <Content Include="Content\js\poshytip-1.1\jquery.poshytip.min.js" />
+    <Content Include="Content\js\poshytip-1.1\tip-twitter.css" />
+    <Content Include="Content\js\poshytip-1.1\tip-yellowsimple.css" />
+    <Content Include="Content\js\superfish-1.4.8\hoverIntent.js" />
+    <Content Include="Content\js\superfish-1.4.8\jquery-1.2.6.min.js" />
+    <Content Include="Content\js\superfish-1.4.8\jquery.bgiframe.min.js" />
+    <Content Include="Content\js\superfish-1.4.8\superfish.js" />
+    <Content Include="Content\js\superfish-1.4.8\supersubs.js" />
+    <Content Include="Content\js\tabs.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -296,6 +327,7 @@
     <Content Include="Models\QLMamNonData.edmx.diagram">
       <DependentUpon>QLMamNonData.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\js\.DS_Store" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
@@ -1590,9 +1622,12 @@
     <Content Include="Views\HocSinh\Edit.cshtml" />
     <Content Include="Views\HocSinh\Details.cshtml" />
     <Content Include="Views\TinhLuong\CalendarDiemDanh.cshtml" />
+    <Content Include="Views\LayoutUser.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\TaiKhoan\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

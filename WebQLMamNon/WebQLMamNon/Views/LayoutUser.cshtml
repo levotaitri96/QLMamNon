@@ -1,0 +1,124 @@
+﻿<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <title>Happy Smile School</title>
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="~/Content/css/loginform.css" rel="stylesheet" />
+
+    <!-- JS -->
+    <script src="~/Content/js/jquery-1.6.4.min.js"></script>
+    <script src="~/Content/js/css3-mediaqueries.js"></script>
+    <script src="~/Content/js/custom.js"></script>
+    <script src="~/Content/js/tabs.js"></script>
+
+    <!-- Tweet -->
+    <link href="~/Content/css/jquery.tweet.css" rel="stylesheet" />
+    <script src="~/Content/js/jquery.tweet.js"></script>
+    <!-- ENDS Tweet -->
+    <!-- superfish -->
+    <link href="~/Content/css/superfish.css" rel="stylesheet" />
+    <script src="~/Content/js/superfish-1.4.8/hoverIntent.js"></script>
+    <script src="~/Content/js/superfish-1.4.8/superfish.js"></script>
+    <script src="~/Content/js/superfish-1.4.8/supersubs.js"></script>
+    <!-- ENDS superfish -->
+    <!-- poshytip -->
+    <link href="~/Content/js/poshytip-1.1/tip-twitter.css" rel="stylesheet" />
+    <link href="~/Content/js/poshytip-1.1/tip-yellowsimple.css" rel="stylesheet" />
+    <script src="~/Content/js/poshytip-1.1/jquery.poshytip.min.js"></script>
+    <!-- ENDS poshytip -->
+    <!-- GOOGLE FONTS -->
+    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,300' rel='stylesheet' type='text/css'>
+
+    <!-- Flex Slider -->
+    <link href="~/Content/css/flexslider.css" rel="stylesheet" />
+    <script src="~/Content/js/jquery.flexslider-min.js"></script>
+    <!-- ENDS Flex Slider -->
+    <!-- Less framework -->
+    <link href="~/Content/css/lessframework.css" rel="stylesheet" />
+
+    <!-- modernizr -->
+    <script src="~/Content/js/modernizr.js"></script>
+
+    <!-- SKIN -->
+    <link href="~/Content/css/skin.css" rel="stylesheet" />
+
+
+
+</head>
+
+<body lang="en">
+    <header class="clearfix">
+        <div class="wrapper clearfix">
+            <a href="index.html" id="logo"><h2 style="color: #f1f1f1;">Happy Smile School</h2></a>
+            <nav>
+                <ul id="nav" class="sf-menu">
+                    <li class="current-menu-item"><a href="index.html">Trang Chủ</a></li>
+                    <li>
+                        <a href="blog.html">Góc Chia Sẻ</a>
+                        <ul>
+                            <li><a href="#Drink">Phụ Huynh Mầm Non</a></li>
+                            <li><a href="#Food">Giáo Viên Mầm Non</a></li>
+                            <li><a href="#Travel">Quản lý Mầm Non</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Liên Hệ</a></li>
+                  
+                    <li>
+                        <a style="cursor: pointer;" onclick="document.getElementById('id01').style.display='block'">
+                            Login
+
+                        </a>
+                        <!--FormLogin/-->
+                 
+                        <div id="id01" class="modal">
+                      
+                            <form class="modal-content animate" style="margin :139px; height:273px;width:429px;left :310px;position :absolute;" action="~/TaiKhoan/Login" method="post">
+
+
+                                <div style="margin: 20px;" class="container">
+                                    
+                                   
+                                        <label for="uname"><b>Username</b></label>
+                                        <input type="text" placeholder="Enter Username" id="maGV" name="maGV" required>
+
+                                        <label for="psw"><b>Password</b></label>
+                                        <input type="password" placeholder="Enter Password" id="matKhau" name="matKhau" required>
+                                        <button style="height: 44px;" type="submit">Login</button>
+                                    
+                                    <br />
+                                  
+                                </div>
+
+                            </form>
+                        
+                        </div>
+                       
+                     
+                    </li>
+                    
+                </ul>
+                <div id="combo-holder"></div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="main">
+        <div class="wrapper">
+        @RenderBody()
+        </div>
+    </div>
+
+    <footer>
+        <div class="wrapper">
+            <div class="footer-bottom">
+           Mầm Non Tài Trí
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

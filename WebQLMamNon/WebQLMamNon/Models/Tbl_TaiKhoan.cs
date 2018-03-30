@@ -14,7 +14,7 @@ namespace WebQLMamNon.Models
     
     public partial class Tbl_TaiKhoan
     {
-        public string maTK { get; set; }
+        public int maTK { get; set; }
         public string loaiTK { get; set; }
         public string matKhau { get; set; }
         public string maGV { get; set; }

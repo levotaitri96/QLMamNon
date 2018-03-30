@@ -55,12 +55,15 @@ namespace WebQLMamNon.Controllers
                 chitiet.maDiemDanh = diemdanh.maDiemDanh;
                 chitiet.trangThai = "Có";
                 chitiet.maGV = item.maGV;
+                TempData["magv"] = chitiet.maGV;
                 chitiet.maLoai = item.maLoai;
                 chitiet.maLop = item.maLop;
                 db.Tbl_ChiTietDiemDanh.Add(chitiet);
                 db.SaveChanges();
+              
             }
         }
+       
         public ActionResult DiemDanh(int id)
         {
           

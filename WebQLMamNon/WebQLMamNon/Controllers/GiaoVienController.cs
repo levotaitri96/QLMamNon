@@ -62,12 +62,23 @@ namespace WebQLMamNon.Controllers
                     tbl_GiaoVien.hinhAnh = posted.FileName;
                 }
                 tbl_GiaoVien.maGV = "GV" + a.Next(100000);
+                TempData["magv"] = tbl_GiaoVien.maGV;
                 db.Tbl_GiaoVien.Add(tbl_GiaoVien);
                 db.SaveChanges();
+                ThemTaiKhoan();
                 return RedirectToAction("Index");
             }
 
             return View(tbl_GiaoVien);
+        }
+        public void ThemTaiKhoan()
+        {
+            Tbl_TaiKhoan tk = new Tbl_TaiKhoan();
+            tk.maGV = TempData["magv"].ToString();
+            tk.loaiTK = "Teacher";
+            tk.matKhau = "123456";
+            db.Tbl_TaiKhoan.Add(tk);
+            db.SaveChanges();
         }
 
         // GET: GiaoVien/Edit/5
@@ -112,22 +123,6 @@ namespace WebQLMamNon.Controllers
             return View(tbl_GiaoVien);
         }
 
-        // GET: GiaoVien/Delete/5
-        //public ActionResult Delete(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Tbl_GiaoVien tbl_GiaoVien = db.Tbl_GiaoVien.Find(id);
-        //    if (tbl_GiaoVien == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(tbl_GiaoVien);
-        //}
-
-        // POST: GiaoVien/Delete/5
         [HttpPost]
         public JsonResult Delete(string id)
         {

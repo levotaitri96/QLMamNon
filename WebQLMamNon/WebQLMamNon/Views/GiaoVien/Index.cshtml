@@ -16,6 +16,9 @@
 <table class="table" border="1">
     <tr style="background:orange;font-size:15px">
         <th>
+            Mã giáo viên
+        </th>
+        <th>
             Họ tên
         </th>
         <th>
@@ -47,6 +50,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.maGV)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.hoTen)
         </td>

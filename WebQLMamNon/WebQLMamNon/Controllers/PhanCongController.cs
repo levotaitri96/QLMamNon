@@ -25,23 +25,28 @@ namespace WebQLMamNon.Controllers
             foreach (var g in db.Tbl_GiaoVien)
             {
                 int dem = 0;
-
-                foreach (var item in db.Tbl_PhanCong)
+                var abc = db.Tbl_TaiKhoan.Where(x => x.maGV == g.maGV).FirstOrDefault();
+                if (abc.loaiTK == "Teacher")
                 {
-                    if (g.maGV == item.maGV)
+
+                    foreach (var item in db.Tbl_PhanCong)
                     {
-                        dem++;
+                        if (g.maGV == item.maGV)
+                        {
+                            dem++;
+                        }
+
                     }
+                    if (dem == 0)
+                    {
 
+                        ModelGiaoVien gv = new ModelGiaoVien();
+                        gv.maGV = g.maGV;
+                        gv.hoTen = g.hoTen;
+                        lstgv.Add(gv);
+                    }
                 }
-                if (dem == 0)
-                {
-
-                    ModelGiaoVien gv = new ModelGiaoVien();
-                    gv.maGV = g.maGV;
-                    gv.hoTen = g.hoTen;
-                    lstgv.Add(gv);
-                }
+               
 
             }
             ViewBag.maGV = new SelectList(lstgv, "maGV", "hoTen");

@@ -29,21 +29,65 @@
 </head>
 <body class="nav-md">
     <div class="container body">
+        @*popup đổi mật khẩu*@
+        <div class="modal fade bootstrapmodal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button data-dismiss="modal" class="close"><span>&times;</span></button>
+                        <div class="modal-title"></div>
+                    </div> <!--modal-header-->
+                    <div class="modal-body">
+                        <dl class="dl-horizontal" style="margin-right:50px">
+                            @using (Html.BeginForm("DoiMatKhau", "TaiKhoan", FormMethod.Get))
+                            {
+                              
+                                <dd style="margin-top:5px">
+                                    <input type="text" id="matKhau" name="matKhau" class="form-control" placeholder="Mời nhập mật khẩu mới"  style="width:90%">
+                                    <input type="hidden" value="@Session["maGV"].ToString()" id="id" name="id"/>
+                                    @Html.Hidden("loai", this.Request.RawUrl)
+                                </dd>
+                                
+                            }
+                           
+                        </dl>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" value="Lưu" class="btn btn-danger" />
+
+                        <button class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    </div>
+                </div><!--modal content-->
+
+            </div>
+
+        </div>
+        @* kết thúc popup đổi mật khẩu*@
+        
+        @if (TempData["mk"] != null)
+        {
+            <script>
+        alert("Bạn thay đổi mật khẩu thành công");
+            </script>
+        }
         <div class="main_container">
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Happy Smile!</span></a>
                     </div>
                     <div class="clearfix"></div>
                     <!-- menu profile quick info -->
                     <div class="profile clearfix">
                         <div class="profile_pic">
-                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                            <img src="~/images/@Session["hinhAnh"]" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
-                            <h2>John Doe</h2>
+                            <h2>@Session["UserName"]</h2>
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -52,70 +96,59 @@
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
                             <h3>Mục lục</h3>
-                            <ul class="nav side-menu">
-                                <li>
-                                    <a><i class="fa fa-home"></i> Quản lý giáo viên  <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="@Url.Action("Index","DiemDanhGV")">Điểm danh</a></li>
-                                        <li><a href="@Url.Action("Index","GiaoVien")">Giáo viên</a></li>
-                                        <li><a href="@Url.Action("Index","TinhLuong")">Tính lương</a></li>
-                                        <li><a href="@Url.Action("Indexpl","PhanCong")">Phân lớp</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-edit"></i> Quản lý học sinh <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="@Url.Action("IndexPhanLopHS","Hocsinh")">Xếp lớp</a></li>
-                                        <li><a href="@Url.Action("Index","Hocsinh")">Học Sinh</a></li>
-                                        <li><a href="index3.html">Học phí</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-desktop"></i> Điểm danh học sinh <span class="fa fa-chevron-down"></span></a>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-table"></i> Quản lý lớp <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="@Url.Action("Index","LopHoc",new { id="L01"})">Mầm</a></li>
-                                        <li><a href="@Url.Action("Index","LopHoc",new { id="L02"})">Chồi</a></li>
-                                        <li><a href="@Url.Action("Index","LopHoc",new { id="L03"})">Lá</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="chartjs.html">Chart JS</a></li>
-                                        <li><a href="chartjs2.html">Chart JS2</a></li>
+                            @if (Session["loaiTaiKhoan"].ToString() == "Teacher")
+                            {
+                                <ul class="nav side-menu">
+                                   
+                                    <li>
+                                        <a><i class="fa fa-desktop"></i> Điểm danh học sinh <span class="fa fa-chevron-down"></span></a>
+                                    </li>
+                                </ul>
+                            }
+                            else
+                            {
+                                    <ul class="nav side-menu">
+                                        <li>
+                                            <a><i class="fa fa-home"></i> Quản lý giáo viên  <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li><a href="@Url.Action("Index", "DiemDanhGV")">Điểm danh</a></li>
+                                                <li><a href="@Url.Action("Index", "GiaoVien")">Giáo viên</a></li>
+                                                <li><a href="@Url.Action("Index", "TinhLuong")">Tính lương</a></li>
+                                                <li><a href="@Url.Action("Indexpl", "PhanCong")">Phân lớp</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a><i class="fa fa-edit"></i> Quản lý học sinh <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li><a href="@Url.Action("IndexPhanLopHS", "Hocsinh")">Xếp lớp</a></li>
+                                                <li><a href="@Url.Action("Index", "Hocsinh")">Học Sinh</a></li>
+                                                <li><a href="index3.html">Học phí</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a><i class="fa fa-desktop"></i> Điểm danh học sinh <span class="fa fa-chevron-down"></span></a>
+                                        </li>
+                                        <li>
+                                            <a><i class="fa fa-table"></i> Quản lý lớp <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li><a href="@Url.Action("Index", "LopHoc", new { id = "L01" })">Mầm</a></li>
+                                                <li><a href="@Url.Action("Index", "LopHoc", new { id = "L02" })">Chồi</a></li>
+                                                <li><a href="@Url.Action("Index", "LopHoc", new { id = "L03" })">Lá</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a><i class="fa fa-bar-chart-o"></i> Báo Cáo <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li><a href="chartjs.html">Chart JS</a></li>
+                                                <li><a href="chartjs2.html">Chart JS2</a></li>
 
+                                            </ul>
+                                        </li>
                                     </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
-                                        <li><a href="fixed_footer.html">Fixed Footer</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>                      
+                                    }
+</div>                      
                     </div>
                     <!-- /sidebar menu -->
-                    <!-- /menu footer buttons -->
-                    <div class="sidebar-footer hidden-small">
-                        <a data-toggle="tooltip" data-placement="top" title="Settings">
-                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Lock">
-                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                        </a>
-                    </div>
-                    <!-- /menu footer buttons -->
                 </div>
             </div>
             <!-- top navigation -->
@@ -128,13 +161,13 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/img.jpg" alt="">John Doe
+                                    <img src="images/img.jpg" alt="">@Session["UserName"]
                                     <span class="fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
                                     <li><a href="javascript:;"> Hồ sơ</a></li>
-                                    <li><a href="javascript:;">Lịch sử chấm công</a></li>
-                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target=".bootstrapmodal">Đổi mật khẩu</a></li>
+                                    <li><a href="@Url.Action("LogOff","TaiKhoan")"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
                                 </ul>
                             </li>
                             <li role="presentation" class="dropdown">
@@ -212,7 +245,7 @@
             <!-- footer content -->
             <footer>
                 <div class="pull-right">
-                    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                    Trường Mầm Non Sao Mai
                 </div>
                 <div class="clearfix"></div>
             </footer>
