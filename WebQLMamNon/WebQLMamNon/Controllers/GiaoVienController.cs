@@ -101,7 +101,7 @@ namespace WebQLMamNon.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maGV,trinhDo,hoTen,soDT,ngaySinh,email,diaChi,gioiTinh,hinhAnh")] Tbl_GiaoVien tbl_GiaoVien,string fp)
+        public ActionResult Edit([Bind(Include = "maGV,trinhDo,hoTen,soDT,ngaySinh,email,diaChi,gioiTinh,hinhAnh,tonGiao,danToc")] Tbl_GiaoVien tbl_GiaoVien,string fp)
         {
             if (ModelState.IsValid)
             { 

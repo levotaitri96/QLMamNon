@@ -1602,11 +1602,9 @@
     <Content Include="Views\GiaoVien\Create.cshtml" />
     <Content Include="Views\GiaoVien\Delete.cshtml" />
     <Content Include="Views\GiaoVien\Details.cshtml" />
-    <Content Include="Views\GiaoVien\Edit.cshtml" />
     <Content Include="Views\GiaoVien\Index.cshtml" />
     <Content Include="Views\LopHoc\Create.cshtml" />
     <Content Include="Views\LopHoc\Delete.cshtml" />
-    <Content Include="Views\LopHoc\Details.cshtml" />
     <Content Include="Views\LopHoc\Edit.cshtml" />
     <Content Include="Views\LopHoc\Index.cshtml" />
     <Content Include="Views\PhanCong\Indexpl.cshtml" />
@@ -1624,6 +1622,7 @@
     <Content Include="Views\TinhLuong\CalendarDiemDanh.cshtml" />
     <Content Include="Views\LayoutUser.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\GiaoVien\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

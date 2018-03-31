@@ -35,20 +35,7 @@ namespace WebQLMamNon.Controllers
             
         }
 
-        // GET: LopHoc/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Tbl_LopHoc tbl_LopHoc = db.Tbl_LopHoc.Find(id);
-            if (tbl_LopHoc == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_LopHoc);
-        }
+
 
         // GET: LopHoc/Create
         public ActionResult Create()
