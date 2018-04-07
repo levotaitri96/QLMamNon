@@ -1,0 +1,87 @@
+﻿@model IEnumerable<WebQLMamNon.Models.Tbl_BaiViet>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/LayoutUser.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="wrapper">
+
+    <!-- slider holder -->
+    <div id="slider-holder" class="clearfix">
+
+        <!-- slider -->
+        <div class="flexslider home-slider">
+            <ul class="slides">
+                <li>
+                    <iframe width="620" height="330" src="https://www.youtube.com/embed/SSsoY7ysiXY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </li>
+                <li>
+                    <!--<img src="img/slides/01.jpg" alt="alt text" />-->
+                    <iframe width="620" height="330" src="https://www.youtube.com/embed/ZHp-T2dTwk8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen" frameborder="0" allowfullscreen alt="alt text">
+                        <a href="GioiThieuTruong.html">
+                            <p class="caption-text">Trường chúng cháu là trường mầm non </p>
+                        </a>
+                    </iframe>
+                </li>
+                <li>
+                    <iframe width="620" height="330" src="https://www.youtube.com/embed/Os0koIINqrU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+                        <a href="gocchiase/hocsinhmamnon.html">
+                            <p class="caption-text">Đội kèn tý hon </p>
+                        </a>
+                    </iframe>
+                </li>
+                <li>
+                    <iframe width="620" height="330" src="https://www.youtube.com/embed/6PaOyzH-2Y4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+                        <a href="gocchiase/hocsinhmamnon.html"></a>
+                    </iframe>
+                </li>
+                <li>
+                    <iframe width="620" height="325" src="https://www.youtube.com/embed/kUxAih6HgWM?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                </li>
+            </ul>
+        </div>
+        <!-- ENDS slider -->
+
+        <div class="home-slider-clearfix "></div>
+
+        <!-- Headline -->
+        <div id="headline">
+            <h1>Happy Smile School!</h1>
+            <p>Happy Smile School là trường mầm non được đầu tư xây dựng trên khu đất trên 5000m2, 4 mặt tiền tại khu đô thị mới Quận 2 thuận tiện về giao thông và đi lại. Cơ sở vật chất hiện đại, chú trọng đến sự an toàn và tiện lợi cho trẻ. Tất cả các phòng học và trang thiết bị theo tiêu chuẩn quốc tế.</p>
+            <p>Chi Tiết tại <a href="page.html">đây</a></p>
+            <em id="corner"></em>
+        </div>
+        <!-- ENDS headline -->
+
+
+    </div>
+    <!-- ENDS slider holder -->
+    <!-- home-block -->
+    <div class="home-block">
+        <h2 class="home-block-heading"><span>Chia sẻ nổi bật</span></h2>
+        <div class="one-third-thumbs clearfix">
+            @foreach (var item in Model)
+            {
+                <figure>
+                    <figcaption>
+                        <strong>@item.tenBaiViet</strong>
+                        <span>@item.noiDung</span>
+                        <em>@String.Format("{0:d/M/yyyy}", item.ngayDang)</em>
+                        <a href="gocchiase/giaovienmamnon.html" class="opener"></a>
+                    </figcaption>
+
+                    <a href="gocchiase/giaovienmamnon.html" class="thumb"><img src="~/images/@item.hinhBV" alt="Alt text" width="304" height="225" /></a>
+                </figure>
+            }
+
+
+        </div>
+    </div>
+    <!-- ENDS home-block -->
+    <!-- home-block -->
+    <!-- ENDS home-block -->
+
+</div>

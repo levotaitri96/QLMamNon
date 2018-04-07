@@ -1,97 +1,107 @@
 ﻿@model WebQLMamNon.Models.Tbl_HocSinh
-
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
+<style>
+    th {
+        border: 1px dotted #4190b1;
+    }
 
-<h2>Details</h2>
+    tr {
+        border: 1px dotted #4190b1;
+    }
 
+    td {
+        border: 1px dotted #4190b1;
+    }
+
+    table {
+        border: 1px dotted #4190b1;
+    }
+</style>
+<h2>Chi Tiết Học Sinh</h2>
 <div>
-    <h4>Tbl_HocSinh</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.hoTenCha)
-        </dt>
+    <table class="table" style="border: 1px dotted #fbf299">
+        <tr>
+            <th>
+                Họ Tên
+            </th>
+            <th>
+                Ngày Sinh
+            </th>
+            <th>
+                Giới Tính
+            </th>
+            <th>
+                Số Điện thoại
+            </th>
+            <th>
+                Địa Chỉ
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Họ Tên Cha
+            </th>
+            <th>
+                Nghề Nghiệp Cha
+            </th>
+            <th>
+                Họ Tên Mẹ
+            </th>
+            <th>
+                Nghề Nghiệp Mẹ
+            </th>
+            <th>
+                Tôn Giáo
+            </th>
+            <th>
+                Dân Tộc
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.hoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ngaySinh)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.gioiTinh)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.soDTNha)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.diaChi)
 
-        <dd>
-            @Html.DisplayFor(model => model.hoTenCha)
-        </dd>
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.email)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.hoTenCha)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ngheNghiepCha)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.hoTenMe)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ngheNghiepMe)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.danToc)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.tonGiao)
+            </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.hoTenMe)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.hoTenMe)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.hoTen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.hoTen)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.soDTNha)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.soDTNha)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ngaySinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ngaySinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.diaChi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.diaChi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.gioiTinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.gioiTinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.hinhAnh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.hinhAnh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tbl_LoaiLop.tenLoai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tbl_LoaiLop.tenLoai)
-        </dd>
-
-    </dl>
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.maHS }) |

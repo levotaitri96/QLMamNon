@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<WebQLMamNon.Models.Tbl_HocSinh>
-
 @{
     ViewBag.Title = "LoadHS";
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
-
-<h2>Danh sách h?c sinh</h2>
-
+<h2>Danh sách học sinh</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm Mới", "Create")
 </p>
 <table class="table">
     <tr>
@@ -26,7 +23,6 @@
         </th>
         <th></th>
     </tr>
-
     @foreach (var item in Model)
     {
         <tr>
@@ -39,19 +35,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ngaySinh)
             </td>
-
             <td>
                 @Html.DisplayFor(modelItem => item.diaChi)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.maHS }) |
-                @Html.ActionLink("Details", "Details", new { id = item.maHS }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.maHS })
+                <a href="@Url.Action("Edit", "HocSinh",new { id = item.maHS })"><i class="fa fa-wrench"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                <a href="@Url.Action("Details", "HocSinh",new { id = item.maHS })"><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                <a href="#" id="@item.maHS" onclick="return confirm('Bạn chắc muốn xóa')"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
             </td>
         </tr>
     }
-
 </table>
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Quay lại", "Index")
 </div>

@@ -127,8 +127,11 @@ namespace WebQLMamNon.Controllers
         public JsonResult Delete(string id)
         {
             var gv = db.Tbl_PhanCong.Where(x => x.maGV == id).FirstOrDefault();
+            var tk = db.Tbl_TaiKhoan.Where(x => x.maGV == id).FirstOrDefault();
             if (gv == null)
             {
+                Tbl_TaiKhoan tbl_Taikhoan = db.Tbl_TaiKhoan.Find(tk.maTK);
+                db.Tbl_TaiKhoan.Remove(tbl_Taikhoan);
                 Tbl_GiaoVien tbl_Giaovien = db.Tbl_GiaoVien.Find(id);
                 db.Tbl_GiaoVien.Remove(tbl_Giaovien);
                 db.SaveChanges();

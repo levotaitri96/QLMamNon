@@ -3,47 +3,94 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/LayoutAdmin.cshtml";
-    <link href="~/Content/css/multi-level-menu.css" rel="stylesheet" />
 
-    //List<WebQLMamNon.Models.Tbl_LoaiLop> tempListLoaiLop = ViewBag.lstLoai;
-    //List<WebQLMamNon.Models.Tbl_LopHoc> tempListLopHoc = ViewBag.lstLop;
 }
-<h2>Qu?n lý H?c Sinh</h2>
+<h1>Quản lý học sinh</h1>
 
-<div class="navigation">
-    <ul>
-        <li class="has-sub">
-            <a href="#">Danh sách </a>
-            <ul>
-                @foreach (var _loai in ViewBag.lstLoai)
-                {
-                    <li class="has-sub">
-                        <a>@_loai.tenLoai</a>
-                        <ul>
-                            @foreach (var lop in ViewBag.lstLop)
-                            {
-                                if (_loai.maLoai == lop.maLoai)
-                                {
-                                    <li>
-                                        <a href="@Url.Action("LoadHS","HocSinh",new {@id=lop.maLop})">@lop.tenLop</a>
-                                    </li>
-                                }
+@using (Html.BeginForm("Create", "HocSinh", FormMethod.Get))
+{
+    <input class="btn btn-primary" style="float:left;margin-left:20px" type="submit" value="Thêm Học Sinh" />
 
-                            }
+}
+<br />
+<table class="table" border="1">
+    <tr style="background:orange;font-size:15px">
 
-                        </ul>
-                    </li>
-                }
-            </ul>
-        </li>
+        <th>
+            Họ tên
+        </th>
+        <th>
+            Ngày sinh
+        </th>
+        <th>
+            Giới tính
+        </th>
 
-    </ul>
-</div>
-<div class="navigation">
-    <ul>
-        <li class="has-sub">
-            <a href="@Url.Action("Create","HocSinh")">Thêm mới học sinh</a>
-        </li>
-    </ul>
-</div>
+        <th>
+            Số điện thoại
+        </th>
+
+        <th>
+            Địa chỉ
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.hoTen)
+            </td>
+            <td>
+                @String.Format("{0:d/M/yyyy}", item.ngaySinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gioiTinh)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.soDTNha)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.diaChi)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "HocSinh",new { id = item.maHS })"><i class="fa fa-wrench"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                <a href="@Url.Action("Details", "HocSinh",new { id = item.maHS })"><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                @*xóa được học sinh nào chưa phân lớp*@
+                <a href="#" id="@item.maHS" onclick="deletehs(this.id)"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+            </td>
+        </tr>
+    }
+</table>
+<script type="text/javascript">
+    function deletehs(mahs) {
+            if (confirm("Bạn muốn xóa học sinh này?")) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/HocSinh/Delete',
+                    data: { id: mahs },
+                    success: function (data) {
+                        if (data.status == 0) {
+                            $('#tr-' + mahs).remove();
+                            alert("Bạn xóa thành công");
+                            window.location = "@Url.Action("Index","HocSinh")";
+                        }
+                        if (data.status == 1)
+                            alert('Học sinh này đã được phân lớp. Xóa thất bại.');
+                        window.location = "@Url.Action("Index","HocSinh")";
+
+                    },
+                    error: function (data) {
+                        alert('Lỗi hệ thống');
+                        window.location = "@Url.Action("Index", "HocSinh")";
+                    }
+
+                })
+            }
+        }
+
+</script>
 

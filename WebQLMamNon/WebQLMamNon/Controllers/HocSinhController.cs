@@ -24,13 +24,10 @@ namespace WebQLMamNon.Controllers
         }
 
         // GET: HocSinh/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Tbl_HocSinh tbl_HocSinh = db.Tbl_HocSinh.Find(int.Parse(id));
+
+            Tbl_HocSinh tbl_HocSinh = db.Tbl_HocSinh.Find(id);
             if (tbl_HocSinh == null)
             {
                 return HttpNotFound();
@@ -57,7 +54,7 @@ namespace WebQLMamNon.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "maHS,hoTenCha,hoTenMe,hoTen,soDTNha,ngaySinh,email,diaChi,gioiTinh,hinhAnh")] Tbl_HocSinh tbl_HocSinh)
+        public ActionResult Create([Bind(Include = "maHS,hoTenCha,ngheNghiepCha,hoTenMe,ngheNghiepMe,hoTen,soDTNha,ngaySinh,email,diaChi,gioiTinh,hinhAnh,tonGiao,danToc")] Tbl_HocSinh tbl_HocSinh)
         {
             if (ModelState.IsValid)
             {
@@ -90,12 +87,9 @@ namespace WebQLMamNon.Controllers
 
         // GET: HocSinh/Edit/5
 
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+
             Tbl_HocSinh tbl_HocSinh = db.Tbl_HocSinh.Find(id);
             if (tbl_HocSinh == null)
             {
@@ -120,31 +114,23 @@ namespace WebQLMamNon.Controllers
             return View(tbl_HocSinh);
         }
 
-        // GET: HocSinh/Delete/5
-        public ActionResult Delete(string id)
+        //xóa học sinh nào chưa phân lớp
+        [HttpPost]
+        public JsonResult Delete(int id)
         {
-            if (id == null)
+            var hs = db.Tbl_PhanLop.Where(x => x.maHS == id).FirstOrDefault();
+            if (hs == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                Tbl_HocSinh Tbl_HocSinh = db.Tbl_HocSinh.Find(id);
+                db.Tbl_HocSinh.Remove(Tbl_HocSinh);
+                db.SaveChanges();
+                return Json(new { status = 0 }, JsonRequestBehavior.AllowGet);
             }
-            Tbl_HocSinh tbl_HocSinh = db.Tbl_HocSinh.Find(id);
-            if (tbl_HocSinh == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_HocSinh);
+            else
+                return Json(new { status = 1 }, JsonRequestBehavior.AllowGet);
+
         }
 
-        // POST: HocSinh/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            Tbl_HocSinh tbl_HocSinh = db.Tbl_HocSinh.Find(id);
-            db.Tbl_HocSinh.Remove(tbl_HocSinh);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {
@@ -158,7 +144,7 @@ namespace WebQLMamNon.Controllers
         {
             List<int> lstMaHS = db.Tbl_PhanLop.Where(n => n.maLop == id).Select(x => x.maHS).ToList();
 
-            //truy xuat danh sach Sach theo loai, sap xep theo issueDate
+            //truy xuat danh sach HS theo loai
             List<Tbl_HocSinh> lstHS = db.Tbl_HocSinh.Where(n => lstMaHS.Contains(n.maHS)).ToList();
             //gan danh sach loai sach            
             return View(lstHS);

@@ -9,11 +9,12 @@
           <Key>
             <PropertyRef Name="maBaiViet" />
           </Key>
-          <Property Name="maBaiViet" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="maBaiViet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="noiDung" Type="nvarchar" MaxLength="2000" />
           <Property Name="hinhBV" Type="nvarchar" MaxLength="500" />
           <Property Name="maGV" Type="nvarchar" MaxLength="10" />
           <Property Name="ngayDang" Type="datetime" />
+          <Property Name="tenBaiViet" Type="nvarchar" MaxLength="80" />
         </EntityType>
         <EntityType Name="Tbl_ChiTietDiemDanh">
           <Key>
@@ -708,11 +709,12 @@
           <Key>
             <PropertyRef Name="maBaiViet" />
           </Key>
-          <Property Name="maBaiViet" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="maBaiViet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="noiDung" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="hinhBV" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="maGV" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ngayDang" Type="DateTime" Precision="3" />
+          <Property Name="tenBaiViet" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Tbl_GiaoVien" Relationship="QuanLyMamNonModel.FK_Tbl_BaiViet_Tbl_GiaoVien" FromRole="Tbl_BaiViet" ToRole="Tbl_GiaoVien" />
         </EntityType>
         <EntityType Name="Tbl_ChiTietDiemDanh">
@@ -1224,6 +1226,7 @@
           <EntitySetMapping Name="Tbl_BaiViet">
             <EntityTypeMapping TypeName="QuanLyMamNonModel.Tbl_BaiViet">
               <MappingFragment StoreEntitySet="Tbl_BaiViet">
+                <ScalarProperty Name="tenBaiViet" ColumnName="tenBaiViet" />
                 <ScalarProperty Name="ngayDang" ColumnName="ngayDang" />
                 <ScalarProperty Name="maGV" ColumnName="maGV" />
                 <ScalarProperty Name="hinhBV" ColumnName="hinhBV" />

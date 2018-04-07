@@ -14,11 +14,12 @@ namespace WebQLMamNon.Models
     
     public partial class Tbl_BaiViet
     {
-        public string maBaiViet { get; set; }
+        public int maBaiViet { get; set; }
         public string noiDung { get; set; }
         public string hinhBV { get; set; }
         public string maGV { get; set; }
         public Nullable<System.DateTime> ngayDang { get; set; }
+        public string tenBaiViet { get; set; }
     
         public virtual Tbl_GiaoVien Tbl_GiaoVien { get; set; }
     }

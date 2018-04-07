@@ -16,10 +16,10 @@
         alert("Mỗi lớp tối đa 20 học sinh ");
     </script>
 }
-<h2>Phân L?p H?c Sinh</h2>
+<h2>Phân Lớp Học Sinh</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm Mới", "Create")
 </p>
 
 @using (Html.BeginForm("PhanLopHS", "HocSinh", FormMethod.Get))
@@ -29,19 +29,20 @@
         @Html.DropDownList("maHS", null, htmlAttributes: new { @class = "form-control", @style = "width:25%; margin-right: 10px", @value = "maHS" })
     </div>
 
-    <input style="float:left" type="submit" value="Phân L?p" />
+    <input style="float:left" type="submit" value="Phân Lớp" />
 }
 <table class="table">
     <tr>
         <th>
-            Tên L?p
+            Tên Lớp
         </th>
         <th>
-            H? Tên
+            Họ Tên
         </th>
         <th>
             Ngày Sinh
         </th>
+        <th></th>
         <th></th>
     </tr>
 
@@ -60,9 +61,9 @@
             </td>
             <td></td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+
+                <a href="@Url.Action("LoadHS", "HocSinh",new { id = item.maHS })"><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                <a href="#" id="del" onclick="return confirm('Bạn chắc muốn xóa')"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
             </td>
         </tr>
     }

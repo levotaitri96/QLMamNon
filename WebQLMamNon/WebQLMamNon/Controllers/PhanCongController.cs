@@ -122,6 +122,37 @@ namespace WebQLMamNon.Controllers
             }
             return RedirectToAction("Indexpl");
         }
-     
+        //Thay đổi phân công cho giáo viên
+        //public ActionResult ThaydoiGV()
+        //{
+        //    List<ModelGiaoVien> lstgv = new List<ModelGiaoVien>();
+        //    foreach (var g in db.Tbl_GiaoVien)
+        //    {
+        //        int dem = 0;
+        //        var abc = db.Tbl_TaiKhoan.Where(x => x.maGV == g.maGV).FirstOrDefault();
+        //        if (abc.loaiTK == "Teacher")
+        //        {
+
+        //            foreach (var item in db.Tbl_PhanCong)
+        //            {
+        //                if (g.maGV == item.maGV)
+        //                {
+        //                    dem++;
+        //                }
+
+        //            }
+        //            if (dem == 0)
+        //            {
+
+        //                ModelGiaoVien gv = new ModelGiaoVien();
+        //                gv.maGV = g.maGV;
+        //                gv.hoTen = g.hoTen;
+        //                lstgv.Add(gv);
+        //            }
+        //        }
+
+        //    }
+        //    ViewBag.maGV = new SelectList(lstgv, "maGV", "hoTen");
+        //}
     }
 }

@@ -160,7 +160,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaiVietController.cs" />
+    <Compile Include="Controllers\BaiVietUserController.cs" />
     <Compile Include="Controllers\DiemDanhGVController.cs" />
+    <Compile Include="Controllers\DiemDanhHSController.cs" />
     <Compile Include="Controllers\GiaoVienController.cs" />
     <Compile Include="Controllers\HocSinhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1623,9 +1626,16 @@
     <Content Include="Views\LayoutUser.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\GiaoVien\Edit.cshtml" />
+    <Content Include="Views\BaiViet\Create.cshtml" />
+    <Content Include="Views\BaiViet\Delete.cshtml" />
+    <Content Include="Views\BaiViet\Details.cshtml" />
+    <Content Include="Views\BaiViet\Edit.cshtml" />
+    <Content Include="Views\BaiViet\Index.cshtml" />
+    <Content Include="Views\BaiVietUser\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\DiemDanhHS\" />
     <Folder Include="Views\TaiKhoan\" />
   </ItemGroup>
   <ItemGroup>
