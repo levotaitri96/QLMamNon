@@ -12,17 +12,17 @@ namespace WebQLMamNon.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Tbl_ChiTietDiemDanh
+    public partial class Tbl_CTDiemDanhHS
     {
-        public int maChiTietDiemDanh { get; set; }
+        public int maCTDiemDanhHS { get; set; }
         public string trangThai { get; set; }
-        public Nullable<int> maDiemDanh { get; set; }
-        public string maGV { get; set; }
+        public Nullable<int> maDiemDanhHS { get; set; }
+        public Nullable<int> maHS { get; set; }
         public string maLoai { get; set; }
         public string maLop { get; set; }
     
-        public virtual Tbl_DiemDanh Tbl_DiemDanh { get; set; }
-        public virtual Tbl_GiaoVien Tbl_GiaoVien { get; set; }
+        public virtual Tbl_DiemDanhHS Tbl_DiemDanhHS { get; set; }
+        public virtual Tbl_HocSinh Tbl_HocSinh { get; set; }
         public virtual Tbl_LoaiLop Tbl_LoaiLop { get; set; }
         public virtual Tbl_LopHoc Tbl_LopHoc { get; set; }
     }

@@ -204,7 +204,13 @@
     <Compile Include="Models\Tbl_ChiTietLuong.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tbl_CTDiemDanhHS.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_DiemDanh.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_DiemDanhHS.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_GiaoVien.cs">
