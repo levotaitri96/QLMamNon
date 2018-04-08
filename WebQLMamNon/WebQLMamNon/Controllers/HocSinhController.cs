@@ -68,7 +68,7 @@ namespace WebQLMamNon.Controllers
                     {
                         tbl_HocSinh.maLoai = "L01";
                     }
-                    else if (GetTuoi(tbl_HocSinh.ngaySinh.Value) >= 4 && GetTuoi(tbl_HocSinh.ngaySinh.Value) <= 5)
+                    else if (GetTuoi(tbl_HocSinh.ngaySinh.Value) >= 4 && GetTuoi(tbl_HocSinh.ngaySinh.Value) < 5)
                     {
                         tbl_HocSinh.maLoai = "L02";
                     }
@@ -152,53 +152,52 @@ namespace WebQLMamNon.Controllers
         }
         public ActionResult IndexPhanLopHS()
         {
-            List<string> listMaLop = db.Tbl_PhanLop.Select(x => x.maLop).ToList();
-            List<int> listMaHS = db.Tbl_PhanLop.Select(x => x.maHS).ToList();
+            List<string> lstMaNamHoc = db.Tbl_PhanLop.Select(x => x.maNamHoc).ToList();
+            List<string> lstMaLoai = db.Tbl_PhanLop.Select(x => x.maLoai).ToList();
 
-            ViewBag.maLop = new SelectList(db.Tbl_LopHoc.ToList(), "maLop", "tenLop");
-            ViewBag.maHS = new SelectList(db.Tbl_HocSinh.Where(x => !listMaHS.Contains(x.maHS)), "maHS", "hoTen");
+            ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop.ToList(), "maLoai", "tenLoai");
+            ViewBag.maNH = new SelectList(db.Tbl_NamHoc.ToList(), "maNamHoc", "tenNamHoc");
+            // ViewBag.maLop = new SelectList(db.Tbl_LopHoc.ToList(), "maLop", "tenLop");
+            //ViewBag.maHS = new SelectList(db.Tbl_HocSinh.Where(x => !listMaHS.Contains(x.maHS)), "maHS", "hoTen");
 
             return View(db.Tbl_PhanLop.ToList());
         }
-        public ActionResult PhanLopHS(string maLop, int maHS)
+        public ActionResult PhanLopHS(string maLop, string maNH, string maLoai)
         {
-            int dem = 0;
-            DateTime dt = DateTime.Now;
-            string y = String.Format("{0:yyyy}", dt);
-            var nh = db.Tbl_NamHoc.Where(x => x.maNamHoc == y).FirstOrDefault();
-            foreach (var item in db.Tbl_PhanLop)
-            {
-                if (item.maLop == maLop)
-                {
-                    dem++;
-                }
-            }
-            if (dem == 20)
-            {
-                TempData["loi"] = "Quá học sinh quy định";
-            }
-            else
-            {
+            int countHS_Lop = db.Tbl_PhanLop.Where(x => x.maLop == maLop).Count();
 
-                var phanlop = db.Tbl_PhanLop.Where(x => x.maHS == maHS).FirstOrDefault();
-                if (phanlop != null)
+            int[] lstMaHS = db.Tbl_PhanLop.Select(x => x.maHS).ToArray();
+            List<Tbl_HocSinh> hsNew = db.Tbl_HocSinh.Where(x => x.maLoai == maLoai && !lstMaHS.Contains(x.maHS)).ToList();
+
+            foreach (Tbl_HocSinh item in hsNew)
+            {
+                if (countHS_Lop <= 5)
                 {
-                    TempData["loiPL"] = "Mỗi học sinh chỉ được thuộc 1 lớp trong 1 năm học ";
+                    db.Tbl_PhanLop.Add(new Tbl_PhanLop { maNamHoc = maNH, maLop = maLop, maLoai = maLoai, maHS = item.maHS });
+                    countHS_Lop++;
+                    
                 }
                 else
                 {
-                    var loai = db.Tbl_LopHoc.Where(x => x.maLop == maLop).FirstOrDefault();
-                    Tbl_PhanLop plop = new Tbl_PhanLop();
-                    plop.maLop = maLop;
-                    plop.maLoai = loai.maLoai;
-                    plop.maNamHoc = nh.maNamHoc;
-                    plop.maHS = maHS;
-                    db.Tbl_PhanLop.Add(plop);
-                    db.SaveChanges();
+                    break;
                 }
             }
-            return RedirectToAction("IndexPhanLopHS");
-            //hihihihihi
+
+            db.SaveChanges();
+
+            ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop.ToList(), "maLoai", "tenLoai");
+            ViewBag.maNH = new SelectList(db.Tbl_NamHoc.ToList(), "maNamHoc", "tenNamHoc");
+            return View( db.Tbl_PhanLop.Where(x=>x.maLop==maLop && x.maNamHoc==maNH && x.maLoai==maLoai).ToList());
+        }
+        public ActionResult LoadLopTheoLoai(string maLoai, string maNH)
+        {
+
+            List<Tbl_PhanLop> lstmalop = db.Tbl_PhanLop.Where(n => n.maLoai == maLoai && n.maNamHoc == maNH).ToList();
+            // List<Tbl_LopHoc> lstLop = db.Tbl_LopHoc.Where(n => lstmalop.Contains(n.maLop)).ToList();
+
+            ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop.ToList(), "maLoai", "tenLoai");
+            ViewBag.maNH = new SelectList(db.Tbl_NamHoc.ToList(), "maNamHoc", "tenNamHoc");
+            return View("IndexPhanLopHS", lstmalop);
         }
 
     }

@@ -51,19 +51,19 @@
 <body lang="en">
     <header class="clearfix">
         <div class="wrapper clearfix">
-            <a href="index.html" id="logo"><h2 style="color: #f1f1f1;">Happy Smile School</h2></a>
+            <a href="@Url.Action("Index", "BaiVietUser")" id="logo"><h2 style="color: #f1f1f1;">Happy Smile School</h2></a>
             <nav>
                 <ul id="nav" class="sf-menu">
-                    <li class="current-menu-item"><a href="index.html">Trang Chủ</a></li>
+                    <li class="current-menu-item"><a href="@Url.Action("Index", "BaiVietUser")">Trang Chủ</a></li>
                     <li>
-                        <a href="blog.html">Góc Chia Sẻ</a>
+                        <a href="@Url.Action("Index", "BaiVietUser")">Góc Chia Sẻ</a>
                         <ul>
                             <li><a href="#Drink">Phụ Huynh Mầm Non</a></li>
                             <li><a href="#Food">Giáo Viên Mầm Non</a></li>
                             <li><a href="#Travel">Quản lý Mầm Non</a></li>
                         </ul>
                     </li>
-                    <li><a href="contact.html">Liên Hệ</a></li>
+                    <li><a href="@Url.Action("Contact","Home")">Liên Hệ</a></li>
                   
                     <li>
                         <a style="cursor: pointer;" onclick="document.getElementById('id01').style.display='block'">

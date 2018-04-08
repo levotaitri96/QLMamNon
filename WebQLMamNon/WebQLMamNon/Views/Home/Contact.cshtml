@@ -1,17 +1,92 @@
-﻿@{
-    ViewBag.Title = "Contact";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿<div class="wrapper clearfix">
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    
+
+    <!-- page content -->
+    <div id="page-content" class="clearfix">
+
+        <!-- Map -->
+        @*<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
+        <script type="text/javascript">
+					function initialize() {
+						var latlng = new google.maps.LatLng(10.8222798,106.6871676);
+						var myOptions = {
+						  zoom: 8,
+						  center: latlng,
+						  mapTypeId: google.maps.MapTypeId.ROADMAP
+					};
+					var map = new google.maps.Map(document.getElementById("map_canvas"),
+					    myOptions);
+					}
+        </script>
+
+        <div id="map_canvas"></div>*@
+        <!-- ENDS Map -->
+
+
+
+
+       
+
+        <!-- form -->
+        <script type="text/javascript" src="js/form-validation.js"></script>
+        <form id="contactForm" action="#" method="post">
+            <h2 class="heading">Hãy liên lạc với chúng tôi.</h2>
+           
+            <fieldset>
+                <div>
+                    <input name="name" id="name" type="text" class="form-poshytip" title="Enter your full name" />
+                    <label>Name</label>
+                </div>
+                <div>
+                    <input name="email" id="email" type="text" class="form-poshytip" title="Enter your email address" />
+                    <label>Email</label>
+                </div>
+                <div>
+
+                    <input name="web" id="web" type="text" class="form-poshytip" title="Enter your website" />
+                    <label>Website</label>
+                </div>
+                <div>
+                    <textarea name="comments" id="comments" rows="5" cols="20" class="form-poshytip" title="Enter your comments"></textarea>
+                </div>
+
+                <!-- send mail configuration -->
+                <input type="hidden" value="email@yourserver.com" name="to" id="to" />
+                <input type="hidden" value="Enter the subject here" name="subject" id="subject" />
+                <input type="hidden" value="send-mail.php" name="sendMailUrl" id="sendMailUrl" />
+                <!-- ENDS send mail configuration -->
+
+                <p><input type="button" value="Send" name="submit" id="submit" /> <span id="error" class="warning"></span></p>
+            </fieldset>
+
+        </form>
+        
+        <!-- ENDS form -->
+        <!-- contact sidebar -->
+        <aside id="contact-sidebar">
+            <div class="block">
+                <h4>Address</h4>
+                <p>Đại học Công Nghiệp TPHCM</p>
+
+                <ul class="address-block">
+                    <li class="address">04 Nguyễn Văn Bảo, Gò Vấp, TpHCM</li>
+                    <li class="phone">0932427796</li>
+                    <li class="email"><a href="https://mail.google.com/mail/u/0/#inbox">trungnhan91196@gmail.com</a></li>
+                </ul>
+
+            </div>
+        </aside>
+        <div class="clearfix"></div>
+        <!-- ENDS contact-sidebar -->
+
+    </div>
+    <!--  page content-->
+
+
+
+
+</div>
+
+<!-- ENDS MAIN -->

@@ -4,44 +4,33 @@
     ViewBag.Title = "PhanLopHS";
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
-@if (TempData["loipc"] != null)
-{
-    <script>
-        alert("Mỗi học sinh chỉ được thuộc 1 lớp trong 1 năm học");
-    </script>
-}
-@if (TempData["loi"] != null)
-{
-    <script>
-        alert("Mỗi lớp tối đa 20 học sinh ");
-    </script>
-}
+
 <h2>Phân Lớp Học Sinh</h2>
 
-<p>
-    @Html.ActionLink("Thêm Mới", "Create")
-</p>
 
-@using (Html.BeginForm("PhanLopHS", "HocSinh", FormMethod.Get))
+@using (Html.BeginForm("LoadLopTheoLoai", "HocSinh", FormMethod.Get))
 {
     <div class="form-group" style="float:left;width:90%">
-        @Html.DropDownList("maLop", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maLop" })
-        @Html.DropDownList("maHS", null, htmlAttributes: new { @class = "form-control", @style = "width:25%; margin-right: 10px", @value = "maHS" })
+        @Html.DropDownList("maNH", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maNamHoc" })
+        @Html.DropDownList("maLoai", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maLoai" })
+        @*@Html.DropDownList("maHS", null, htmlAttributes: new { @class = "form-control", @style = "width:25%; margin-right: 10px", @value = "maHS" })*@
     </div>
 
-    <input style="float:left" type="submit" value="Phân Lớp" />
+    <input style="float:left" type="submit" value="Xem theo lớp" />
 }
 <table class="table">
     <tr>
         <th>
+            Năm Học
+        </th>
+        <th>
             Tên Lớp
         </th>
         <th>
-            Họ Tên
+            Tên Học Sinh
         </th>
-        <th>
-            Ngày Sinh
-        </th>
+        
+       
         <th></th>
         <th></th>
     </tr>
@@ -51,19 +40,20 @@
         <tr>
 
             <td>
+                @Html.DisplayFor(modelItem => item.Tbl_NamHoc.tenNamHoc)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Tbl_LopHoc.tenLop)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tbl_HocSinh.hoTen)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tbl_HocSinh.ngaySinh)
-            </td>
+           
             <td></td>
             <td>
-
-                <a href="@Url.Action("LoadHS", "HocSinh",new { id = item.maHS })"><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
-                <a href="#" id="del" onclick="return confirm('Bạn chắc muốn xóa')"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                <a href="@Url.Action("PhanLopHS", "HocSinh",new { @maLop = item.maLop, @maNH=item.maNamHoc, @maLoai=item.maLoai })"><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                @*<a href="@Url.Action("LoadHS", "HocSinh",new { id = item.maHS })"><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                <a href="#" id="del" onclick="return confirm('Bạn chắc muốn xóa')"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;*@
             </td>
         </tr>
     }

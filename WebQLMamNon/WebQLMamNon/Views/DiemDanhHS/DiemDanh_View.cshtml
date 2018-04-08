@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebQLMamNon.Models.Tbl_CTDiemDanhHS>
+@{
+    ViewBag.Title = "DiemDanh";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+<h1 style="margin-left:25px">Chi Tiết Điểm Danh</h1>
+@Html.Hidden("loai", this.Request.RawUrl)
+<table class="table">
+    <tr style="background:orange;font-size:15px">
+        <th>
+            Họ tên
+        </th>
+        <th>
+            Lớp
+        </th>
+        <th>
+            Trạng Thái
+        </th>
+       
+        <th></th>
+    </tr>       
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_HocSinh.hoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_LopHoc.tenLop)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.trangThai)
+            </td>
+            <td>
+                @using (Html.BeginForm("DoiTrangThaiDiemDanh", "DiemDanhHS", new { id = item.maCTDiemDanhHS }, FormMethod.Get))
+                {
+                    if (item.trangThai == "Có")
+                    {
+                        <input class="btn btn-primary" style="font-size:12px" type="submit" value="Vắng" />
+                        
+                    }
+                    else
+                    {
+                        <input class="btn btn-danger" style="font-size:12px" type="submit" value="Điểm Danh" />
+                        @*@Html.Hidden("loai", this.Request.RawUrl)*@
+                    }
+                    @Html.Hidden("loai", this.Request.RawUrl)
+                }
+            </td>
+        </tr>
+    }
+</table>
+@Html.ActionLink("Quay lại", "Index")
