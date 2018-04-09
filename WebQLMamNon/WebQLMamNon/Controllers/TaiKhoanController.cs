@@ -32,16 +32,16 @@ namespace WebQLMamNon.Controllers
                         Session["maGV"] = gv.maGV.ToString();
                         Session["hinhAnh"] = gv.hinhAnh.ToString();
                         Session["loaiTaiKhoan"] = obj.loaiTK.ToString();
-                        return RedirectToAction("Index", "GiaoVien");
+                        //return RedirectToAction("Index", "GiaoVien");
 
-                        //if (obj.loaiTaiKhoan == "Admin")
-                        //{
-                        //    return RedirectToAction("Index", "TaiKhoan");
-                        //}
-                        //else if (obj.loaiTaiKhoan == "Thủ Thư")
-                        //{
-                        //    return RedirectToAction("Index", "MuonSachAdmin");
-                        //}
+                        if (obj.loaiTK == "Admin")
+                        {
+                            return RedirectToAction("Index", "GiaoVien");
+                        }
+                        else if (obj.loaiTK == "Teacher")
+                        {
+                            return RedirectToAction("Index", "DiemDanhHS");
+                        }
 
                         // nếu tài khoản là admin thì trả về index giáo viên như trên
                     }
@@ -57,7 +57,7 @@ namespace WebQLMamNon.Controllers
         {
             Session.Clear();
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "User");
+            return RedirectToAction("Index", "BaiVietUser");
         }
         public ActionResult DoiMatKhau(string id,string matKhau,string loai)
         {

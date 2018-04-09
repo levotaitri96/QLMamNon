@@ -99,9 +99,13 @@
                             @if (Session["loaiTaiKhoan"].ToString() == "Teacher")
                             {
                                 <ul class="nav side-menu">
-                                   
                                     <li>
-                                        <a><i class="fa fa-desktop"></i> Điểm danh học sinh <span class="fa fa-chevron-down"></span></a>
+                                        <a href="@Url.Action("Index","DiemDanhHS")"><i class="fa fa-desktop"></i> Điểm danh học sinh <span class="fa fa-chevron-down"></span></a>
+                                    </li>
+                                </ul>
+                                <ul class="nav side-menu">
+                                    <li>
+                                        <a href="@Url.Action("Edit","GiaoVien", new { @id=Session["maGV"] })"><i class="fa fa-desktop"></i>Cập nhập thông tin <span class="fa fa-chevron-down"></span></a>
                                     </li>
                                 </ul>
                             }
@@ -245,7 +249,7 @@
             <!-- footer content -->
             <footer>
                 <div class="pull-right">
-                    Trường Mầm Non Sao Mai
+                    Happy Smile School
                 </div>
                 <div class="clearfix"></div>
             </footer>

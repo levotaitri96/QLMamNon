@@ -23,18 +23,28 @@
                 @Html.ValidationMessageFor(model => model.hoTen, "", new { @class = "text-danger" })
             </div>
         </div>
-
+      
         <div class="form-group">
             <label for="sel1" class="form-label col-md-2">Trình Độ:</label>
             <div class="col-md-10" style="margin-left: 150px;margin-top: -30px;">
-                <select class="form-control" id="sel1" name="trinhDo">
+               @if (Session["maGV"].ToString() == "GV01")
+               {
+                <select class="form-control" id="sel1" name="trinhDo" >
+                    
                     <option>@Html.DisplayFor(model => model.trinhDo, new { htmlAttributes = new { @class = "form-control" } })</option>
                     <option>Đại Học</option>
                     <option>Cao Đẳng</option>
                     <option>Trung Cấp</option>
                 </select>
+               }
+
+
+
+
             </div>
         </div>
+        
+        
 
         <div class="form-group">
             <label for="sel1" class="form-label col-md-2">Số Điện Thoại:</label>
