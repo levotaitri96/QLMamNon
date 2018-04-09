@@ -296,7 +296,17 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\11-53329.jpg" />
+    <Content Include="images\16-cogiao282.jpg" />
+    <Content Include="images\84579b75ec51733.jpg" />
+    <Content Include="images\demen.jpg" />
+    <Content Include="images\giao-vien-mam-non-tu-va-chuyen-ke-nhan-ngay-20-11-0.jpg" />
     <Content Include="images\Image.jpg" />
+    <Content Include="images\images.jpg" />
+    <Content Include="images\ky-nang-song.jpg" />
+    <Content Include="images\Nhung-cau-chuc-tet-de-thuong-va-y-nghia-cho-tre-01-550x320.jpg" />
+    <Content Include="images\tuyen-tap-18-hinh-nen-mam-non-danh-cho-tre-em-vo-cung-dang-yeu-1489243419-7.jpg" />
+    <Content Include="images\xu-ly_xbnb.jpg" />
     <Content Include="Models\QLMamNonData.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QLMamNonData.edmx</DependentUpon>

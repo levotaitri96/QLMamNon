@@ -5,8 +5,6 @@
     Layout = "~/Views/LayoutUser.cshtml";
 }
 
-<h2>Index</h2>
-
 <div class="wrapper">
 
     <!-- slider holder -->
@@ -15,31 +13,20 @@
         <!-- slider -->
         <div class="flexslider home-slider">
             <ul class="slides">
-                <li>
-                    <iframe width="620" height="330" src="https://www.youtube.com/embed/SSsoY7ysiXY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <li>                   
+                    <img src="~/images/11-53329.jpg" />" alt="Ảnh các em đang vui chơi sinh hoạt" />
                 </li>
                 <li>
-                    <!--<img src="img/slides/01.jpg" alt="alt text" />-->
-                    <iframe width="620" height="330" src="https://www.youtube.com/embed/ZHp-T2dTwk8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen" frameborder="0" allowfullscreen alt="alt text">
-                        <a href="GioiThieuTruong.html">
-                            <p class="caption-text">Trường chúng cháu là trường mầm non </p>
-                        </a>
-                    </iframe>
+
+                    <img src="~/images/16-cogiao282.jpg" />" alt="Ảnh các em đang vui chơi sinh hoạt" />
                 </li>
                 <li>
-                    <iframe width="620" height="330" src="https://www.youtube.com/embed/Os0koIINqrU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-                        <a href="gocchiase/hocsinhmamnon.html">
-                            <p class="caption-text">Đội kèn tý hon </p>
-                        </a>
-                    </iframe>
+
+                    <img src="~/images/giao-vien-mam-non-tu-va-chuyen-ke-nhan-ngay-20-11-0.jpg" />" alt="Ảnh các em đang vui chơi sinh hoạt" />
                 </li>
                 <li>
-                    <iframe width="620" height="330" src="https://www.youtube.com/embed/6PaOyzH-2Y4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-                        <a href="gocchiase/hocsinhmamnon.html"></a>
-                    </iframe>
-                </li>
-                <li>
-                    <iframe width="620" height="325" src="https://www.youtube.com/embed/kUxAih6HgWM?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+
+                    <img src="~/images/images.jpg" />" alt="Ảnh các em đang vui chơi sinh hoạt" />
                 </li>
             </ul>
         </div>
@@ -68,12 +55,21 @@
                 <figure>
                     <figcaption>
                         <strong>@item.tenBaiViet</strong>
-                        <span>@item.noiDung</span>
+                        <span>Tóm tắt:
+                        @if(item.noiDung.Length<100)
+                        {
+                            @Html.DisplayFor(modelItem=>item.noiDung)
+                        }
+                        else {
+                            <p> @item.noiDung.Substring(0, 100)...</p>
+                        }
+
+                        </span>
                         <em>@String.Format("{0:d/M/yyyy}", item.ngayDang)</em>
                         <a href="gocchiase/giaovienmamnon.html" class="opener"></a>
                     </figcaption>
 
-                    <a href="gocchiase/giaovienmamnon.html" class="thumb"><img src="~/images/@item.hinhBV" alt="Alt text" width="304" height="225" /></a>
+                    <a href="@Url.Action("Details","BaiViet",new {@id=item.maBaiViet })" class="thumb"><img src="~/images/@item.hinhBV" alt="Alt text" width="304" height="225" /></a>
                 </figure>
             }
 

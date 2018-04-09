@@ -77,13 +77,13 @@ namespace WebQLMamNon.Controllers
             if (list.trangThai == "Vắng")
             {
                 list.trangThai = "Có";
-                listgv.soNgayLam++;
+                //listgv.soNgayLam++;
                 db.SaveChanges();
             }
             else
             {
                 list.trangThai = "Vắng";
-                listgv.soNgayLam--;
+                //listgv.soNgayLam--;
                 db.SaveChanges();
             }
 

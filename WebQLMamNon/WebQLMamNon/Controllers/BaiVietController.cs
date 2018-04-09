@@ -22,12 +22,8 @@ namespace WebQLMamNon.Controllers
         }
 
         // GET: BaiViet/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Tbl_BaiViet tbl_BaiViet = db.Tbl_BaiViet.Find(id);
             if (tbl_BaiViet == null)
             {
@@ -62,12 +58,9 @@ namespace WebQLMamNon.Controllers
         }
 
         // GET: BaiViet/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+          
             Tbl_BaiViet tbl_BaiViet = db.Tbl_BaiViet.Find(id);
             if (tbl_BaiViet == null)
             {
@@ -95,12 +88,9 @@ namespace WebQLMamNon.Controllers
         }
 
         // GET: BaiViet/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+           
             Tbl_BaiViet tbl_BaiViet = db.Tbl_BaiViet.Find(id);
             if (tbl_BaiViet == null)
             {

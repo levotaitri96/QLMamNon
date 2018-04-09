@@ -1,51 +1,37 @@
 ﻿@model WebQLMamNon.Models.Tbl_BaiViet
 
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/LayoutAdmin.cshtml";
+    ViewBag.Title = "Chi Tiết";
+    Layout = "~/Views/LayoutUser.cshtml";
 }
 
-<h2>Details</h2>
-
+<h1>Chi Tiết</h1>
+<hr />
+<br />
 <div>
-    <h4>Tbl_BaiViet</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.noiDung)
-        </dt>
+    <div class="col-md-12" style="border:groove; border-radius:1px ; border-color: #e4e966 ; height:auto;padding:20px 15px 20px 15px">
+        <div>
+            <h2 id="tieude" style="color:#ff6a00">
+                @Html.DisplayFor(model => model.tenBaiViet)
+            </h2>
+        </div>
+        <br />
+        <br />
+        <div>
+            <img style="width: 600px;height: 400px;float:initial" src="~/Images/@Html.DisplayFor(model=>model.hinhBV)" />
+        </div>
+        <div>
+            <h2 style="color:###f13737;font-size: 20px">Nội dung: </h2>
+            <p style="font-family:Arial;font-size:16px">@Html.DisplayFor(model => model.noiDung) </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.noiDung)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.hinhBV)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.hinhBV)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ngayDang)
-        </dt>
-
-        <dd>
+        </div>
+        <br />
+        <div>
+            <b>Ngay xuat ban: </b>
             @Html.DisplayFor(model => model.ngayDang)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tbl_GiaoVien.trinhDo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tbl_GiaoVien.trinhDo)
-        </dd>
-
-    </dl>
+        </div>
+        <div id="link">@Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })</div>
+        <br />
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.maBaiViet }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

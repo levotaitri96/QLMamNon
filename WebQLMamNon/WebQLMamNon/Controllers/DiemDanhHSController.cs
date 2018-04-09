@@ -73,7 +73,7 @@ namespace WebQLMamNon.Controllers
             return View(db.Tbl_CTDiemDanhHS.ToList().Where(x => x.maDiemDanhHS == id));
 
         }
-        public ActionResult DoiTrangThaiDiemDanh(int id, string loai)
+        public ActionResult DoiTrangThaiDiemDanh(int id, string comeback)
         {
             var list = db.Tbl_CTDiemDanhHS.Where(x => x.maCTDiemDanhHS == id).FirstOrDefault();
             var lisths = db.Tbl_HocPhi.Where(x => x.maHS == list.maHS).FirstOrDefault();
@@ -90,7 +90,7 @@ namespace WebQLMamNon.Controllers
                 //lisths.soNgayHoc--;
                 db.SaveChanges();
             }
-            return Redirect(loai);
+            return Redirect(comeback);
         }
 
     }
