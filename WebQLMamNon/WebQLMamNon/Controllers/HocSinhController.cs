@@ -160,7 +160,7 @@ namespace WebQLMamNon.Controllers
             // ViewBag.maLop = new SelectList(db.Tbl_LopHoc.ToList(), "maLop", "tenLop");
             //ViewBag.maHS = new SelectList(db.Tbl_HocSinh.Where(x => !listMaHS.Contains(x.maHS)), "maHS", "hoTen");
 
-            return View(db.Tbl_PhanLop.ToList());
+            return View(db.Tbl_LopHoc.ToList());
         }
         public ActionResult PhanLopHS(string maLop, string maNH, string maLoai)
         {
@@ -175,7 +175,7 @@ namespace WebQLMamNon.Controllers
                 {
                     db.Tbl_PhanLop.Add(new Tbl_PhanLop { maNamHoc = maNH, maLop = maLop, maLoai = maLoai, maHS = item.maHS });
                     countHS_Lop++;
-                    
+
                 }
                 else
                 {
@@ -187,12 +187,12 @@ namespace WebQLMamNon.Controllers
 
             ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop.ToList(), "maLoai", "tenLoai");
             ViewBag.maNH = new SelectList(db.Tbl_NamHoc.ToList(), "maNamHoc", "tenNamHoc");
-            return View( db.Tbl_PhanLop.Where(x=>x.maLop==maLop && x.maNamHoc==maNH && x.maLoai==maLoai).ToList());
+            return View(db.Tbl_PhanLop.Where(x => x.maLop == maLop && x.maNamHoc == maNH && x.maLoai == maLoai).ToList());
         }
         public ActionResult LoadLopTheoLoai(string maLoai, string maNH)
         {
 
-            List<Tbl_PhanLop> lstmalop = db.Tbl_PhanLop.Where(n => n.maLoai == maLoai && n.maNamHoc == maNH).ToList();
+            List<Tbl_LopHoc> lstmalop = db.Tbl_LopHoc.Where(n => n.maLoai == maLoai && n.maNamHoc == maNH).ToList();
             // List<Tbl_LopHoc> lstLop = db.Tbl_LopHoc.Where(n => lstmalop.Contains(n.maLop)).ToList();
 
             ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop.ToList(), "maLoai", "tenLoai");

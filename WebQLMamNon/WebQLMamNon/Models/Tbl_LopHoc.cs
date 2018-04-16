@@ -27,12 +27,14 @@ namespace WebQLMamNon.Models
         public string tenLop { get; set; }
         public int soLuongHS { get; set; }
         public string maLoai { get; set; }
+        public string maNamHoc { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_ChiTietDiemDanh> Tbl_ChiTietDiemDanh { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_CTDiemDanhHS> Tbl_CTDiemDanhHS { get; set; }
         public virtual Tbl_LoaiLop Tbl_LoaiLop { get; set; }
+        public virtual Tbl_NamHoc Tbl_NamHoc { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_PhanCong> Tbl_PhanCong { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

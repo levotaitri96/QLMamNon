@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebQLMamNon.Models.Tbl_PhanLop>
+﻿@model IEnumerable<WebQLMamNon.Models.Tbl_LopHoc>
 
 @{
     ViewBag.Title = "PhanLopHS";
@@ -10,13 +10,13 @@
 
 @using (Html.BeginForm("LoadLopTheoLoai", "HocSinh", FormMethod.Get))
 {
-    <div class="form-group" style="float:left;width:90%">
+    <div class="form-group" style="width:90%">
         @Html.DropDownList("maNH", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maNamHoc" })
         @Html.DropDownList("maLoai", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maLoai" })
         @*@Html.DropDownList("maHS", null, htmlAttributes: new { @class = "form-control", @style = "width:25%; margin-right: 10px", @value = "maHS" })*@
     </div>
 
-    <input style="float:left" type="submit" value="Xem theo lớp" />
+    <input style="padding-top:5px" type="submit" value="Xem theo lớp" />
 }
 <table class="table">
     <tr>
@@ -27,12 +27,12 @@
             Tên Lớp
         </th>
         <th>
-            Tên Học Sinh
+            Số lượng học sinh
         </th>
-        
-       
+
+
         <th></th>
-        <th></th>
+
     </tr>
 
     @foreach (var item in Model)
@@ -43,20 +43,19 @@
                 @Html.DisplayFor(modelItem => item.Tbl_NamHoc.tenNamHoc)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Tbl_LopHoc.tenLop)
+                @Html.DisplayFor(modelItem => item.tenLop)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Tbl_HocSinh.hoTen)
+                @Html.DisplayFor(modelItem => item.Tbl_PhanLop.Count)
             </td>
-           
-            <td></td>
+
+
             <td>
                 <a href="@Url.Action("PhanLopHS", "HocSinh",new { @maLop = item.maLop, @maNH=item.maNamHoc, @maLoai=item.maLoai })"><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
                 @*<a href="@Url.Action("LoadHS", "HocSinh",new { id = item.maHS })"><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
-                <a href="#" id="del" onclick="return confirm('Bạn chắc muốn xóa')"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;*@
+                    <a href="#" id="del" onclick="return confirm('Bạn chắc muốn xóa')"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;*@
             </td>
         </tr>
     }
 
 </table>
-

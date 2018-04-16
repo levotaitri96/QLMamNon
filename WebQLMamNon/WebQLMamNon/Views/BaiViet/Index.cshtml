@@ -13,16 +13,17 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.noiDung)
+            Tên Bài Viết:
+        </th>
+
+        <th>
+            Nội Dung:
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.hinhBV)
+            Ngày Đăng:
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ngayDang)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tbl_GiaoVien.trinhDo)
+            Người Đăng:
         </th>
         <th></th>
     </tr>
@@ -31,16 +32,17 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.noiDung)
+                @Html.DisplayFor(modelItem => item.tenBaiViet)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.hinhBV)
+                @Html.DisplayFor(modelItem => item.noiDung)
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.ngayDang)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Tbl_GiaoVien.trinhDo)
+                @Html.DisplayFor(modelItem => item.Tbl_GiaoVien.hoTen)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.maBaiViet }) |

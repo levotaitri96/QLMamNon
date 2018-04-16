@@ -29,6 +29,7 @@ namespace WebQLMamNon.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.lstBVLQ = db.Tbl_BaiViet.Where(x => x.maBaiViet != id).ToList();
             return View(tbl_BaiViet);
         }
 

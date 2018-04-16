@@ -55,15 +55,15 @@ namespace WebQLMamNon.Controllers
                 var td = db.Tbl_GiaoVien.Where(x=>x.maGV== item.maGV).FirstOrDefault();
                 if(td.trinhDo=="Đại Học")
                 {
-                    ctl.soTien = 200;
+                    ctl.soTien = 200000;
                 }
                 else if (td.trinhDo == "Cao Đẳng")
                 {
-                    ctl.soTien = 150;
+                    ctl.soTien = 150000;
                 }
                 else
                 {
-                    ctl.soTien = 100;
+                    ctl.soTien = 100000;
                 }
                //tổng số ngày làm
                 foreach(var dd in db.Tbl_DiemDanh)

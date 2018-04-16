@@ -12,14 +12,14 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Tbl_BaiViet</h4>
+        <h4>Thêm Bài Viết</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.maBaiViet, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tenBaiViet, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.maBaiViet, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.maBaiViet, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.tenBaiViet, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tenBaiViet, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -40,18 +40,23 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.maGV, "maGV", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("maGV", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.maGV, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.ngayDang, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ngayDang, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ngayDang, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.maLoai, "Loại: ", htmlAttributes: new { @class = "control-label col-md-2", Model.Tbl_LoaiBaiViet.tenLoai })
+            <div class="col-md-10">
+                <select>
+                    @*@foreach (var item in Model)
+                        {
+                         <option>@Model.Tbl_LoaiBaiViet.tenLoai</option>
+                        }*@
+
+                </select>
             </div>
         </div>
 

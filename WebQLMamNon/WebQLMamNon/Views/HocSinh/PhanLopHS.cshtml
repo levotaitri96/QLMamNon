@@ -1,0 +1,66 @@
+﻿@model IEnumerable<WebQLMamNon.Models.Tbl_PhanLop>
+
+@{
+    ViewBag.Title = "PhanLopHS";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+@if (TempData["loipc"] != null)
+{
+    <script>
+        alert("Mỗi học sinh chỉ được thuộc 1 lớp trong 1 năm học");
+    </script>
+}
+@if (TempData["loi"] != null)
+{
+    <script>
+        alert("Mỗi lớp tối đa 20 học sinh ");
+    </script>
+}
+<h2>Phân Lớp Học Sinh</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Năm Học
+        </th>
+        <th>
+            Tên Lớp
+        </th>
+        <th>
+            Tên Học Sinh
+        </th>
+        <th>
+            Sỉ Số Học Sinh=
+            @Model.Count()
+
+        </th>
+
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_NamHoc.tenNamHoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_LopHoc.tenLop)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_HocSinh.hoTen)
+            </td>
+
+            <td></td>
+
+        </tr>
+    }
+
+</table>
+
+<div>
+    @Html.ActionLink("Quay lại", "IndexPhanLopHS")
+</div>

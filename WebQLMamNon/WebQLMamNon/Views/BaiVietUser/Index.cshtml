@@ -4,80 +4,83 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/LayoutUser.cshtml";
 }
+<script>
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide"
+        });
+    });
+</script>
+<!-- slider holder -->
 
-<div class="wrapper">
+<div id="slider-holder" class="clearfix">
 
-    <!-- slider holder -->
-    <div id="slider-holder" class="clearfix">
-
-        <!-- slider -->
-        <div class="flexslider home-slider">
-            <ul class="slides">
-                <li>                   
-                    <img src="~/images/11-53329.jpg" />" alt="Ảnh các em đang vui chơi sinh hoạt" />
-                </li>
-                <li>
-
-                    <img src="~/images/16-cogiao282.jpg" />" alt="Ảnh các em đang vui chơi sinh hoạt" />
-                </li>
-                <li>
-
-                    <img src="~/images/giao-vien-mam-non-tu-va-chuyen-ke-nhan-ngay-20-11-0.jpg" />" alt="Ảnh các em đang vui chơi sinh hoạt" />
-                </li>
-                <li>
-
-                    <img src="~/images/images.jpg" />" alt="Ảnh các em đang vui chơi sinh hoạt" />
-                </li>
-            </ul>
-        </div>
-        <!-- ENDS slider -->
-
-        <div class="home-slider-clearfix "></div>
-
-        <!-- Headline -->
-        <div id="headline">
-            <h1>Happy Smile School!</h1>
-            <p>Happy Smile School là trường mầm non được đầu tư xây dựng trên khu đất trên 5000m2, 4 mặt tiền tại khu đô thị mới Quận 2 thuận tiện về giao thông và đi lại. Cơ sở vật chất hiện đại, chú trọng đến sự an toàn và tiện lợi cho trẻ. Tất cả các phòng học và trang thiết bị theo tiêu chuẩn quốc tế.</p>
-            <p>Chi Tiết tại <a href="page.html">đây</a></p>
-            <em id="corner"></em>
-        </div>
-        <!-- ENDS headline -->
-
-
-    </div>
-    <!-- ENDS slider holder -->
-    <!-- home-block -->
-    <div class="home-block">
-        <h2 class="home-block-heading"><span>Chia sẻ nổi bật</span></h2>
-        <div class="one-third-thumbs clearfix">
+    <!-- slider -->
+    <div class="flexslider home-slider">
+        <ul class="slides">
             @foreach (var item in Model)
             {
-                <figure>
-                    <figcaption>
-                        <strong>@item.tenBaiViet</strong>
-                        <span>Tóm tắt:
-                        @if(item.noiDung.Length<100)
-                        {
-                            @Html.DisplayFor(modelItem=>item.noiDung)
-                        }
-                        else {
-                            <p> @item.noiDung.Substring(0, 100)...</p>
-                        }
-
-                        </span>
-                        <em>@String.Format("{0:d/M/yyyy}", item.ngayDang)</em>
-                        <a href="gocchiase/giaovienmamnon.html" class="opener"></a>
-                    </figcaption>
-
-                    <a href="@Url.Action("Details","BaiViet",new {@id=item.maBaiViet })" class="thumb"><img src="~/images/@item.hinhBV" alt="Alt text" width="304" height="225" /></a>
-                </figure>
+                <li>
+                    <a href="gocchiase/giaovienmamnon.html" class="thumb"><img src="~/images/@item.hinhBV" alt="Alt text" width="620" height="330" /></a>
+                </li>
             }
 
 
-        </div>
+        </ul>
+        <ul class="flex-direction-nav">
+            <li>
+                <a class="prev">Previous</a>
+            </li>
+            <li>
+                <a class="next">Next</a>
+            </li>
+        </ul>
     </div>
-    <!-- ENDS home-block -->
-    <!-- home-block -->
-    <!-- ENDS home-block -->
+    <!-- ENDS slider -->
+
+    <div class="home-slider-clearfix "></div>
+
+    <!-- Headline -->
+    <div id="headline">
+        <h1>Happy Smile School!</h1>
+        <p>Happy Smile School là trường mầm non được đầu tư xây dựng trên khu đất trên 5000m2, 4 mặt tiền tại khu đô thị mới Quận 2 thuận tiện về giao thông và đi lại. Cơ sở vật chất hiện đại, chú trọng đến sự an toàn và tiện lợi cho trẻ. Tất cả các phòng học và trang thiết bị theo tiêu chuẩn quốc tế.</p>
+        <p>Chi Tiết tại <a href="page.html">đây</a></p>
+        <em id="corner"></em>
+    </div>
+    <!-- ENDS headline -->
+
 
 </div>
+
+
+<!-- ENDS slider holder -->
+<!-- home-block -->
+
+<div class="home-block">
+    <h2 class="home-block-heading"><span>Chia sẻ nổi bật</span></h2>
+    <div class="one-third-thumbs clearfix">
+        @foreach (var item in Model)
+            {
+            <figure class="last" style="padding-right:6px">
+                <figcaption>
+                    <strong>@item.tenBaiViet</strong>
+                    @if (item.noiDung.Length > 150)
+                    {
+                        <span>Tóm Tắt:<p>@item.noiDung.Substring(0, 150)...</p></span>
+                    }
+
+                    <em>@String.Format("{0:d/M/yyyy}", item.ngayDang)</em>
+                    <a href="@Url.Action("Details","BaiViet")" class="opener"></a>
+                </figcaption>
+                <a href="@Url.Action("Details","BaiViet", new {@id=item.maBaiViet })" class="thumb"><img src="~/images/@item.hinhBV" alt="Alt text" width="294" height="227" /></a>
+            </figure>
+        }
+
+
+    </div>
+</div>
+
+
+<!-- ENDS home-block -->
+<!-- home-block -->
+<!-- ENDS home-block -->

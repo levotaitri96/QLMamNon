@@ -67,13 +67,16 @@ namespace WebQLMamNon.Controllers
             }
         }
 
-        public ActionResult DiemDanh_View(int id)
+        public ActionResult DiemDanh_View(int id, string maLop = "")
         {
-
-            return View(db.Tbl_CTDiemDanhHS.ToList().Where(x => x.maDiemDanhHS == id));
+            //ViewBag.maLops = new SelectList(db.Tbl_LopHoc.ToList(), "maLop", "tenLop");
+            ViewBag.maLops = db.Tbl_LopHoc.ToList();
+            ViewBag.selectedId = maLop;
+            return View(db.Tbl_CTDiemDanhHS.ToList().Where(x => x.maDiemDanhHS == id &&
+                                                                maLop == "" ? true : x.maLop == maLop));
 
         }
-        public ActionResult DoiTrangThaiDiemDanh(int id, string comeback)
+        public ActionResult DoiTrangThaiDiemDanh(int id, string loai)
         {
             var list = db.Tbl_CTDiemDanhHS.Where(x => x.maCTDiemDanhHS == id).FirstOrDefault();
             var lisths = db.Tbl_HocPhi.Where(x => x.maHS == list.maHS).FirstOrDefault();
@@ -90,7 +93,7 @@ namespace WebQLMamNon.Controllers
                 //lisths.soNgayHoc--;
                 db.SaveChanges();
             }
-            return Redirect(comeback);
+            return Redirect(loai);
         }
 
     }

@@ -207,6 +207,9 @@
     <Compile Include="Models\Tbl_CTDiemDanhHS.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tbl_DanToc.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_DiemDanh.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
@@ -222,6 +225,9 @@
     <Compile Include="Models\Tbl_HocSinh.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tbl_LoaiBaiViet.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_LoaiLop.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
@@ -229,6 +235,9 @@
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_NamHoc.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_NgheNghiep.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_PhanCong.cs">
@@ -244,6 +253,9 @@
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_TienLuong.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_TonGiao.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1648,10 +1660,12 @@
     <Content Include="Views\BaiViet\Edit.cshtml" />
     <Content Include="Views\BaiViet\Index.cshtml" />
     <Content Include="Views\BaiVietUser\Index.cshtml" />
+    <Content Include="Views\DiemDanhHS\DiemDanh_View.cshtml" />
+    <Content Include="Views\DiemDanhHS\Index.cshtml" />
+    <Content Include="Views\HocSinh\PhanLopHS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\DiemDanhHS\" />
     <Folder Include="Views\TaiKhoan\" />
   </ItemGroup>
   <ItemGroup>

@@ -49,7 +49,7 @@ namespace WebQLMamNon.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "maLop,tenLop,soLuongHS,maLoai")] Tbl_LopHoc tbl_LopHoc)
+        public ActionResult Create([Bind(Include = "maLop,tenLop,soLuongHS,maLoai,maNamHoc")] Tbl_LopHoc tbl_LopHoc)
         {
             if (ModelState.IsValid)
             {
