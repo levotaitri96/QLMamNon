@@ -22,7 +22,9 @@ namespace WebQLMamNon.Controllers
             string y = String.Format("{0:yyyy}", dt);
             string a = String.Format("{0:MM}", dt);
             string b = String.Format("{0:dd}", dt);
-            var dd = db.Tbl_DiemDanh.Where(x => x.ngayDiemDanh == b && x.maThang == a && x.maNamHoc == y).FirstOrDefault();
+            var dd = db.Tbl_DiemDanh.Where(x => 
+                    x.ngayDiemDanh == b && x.maThang == a && x.maNamHoc == y
+                ).FirstOrDefault();
             if (dd != null)
             {
                 TempData["dd"] = "Ngày Điểm Danh Hôm Nay Đã Tạo";
