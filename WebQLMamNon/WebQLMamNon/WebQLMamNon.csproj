@@ -162,7 +162,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaiVietController.cs" />
     <Compile Include="Controllers\BaiVietUserController.cs" />
-    <Compile Include="Controllers\BaoCaoController.cs" />
     <Compile Include="Controllers\DiemDanhGVController.cs" />
     <Compile Include="Controllers\DiemDanhHSController.cs" />
     <Compile Include="Controllers\GiaoVienController.cs" />
@@ -1667,7 +1666,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\BaoCao\" />
     <Folder Include="Views\TaiKhoan\" />
   </ItemGroup>
   <ItemGroup>

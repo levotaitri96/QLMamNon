@@ -26,14 +26,6 @@
     <!-- Custom Theme Style -->
     <link href="~/Content/css/custom.min.css" rel="stylesheet">
     <link href="~/Content/giaovien.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet" />
-    <style>
-        #calendar {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-    </style>
 </head>
 <body class="nav-md">
     <div class="container body">
@@ -250,12 +242,6 @@
                 </div>
             </div>
             <!-- /top navigation -->
-            <!-- jQuery -->
-            <script src="https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/moment.min.js"></script>
-            <script src="https://code.jquery.com/jquery-1.12.4.min.js"
-                    integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-                    crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
             <div class="right_col">
                 <div class="">
                     @RenderBody()
@@ -273,7 +259,8 @@
             <!-- /footer content -->
         </div>
     </div>
-    
+    <!-- jQuery -->
+    <script src="~/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
