@@ -17,6 +17,7 @@ namespace WebQLMamNon.Controllers
             // giáo viên đã được phân công lớp thì sẽ không hiển thị trong list
             XuLiLoadGVCB();
             XuLiLoadLopCB();
+
             return View(db.Tbl_PhanCong.ToList());
         }
         public void XuLiLoadGVCB()
@@ -154,5 +155,22 @@ namespace WebQLMamNon.Controllers
         //    }
         //    ViewBag.maGV = new SelectList(lstgv, "maGV", "hoTen");
         //}
+        public ActionResult LichSuPhanCong(string maNamHoc, string maLoai)
+        {          
+            ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");
+            ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop, "maLoai", "tenLoai");
+            var pc = db.Tbl_PhanCong.Where(x => x.maNamHoc == maNamHoc && x.maLoai == maLoai).ToList();
+            if (pc == null)
+            {
+                return RedirectToAction("Indexpl");
+            }
+           
+            else
+            {
+                return View(pc);
+            }
+            
+        }
+        
     }
 }

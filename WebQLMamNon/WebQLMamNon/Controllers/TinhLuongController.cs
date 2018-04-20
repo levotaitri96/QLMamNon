@@ -45,6 +45,7 @@ namespace WebQLMamNon.Controllers
             string thang = TempData["thang"].ToString();
             string nam = TempData["nam"].ToString();
             var tluong = db.Tbl_TienLuong.Where(x => x.maThang == thang && x.maNamHoc == nam).FirstOrDefault();
+            var demngay = db.Tbl_DiemDanh.ToList().Where(x=>x.maThang==tluong.maThang && x.maNamHoc==tluong.maNamHoc);
             var listpc = db.Tbl_PhanCong.ToList();
             foreach (var item in listpc)
             {
@@ -66,10 +67,8 @@ namespace WebQLMamNon.Controllers
                     ctl.soTien = 100000;
                 }
                //tổng số ngày làm
-                foreach(var dd in db.Tbl_DiemDanh)
+                foreach(var dd in demngay)
                 {
-                    if(dd.maThang== tluong.maThang && dd.maNamHoc== tluong.maNamHoc)
-                    {
                         foreach(var ctdd in db.Tbl_ChiTietDiemDanh)
                         {
                             if(dd.maDiemDanh== ctdd.maDiemDanh && ctdd.maGV== item.maGV && ctdd.trangThai=="Có")
@@ -77,7 +76,7 @@ namespace WebQLMamNon.Controllers
                                 dem++;
                             }
                         }
-                    }
+                    
                 }
                 ctl.soNgayLam = dem;
                 db.Tbl_ChiTietLuong.Add(ctl);

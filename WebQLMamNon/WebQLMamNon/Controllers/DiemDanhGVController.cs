@@ -13,7 +13,8 @@ namespace WebQLMamNon.Controllers
         // GET: DiemDanhGV
         public ActionResult Index()
         {
-
+            ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");
+            ViewBag.maThang = new SelectList(db.Tbl_ThangHoc, "maThang", "tenThang");
             return View(db.Tbl_DiemDanh.ToList().OrderByDescending(x => x.ngayDiemDanh).OrderByDescending(x => x.maThang).OrderByDescending(x => x.maNamHoc));
         }
         public ActionResult DiemDanhNgay()
@@ -89,6 +90,11 @@ namespace WebQLMamNon.Controllers
 
             return Redirect(loai);
         }
-
+        public ActionResult LichSuDiemDanh(string maNamHoc,string maThang)
+        {
+            ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");
+            ViewBag.maThang = new SelectList(db.Tbl_ThangHoc, "maThang", "tenThang");
+            return View(db.Tbl_DiemDanh.ToList().Where(x=> x.maNamHoc == maNamHoc && x.maThang == maThang));
+        }
     }
 }

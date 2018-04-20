@@ -1,0 +1,34 @@
+﻿@model IEnumerable<WebQLMamNon.Models.Tbl_TonGiao>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tenTonGiao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tenTonGiao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.maTonGiao }) |
+            @Html.ActionLink("Details", "Details", new { id=item.maTonGiao }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.maTonGiao })
+        </td>
+    </tr>
+}
+
+</table>

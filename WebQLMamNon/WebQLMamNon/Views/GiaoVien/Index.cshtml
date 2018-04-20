@@ -1,5 +1,5 @@
-﻿@model IEnumerable<WebQLMamNon.Models.Tbl_GiaoVien>
-
+﻿@model PagedList.IPagedList<WebQLMamNon.Models.Tbl_GiaoVien>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/LayoutAdmin.cshtml";
@@ -89,6 +89,8 @@
 }
 
 </table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
 <script type="text/javascript">
         function deletetk(idtk) {
             if (confirm("Bạn muốn xóa giáo viên này?")) {

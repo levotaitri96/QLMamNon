@@ -87,6 +87,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -162,15 +170,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaiVietController.cs" />
     <Compile Include="Controllers\BaiVietUserController.cs" />
+    <Compile Include="Controllers\DanTocController.cs" />
     <Compile Include="Controllers\DiemDanhGVController.cs" />
     <Compile Include="Controllers\DiemDanhHSController.cs" />
     <Compile Include="Controllers\GiaoVienController.cs" />
     <Compile Include="Controllers\HocSinhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LopHocController.cs" />
+    <Compile Include="Controllers\NgheNghiepController.cs" />
     <Compile Include="Controllers\PhanCongController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Controllers\TinhLuongController.cs" />
+    <Compile Include="Controllers\TonGiaoController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -302,6 +313,7 @@
     <Content Include="Content\js\superfish-1.4.8\superfish.js" />
     <Content Include="Content\js\superfish-1.4.8\supersubs.js" />
     <Content Include="Content\js\tabs.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -1663,6 +1675,14 @@
     <Content Include="Views\DiemDanhHS\DiemDanh_View.cshtml" />
     <Content Include="Views\DiemDanhHS\Index.cshtml" />
     <Content Include="Views\HocSinh\PhanLopHS.cshtml" />
+    <Content Include="Views\PhanCong\LichSuPhanCong.cshtml" />
+    <Content Include="Views\DiemDanhGV\LichSuDiemDanh.cshtml" />
+    <Content Include="Views\DanToc\Create.cshtml" />
+    <Content Include="Views\DanToc\Index.cshtml" />
+    <Content Include="Views\NgheNghiep\Create.cshtml" />
+    <Content Include="Views\NgheNghiep\Index.cshtml" />
+    <Content Include="Views\TonGiao\Create.cshtml" />
+    <Content Include="Views\TonGiao\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

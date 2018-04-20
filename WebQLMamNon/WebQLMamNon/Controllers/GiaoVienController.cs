@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebQLMamNon.Models;
+using PagedList;
 
 namespace WebQLMamNon.Controllers
 {
@@ -16,9 +17,9 @@ namespace WebQLMamNon.Controllers
         private QuanLyMamNonEntities db = new QuanLyMamNonEntities();
         Random a = new Random();
         // GET: GiaoVien
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 5)
         {
-            return View(db.Tbl_GiaoVien.ToList());
+            return View(db.Tbl_GiaoVien.ToList().ToPagedList(page, pageSize));
         }
 
         // GET: GiaoVien/Details/5

@@ -26,6 +26,16 @@
     <!-- Custom Theme Style -->
     <link href="~/Content/css/custom.min.css" rel="stylesheet">
     <link href="~/Content/giaovien.css" rel="stylesheet" />
+    @*calender*@
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet">
+    <style>
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+    @*calender*@
 </head>
 <body class="nav-md">
     <div class="container body">
@@ -100,7 +110,7 @@
                             {
                                 <ul class="nav side-menu">
                                     <li>
-                                        <a href="@Url.Action("Index","DiemDanhHS")"><i class="fa fa-desktop"></i> Điểm danh học sinh <span class="fa fa-chevron-down"></span></a>
+                                        <a href="@Url.Action("Index","DiemDanhHS")"><i class="fa fa-desktop"></i> Điểm danh học sinh</a>
                                     </li>
                                 </ul>
                                 <ul class="nav side-menu">
@@ -133,7 +143,7 @@
                                             <a href="@Url.Action("Index","DiemDanhHS")"><i class="fa fa-desktop"></i> Điểm danh học sinh <span class="fa fa-chevron-down"></span></a>
                                         </li>
                                         <li>
-                                            <a href="@Url.Action("Index","BaiViet")"><i class="fa fa-desktop"></i> Quản lý bài viết <span class="fa fa-chevron-down"></span></a>
+                                            <a href="@Url.Action("Index","BaiViet")"><i class="fa fa-book"></i> Quản lý bài viết <span class="fa fa-chevron-down"></span></a>
                                         </li>
                                         <li> 
                                             <a><i class="fa fa-table"></i> Quản lý lớp <span class="fa fa-chevron-down"></span></a>
@@ -150,6 +160,12 @@
                                                 <li><a href="chartjs2.html">Chart JS2</a></li>
 
                                             </ul>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Index","DanToc")"><i class="fa fa-blind"></i> Quản lý dân tộc </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Index","NgheNghiep")"><i class="fa fa-neuter"></i> Quản lý nghề nghiệp </a>
                                         </li>
                                     </ul>
                                     }
@@ -260,6 +276,11 @@
         </div>
     </div>
     <!-- jQuery -->
+    @*calender*@
+    <script src="https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+    @*calender*@
     <script src="~/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
