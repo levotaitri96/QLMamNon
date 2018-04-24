@@ -33,8 +33,8 @@ namespace WebQLMamNon.Models
         public string diaChi { get; set; }
         public string gioiTinh { get; set; }
         public string hinhAnh { get; set; }
-        public string tonGiao { get; set; }
-        public string danToc { get; set; }
+        public Nullable<int> maTonGiao { get; set; }
+        public Nullable<int> maDanToc { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_BaiViet> Tbl_BaiViet { get; set; }
@@ -42,6 +42,8 @@ namespace WebQLMamNon.Models
         public virtual ICollection<Tbl_ChiTietDiemDanh> Tbl_ChiTietDiemDanh { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_ChiTietLuong> Tbl_ChiTietLuong { get; set; }
+        public virtual Tbl_DanToc Tbl_DanToc { get; set; }
+        public virtual Tbl_TonGiao Tbl_TonGiao { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_PhanCong> Tbl_PhanCong { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

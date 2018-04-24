@@ -1,0 +1,35 @@
+﻿@model WebQLMamNon.Models.Tbl_NamHoc
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tbl_NamHoc</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenNamHoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenNamHoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tienThang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tienThang)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maNamHoc }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

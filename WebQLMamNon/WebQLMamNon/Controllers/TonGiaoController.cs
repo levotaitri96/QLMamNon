@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -15,9 +16,9 @@ namespace WebQLMamNon.Controllers
         private QuanLyMamNonEntities db = new QuanLyMamNonEntities();
 
         // GET: TonGiao
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 5)
         {
-            return View(db.Tbl_TonGiao.ToList());
+            return View(db.Tbl_TonGiao.ToList().ToPagedList(page, pageSize));
         }
 
       
@@ -48,28 +49,20 @@ namespace WebQLMamNon.Controllers
         // GET: TonGiao/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            var tg = db.Tbl_TonGiao.Where(x => x.maTonGiao == id).FirstOrDefault();
+            if (tg != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                Tbl_TonGiao tbl_TonGiao = db.Tbl_TonGiao.Find(id);
+                db.Tbl_TonGiao.Remove(tbl_TonGiao);
+                db.SaveChanges();
+                return Json(new { status = 0 }, JsonRequestBehavior.AllowGet);
             }
-            Tbl_TonGiao tbl_TonGiao = db.Tbl_TonGiao.Find(id);
-            if (tbl_TonGiao == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_TonGiao);
+            else
+                return Json(new { status = 1 }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: TonGiao/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Tbl_TonGiao tbl_TonGiao = db.Tbl_TonGiao.Find(id);
-            db.Tbl_TonGiao.Remove(tbl_TonGiao);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+
 
         protected override void Dispose(bool disposing)
         {

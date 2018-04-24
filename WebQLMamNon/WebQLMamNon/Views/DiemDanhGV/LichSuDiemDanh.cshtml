@@ -16,6 +16,7 @@
     @using (Html.BeginForm("DiemDanhNgay", "DiemDanhGV", FormMethod.Get))
     {
         <input class="btn btn-primary" style="float:left;margin-left:20px" type="submit" value="Tạo mới bảng điểm danh" />
+        <input type="date" name="ngaydiemdanh" />
     }
 </p>
 @using (Html.BeginForm("LichSuDiemDanh", "DiemDanhGV", FormMethod.Get))

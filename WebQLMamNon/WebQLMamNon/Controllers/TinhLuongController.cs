@@ -13,40 +13,35 @@ namespace WebQLMamNon.Controllers
         // GET: TinhLuong
         public ActionResult Index()
         {
+            ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");
+            ViewBag.maThang = new SelectList(db.Tbl_ThangHoc, "maThang", "tenThang");
             return View(db.Tbl_TienLuong.ToList().OrderByDescending(x => x.maThang).OrderByDescending(x => x.maNamHoc));
         }
-        public ActionResult TaoBangLuong()
+        public ActionResult TaoBangLuong(string maThang, string maNamHoc)
         {
-            DateTime dt = DateTime.Now;
-            string y = String.Format("{0:yyyy}", dt);
-            string a = String.Format("{0:MM}", dt);
-
-            var tl = db.Tbl_TienLuong.Where(x => x.maThang == a && x.maNamHoc == y).FirstOrDefault();
+            var tl = db.Tbl_TienLuong.Where(x => x.maThang == maThang && x.maNamHoc == maNamHoc).FirstOrDefault();
             if(tl != null)
             {
                 TempData["dd"] = "Tháng này đã tạo bảng lương";
             }
             else
             {
-                TempData["thang"] = a;
-                TempData["nam"] = y;
+                
                 Tbl_TienLuong tienluong = new Tbl_TienLuong();
-                tienluong.maNamHoc = y;
-                tienluong.maThang = a;
+                tienluong.maNamHoc = maNamHoc;
+                tienluong.maThang = maThang;
                 db.Tbl_TienLuong.Add(tienluong);
                 db.SaveChanges();
-                TaoLuong();
+                TaoLuong(maThang,maNamHoc);
             }
             return RedirectToAction("Index");
         }
-        public void TaoLuong()
+        public void TaoLuong(string thang, string nam)
         {
-           
-            string thang = TempData["thang"].ToString();
-            string nam = TempData["nam"].ToString();
             var tluong = db.Tbl_TienLuong.Where(x => x.maThang == thang && x.maNamHoc == nam).FirstOrDefault();
             var demngay = db.Tbl_DiemDanh.ToList().Where(x=>x.maThang==tluong.maThang && x.maNamHoc==tluong.maNamHoc);
             var listpc = db.Tbl_PhanCong.ToList();
+            var tien = db.Tbl_NamHoc.Where(x => x.maNamHoc == nam).FirstOrDefault();
             foreach (var item in listpc)
             {
                 Tbl_ChiTietLuong ctl = new Tbl_ChiTietLuong();
@@ -56,15 +51,15 @@ namespace WebQLMamNon.Controllers
                 var td = db.Tbl_GiaoVien.Where(x=>x.maGV== item.maGV).FirstOrDefault();
                 if(td.trinhDo=="Đại Học")
                 {
-                    ctl.soTien = 200000;
+                    ctl.soTien = tien.tienThang * 2;
                 }
                 else if (td.trinhDo == "Cao Đẳng")
                 {
-                    ctl.soTien = 150000;
+                    ctl.soTien = tien.tienThang * 1.5;
                 }
                 else
                 {
-                    ctl.soTien = 100000;
+                    ctl.soTien = tien.tienThang * 1;
                 }
                //tổng số ngày làm
                 foreach(var dd in demngay)

@@ -1,34 +1,60 @@
-﻿@model IEnumerable<WebQLMamNon.Models.Tbl_TonGiao>
-
+﻿@model PagedList.IPagedList<WebQLMamNon.Models.Tbl_TonGiao>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h1 style="margin-left:20px">Danh Sách Tôn Giáo</h1>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
+@using (Html.BeginForm("Create", "TonGiao", FormMethod.Get))
+{
+    <input class="btn btn-primary" style="float:left;margin-left:20px" type="submit" value="Thêm tôn giáo" />
+
+}
+<table class="table" border="1">
+    <tr style="background:orange;font-size:15px">
         <th>
-            @Html.DisplayNameFor(model => model.tenTonGiao)
+            Tên tôn giáo
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.tenTonGiao)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.maTonGiao }) |
-            @Html.ActionLink("Details", "Details", new { id=item.maTonGiao }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.maTonGiao })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tenTonGiao)
+            </td>
+            <td>
+                <a href="#" id="@item.maTonGiao" onclick="deletetk(this.id)"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+            </td>
+        </tr>
+    }
 
 </table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+<script type="text/javascript">
+        function deletetk(idtk) {
+            if (confirm("Bạn muốn xóa tôn giáo này?")) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/TonGiao/Delete',
+                    data: { id: idtk },
+                    success: function (data) {
+                        if (data.status == 0) {
+                            $('#tr-' + idtk).remove();
+                            alert("Bạn xóa thành công");
+                            window.location = "@Url.Action("Index","TonGiao")";
+                        }
+                    },
+                    error: function (data) {
+                        alert('Lỗi hệ thống');
+                    }
+
+                })
+            }
+        }
+
+</script>
+

@@ -124,37 +124,22 @@ namespace WebQLMamNon.Controllers
             return RedirectToAction("Indexpl");
         }
         //Thay đổi phân công cho giáo viên
-        //public ActionResult ThaydoiGV()
-        //{
-        //    List<ModelGiaoVien> lstgv = new List<ModelGiaoVien>();
-        //    foreach (var g in db.Tbl_GiaoVien)
-        //    {
-        //        int dem = 0;
-        //        var abc = db.Tbl_TaiKhoan.Where(x => x.maGV == g.maGV).FirstOrDefault();
-        //        if (abc.loaiTK == "Teacher")
-        //        {
+        public ActionResult ThaydoiGV(string maLop)
+        {
+            XuLiLoadGVCB();
+            TempData["malop"] = maLop;
+            return RedirectToAction("ThaydoiGV", "PhanCong", FormMethod.Post);
+        }
+        [HttpPost]
+        public ActionResult ThaydoiGV(string maGV,string maLop)
+        {
 
-        //            foreach (var item in db.Tbl_PhanCong)
-        //            {
-        //                if (g.maGV == item.maGV)
-        //                {
-        //                    dem++;
-        //                }
-
-        //            }
-        //            if (dem == 0)
-        //            {
-
-        //                ModelGiaoVien gv = new ModelGiaoVien();
-        //                gv.maGV = g.maGV;
-        //                gv.hoTen = g.hoTen;
-        //                lstgv.Add(gv);
-        //            }
-        //        }
-
-        //    }
-        //    ViewBag.maGV = new SelectList(lstgv, "maGV", "hoTen");
-        //}
+            maLop = TempData["malop"].ToString();
+            var phancong = db.Tbl_PhanCong.Where(x => x.maLop == maLop).FirstOrDefault();
+            phancong.maGV = maGV;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         public ActionResult LichSuPhanCong(string maNamHoc, string maLoai)
         {          
             ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");

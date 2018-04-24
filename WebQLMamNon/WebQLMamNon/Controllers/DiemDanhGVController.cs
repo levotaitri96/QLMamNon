@@ -17,26 +17,25 @@ namespace WebQLMamNon.Controllers
             ViewBag.maThang = new SelectList(db.Tbl_ThangHoc, "maThang", "tenThang");
             return View(db.Tbl_DiemDanh.ToList().OrderByDescending(x => x.ngayDiemDanh).OrderByDescending(x => x.maThang).OrderByDescending(x => x.maNamHoc));
         }
-        public ActionResult DiemDanhNgay()
+        public ActionResult DiemDanhNgay(string ngaydiemdanh)
         {
-            DateTime dt = DateTime.Now;
-            string y = String.Format("{0:yyyy}", dt);
-            string a = String.Format("{0:MM}", dt);
-            string b = String.Format("{0:dd}", dt);
-            var dd = db.Tbl_DiemDanh.Where(x => x.ngayDiemDanh == b && x.maThang == a && x.maNamHoc == y).FirstOrDefault();
+            string ngay = ngaydiemdanh.Substring(8);
+            string maThang = ngaydiemdanh.Substring(5,2);
+            string maNamHoc = ngaydiemdanh.Substring(0,4);
+            var dd = db.Tbl_DiemDanh.Where(x => x.ngayDiemDanh == ngay && x.maThang == maThang && x.maNamHoc == maNamHoc).FirstOrDefault();
             if (dd != null)
             {
                 TempData["dd"] = "Ngày Điểm Danh Hôm Nay Đã Tạo";
             }
             else
             {
-                TempData["ngay"] = b;
-                TempData["thang"] = a;
-                TempData["nam"] = y;
+                TempData["ngay"] = ngay;
+                TempData["thang"] = maThang;
+                TempData["nam"] = maNamHoc;
                 Tbl_DiemDanh diemdanh = new Tbl_DiemDanh();
-                diemdanh.maNamHoc = y;
-                diemdanh.maThang = a;
-                diemdanh.ngayDiemDanh = b;
+                diemdanh.maNamHoc = maNamHoc;
+                diemdanh.maThang = maThang;
+                diemdanh.ngayDiemDanh = ngay;
                 db.Tbl_DiemDanh.Add(diemdanh);
                 db.SaveChanges();
                 TaoDiemDanh();

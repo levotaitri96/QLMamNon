@@ -14,7 +14,16 @@ namespace WebQLMamNon.Models
     
     public partial class Tbl_TonGiao
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tbl_TonGiao()
+        {
+            this.Tbl_GiaoVien = new HashSet<Tbl_GiaoVien>();
+        }
+    
         public int maTonGiao { get; set; }
         public string tenTonGiao { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_GiaoVien> Tbl_GiaoVien { get; set; }
     }
 }

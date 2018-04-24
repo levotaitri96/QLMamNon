@@ -177,6 +177,7 @@
     <Compile Include="Controllers\HocSinhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LopHocController.cs" />
+    <Compile Include="Controllers\NamHocController.cs" />
     <Compile Include="Controllers\NgheNghiepController.cs" />
     <Compile Include="Controllers\PhanCongController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
@@ -1643,7 +1644,6 @@
     <Content Include="vendors\skycons\README.md" />
     <Content Include="Views\LayoutAdmin.cshtml" />
     <Content Include="Views\GiaoVien\Create.cshtml" />
-    <Content Include="Views\GiaoVien\Delete.cshtml" />
     <Content Include="Views\GiaoVien\Details.cshtml" />
     <Content Include="Views\GiaoVien\Index.cshtml" />
     <Content Include="Views\LopHoc\Create.cshtml" />
@@ -1665,7 +1665,6 @@
     <Content Include="Views\TinhLuong\CalendarDiemDanh.cshtml" />
     <Content Include="Views\LayoutUser.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\GiaoVien\Edit.cshtml" />
     <Content Include="Views\BaiViet\Create.cshtml" />
     <Content Include="Views\BaiViet\Delete.cshtml" />
     <Content Include="Views\BaiViet\Details.cshtml" />
@@ -1683,6 +1682,12 @@
     <Content Include="Views\NgheNghiep\Index.cshtml" />
     <Content Include="Views\TonGiao\Create.cshtml" />
     <Content Include="Views\TonGiao\Index.cshtml" />
+    <Content Include="Views\NamHoc\Create.cshtml" />
+    <Content Include="Views\NamHoc\Delete.cshtml" />
+    <Content Include="Views\NamHoc\Details.cshtml" />
+    <Content Include="Views\NamHoc\Edit.cshtml" />
+    <Content Include="Views\NamHoc\Index.cshtml" />
+    <Content Include="Views\GiaoVien\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

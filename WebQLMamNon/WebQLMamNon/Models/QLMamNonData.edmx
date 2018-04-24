@@ -87,8 +87,8 @@
           <Property Name="diaChi" Type="nvarchar" MaxLength="70" />
           <Property Name="gioiTinh" Type="nvarchar" MaxLength="10" />
           <Property Name="hinhAnh" Type="nvarchar" MaxLength="500" />
-          <Property Name="tonGiao" Type="nvarchar" MaxLength="50" />
-          <Property Name="danToc" Type="nvarchar" MaxLength="50" />
+          <Property Name="maTonGiao" Type="int" />
+          <Property Name="maDanToc" Type="int" />
         </EntityType>
         <EntityType Name="Tbl_HocPhi">
           <Key>
@@ -152,6 +152,7 @@
           </Key>
           <Property Name="maNamHoc" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="tenNamHoc" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="tienThang" Type="float" />
         </EntityType>
         <EntityType Name="Tbl_NgheNghiep">
           <Key>
@@ -381,6 +382,30 @@
             </Principal>
             <Dependent Role="Tbl_DiemDanh">
               <PropertyRef Name="maThang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_GiaoVien_Tbl_DanToc">
+          <End Role="Tbl_DanToc" Type="Self.Tbl_DanToc" Multiplicity="0..1" />
+          <End Role="Tbl_GiaoVien" Type="Self.Tbl_GiaoVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_DanToc">
+              <PropertyRef Name="maDanToc" />
+            </Principal>
+            <Dependent Role="Tbl_GiaoVien">
+              <PropertyRef Name="maDanToc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_GiaoVien_Tbl_TonGiao">
+          <End Role="Tbl_TonGiao" Type="Self.Tbl_TonGiao" Multiplicity="0..1" />
+          <End Role="Tbl_GiaoVien" Type="Self.Tbl_GiaoVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_TonGiao">
+              <PropertyRef Name="maTonGiao" />
+            </Principal>
+            <Dependent Role="Tbl_GiaoVien">
+              <PropertyRef Name="maTonGiao" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -654,6 +679,14 @@
             <End Role="Tbl_ThangHoc" EntitySet="Tbl_ThangHoc" />
             <End Role="Tbl_DiemDanh" EntitySet="Tbl_DiemDanh" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tbl_GiaoVien_Tbl_DanToc" Association="Self.FK_Tbl_GiaoVien_Tbl_DanToc">
+            <End Role="Tbl_DanToc" EntitySet="Tbl_DanToc" />
+            <End Role="Tbl_GiaoVien" EntitySet="Tbl_GiaoVien" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_GiaoVien_Tbl_TonGiao" Association="Self.FK_Tbl_GiaoVien_Tbl_TonGiao">
+            <End Role="Tbl_TonGiao" EntitySet="Tbl_TonGiao" />
+            <End Role="Tbl_GiaoVien" EntitySet="Tbl_GiaoVien" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tbl_HocPhi_Tbl_HocSinh" Association="Self.FK_Tbl_HocPhi_Tbl_HocSinh">
             <End Role="Tbl_HocSinh" EntitySet="Tbl_HocSinh" />
             <End Role="Tbl_HocPhi" EntitySet="Tbl_HocPhi" />
@@ -793,6 +826,10 @@
             <End Role="Tbl_LopHoc" EntitySet="Tbl_LopHoc" />
             <End Role="Tbl_CTDiemDanhHS" EntitySet="Tbl_CTDiemDanhHS" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tbl_GiaoVien_Tbl_DanToc" Association="QuanLyMamNonModel.FK_Tbl_GiaoVien_Tbl_DanToc">
+            <End Role="Tbl_DanToc" EntitySet="Tbl_DanToc" />
+            <End Role="Tbl_GiaoVien" EntitySet="Tbl_GiaoVien" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tbl_DiemDanh_Tbl_NamHoc" Association="QuanLyMamNonModel.FK_Tbl_DiemDanh_Tbl_NamHoc">
             <End Role="Tbl_NamHoc" EntitySet="Tbl_NamHoc" />
             <End Role="Tbl_DiemDanh" EntitySet="Tbl_DiemDanh" />
@@ -800,6 +837,10 @@
           <AssociationSet Name="FK_Tbl_DiemDanh_Tbl_ThangHoc" Association="QuanLyMamNonModel.FK_Tbl_DiemDanh_Tbl_ThangHoc">
             <End Role="Tbl_ThangHoc" EntitySet="Tbl_ThangHoc" />
             <End Role="Tbl_DiemDanh" EntitySet="Tbl_DiemDanh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_GiaoVien_Tbl_TonGiao" Association="QuanLyMamNonModel.FK_Tbl_GiaoVien_Tbl_TonGiao">
+            <End Role="Tbl_TonGiao" EntitySet="Tbl_TonGiao" />
+            <End Role="Tbl_GiaoVien" EntitySet="Tbl_GiaoVien" />
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_PhanCong_Tbl_GiaoVien" Association="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_GiaoVien">
             <End Role="Tbl_GiaoVien" EntitySet="Tbl_GiaoVien" />
@@ -928,6 +969,7 @@
           </Key>
           <Property Name="maDanToc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tenDanToc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tbl_GiaoVien" Relationship="QuanLyMamNonModel.FK_Tbl_GiaoVien_Tbl_DanToc" FromRole="Tbl_DanToc" ToRole="Tbl_GiaoVien" />
         </EntityType>
         <EntityType Name="Tbl_DiemDanh">
           <Key>
@@ -964,11 +1006,13 @@
           <Property Name="diaChi" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
           <Property Name="gioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="hinhAnh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="tonGiao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="danToc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="maTonGiao" Type="Int32" />
+          <Property Name="maDanToc" Type="Int32" />
           <NavigationProperty Name="Tbl_BaiViet" Relationship="QuanLyMamNonModel.FK_Tbl_BaiViet_Tbl_GiaoVien" FromRole="Tbl_GiaoVien" ToRole="Tbl_BaiViet" />
           <NavigationProperty Name="Tbl_ChiTietDiemDanh" Relationship="QuanLyMamNonModel.FK_Tbl_ChiTietDiemDanh_Tbl_GiaoVien" FromRole="Tbl_GiaoVien" ToRole="Tbl_ChiTietDiemDanh" />
           <NavigationProperty Name="Tbl_ChiTietLuong" Relationship="QuanLyMamNonModel.FK_Tbl_ChiTietLuong_Tbl_GiaoVien" FromRole="Tbl_GiaoVien" ToRole="Tbl_ChiTietLuong" />
+          <NavigationProperty Name="Tbl_DanToc" Relationship="QuanLyMamNonModel.FK_Tbl_GiaoVien_Tbl_DanToc" FromRole="Tbl_GiaoVien" ToRole="Tbl_DanToc" />
+          <NavigationProperty Name="Tbl_TonGiao" Relationship="QuanLyMamNonModel.FK_Tbl_GiaoVien_Tbl_TonGiao" FromRole="Tbl_GiaoVien" ToRole="Tbl_TonGiao" />
           <NavigationProperty Name="Tbl_PhanCong" Relationship="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_GiaoVien" FromRole="Tbl_GiaoVien" ToRole="Tbl_PhanCong" />
           <NavigationProperty Name="Tbl_TaiKhoan" Relationship="QuanLyMamNonModel.FK_Tbl_TaiKhoan_Tbl_GiaoVien" FromRole="Tbl_GiaoVien" ToRole="Tbl_TaiKhoan" />
         </EntityType>
@@ -1054,6 +1098,7 @@
           </Key>
           <Property Name="maNamHoc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="tenNamHoc" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="tienThang" Type="Double" />
           <NavigationProperty Name="Tbl_DiemDanh" Relationship="QuanLyMamNonModel.FK_Tbl_DiemDanh_Tbl_NamHoc" FromRole="Tbl_NamHoc" ToRole="Tbl_DiemDanh" />
           <NavigationProperty Name="Tbl_LopHoc" Relationship="QuanLyMamNonModel.FK_Tbl_LopHoc_Tbl_NamHoc" FromRole="Tbl_NamHoc" ToRole="Tbl_LopHoc" />
           <NavigationProperty Name="Tbl_PhanCong" Relationship="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_NamHoc" FromRole="Tbl_NamHoc" ToRole="Tbl_PhanCong" />
@@ -1136,6 +1181,7 @@
           </Key>
           <Property Name="maTonGiao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tenTonGiao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tbl_GiaoVien" Relationship="QuanLyMamNonModel.FK_Tbl_GiaoVien_Tbl_TonGiao" FromRole="Tbl_TonGiao" ToRole="Tbl_GiaoVien" />
         </EntityType>
         <Association Name="FK_Tbl_BaiViet_Tbl_GiaoVien">
           <End Type="QuanLyMamNonModel.Tbl_GiaoVien" Role="Tbl_GiaoVien" Multiplicity="0..1" />
@@ -1281,6 +1327,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tbl_GiaoVien_Tbl_DanToc">
+          <End Type="QuanLyMamNonModel.Tbl_DanToc" Role="Tbl_DanToc" Multiplicity="0..1" />
+          <End Type="QuanLyMamNonModel.Tbl_GiaoVien" Role="Tbl_GiaoVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_DanToc">
+              <PropertyRef Name="maDanToc" />
+            </Principal>
+            <Dependent Role="Tbl_GiaoVien">
+              <PropertyRef Name="maDanToc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tbl_DiemDanh_Tbl_NamHoc">
           <End Type="QuanLyMamNonModel.Tbl_NamHoc" Role="Tbl_NamHoc" Multiplicity="1" />
           <End Type="QuanLyMamNonModel.Tbl_DiemDanh" Role="Tbl_DiemDanh" Multiplicity="*" />
@@ -1302,6 +1360,18 @@
             </Principal>
             <Dependent Role="Tbl_DiemDanh">
               <PropertyRef Name="maThang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_GiaoVien_Tbl_TonGiao">
+          <End Type="QuanLyMamNonModel.Tbl_TonGiao" Role="Tbl_TonGiao" Multiplicity="0..1" />
+          <End Type="QuanLyMamNonModel.Tbl_GiaoVien" Role="Tbl_GiaoVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_TonGiao">
+              <PropertyRef Name="maTonGiao" />
+            </Principal>
+            <Dependent Role="Tbl_GiaoVien">
+              <PropertyRef Name="maTonGiao" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1582,8 +1652,8 @@
           <EntitySetMapping Name="Tbl_GiaoVien">
             <EntityTypeMapping TypeName="QuanLyMamNonModel.Tbl_GiaoVien">
               <MappingFragment StoreEntitySet="Tbl_GiaoVien">
-                <ScalarProperty Name="danToc" ColumnName="danToc" />
-                <ScalarProperty Name="tonGiao" ColumnName="tonGiao" />
+                <ScalarProperty Name="maDanToc" ColumnName="maDanToc" />
+                <ScalarProperty Name="maTonGiao" ColumnName="maTonGiao" />
                 <ScalarProperty Name="hinhAnh" ColumnName="hinhAnh" />
                 <ScalarProperty Name="gioiTinh" ColumnName="gioiTinh" />
                 <ScalarProperty Name="diaChi" ColumnName="diaChi" />
@@ -1660,6 +1730,7 @@
           <EntitySetMapping Name="Tbl_NamHoc">
             <EntityTypeMapping TypeName="QuanLyMamNonModel.Tbl_NamHoc">
               <MappingFragment StoreEntitySet="Tbl_NamHoc">
+                <ScalarProperty Name="tienThang" ColumnName="tienThang" />
                 <ScalarProperty Name="tenNamHoc" ColumnName="tenNamHoc" />
                 <ScalarProperty Name="maNamHoc" ColumnName="maNamHoc" />
               </MappingFragment>

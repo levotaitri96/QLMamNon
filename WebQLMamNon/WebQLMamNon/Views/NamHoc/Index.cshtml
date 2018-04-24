@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebQLMamNon.Models.Tbl_NamHoc>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tenNamHoc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tienThang)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tenNamHoc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tienThang)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.maNamHoc }) |
+            @Html.ActionLink("Details", "Details", new { id=item.maNamHoc }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.maNamHoc })
+        </td>
+    </tr>
+}
+
+</table>

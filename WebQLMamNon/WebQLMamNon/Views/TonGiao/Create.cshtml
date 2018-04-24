@@ -5,32 +5,27 @@
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
 
-<h2>Create</h2>
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Tbl_TonGiao</h4>
+        <h4>Thêm tôn giáo</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.tenTonGiao, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.tenTonGiao, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.tenTonGiao, "", new { @class = "text-danger" })
-            </div>
+            <label class="form-label">Tên tôn giáo:</label><input type="text" id="tenTonGiao" name="tenTonGiao" class="form-control">
+            @Html.ValidationMessageFor(model => model.tenTonGiao, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-md-offset-2 col-md-10" style="width:15%">
+                <input type="submit" value="Lưu" class="btn btn-danger" style="margin-left:22px;margin-top:20px;padding-right:50px;padding-left:50px" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Quay lại", "Index")
 </div>
