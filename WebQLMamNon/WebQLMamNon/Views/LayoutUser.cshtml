@@ -49,6 +49,7 @@
 </head>
 
 <body lang="en">
+
     <header class="clearfix">
         <div class="wrapper clearfix">
             <a href="@Url.Action("Index", "BaiVietUser")" id="logo"><h2 style="color: #f1f1f1;">Happy Smile School</h2></a>
@@ -71,7 +72,13 @@
 
                         </a>
                         <!--FormLogin/-->
-                 
+                        @if(TempData["taikhoan"] !=null)
+                        {
+                            <script>
+                                alert("Tài khoản hoặc mật khẩu không đúng!")
+                            </script>
+                            
+                        }
                         <div id="id01" class="modal">
                       
                             <form class="modal-content animate" style="margin :139px; height:273px;width:429px;left :310px;position :absolute;" action="~/TaiKhoan/Login" method="post">

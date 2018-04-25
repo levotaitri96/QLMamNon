@@ -48,6 +48,7 @@ namespace WebQLMamNon.Controllers
                     else
                     {
                         TempData["taikhoan"] = "abc";
+                        return RedirectToAction("Index", "BaiVietUser");
                     }
                 }
             }

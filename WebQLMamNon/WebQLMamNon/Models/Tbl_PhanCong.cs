@@ -14,6 +14,7 @@ namespace WebQLMamNon.Models
     
     public partial class Tbl_PhanCong
     {
+        public int Idphancong { get; set; }
         public string maNamHoc { get; set; }
         public string maLop { get; set; }
         public string maLoai { get; set; }

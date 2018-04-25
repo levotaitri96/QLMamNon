@@ -163,11 +163,9 @@
         </EntityType>
         <EntityType Name="Tbl_PhanCong">
           <Key>
-            <PropertyRef Name="maNamHoc" />
-            <PropertyRef Name="maLop" />
-            <PropertyRef Name="maLoai" />
-            <PropertyRef Name="maGV" />
+            <PropertyRef Name="Idphancong" />
           </Key>
+          <Property Name="Idphancong" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="maNamHoc" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="maLop" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="maLoai" Type="nvarchar" MaxLength="10" Nullable="false" />
@@ -1114,11 +1112,9 @@
         </EntityType>
         <EntityType Name="Tbl_PhanCong">
           <Key>
-            <PropertyRef Name="maNamHoc" />
-            <PropertyRef Name="maLop" />
-            <PropertyRef Name="maLoai" />
-            <PropertyRef Name="maGV" />
+            <PropertyRef Name="Idphancong" />
           </Key>
+          <Property Name="Idphancong" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="maNamHoc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="maLop" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="maLoai" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
@@ -1752,6 +1748,7 @@
                 <ScalarProperty Name="maLoai" ColumnName="maLoai" />
                 <ScalarProperty Name="maLop" ColumnName="maLop" />
                 <ScalarProperty Name="maNamHoc" ColumnName="maNamHoc" />
+                <ScalarProperty Name="Idphancong" ColumnName="Idphancong" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

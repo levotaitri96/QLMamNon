@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -124,21 +125,25 @@ namespace WebQLMamNon.Controllers
             return RedirectToAction("Indexpl");
         }
         //Thay đổi phân công cho giáo viên
-        public ActionResult ThaydoiGV(string maLop)
+        //public ActionResult ThaydoiGV(string Id)
+        //{
+        //    XuLiLoadGVCB();
+        //    TempData["malop"] = Id;
+        //    return RedirectToAction("ThaydoiGV", "PhanCong", FormMethod.Post);
+        //}
+        //[HttpPost]
+        public ActionResult ThaydoiGV(string maGVcu,string id,string maGV)
         {
-            XuLiLoadGVCB();
-            TempData["malop"] = maLop;
-            return RedirectToAction("ThaydoiGV", "PhanCong", FormMethod.Post);
-        }
-        [HttpPost]
-        public ActionResult ThaydoiGV(string maGV,string maLop)
-        {
+            Tbl_PhanCong pc = new Tbl_PhanCong();
+            //Id = TempData["malop"].ToString();
+            
+            pc = db.Tbl_PhanCong.Where(x => x.maLop == id && x.maGV==maGVcu).FirstOrDefault();
+           
+            pc.maGV = maGV;
 
-            maLop = TempData["malop"].ToString();
-            var phancong = db.Tbl_PhanCong.Where(x => x.maLop == maLop).FirstOrDefault();
-            phancong.maGV = maGV;
+            db.Entry(pc).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Indexpl");
         }
         public ActionResult LichSuPhanCong(string maNamHoc, string maLoai)
         {          

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -78,8 +79,48 @@ namespace WebQLMamNon.Controllers
                 db.SaveChanges();
             }
         }
-        public ActionResult ChiTietLuong(int id,string thang,string nam)
+        public ActionResult ChiTietLuong(int id,string thang,string nam,Tbl_ChiTietLuong ctlll)
         {
+            var ctll = db.Tbl_ChiTietLuong.Where(x => x.maLuong == ctlll.maLuong).ToList();
+            var tluong = db.Tbl_TienLuong.Where(x => x.maThang == thang && x.maNamHoc == nam).FirstOrDefault();
+            var demngay = db.Tbl_DiemDanh.ToList().Where(x => x.maThang == tluong.maThang && x.maNamHoc == tluong.maNamHoc);
+            var listpc = db.Tbl_PhanCong.ToList();
+            var tien = db.Tbl_NamHoc.Where(x => x.maNamHoc == nam).FirstOrDefault();
+            
+                foreach (var ctl in ctll) {
+                    int dem = 0;
+                ctl.maLuong = tluong.maLuong;
+               
+                var td = db.Tbl_GiaoVien.Where(x => x.maGV == ctl.maGV).FirstOrDefault();
+                if (td.trinhDo == "Đại Học")
+                {
+                    ctl.soTien = tien.tienThang * 2;
+                }
+                else if (td.trinhDo == "Cao Đẳng")
+                {
+                    ctl.soTien = tien.tienThang * 1.5;
+                }
+                else
+                {
+                    ctl.soTien = tien.tienThang * 1;
+                }
+                //tổng số ngày làm
+                foreach (var dd in demngay)
+                {
+                    foreach (var ctdd in db.Tbl_ChiTietDiemDanh)
+                    {
+                        if (dd.maDiemDanh == ctdd.maDiemDanh && ctdd.maGV == ctl.maGV && ctdd.trangThai == "Có")
+                        {
+                            dem++;
+                        }
+                    }
+ 
+                }
+               ctl.soNgayLam = dem;
+               db.Entry(ctl).State = EntityState.Modified;
+               db.SaveChanges();
+                }
+           
             Session["thangct"] = thang;
             Session["namct"] = nam;
             return View(db.Tbl_ChiTietLuong.ToList().Where(x => x.maLuong == id));

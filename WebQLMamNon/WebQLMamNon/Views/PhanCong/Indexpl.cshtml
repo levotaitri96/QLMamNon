@@ -25,38 +25,7 @@
 
 <h1 style="margin-left:20px">Phân công</h1>
 
-@*popup đổi mật khẩu*@
-<div class="modal fade bootstrapmodall">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
 
-                <button data-dismiss="modal" class="close"><span>&times;</span></button>
-                <div class="modal-title"></div>
-            </div> <!--modal-header-->
-            <div class="modal-body">
-                <dl class="dl-horizontal" style="margin-right:50px">
-                    @using (Html.BeginForm("ThaydoiGV", "PhanCong", FormMethod.Post))
-                    {
-
-                        <dd style="margin-top:5px">
-                            <input type="submit" value="Lưu" class="btn btn-danger" />
-                            @Html.DropDownList("maGV", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; margin-right: 10px", @value = "maGV" })
-                            @Html.Hidden("loai", this.Request.RawUrl)
-                        </dd>
-                    }
-
-                </dl>
-            </div>
-            <div class="modal-footer">
-                
-                <button class="btn btn-default" data-dismiss="modal">Hủy</button>
-            </div>
-        </div><!--modal content-->
-
-    </div>
-
-</div>
 @* kết thúc popup đổi mật khẩu*@
 
 @using (Html.BeginForm("PhanCong", "PhanCong",FormMethod.Get))
@@ -92,10 +61,15 @@
                     @Html.DisplayFor(modelItem => item.Tbl_GiaoVien.hoTen)
                 </td>
              <td>
-                 @using (Html.BeginForm("ThaydoiGV", "PhanCong", FormMethod.Get))
+
+
+
+                 @using (Html.BeginForm("ThaydoiGV", "PhanCong", new { id = Html.DisplayFor(modelItem => item.Tbl_LopHoc.maLop) }, FormMethod.Get))
                  {
-                   <a href="#" data-toggle="modal" data-target=".bootstrapmodall">Thay đổi giáo viên</a>
-                   <input type="hidden"  value="@item.Tbl_LopHoc.maLop" name="maLop" id="maLop"/>
+                    @Html.DropDownList("maGV", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; margin-right: 10px", @value = "maGV" })
+                    @Html.Hidden("loai", this.Request.RawUrl)                                
+                    <input type="submit"  value="Thay đổi giáo viên" name="maLop" id="maLop"/>
+                     <input type="hidden" id="maGVcu" name="maGVcu" value="@item.Tbl_GiaoVien.maGV"/>
                  }
                 </td>
             </tr>
