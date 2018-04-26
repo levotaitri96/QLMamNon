@@ -19,26 +19,34 @@ namespace WebQLMamNon.Controllers
         }
         public ActionResult DiemDanhNgay(string ngaydiemdanh)
         {
-            string ngay = ngaydiemdanh.Substring(8);
-            string maThang = ngaydiemdanh.Substring(5,2);
-            string maNamHoc = ngaydiemdanh.Substring(0,4);
-            var dd = db.Tbl_DiemDanh.Where(x => x.ngayDiemDanh == ngay && x.maThang == maThang && x.maNamHoc == maNamHoc).FirstOrDefault();
-            if (dd != null)
+            if (ngaydiemdanh == "")
             {
-                TempData["dd"] = "Ngày Điểm Danh Hôm Nay Đã Tạo";
+                TempData["tb"] = "Chọn ngày,tháng,năm";
             }
             else
             {
-                TempData["ngay"] = ngay;
-                TempData["thang"] = maThang;
-                TempData["nam"] = maNamHoc;
-                Tbl_DiemDanh diemdanh = new Tbl_DiemDanh();
-                diemdanh.maNamHoc = maNamHoc;
-                diemdanh.maThang = maThang;
-                diemdanh.ngayDiemDanh = ngay;
-                db.Tbl_DiemDanh.Add(diemdanh);
-                db.SaveChanges();
-                TaoDiemDanh();
+
+                string ngay = ngaydiemdanh.Substring(8);
+                string maThang = ngaydiemdanh.Substring(5, 2);
+                string maNamHoc = ngaydiemdanh.Substring(0, 4);
+                var dd = db.Tbl_DiemDanh.Where(x => x.ngayDiemDanh == ngay && x.maThang == maThang && x.maNamHoc == maNamHoc).FirstOrDefault();
+                if (dd != null)
+                {
+                    TempData["dd"] = "Ngày Điểm Danh Hôm Nay Đã Tạo";
+                }
+                else
+                {
+                    TempData["ngay"] = ngay;
+                    TempData["thang"] = maThang;
+                    TempData["nam"] = maNamHoc;
+                    Tbl_DiemDanh diemdanh = new Tbl_DiemDanh();
+                    diemdanh.maNamHoc = maNamHoc;
+                    diemdanh.maThang = maThang;
+                    diemdanh.ngayDiemDanh = ngay;
+                    db.Tbl_DiemDanh.Add(diemdanh);
+                    db.SaveChanges();
+                    TaoDiemDanh();
+                }
             }
             return RedirectToAction("Index");
         }

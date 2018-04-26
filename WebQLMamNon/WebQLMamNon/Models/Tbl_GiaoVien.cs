@@ -31,15 +31,23 @@ namespace WebQLMamNon.Models
         [Required(ErrorMessage = "Mời bạn nhập vào dữ liệu")]
         public string hoTen { get; set; }
         [Display(Name = "Số Điện Thoại")]
-        [MinLength(4, ErrorMessage = "Tên sách có ít nhất là 4 kí tự")]
+        [MinLength(9, ErrorMessage = "Số điện thoại từ 9 đến 11 số")]
         [Required(ErrorMessage = "Mời bạn nhập vào dữ liệu")]
         public string soDT { get; set; }
+        [Required(ErrorMessage = "Mời bạn chọn ngày sinh")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:d/M/yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Ngày Sinh")]
         public Nullable<System.DateTime> ngaySinh { get; set; }
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "Mời bạn nhập vào dữ liệu")]
         public string email { get; set; }
+        [Display(Name = "Địa chỉ")]
+        [Required(ErrorMessage = "Mời bạn nhập vào dữ liệu")]
         public string diaChi { get; set; }
         public string gioiTinh { get; set; }
         public string hinhAnh { get; set; }
-        public Nullable<int> maTonGiao { get; set; }
+        public Nullable<int> maTonGiao { get; set; }   
         public Nullable<int> maDanToc { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

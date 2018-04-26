@@ -12,6 +12,12 @@
         alert("Ngày Điểm Danh Hôm Nay Đã Tạo");
     </script>
 }
+@if (TempData["tb"] != null)
+{
+    <script>
+        alert("Chọn ngày,tháng,năm tạo điểm danh");
+    </script>
+}
 @using (Html.BeginForm("DiemDanhNgay", "DiemDanhGV", FormMethod.Get))
 {
     <input class="btn btn-primary" style="float:left;margin-left:20px" type="submit" value="Tạo mới bảng điểm danh" />
