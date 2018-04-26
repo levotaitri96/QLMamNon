@@ -1643,7 +1643,6 @@
     <Content Include="vendors\skycons\.gitignore" />
     <Content Include="vendors\skycons\README.md" />
     <Content Include="Views\LayoutAdmin.cshtml" />
-    <Content Include="Views\GiaoVien\Create.cshtml" />
     <Content Include="Views\GiaoVien\Details.cshtml" />
     <Content Include="Views\GiaoVien\Index.cshtml" />
     <Content Include="Views\LopHoc\Create.cshtml" />
@@ -1688,6 +1687,8 @@
     <Content Include="Views\NamHoc\Edit.cshtml" />
     <Content Include="Views\NamHoc\Index.cshtml" />
     <Content Include="Views\GiaoVien\Edit.cshtml" />
+    <Content Include="Views\GiaoVien\Create.cshtml" />
+    <Content Include="Views\GiaoVien\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -48,45 +48,46 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.maGV)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.hoTen)
-        </td>
-        <td>
-           @String.Format("{0:d/M/yyyy}", item.ngaySinh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.gioiTinh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.trinhDo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.soDT)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tbl_TonGiao.tenTonGiao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tbl_DanToc.tenDanToc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.diaChi)
-        </td>
-        <td>
-            <a href="@Url.Action("Edit", "GiaoVien",new { id = item.maGV })"><i class="fa fa-wrench"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
-            <a href="@Url.Action("Details", "GiaoVien",new { id = item.maGV })"><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
-            <a href="#" id="@item.maGV" onclick="deletetk(this.id)"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.maGV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hoTen)
+            </td>
+            <td>
+                @String.Format("{0:d/M/yyyy}", item.ngaySinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gioiTinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.trinhDo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.soDT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_TonGiao.tenTonGiao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_DanToc.tenDanToc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.diaChi)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "GiaoVien",new { id = item.maGV })"><i class="fa fa-wrench"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                <a href="@Url.Action("Details", "GiaoVien",new { id = item.maGV })"><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                <a href="#" id="@item.maGV" onclick="deletetk(this.id)"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+            </td>
+        </tr>
+    }
 
 </table>
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

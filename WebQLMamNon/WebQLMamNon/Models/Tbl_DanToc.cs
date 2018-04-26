@@ -20,7 +20,6 @@ namespace WebQLMamNon.Models
         {
             this.Tbl_GiaoVien = new HashSet<Tbl_GiaoVien>();
         }
-    
         public int maDanToc { get; set; }
         [Display(Name = "Tên Dân Tộc")]
         [Required(ErrorMessage = "Mời bạn nhập tên dân tộc")]

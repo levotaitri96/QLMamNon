@@ -128,6 +128,7 @@ namespace WebQLMamNon.Controllers
         }
         public ActionResult CalendarDiemDanh(string id)
         {
+            var gv = db.Tbl_GiaoVien.ToList().Where(x => x.maGV == id).FirstOrDefault();
             List<ModelChiTietDiemDanh> lst = new List<ModelChiTietDiemDanh>();
             var ctdd = db.Tbl_ChiTietDiemDanh.ToList().Where(x => x.maGV == id);
             foreach(var item in ctdd)
@@ -137,14 +138,17 @@ namespace WebQLMamNon.Controllers
                     if(item.maDiemDanh==i.maDiemDanh)
                     {
                         ModelChiTietDiemDanh mdct = new ModelChiTietDiemDanh();
+                       
                         mdct.nam = i.maNamHoc;
                         mdct.thang = i.maThang;
+                        ViewBag.a = mdct.thang;
                         mdct.ngay = i.ngayDiemDanh;
                         mdct.trangThai = item.trangThai;
                         lst.Add(mdct);
                     }
                 }
             }
+            ViewBag.b = gv.hoTen;
             string thang = Session["thangct"].ToString();
             string nam = Session["namct"].ToString();
             return View(lst.ToList().Where(x=>x.thang==thang && x.nam==nam));

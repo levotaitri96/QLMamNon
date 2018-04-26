@@ -49,7 +49,7 @@ namespace WebQLMamNon.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create([Bind(Include = "trinhDo,hoTen,soDT,ngaySinh,email,diaChi,gioiTinh,hinhAnh")] Tbl_GiaoVien tbl_GiaoVien)
+        public ActionResult Create([Bind(Include = "trinhDo,hoTen,soDT,ngaySinh,email,diaChi,gioiTinh,hinhAnh,maDanToc,maTonGiao")] Tbl_GiaoVien tbl_GiaoVien)
         {
 
             if (ModelState.IsValid)
@@ -71,7 +71,8 @@ namespace WebQLMamNon.Controllers
                 ThemTaiKhoan();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.maDanToc = new SelectList(db.Tbl_DanToc, "maDanToc", "tenDanToc", tbl_GiaoVien.maDanToc);
+            ViewBag.maTonGiao = new SelectList(db.Tbl_TonGiao, "maTonGiao", "tenTonGiao", tbl_GiaoVien.maTonGiao);
             return View(tbl_GiaoVien);
         }
         public void ThemTaiKhoan()

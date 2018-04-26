@@ -47,7 +47,9 @@ namespace WebQLMamNon.Models
         public string diaChi { get; set; }
         public string gioiTinh { get; set; }
         public string hinhAnh { get; set; }
-        public Nullable<int> maTonGiao { get; set; }   
+        [Required, Range(1, int.MaxValue, ErrorMessage = "Error: Must Choose a Country")]
+        public Nullable<int> maTonGiao { get; set; }
+        [Required, Range(1, int.MaxValue, ErrorMessage = "Error: Must Choose a Country")]
         public Nullable<int> maDanToc { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
