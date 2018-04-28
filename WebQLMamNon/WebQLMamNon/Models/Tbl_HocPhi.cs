@@ -14,13 +14,19 @@ namespace WebQLMamNon.Models
     
     public partial class Tbl_HocPhi
     {
-        public System.DateTime tenHocPhi { get; set; }
-        public int soNgayHoc { get; set; }
-        public int maHS { get; set; }
-        public string soTien { get; set; }
-        public string maLoai { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tbl_HocPhi()
+        {
+            this.Tbl_ChiTietHocPhi = new HashSet<Tbl_ChiTietHocPhi>();
+        }
     
-        public virtual Tbl_HocSinh Tbl_HocSinh { get; set; }
-        public virtual Tbl_LoaiLop Tbl_LoaiLop { get; set; }
+        public int maHP { get; set; }
+        public string maThang { get; set; }
+        public string maNamHoc { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_ChiTietHocPhi> Tbl_ChiTietHocPhi { get; set; }
+        public virtual Tbl_NamHoc Tbl_NamHoc { get; set; }
+        public virtual Tbl_ThangHoc Tbl_ThangHoc { get; set; }
     }
 }

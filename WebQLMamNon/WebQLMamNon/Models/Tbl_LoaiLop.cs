@@ -19,7 +19,6 @@ namespace WebQLMamNon.Models
         {
             this.Tbl_ChiTietDiemDanh = new HashSet<Tbl_ChiTietDiemDanh>();
             this.Tbl_CTDiemDanhHS = new HashSet<Tbl_CTDiemDanhHS>();
-            this.Tbl_HocPhi = new HashSet<Tbl_HocPhi>();
             this.Tbl_HocSinh = new HashSet<Tbl_HocSinh>();
             this.Tbl_LopHoc = new HashSet<Tbl_LopHoc>();
             this.Tbl_PhanCong = new HashSet<Tbl_PhanCong>();
@@ -35,8 +34,6 @@ namespace WebQLMamNon.Models
         public virtual ICollection<Tbl_ChiTietDiemDanh> Tbl_ChiTietDiemDanh { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_CTDiemDanhHS> Tbl_CTDiemDanhHS { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_HocPhi> Tbl_HocPhi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_HocSinh> Tbl_HocSinh { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -52,7 +52,7 @@
         <div class="form-group">
             <label for="sel1" class="form-label col-md-2">Ngày Sinh:</label>
             <div class="col-md-10" style="margin-left: 150px;margin-top: -30px;">
-                @Html.EditorFor(model => model.ngaySinh, new { htmlAttributes = new { @class = "form-control" } })
+                <input class="form-control" type="date" name="ngaySinh" value="@Session["r"]" />              
                 @Html.ValidationMessageFor(model => model.ngaySinh, "", new { @class = "text-danger" })
             </div>
         </div>

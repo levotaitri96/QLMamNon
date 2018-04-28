@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebQLMamNon.Models;
-
+using PagedList;
 namespace WebQLMamNon.Controllers
 {
     public class HocSinhController : Controller
@@ -15,12 +15,13 @@ namespace WebQLMamNon.Controllers
         private QuanLyMamNonEntities db = new QuanLyMamNonEntities();
 
         // GET: HocSinh
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 5)
         {
             ViewBag.lstLoai = db.Tbl_LoaiLop.ToList();
             ViewBag.lstLop = db.Tbl_LopHoc.ToList();
-            ViewBag.lstHS = db.Tbl_HocSinh.ToList();
-            return View(db.Tbl_HocSinh.ToList());
+
+            return View(db.Tbl_HocSinh.ToList().ToPagedList(page, pageSize));
+
         }
 
         // GET: HocSinh/Details/5
@@ -38,6 +39,10 @@ namespace WebQLMamNon.Controllers
         // GET: HocSinh/Create
         public ActionResult Create()
         {
+            ViewBag.maDanToc = db.Tbl_DanToc.ToList();
+            ViewBag.maTonGiao = db.Tbl_TonGiao.ToList();
+            ViewBag.maNgheNghiepMe = db.Tbl_NgheNghiepMe.ToList();
+            ViewBag.maNgheNghiepCha = db.Tbl_NgheNghiepCha.ToList();
             return View();
         }
         public int GetTuoi(DateTime ngaysinh)
@@ -54,7 +59,7 @@ namespace WebQLMamNon.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "maHS,hoTenCha,ngheNghiepCha,hoTenMe,ngheNghiepMe,hoTen,soDTNha,ngaySinh,email,diaChi,gioiTinh,hinhAnh,tonGiao,danToc")] Tbl_HocSinh tbl_HocSinh)
+        public ActionResult Create([Bind(Include = "maHS,hoTenCha,hoTenMe,hoTen,soDTNha,ngaySinh,email,diaChi,gioiTinh,hinhAnh,maNgheNghiepMe,maNgheNghiepCha,maTonGiao,maDanToc")] Tbl_HocSinh tbl_HocSinh)
         {
             if (ModelState.IsValid)
             {
@@ -89,12 +94,17 @@ namespace WebQLMamNon.Controllers
 
         public ActionResult Edit(int id)
         {
+            ViewBag.maDanToc = db.Tbl_DanToc.ToList();
+            ViewBag.maTonGiao = db.Tbl_TonGiao.ToList();
+            ViewBag.maNgheNghiepMe = db.Tbl_NgheNghiepMe.ToList();
+            ViewBag.maNgheNghiepCha = db.Tbl_NgheNghiepCha.ToList();
 
             Tbl_HocSinh tbl_HocSinh = db.Tbl_HocSinh.Find(id);
             if (tbl_HocSinh == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.ngaySinh = tbl_HocSinh.ngaySinh.Value.ToShortDateString();
             return View(tbl_HocSinh);
         }
 
@@ -103,14 +113,36 @@ namespace WebQLMamNon.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maHS,hoTenCha,hoTenMe,hoTen,soDTNha,ngaySinh,email,diaChi,gioiTinh,hinhAnh")] Tbl_HocSinh tbl_HocSinh)
+        public ActionResult Edit([Bind(Include = "maHS,hoTenCha,hoTenMe,hoTen,soDTNha,ngaySinh,email,diaChi,gioiTinh,hinhAnh,maTonGiao,maDanToc,maNgheNghiepMe,maNgheNghiepCha")] Tbl_HocSinh tbl_HocSinh)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbl_HocSinh).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (tbl_HocSinh.ngaySinh == null)
+                {
+                    tbl_HocSinh.maLoai = null;
+                }
+                else
+                {
+                    if (GetTuoi(tbl_HocSinh.ngaySinh.Value) >= 2 && GetTuoi(tbl_HocSinh.ngaySinh.Value) <= 3)
+                    {
+                        tbl_HocSinh.maLoai = "L01";
+                    }
+                    else if (GetTuoi(tbl_HocSinh.ngaySinh.Value) >= 4 && GetTuoi(tbl_HocSinh.ngaySinh.Value) < 5)
+                    {
+                        tbl_HocSinh.maLoai = "L02";
+                    }
+                    else if (GetTuoi(tbl_HocSinh.ngaySinh.Value) >= 5 && GetTuoi(tbl_HocSinh.ngaySinh.Value) <= 6)
+                    {
+                        tbl_HocSinh.maLoai = "L03";
+                    }
+                    db.Entry(tbl_HocSinh).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+
             }
+
             return View(tbl_HocSinh);
         }
 
@@ -140,13 +172,15 @@ namespace WebQLMamNon.Controllers
             }
             base.Dispose(disposing);
         }
+        //loadHS theo lớp truyền vào mã lớp
         public ActionResult LoadHS(string id)
         {
-            List<int> lstMaHS = db.Tbl_PhanLop.Where(n => n.maLop == id).Select(x => x.maHS).ToList();
+            //lấy danh sách học sinh đã được phân lớp 
+            List<int?> lstMaHS = db.Tbl_PhanLop.Where(n => n.maLop == id).Select(x => x.maHS).ToList();
 
             //truy xuat danh sach HS theo loai
             List<Tbl_HocSinh> lstHS = db.Tbl_HocSinh.Where(n => lstMaHS.Contains(n.maHS)).ToList();
-            //gan danh sach loai sach            
+            //gan danh sach loai HS            
             return View(lstHS);
 
         }
@@ -166,7 +200,7 @@ namespace WebQLMamNon.Controllers
         {
             int countHS_Lop = db.Tbl_PhanLop.Where(x => x.maLop == maLop).Count();
 
-            int[] lstMaHS = db.Tbl_PhanLop.Select(x => x.maHS).ToArray();
+            int?[] lstMaHS = db.Tbl_PhanLop.Select(x => x.maHS).ToArray();
             List<Tbl_HocSinh> hsNew = db.Tbl_HocSinh.Where(x => x.maLoai == maLoai && !lstMaHS.Contains(x.maHS)).ToList();
 
             foreach (Tbl_HocSinh item in hsNew)

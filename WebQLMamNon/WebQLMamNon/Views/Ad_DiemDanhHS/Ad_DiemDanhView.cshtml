@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebQLMamNon.Models.Tbl_CTDiemDanhHS>
+@{
+    ViewBag.Title = "LichSuDiemDanh";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+<h1 style="margin-left:25px">Chi Tiết Điểm Danh</h1>
+@Html.DropDownList("maLop", new SelectList(ViewBag.maLops, "maLop", "tenLop"), "--Tất cả--",
+    htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px" })
+
+@*@Html.Hidden("loai", this.Request.RawUrl)*@
+
+<table class="table">
+    <tr style="background:orange;font-size:15px">
+        <th>Năm Học</th>
+        <th>
+            Họ tên
+        </th>
+        <th>
+            Lớp
+        </th>
+        <th>
+            Trạng Thái
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.maLop)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_DiemDanhHS.maNamHoc)
+
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_HocSinh.hoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_LopHoc.tenLop)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.trangThai)
+            </td>
+
+        </tr>
+    }
+</table>
+@Html.ActionLink("Quay lại", "Index")
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+<script>
+    @*$(function () {
+        if (@ViewBag.selectedId!="") {
+            $('#maLop option:eq(' + @ViewBag.selectedId +')').prop('selected', true)
+        }*@
+        $("#maLop").on("change", function () {
+            $("tr").has("td").hide();
+            $("td:contains('" + $("#maLop").val() + "')").parent().show();
+        })
+
+</script>

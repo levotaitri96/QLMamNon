@@ -71,15 +71,9 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.ngheNghiepCha, "Nghề nghiệp Cha: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.maNgheNghiepCha, "Nghe Nghiep: ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select class="form-control" id="ngheNghiepCha" name="ngheNghiepCha">
-                    <option>@Html.DisplayFor(model => model.ngheNghiepCha, new { htmlAttributes = new { @class = "form-control" } })</option>
-                    <option>Công Nhân</option>
-                    <option>Nhân Viên Văn Phòng</option>
-                    <option>Kinh Doanh</option>
-                    <option>Khác</option>
-                </select>
+                @Html.DropDownList("maNgheNghiepCha", new SelectList(ViewBag.maNgheNghiepCha, "maNgheNghiepCha", "tenNgheNghiepCha"), "-----------Chọn-----------", htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maNgheNghiepCha" })
             </div>
         </div>
 
@@ -91,16 +85,9 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.ngheNghiepMe, "Nghề nghiệp Mẹ: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.maNgheNghiepMe, "Nghe Nghiep: ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select class="form-control" id="ngheNghiepMe" name="ngheNghiepMe">
-                    <option>@Html.DisplayFor(model => model.ngheNghiepMe, new { htmlAttributes = new { @class = "form-control" } })</option>
-                    <option>Công Nhân</option>
-                    <option>Nhân Viên Văn Phòng</option>
-                    <option>Kinh Doanh</option>
-                    <option>Nội Trợ</option>
-                    <option>Khác</option>
-                </select>
+                @Html.DropDownList("maNgheNghiepMe", new SelectList(ViewBag.maNgheNghiepMe, "maNgheNghiepMe", "tenNgheNghiepMe"), "-----------Chọn-----------", htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maNgheNghiepMe" })
             </div>
         </div>
 
@@ -109,41 +96,29 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.danToc, "Dân Tộc: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Dân Tộc: ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select class="form-control" id="danToc" name="danToc">
-                    <option>@Html.DisplayFor(model => model.danToc, new { htmlAttributes = new { @class = "form-control" } })</option>
-                    <option> Kinh</option>
-                    <option> Hoa</option>
-
-                    <option>Khác</option>
-                </select>
+                @Html.DropDownList("maDanToc", new SelectList(ViewBag.maDanToc, "maDanToc", "tenDanToc"), htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maDanToc" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.tonGiao, "Tôn Giáo: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Tôn Giáo: ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select class="form-control" id="tonGiao" name="tonGiao">
-                    <option>@Html.DisplayFor(model => model.tonGiao, new { htmlAttributes = new { @class = "form-control" } })</option>
-                    <option>Phật Giáo</option>
-                    <option>Thiên Chúa Giáo</option>
-                    <option>Không</option>
-                    <option>Khác</option>
-                </select>
+                @Html.DropDownList("maTonGiao", new SelectList(ViewBag.maTonGiao, "maTonGiao", "tenTonGiao"), htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maTonGiao" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.hinhAnh, "Hình Ảnh:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="hinhAnh" />
+                <input type="file" id="hinhAnh" name="hinhAnh" />
                 @Html.ValidationMessageFor(model => model.hinhAnh, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" style="background-color:#0094ff" />
             </div>
         </div>
     </div>

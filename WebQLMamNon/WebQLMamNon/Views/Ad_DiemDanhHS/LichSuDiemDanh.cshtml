@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebQLMamNon.Models.Tbl_DiemDanhHS>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+
+<h1 style="margin-left:20px">Xem Lịch Sử Điểm Danh</h1>
+@if (TempData["dd"] != null)
+{
+    <script>
+        alert("Ngày Điểm Danh Hôm Nay Đã Tạo");
+    </script>
+}
+
+@using (Html.BeginForm("LichSuDiemDanh", "Ad_DiemDanhHS", FormMethod.Get))
+{
+    <div class="form-group" style="width:90%">
+        @Html.DropDownList("maNamHoc", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maNamHoc" })
+        @Html.DropDownList("maThang", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maThang" })
+    </div>
+
+    <input style="padding-top:5px" type="submit" value="Tìm Kiếm" />
+}
+<table class="table">
+    <tr style="background:orange;font-size:15px">
+        <th>
+            Ngày điểm danh
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.ngayDiemDanh-@item.maThang-@item.maNamHoc
+            </td>
+
+            <td>
+                @using (Html.BeginForm("Ad_DiemDanhView", "Ad_DiemDanhHS", new { id = item.maDiemDanhHS }, FormMethod.Get))
+                {
+                    <input class="btn btn-danger" style="font-size:12px" type="submit" value="Chi tiết điểm danh" />
+                }
+            </td>
+        </tr>
+    }
+
+</table>

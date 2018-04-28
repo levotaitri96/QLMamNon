@@ -14,10 +14,11 @@ namespace WebQLMamNon.Models
     
     public partial class Tbl_PhanLop
     {
+        public int idPhanLop { get; set; }
         public string maNamHoc { get; set; }
         public string maLop { get; set; }
         public string maLoai { get; set; }
-        public int maHS { get; set; }
+        public Nullable<int> maHS { get; set; }
     
         public virtual Tbl_HocSinh Tbl_HocSinh { get; set; }
         public virtual Tbl_LoaiLop Tbl_LoaiLop { get; set; }

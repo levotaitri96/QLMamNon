@@ -93,6 +93,8 @@ namespace WebQLMamNon.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Tbl_GiaoVien tbl_GiaoVien = db.Tbl_GiaoVien.Find(id);
+            DateTime aa = Convert.ToDateTime(tbl_GiaoVien.ngaySinh);
+            Session["r"] = aa.ToString("yyyy-MM-dd");
             if (tbl_GiaoVien == null)
             {
                 return HttpNotFound();

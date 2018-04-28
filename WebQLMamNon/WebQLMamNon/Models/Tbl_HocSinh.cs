@@ -17,8 +17,8 @@ namespace WebQLMamNon.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tbl_HocSinh()
         {
+            this.Tbl_ChiTietHocPhi = new HashSet<Tbl_ChiTietHocPhi>();
             this.Tbl_CTDiemDanhHS = new HashSet<Tbl_CTDiemDanhHS>();
-            this.Tbl_HocPhi = new HashSet<Tbl_HocPhi>();
             this.Tbl_PhanLop = new HashSet<Tbl_PhanLop>();
         }
     
@@ -33,16 +33,20 @@ namespace WebQLMamNon.Models
         public string gioiTinh { get; set; }
         public string hinhAnh { get; set; }
         public string maLoai { get; set; }
-        public string tonGiao { get; set; }
-        public string danToc { get; set; }
-        public string ngheNghiepCha { get; set; }
-        public string ngheNghiepMe { get; set; }
+        public Nullable<int> maTonGiao { get; set; }
+        public Nullable<int> maDanToc { get; set; }
+        public Nullable<int> maNgheNghiepMe { get; set; }
+        public Nullable<int> maNgheNghiepCha { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_CTDiemDanhHS> Tbl_CTDiemDanhHS { get; set; }
+        public virtual ICollection<Tbl_ChiTietHocPhi> Tbl_ChiTietHocPhi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_HocPhi> Tbl_HocPhi { get; set; }
+        public virtual ICollection<Tbl_CTDiemDanhHS> Tbl_CTDiemDanhHS { get; set; }
+        public virtual Tbl_DanToc Tbl_DanToc { get; set; }
         public virtual Tbl_LoaiLop Tbl_LoaiLop { get; set; }
+        public virtual Tbl_NgheNghiepCha Tbl_NgheNghiepCha { get; set; }
+        public virtual Tbl_NgheNghiepMe Tbl_NgheNghiepMe { get; set; }
+        public virtual Tbl_TonGiao Tbl_TonGiao { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_PhanLop> Tbl_PhanLop { get; set; }
     }

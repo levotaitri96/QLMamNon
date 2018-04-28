@@ -1,5 +1,5 @@
-﻿@model IEnumerable<WebQLMamNon.Models.Tbl_HocSinh>
-
+﻿@model PagedList.IPagedList<WebQLMamNon.Models.Tbl_HocSinh>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/LayoutAdmin.cshtml";
@@ -39,7 +39,7 @@
     {
         <tr>
 
-            <td>
+            <td style="text-align:left">
                 @Html.DisplayFor(modelItem => item.hoTen)
             </td>
             <td>
@@ -49,11 +49,11 @@
                 @Html.DisplayFor(modelItem => item.gioiTinh)
             </td>
 
-            <td>
+            <td style="text-align:right">
                 @Html.DisplayFor(modelItem => item.soDTNha)
             </td>
 
-            <td>
+            <td style="text-align:left">
                 @Html.DisplayFor(modelItem => item.diaChi)
             </td>
             <td>
@@ -63,8 +63,14 @@
                 <a href="#" id="@item.maHS" onclick="deletehs(this.id)"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
             </td>
         </tr>
+
     }
+
 </table>
+<div style="margin-left:20px; max-width:700px">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>
+
 <script type="text/javascript">
     function deletehs(mahs) {
             if (confirm("Bạn muốn xóa học sinh này?")) {
@@ -93,4 +99,3 @@
         }
 
 </script>
-

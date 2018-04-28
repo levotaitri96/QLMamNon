@@ -11,11 +11,38 @@
         alert("Ngày Điểm Danh Hôm Nay Đã Tạo");
     </script>
 }
+@if (TempData["ngaydiemdanh"] != null)
+{
+    <script>
+        alert("Vui lòng chọn ngày bạn muốn điểm danh kế bên -->");
+    </script>
+}
+
 <p>
     @using (Html.BeginForm("DiemDanhNgay", "DiemDanhHS", FormMethod.Get))
     {
-        <input class="btn btn-primary" style="float:left;margin-left:20px" type="submit" value="Tạo mới bảng điểm danh" />
+        <div>
+            <input class="btn btn-primary" style="float:left;margin-left:20px" type="submit" value="Tạo mới bảng điểm danh" />
+        </div>
+
+
+        <input type="date" name="ngaydiemdanh" title="Chọn ngày muốn tạo!" />
+
     }
+
+    @using (Html.BeginForm("GV_LichSuDiemDanh", "DiemDanhHS", FormMethod.Get))
+    {
+
+        <div class="form-group" style="width:90%">
+            @Html.DropDownList("maNamHoc", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 20px;margin-left:20px", @value = "maNamHoc" })
+            @Html.DropDownList("maThang", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maThang" })
+        </div>
+        <div>
+            <input style="padding-top:5px" type="submit" value="Tìm Kiếm" />
+        </div>
+
+    }
+
 </p>
 <table class="table">
     <tr style="background:orange;font-size:15px">
@@ -24,21 +51,19 @@
         </th>
         <th></th>
     </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @item.ngayDiemDanh-@item.maThang-@item.maNamHoc
-            </td>
+    @*@foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.ngayDiemDanh-@item.maThang-@item.maNamHoc
+                </td>
 
-            <td>
-                @using (Html.BeginForm("DiemDanh_View", "DiemDanhHS", new { id = item.maDiemDanhHS}, FormMethod.Get))
-                {
-                    <input class="btn btn-danger" style="font-size:12px" type="submit" value="Chi tiết điểm danh" />
-                }
-            </td>
-        </tr>
-    }
+                <td>
+                    @using (Html.BeginForm("DiemDanh_View", "DiemDanhHS", new { id = item.maDiemDanhHS }, FormMethod.Get))
+                    {
+                        <input class="btn btn-danger" style="font-size:12px" type="submit" value="Chi tiết điểm danh" />
+                    }
+                </td>
+            </tr>
+        }*@
 </table>
-
-

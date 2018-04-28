@@ -1,0 +1,53 @@
+﻿@model PagedList.IPagedList<WebQLMamNon.Models.Tbl_ChiTietHocPhi>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "HPChiTiet_View";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+
+<h1 style="margin-left:25px">Chi Tiết Học Phí</h1>
+
+<table class="table">
+    <tr style="background:orange;font-size:15px">
+        <th>Học Phí Tháng</th>
+        <th>Lớp</th>
+        <th>Tên</th>
+        <th>Số ngày học</th>
+        <th>Tổng Học Phí </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+
+                @ViewBag.thangct- @ViewBag.namct
+            </td>
+            <td>
+                @ViewBag.tenLop
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tbl_HocSinh.hoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.soNgayHoc)
+            </td>
+            <td>
+                @(Convert.ToDouble((item.soTien - 100000 * (22 - item.soNgayHoc)))
+            </td>
+
+            <td>
+
+                @using (Html.BeginForm("CalendarDiemDanh", "HocPhiHS", new { id = item.maHS }, FormMethod.Get))
+                {
+                    <input class="btn btn-danger" style="font-size:12px" type="submit" value="Lịch sử điểm danh" />
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+<div style="margin-left:20px; max-width:700px">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>

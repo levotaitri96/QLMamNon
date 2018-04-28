@@ -36,11 +36,11 @@ namespace WebQLMamNon.Controllers
 
                         if (obj.loaiTK == "Admin")
                         {
-                            return RedirectToAction("Index", "GiaoVien");
+                            return RedirectToAction("Index", "TaiKhoan");
                         }
                         else if (obj.loaiTK == "Teacher")
                         {
-                            return RedirectToAction("Index", "DiemDanhHS");
+                            return RedirectToAction("Index", "TaiKhoan");
                         }
 
                         // nếu tài khoản là admin thì trả về index giáo viên như trên

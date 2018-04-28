@@ -124,14 +124,7 @@ namespace WebQLMamNon.Controllers
             }
             return RedirectToAction("Indexpl");
         }
-        //Thay đổi phân công cho giáo viên
-        //public ActionResult ThaydoiGV(string Id)
-        //{
-        //    XuLiLoadGVCB();
-        //    TempData["malop"] = Id;
-        //    return RedirectToAction("ThaydoiGV", "PhanCong", FormMethod.Post);
-        //}
-        //[HttpPost]
+
         public ActionResult ThaydoiGV(string maGVcu,string id,string maGV)
         {
             Tbl_PhanCong pc = new Tbl_PhanCong();

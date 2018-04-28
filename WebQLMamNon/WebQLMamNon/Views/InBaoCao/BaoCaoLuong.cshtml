@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "BaoCaoLuong";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+
+<h1 style="margin-left:25px">Báo Cáo</h1>
+
+@using (Html.BeginForm("BaoCaoLuong", "InBaoCao", FormMethod.Get))
+{
+    <div class="form-group" style="width:90%">
+        @Html.DropDownList("maNamHoc", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 20px;margin-left:20px", @value = "maNamHoc" })
+        @Html.DropDownList("maThang", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maThang" })
+    </div>
+
+            <input style="padding-top:5px" type="submit" value="Xem chi tiết" />
+}
+
+<table class="table">
+    <tr style="background:orange;font-size:15px">
+        <th>Tên giáo viên</th>
+        <th>Số ngày làm</th>
+        <th>Tổng lương</th>
+    </tr>
+    @if (ViewBag.a != null)
+    {
+        foreach (var item in ViewBag.a)
+        {
+            <tr>
+                <td>
+                   
+                </td>
+                <td>
+                    @item.soNgayLam
+                </td>
+                <td>
+                    @item.soTien
+                </td>
+            </tr>
+        }
+    }
+
+</table>

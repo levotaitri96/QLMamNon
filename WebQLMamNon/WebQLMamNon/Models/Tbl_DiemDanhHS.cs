@@ -27,5 +27,6 @@ namespace WebQLMamNon.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_CTDiemDanhHS> Tbl_CTDiemDanhHS { get; set; }
+        public virtual Tbl_ThangHoc Tbl_ThangHoc { get; set; }
     }
 }

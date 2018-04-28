@@ -24,7 +24,7 @@
             @Html.DisplayFor(modelItem => item.soNgayLam)
         </td>
         <td>
-            @(item.soTien * item.soNgayLam)
+            @(item.soTien)
         </td>
        
         <td>
@@ -38,3 +38,4 @@
 }
 
 </table>
+<a href="@Url.Action("InLuongTheoThang","InBaoCao")"> Export Report</a>

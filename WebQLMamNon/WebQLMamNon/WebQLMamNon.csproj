@@ -46,6 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.TemplateEngine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -168,17 +174,20 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Ad_DiemDanhHSController.cs" />
     <Compile Include="Controllers\BaiVietController.cs" />
     <Compile Include="Controllers\BaiVietUserController.cs" />
     <Compile Include="Controllers\DanTocController.cs" />
     <Compile Include="Controllers\DiemDanhGVController.cs" />
     <Compile Include="Controllers\DiemDanhHSController.cs" />
     <Compile Include="Controllers\GiaoVienController.cs" />
+    <Compile Include="Controllers\HocPhiHSController.cs" />
     <Compile Include="Controllers\HocSinhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HSLenLopController.cs" />
+    <Compile Include="Controllers\InBaoCaoController.cs" />
     <Compile Include="Controllers\LopHocController.cs" />
     <Compile Include="Controllers\NamHocController.cs" />
-    <Compile Include="Controllers\NgheNghiepController.cs" />
     <Compile Include="Controllers\PhanCongController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Controllers\TinhLuongController.cs" />
@@ -188,6 +197,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelChiTietDiemDanh.cs" />
+    <Compile Include="Models\ModelChiTietDiemDanhHS.cs" />
     <Compile Include="Models\ModelGiaoVien.cs" />
     <Compile Include="Models\ModelHocSinh.cs" />
     <Compile Include="Models\ModelLopHoc.cs" />
@@ -211,6 +221,9 @@
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_ChiTietDiemDanh.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_ChiTietHocPhi.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_ChiTietLuong.cs">
@@ -249,7 +262,10 @@
     <Compile Include="Models\Tbl_NamHoc.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Tbl_NgheNghiep.cs">
+    <Compile Include="Models\Tbl_NgheNghiepCha.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_NgheNghiepMe.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_PhanCong.cs">
@@ -271,6 +287,12 @@
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\Luong.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Luong.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -321,9 +343,18 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\1.png" />
     <Content Include="images\11-53329.jpg" />
     <Content Include="images\16-cogiao282.jpg" />
+    <Content Include="images\2.png" />
+    <Content Include="images\3.png" />
+    <Content Include="images\4.png" />
+    <Content Include="images\5.png" />
+    <Content Include="images\6.png" />
+    <Content Include="images\7.png" />
+    <Content Include="images\8.jpg" />
     <Content Include="images\84579b75ec51733.jpg" />
+    <Content Include="images\9.png" />
     <Content Include="images\demen.jpg" />
     <Content Include="images\giao-vien-mam-non-tu-va-chuyen-ke-nhan-ngay-20-11-0.jpg" />
     <Content Include="images\Image.jpg" />
@@ -1677,8 +1708,6 @@
     <Content Include="Views\DiemDanhGV\LichSuDiemDanh.cshtml" />
     <Content Include="Views\DanToc\Create.cshtml" />
     <Content Include="Views\DanToc\Index.cshtml" />
-    <Content Include="Views\NgheNghiep\Create.cshtml" />
-    <Content Include="Views\NgheNghiep\Index.cshtml" />
     <Content Include="Views\TonGiao\Create.cshtml" />
     <Content Include="Views\TonGiao\Index.cshtml" />
     <Content Include="Views\NamHoc\Create.cshtml" />
@@ -1689,10 +1718,18 @@
     <Content Include="Views\GiaoVien\Edit.cshtml" />
     <Content Include="Views\GiaoVien\Create.cshtml" />
     <Content Include="Views\GiaoVien\Delete.cshtml" />
+    <Content Include="Views\InBaoCao\BaoCaoLuong.cshtml" />
+    <Content Include="Views\Ad_DiemDanhHS\Index.cshtml" />
+    <Content Include="Views\Ad_DiemDanhHS\Ad_DiemDanhView.cshtml" />
+    <Content Include="Views\Ad_DiemDanhHS\LichSuDiemDanh.cshtml" />
+    <Content Include="Views\DiemDanhHS\GV_LichSuDiemDanh.cshtml" />
+    <Content Include="Views\TaiKhoan\Index.cshtml" />
+    <Content Include="Views\HocPhiHS\Index.cshtml" />
+    <Content Include="Views\HocPhiHS\HPChiTiet_View.cshtml" />
+    <Content Include="Views\HSLenLop\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\TaiKhoan\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1705,6 +1742,16 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\Luong.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Luong.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
