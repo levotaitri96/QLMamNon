@@ -121,7 +121,7 @@ namespace WebQLMamNon.Controllers
                db.Entry(ctl).State = EntityState.Modified;
                db.SaveChanges();
                 }
-           
+            TempData["maluongin"] = id;
             Session["thangct"] = thang;
             Session["namct"] = nam;
             return View(db.Tbl_ChiTietLuong.ToList().Where(x => x.maLuong == id));

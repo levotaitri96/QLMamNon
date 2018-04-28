@@ -128,6 +128,17 @@
           <Property Name="maNgheNghiepMe" Type="int" />
           <Property Name="maNgheNghiepCha" Type="int" />
         </EntityType>
+        <EntityType Name="Tbl_InLuong">
+          <Key>
+            <PropertyRef Name="maGV" />
+            <PropertyRef Name="maLuong" />
+          </Key>
+          <Property Name="hoTen" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="soNgayLam" Type="int" Nullable="false" />
+          <Property Name="soTien" Type="float" Nullable="false" />
+          <Property Name="maGV" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="maLuong" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Tbl_LoaiBaiViet">
           <Key>
             <PropertyRef Name="maLoai" />
@@ -708,6 +719,7 @@
           <EntitySet Name="Tbl_GiaoVien" EntityType="Self.Tbl_GiaoVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_HocPhi" EntityType="Self.Tbl_HocPhi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_HocSinh" EntityType="Self.Tbl_HocSinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_InLuong" EntityType="Self.Tbl_InLuong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_LoaiBaiViet" EntityType="Self.Tbl_LoaiBaiViet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_LoaiLop" EntityType="Self.Tbl_LoaiLop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_LopHoc" EntityType="Self.Tbl_LopHoc" Schema="dbo" store:Type="Tables" />
@@ -893,6 +905,7 @@
           <EntitySet Name="Tbl_GiaoVien" EntityType="QuanLyMamNonModel.Tbl_GiaoVien" />
           <EntitySet Name="Tbl_HocPhi" EntityType="QuanLyMamNonModel.Tbl_HocPhi" />
           <EntitySet Name="Tbl_HocSinh" EntityType="QuanLyMamNonModel.Tbl_HocSinh" />
+          <EntitySet Name="Tbl_InLuong" EntityType="QuanLyMamNonModel.Tbl_InLuong" />
           <EntitySet Name="Tbl_LoaiBaiViet" EntityType="QuanLyMamNonModel.Tbl_LoaiBaiViet" />
           <EntitySet Name="Tbl_LoaiLop" EntityType="QuanLyMamNonModel.Tbl_LoaiLop" />
           <EntitySet Name="Tbl_LopHoc" EntityType="QuanLyMamNonModel.Tbl_LopHoc" />
@@ -1223,6 +1236,17 @@
           <NavigationProperty Name="Tbl_NgheNghiepMe" Relationship="QuanLyMamNonModel.FK_Tbl_HocSinh_Tbl_NgheNghiepMe" FromRole="Tbl_HocSinh" ToRole="Tbl_NgheNghiepMe" />
           <NavigationProperty Name="Tbl_TonGiao" Relationship="QuanLyMamNonModel.FK_Tbl_HocSinh_Tbl_TonGiao" FromRole="Tbl_HocSinh" ToRole="Tbl_TonGiao" />
           <NavigationProperty Name="Tbl_PhanLop" Relationship="QuanLyMamNonModel.FK_Tbl_PhanLop_Tbl_HocSinh" FromRole="Tbl_HocSinh" ToRole="Tbl_PhanLop" />
+        </EntityType>
+        <EntityType Name="Tbl_InLuong">
+          <Key>
+            <PropertyRef Name="maGV" />
+            <PropertyRef Name="maLuong" />
+          </Key>
+          <Property Name="hoTen" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="soNgayLam" Type="Int32" Nullable="false" />
+          <Property Name="soTien" Type="Double" Nullable="false" />
+          <Property Name="maGV" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="maLuong" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Tbl_LoaiBaiViet">
           <Key>
@@ -1968,6 +1992,17 @@
                 <ScalarProperty Name="hoTenMe" ColumnName="hoTenMe" />
                 <ScalarProperty Name="hoTenCha" ColumnName="hoTenCha" />
                 <ScalarProperty Name="maHS" ColumnName="maHS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_InLuong">
+            <EntityTypeMapping TypeName="QuanLyMamNonModel.Tbl_InLuong">
+              <MappingFragment StoreEntitySet="Tbl_InLuong">
+                <ScalarProperty Name="maLuong" ColumnName="maLuong" />
+                <ScalarProperty Name="maGV" ColumnName="maGV" />
+                <ScalarProperty Name="soTien" ColumnName="soTien" />
+                <ScalarProperty Name="soNgayLam" ColumnName="soNgayLam" />
+                <ScalarProperty Name="hoTen" ColumnName="hoTen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
