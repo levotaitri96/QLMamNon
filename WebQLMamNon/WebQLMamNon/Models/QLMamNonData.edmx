@@ -138,6 +138,7 @@
           <Property Name="soTien" Type="float" Nullable="false" />
           <Property Name="maGV" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="maLuong" Type="int" Nullable="false" />
+          <Property Name="tenThang" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Tbl_LoaiBaiViet">
           <Key>
@@ -1247,6 +1248,7 @@
           <Property Name="soTien" Type="Double" Nullable="false" />
           <Property Name="maGV" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="maLuong" Type="Int32" Nullable="false" />
+          <Property Name="tenThang" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Tbl_LoaiBaiViet">
           <Key>
@@ -1998,6 +2000,7 @@
           <EntitySetMapping Name="Tbl_InLuong">
             <EntityTypeMapping TypeName="QuanLyMamNonModel.Tbl_InLuong">
               <MappingFragment StoreEntitySet="Tbl_InLuong">
+                <ScalarProperty Name="tenThang" ColumnName="tenThang" />
                 <ScalarProperty Name="maLuong" ColumnName="maLuong" />
                 <ScalarProperty Name="maGV" ColumnName="maGV" />
                 <ScalarProperty Name="soTien" ColumnName="soTien" />

@@ -41,48 +41,50 @@ namespace WebQLMamNon.Controllers
         public ActionResult InLuongTheoThang(string loai)
         {
             int a = Convert.ToInt32(TempData["maluongin"]);
-            //var ctll = db.Tbl_ChiTietLuong.Where(x => x.maLuong == a).ToList();
-            
-            //foreach(var item in ctll)
-            //{
-            //    Tbl_InLuong inluong = new Tbl_InLuong();
-            //    inluong.maGV = item.maGV;
-            //    inluong.maLuong = item.maLuong;
-            //    inluong.soNgayLam = Convert.ToInt32( item.soNgayLam);
-            //    inluong.soTien = Convert.ToInt32( item.soTien);
-            //    inluong.hoTen = item.Tbl_GiaoVien.hoTen;
-            //    db.Tbl_InLuong.Add(inluong);
-            //    db.SaveChanges();
-            //}
+            var ctll = db.Tbl_ChiTietLuong.Where(x => x.maLuong == a).ToList();
 
-            // Insert into Tbl_InLuong
-            StringBuilder strSQL = new StringBuilder();
-            strSQL.Append(" INSERT INTO [Tbl_InLuong] ");
-            strSQL.Append(" 	([hoTen] ");
-            strSQL.Append(" 	,[soNgayLam] ");
-            strSQL.Append(" 	,[soTien] ");
-            strSQL.Append(" 	,[maGV] ");
-            strSQL.Append(" 	,[maLuong]) ");
-            strSQL.Append(" SELECT ");
-            strSQL.Append(" 	GV.hoTen ");
-            strSQL.Append(" 	, CTL.soNgayLam ");
-            strSQL.Append(" 	, CTL.soTien ");
-            strSQL.Append(" 	, GV.maGV ");
-            strSQL.Append(" 	, CTL.maLuong ");
-            strSQL.Append(" FROM ");
-            strSQL.Append(" 	Tbl_GiaoVien GV ");
-            strSQL.Append(" 	, Tbl_ChiTietLuong CTL ");
-            strSQL.Append(" 	, Tbl_TienLuong TL ");
-            strSQL.Append(" WHERE ");
-            strSQL.Append(" 	GV.maGV = CTL.maGV ");
-            strSQL.Append(" 	AND CTL.maLuong = TL.maLuong ");
-            strSQL.Append(" 	AND CTL.maLuong = '" + a.ToString() + "' ");
-            db.Database.ExecuteSqlCommand(strSQL.ToString());
-            db.SaveChanges();
+            foreach (var item in ctll)
+            {
+                Tbl_InLuong inluong = new Tbl_InLuong();
+                inluong.maGV = item.maGV;
+                inluong.maLuong = item.maLuong;
+                inluong.soNgayLam = Convert.ToInt32(item.soNgayLam);
+                inluong.soTien = Convert.ToInt32(item.soTien);
+                inluong.hoTen = item.Tbl_GiaoVien.hoTen;
+                inluong.tenThang = item.Tbl_TienLuong.maThang;
+                db.Tbl_InLuong.Add(inluong);
+                db.SaveChanges();
+            }
+
+            //// Insert into Tbl_InLuong
+            //StringBuilder strSQL = new StringBuilder();
+            //strSQL.Append(" INSERT INTO [Tbl_InLuong] ");
+            //strSQL.Append(" 	([hoTen] ");
+            //strSQL.Append(" 	,[soNgayLam] ");
+            //strSQL.Append(" 	,[soTien] ");
+            //strSQL.Append(" 	,[maGV] ");
+            //strSQL.Append(" 	,[maLuong]) ");
+            //strSQL.Append(" SELECT ");
+            //strSQL.Append(" 	GV.hoTen ");
+            //strSQL.Append(" 	, CTL.soNgayLam ");
+            //strSQL.Append(" 	, CTL.soTien ");
+            //strSQL.Append(" 	, GV.maGV ");
+            //strSQL.Append(" 	, CTL.maLuong ");
+            //strSQL.Append(" FROM ");
+            //strSQL.Append(" 	Tbl_GiaoVien GV ");
+            //strSQL.Append(" 	, Tbl_ChiTietLuong CTL ");
+            //strSQL.Append(" 	, Tbl_TienLuong TL ");
+            //strSQL.Append(" WHERE ");
+            //strSQL.Append(" 	GV.maGV = CTL.maGV ");
+            //strSQL.Append(" 	AND CTL.maLuong = TL.maLuong ");
+            //strSQL.Append(" 	AND CTL.maLuong = '" + a.ToString() + "' ");
+            //db.Database.ExecuteSqlCommand(strSQL.ToString());
+            //db.SaveChanges();
 
             // print report
             ReportDocument rd = new ReportDocument();
             rd.Load(Path.Combine(Server.MapPath("~/Reports/Luong.rpt")));
+            rd.Refresh();
 
             Response.Buffer = false;
             Response.ClearContent();
@@ -90,20 +92,20 @@ namespace WebQLMamNon.Controllers
             Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
             stream.Seek(0, SeekOrigin.Begin);
 
-            // Delete worktable
-            strSQL = new StringBuilder();     
-            strSQL.Append(" DELETE FROM ");
-            strSQL.Append(" 	Tbl_InLuong ");
-            strSQL.Append(" WHERE ");
-            strSQL.Append(" 	maLuong = '" + a + "' ");
-            db.Database.ExecuteSqlCommand(strSQL.ToString());
-            db.SaveChanges();
-            //foreach (var item in ctll)
-            //{
-            //    var ab = db.Tbl_InLuong.Where(x => x.maLuong == a && x.maGV==item.maGV).FirstOrDefault();
-            //    db.Tbl_InLuong.Remove(ab);
-            //    db.SaveChanges();
-            //}
+            //// Delete worktable
+            //strSQL = new StringBuilder();     
+            //strSQL.Append(" DELETE FROM ");
+            //strSQL.Append(" 	Tbl_InLuong ");
+            //strSQL.Append(" WHERE ");
+            //strSQL.Append(" 	maLuong = '" + a + "' ");
+            //db.Database.ExecuteSqlCommand(strSQL.ToString());
+            //db.SaveChanges();
+            foreach (var item in ctll)
+            {
+                var ab = db.Tbl_InLuong.Where(x => x.maLuong == a && x.maGV == item.maGV).FirstOrDefault();
+                db.Tbl_InLuong.Remove(ab);
+                db.SaveChanges();
+            }
 
             return File(stream, "application/pdf", "Luong.pdf");
             // return Redirect(loai);

@@ -19,5 +19,6 @@ namespace WebQLMamNon.Models
         public double soTien { get; set; }
         public string maGV { get; set; }
         public int maLuong { get; set; }
+        public string tenThang { get; set; }
     }
 }
