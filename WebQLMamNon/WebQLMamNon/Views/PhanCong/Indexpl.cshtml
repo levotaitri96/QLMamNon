@@ -16,31 +16,32 @@
         alert("Mỗi lớp tối đa 2 giáo viên ");
     </script>
 }
-<h2>Indexpl</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-@using (Html.BeginForm("PhanCong", "PhanLop",FormMethod.Get))
+@if (TempData["loinull"] != null)
 {
-<div class="form-group" style="float:left;width:90%">
+    <script>
+        alert("Hiện tại không có giáo viên hoặc không có lớp trống");
+    </script>
+}
+
+<h1 style="margin-left:20px">Phân công</h1>
+
+
+@using (Html.BeginForm("PhanCong", "PhanCong",FormMethod.Get))
+{
+<div class="form-group" style="float:left;width:90%;margin-left:20px">
     @Html.DropDownList("maLop", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px",@value="maLop"})
-    @Html.DropDownList("maGV", null, htmlAttributes: new { @class = "form-control", @style = "width:25%; margin-right: 10px",@value="maGV" })
+    @Html.DropDownList("maGV", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; margin-right: 10px",@value="maGV" })
 </div>
 
-<input style="float:left" type="submit" value="Phan cong" />
+<input class="btn btn-primary" style="float:right;margin-right:25px;margin-top:-44px" type="submit" value="Phân công" />
 }
     <table class="table">
-        <tr>
-            <th>
-                ma lop
+        <tr style="background:orange;font-size:15px">
+           <th>
+                Lớp
             </th>
             <th>
-                ten lop
-            </th>
-            <th>
-                hoten
+                Giáo viên
             </th>
             <th></th>
         </tr>
@@ -49,23 +50,16 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.trangThai)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Tbl_GiaoVien.trinhDo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Tbl_LoaiLop.tenLoai)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Tbl_LopHoc.tenLop)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Tbl_GiaoVien.hoTen)
                 </td>
-                <td></td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) 
+             <td>
+                 @using (Html.BeginForm("ChiTietLuong", "TinhLuong",  FormMethod.Get))
+                 {
+                     <input class="btn btn-danger" style="font-size:12px" type="submit" value="Thay đổi giáo viên" />
+                 }
                 </td>
             </tr>
         }

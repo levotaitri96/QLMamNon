@@ -5,13 +5,10 @@
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
 
-<h2>ChiTietLuong</h2>
+<h1 style="margin-left:25px">Bảng lương</h1>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
-    <tr>
+    <tr style="background:orange;font-size:15px">
        <th>Tên</th>
         <th>Số ngày làm</th>
         <th>Tổng lương</th>
@@ -19,7 +16,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr >
         <td>
             @Html.DisplayFor(modelItem => item.Tbl_GiaoVien.hoTen)
         </td>
@@ -31,9 +28,11 @@
         </td>
        
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.maChiTietLuong }) |
-            @Html.ActionLink("Details", "Details", new { id=item.maChiTietLuong }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.maChiTietLuong })
+           
+        @using (Html.BeginForm("ChiTietLuong", "TinhLuong", FormMethod.Get))
+        {
+            <input class="btn btn-danger" style="font-size:12px" type="submit" value="Lịch sử điểm danh" />
+        }
         </td>
     </tr>
 }

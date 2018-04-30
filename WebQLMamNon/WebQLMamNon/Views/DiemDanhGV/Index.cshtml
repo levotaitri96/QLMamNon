@@ -5,7 +5,7 @@
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
 
-<h2>Bảng Điểm Danh</h2>
+<h1 style="margin-left:20px">Bảng Điểm Danh</h1>
 @if (TempData["dd"] != null)
 {
     <script>
@@ -15,20 +15,14 @@
 <p>
     @using (Html.BeginForm("DiemDanhNgay", "DiemDanhGV",FormMethod.Get))
             {
-        <input style="float:left" type="submit" value="Tạo mới bảng điểm danh" />
+        <input class="btn btn-primary" style="float:left;margin-left:20px" type="submit" value="Tạo mới bảng điểm danh" />
     }
 </p>
 
 <table class="table">
-    <tr>
+    <tr style="background:orange;font-size:15px">
         <th>
-            Ngày
-        </th>
-        <th>
-            Tháng
-        </th>
-        <th>
-            Năm học
+            Ngày điểm danh
         </th>
         <th></th>
     </tr>
@@ -36,18 +30,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ngayDiemDanh)
+           @item.ngayDiemDanh-@item.maThang-@item.maNamHoc
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tbl_ThangHoc.tenThang)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tbl_NamHoc.tenNamHoc)
-        </td>
+       
         <td>
             @using (Html.BeginForm("DiemDanh", "DiemDanhGV", new { id = item.maDiemDanh }, FormMethod.Get))
             {
-                <input style="float:left" type="submit" value="Chi tiết" />
+                <input class="btn btn-danger" style="font-size:12px" type="submit" value="Chi tiết điểm danh" />
             }
         </td>
     </tr>

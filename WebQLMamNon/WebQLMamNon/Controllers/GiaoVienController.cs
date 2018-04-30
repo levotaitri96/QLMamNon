@@ -14,7 +14,7 @@ namespace WebQLMamNon.Controllers
     public class GiaoVienController : Controller
     {
         private QuanLyMamNonEntities db = new QuanLyMamNonEntities();
-
+        Random a = new Random();
         // GET: GiaoVien
         public ActionResult Index()
         {
@@ -46,8 +46,9 @@ namespace WebQLMamNon.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create([Bind(Include = "maGV,trinhDo,hoTen,soDT,ngaySinh,email,diaChi,gioiTinh,hinhAnh")] Tbl_GiaoVien tbl_GiaoVien)
+        public ActionResult Create([Bind(Include = "trinhDo,hoTen,soDT,ngaySinh,email,diaChi,gioiTinh,hinhAnh,tonGiao,danToc")] Tbl_GiaoVien tbl_GiaoVien)
         {
+
             if (ModelState.IsValid)
             {
                 //code create hình ảnh
@@ -60,6 +61,7 @@ namespace WebQLMamNon.Controllers
                     posted.SaveAs(Server.MapPath(filePath));
                     tbl_GiaoVien.hinhAnh = posted.FileName;
                 }
+                tbl_GiaoVien.maGV = "GV" + a.Next(100000);
                 db.Tbl_GiaoVien.Add(tbl_GiaoVien);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -111,29 +113,35 @@ namespace WebQLMamNon.Controllers
         }
 
         // GET: GiaoVien/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Tbl_GiaoVien tbl_GiaoVien = db.Tbl_GiaoVien.Find(id);
-            if (tbl_GiaoVien == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_GiaoVien);
-        }
+        //public ActionResult Delete(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Tbl_GiaoVien tbl_GiaoVien = db.Tbl_GiaoVien.Find(id);
+        //    if (tbl_GiaoVien == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(tbl_GiaoVien);
+        //}
 
         // POST: GiaoVien/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        [HttpPost]
+        public JsonResult Delete(string id)
         {
-            Tbl_GiaoVien tbl_GiaoVien = db.Tbl_GiaoVien.Find(id);
-            db.Tbl_GiaoVien.Remove(tbl_GiaoVien);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var gv = db.Tbl_PhanCong.Where(x => x.maGV == id).FirstOrDefault();
+            if (gv == null)
+            {
+                Tbl_GiaoVien tbl_Giaovien = db.Tbl_GiaoVien.Find(id);
+                db.Tbl_GiaoVien.Remove(tbl_Giaovien);
+                db.SaveChanges();
+                return Json(new { status = 0 }, JsonRequestBehavior.AllowGet);
+            }
+            else
+                return Json(new { status = 1 }, JsonRequestBehavior.AllowGet);
+
         }
 
         protected override void Dispose(bool disposing)

@@ -59,6 +59,8 @@
           <Property Name="diaChi" Type="nvarchar" MaxLength="70" />
           <Property Name="gioiTinh" Type="nvarchar" MaxLength="10" />
           <Property Name="hinhAnh" Type="nvarchar" MaxLength="500" />
+          <Property Name="tonGiao" Type="nvarchar" MaxLength="50" />
+          <Property Name="danToc" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Tbl_HocPhi">
           <Key>
@@ -77,7 +79,7 @@
           <Property Name="maHS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="hoTenCha" Type="nvarchar" MaxLength="50" />
           <Property Name="hoTenMe" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="hoTen" Type="nvarchar" MaxLength="10" />
+          <Property Name="hoTen" Type="nvarchar" MaxLength="50" />
           <Property Name="soDTNha" Type="nvarchar" MaxLength="50" />
           <Property Name="ngaySinh" Type="datetime" />
           <Property Name="email" Type="nvarchar" MaxLength="50" />
@@ -85,6 +87,10 @@
           <Property Name="gioiTinh" Type="nvarchar" MaxLength="10" />
           <Property Name="hinhAnh" Type="nvarchar" MaxLength="500" />
           <Property Name="maLoai" Type="nvarchar" MaxLength="10" />
+          <Property Name="tonGiao" Type="nvarchar" MaxLength="50" />
+          <Property Name="danToc" Type="nvarchar" MaxLength="50" />
+          <Property Name="ngheNghiepCha" Type="nvarchar" MaxLength="50" />
+          <Property Name="ngheNghiepMe" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Tbl_LoaiLop">
           <Key>
@@ -763,6 +769,8 @@
           <Property Name="diaChi" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
           <Property Name="gioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="hinhAnh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="tonGiao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="danToc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Tbl_BaiViet" Relationship="QuanLyMamNonModel.FK_Tbl_BaiViet_Tbl_GiaoVien" FromRole="Tbl_GiaoVien" ToRole="Tbl_BaiViet" />
           <NavigationProperty Name="Tbl_ChiTietDiemDanh" Relationship="QuanLyMamNonModel.FK_Tbl_ChiTietDiemDanh_Tbl_GiaoVien" FromRole="Tbl_GiaoVien" ToRole="Tbl_ChiTietDiemDanh" />
           <NavigationProperty Name="Tbl_ChiTietLuong" Relationship="QuanLyMamNonModel.FK_Tbl_ChiTietLuong_Tbl_GiaoVien" FromRole="Tbl_GiaoVien" ToRole="Tbl_ChiTietLuong" />
@@ -788,7 +796,7 @@
           <Property Name="maHS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="hoTenCha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="hoTenMe" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="hoTen" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="hoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="soDTNha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ngaySinh" Type="DateTime" Precision="3" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -796,6 +804,10 @@
           <Property Name="gioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="hinhAnh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="maLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="tonGiao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="danToc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngheNghiepCha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngheNghiepMe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Tbl_ChiTietDiemDanh" Relationship="QuanLyMamNonModel.FK_Tbl_ChiTietDiemDanh_Tbl_HocSinh" FromRole="Tbl_HocSinh" ToRole="Tbl_ChiTietDiemDanh" />
           <NavigationProperty Name="Tbl_HocPhi" Relationship="QuanLyMamNonModel.FK_Tbl_HocPhi_Tbl_HocSinh" FromRole="Tbl_HocSinh" ToRole="Tbl_HocPhi" />
           <NavigationProperty Name="Tbl_LoaiLop" Relationship="QuanLyMamNonModel.FK_Tbl_HocSinh_Tbl_LoaiLop" FromRole="Tbl_HocSinh" ToRole="Tbl_LoaiLop" />
@@ -1257,6 +1269,8 @@
           <EntitySetMapping Name="Tbl_GiaoVien">
             <EntityTypeMapping TypeName="QuanLyMamNonModel.Tbl_GiaoVien">
               <MappingFragment StoreEntitySet="Tbl_GiaoVien">
+                <ScalarProperty Name="danToc" ColumnName="danToc" />
+                <ScalarProperty Name="tonGiao" ColumnName="tonGiao" />
                 <ScalarProperty Name="hinhAnh" ColumnName="hinhAnh" />
                 <ScalarProperty Name="gioiTinh" ColumnName="gioiTinh" />
                 <ScalarProperty Name="diaChi" ColumnName="diaChi" />
@@ -1283,6 +1297,10 @@
           <EntitySetMapping Name="Tbl_HocSinh">
             <EntityTypeMapping TypeName="QuanLyMamNonModel.Tbl_HocSinh">
               <MappingFragment StoreEntitySet="Tbl_HocSinh">
+                <ScalarProperty Name="ngheNghiepMe" ColumnName="ngheNghiepMe" />
+                <ScalarProperty Name="ngheNghiepCha" ColumnName="ngheNghiepCha" />
+                <ScalarProperty Name="danToc" ColumnName="danToc" />
+                <ScalarProperty Name="tonGiao" ColumnName="tonGiao" />
                 <ScalarProperty Name="maLoai" ColumnName="maLoai" />
                 <ScalarProperty Name="hinhAnh" ColumnName="hinhAnh" />
                 <ScalarProperty Name="gioiTinh" ColumnName="gioiTinh" />

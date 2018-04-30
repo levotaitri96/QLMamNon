@@ -5,18 +5,18 @@
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
 
-<h2>Danh Sách Giáo Viên</h2>
+<h1 style="margin-left:20px">Danh Sách Giáo Viên</h1>
 @using (Html.BeginForm("Create", "GiaoVien", FormMethod.Get))
 {
-    <input type="submit" value="Thêm giáo viên" />
+    <input class="btn btn-primary" style="float:left;margin-left:20px" type="submit" value="Thêm giáo viên" />
 
 }
 <br />
 
 <table class="table" border="1">
-    <tr>
+    <tr style="background:orange;font-size:15px">
         <th>
-            Họ và tên
+            Họ tên
         </th>
         <th>
             Ngày sinh
@@ -28,10 +28,16 @@
             Trình độ
         </th>
         <th>
-            Số DT
+            Số điện thoại
         </th>
         <th>
             Email
+        </th>
+        <th>
+            Tôn giáo
+        </th>
+        <th>
+            Dân tộc
         </th>
         <th>
             Địa chỉ
@@ -45,7 +51,7 @@
             @Html.DisplayFor(modelItem => item.hoTen)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ngaySinh)
+           @String.Format("{0:d/M/yyyy}", item.ngaySinh)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.gioiTinh)
@@ -60,14 +66,46 @@
             @Html.DisplayFor(modelItem => item.email)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.tonGiao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.danToc)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.diaChi)
         </td>
         <td>
             <a href="@Url.Action("Edit", "GiaoVien",new { id = item.maGV })"><i class="fa fa-wrench"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
             <a href="@Url.Action("Details", "GiaoVien",new { id = item.maGV })"><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
-            <a href="@Url.Action("Delete", "GiaoVien",new { id = item.maGV })"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+            <a href="#" id="@item.maGV" onclick="deletetk(this.id)"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
         </td>
     </tr>
 }
 
 </table>
+<script type="text/javascript">
+        function deletetk(idtk) {
+            if (confirm("Bạn muốn xóa giáo viên này?")) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/GiaoVien/Delete',
+                    data: { id: idtk },
+                    success: function (data) {
+                        if (data.status == 0) {
+                            $('#tr-' + idtk).remove();
+                            alert("Bạn xóa thành công");
+                            window.location = "@Url.Action("Index","GiaoVien")";
+                        }
+                        if (data.status == 1)
+                            alert('Bạn không thể xóa do giáo viên đã được phân công');
+
+                    },
+                    error: function (data) {
+                        alert('Lỗi hệ thống');
+                    }
+
+                })
+            }
+        }
+
+</script>

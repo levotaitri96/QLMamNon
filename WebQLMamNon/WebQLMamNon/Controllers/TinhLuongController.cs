@@ -13,7 +13,7 @@ namespace WebQLMamNon.Controllers
         // GET: TinhLuong
         public ActionResult Index()
         {
-            return View(db.Tbl_TienLuong.ToList());
+            return View(db.Tbl_TienLuong.ToList().OrderByDescending(x => x.maThang).OrderByDescending(x => x.maNamHoc));
         }
         public ActionResult TaoBangLuong()
         {

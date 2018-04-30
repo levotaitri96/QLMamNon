@@ -7,7 +7,7 @@ using WebQLMamNon.Models;
 
 namespace WebQLMamNon.Controllers
 {
-    public class PhanLopController : Controller
+    public class PhanCongController : Controller
     {
         private QuanLyMamNonEntities db = new QuanLyMamNonEntities();
         // GET: PhanLop
@@ -77,35 +77,42 @@ namespace WebQLMamNon.Controllers
             DateTime dt = DateTime.Now;
             string y = String.Format("{0:yyyy}", dt);
             var nh = db.Tbl_NamHoc.Where(x => x.maNamHoc == y).FirstOrDefault();
-            foreach (var item in db.Tbl_PhanCong)
+            if (maGV == null || maLop == null)
             {
-                if (item.maLop == maLop)
-                {
-                    dem++;
-                }
-            }
-            if (dem == 2)
-            {
-                TempData["loi"] = "abc";
+                TempData["loinull"] = "abc";
             }
             else
             {
-               
-                var pc = db.Tbl_PhanCong.Where(x => x.maGV == maGV).FirstOrDefault();
-                if (pc != null)
+                foreach (var item in db.Tbl_PhanCong)
                 {
-                    TempData["loipc"] = "Mỗi giáo viên chỉ được dạy 1 lớp";
+                    if (item.maLop == maLop)
+                    {
+                        dem++;
+                    }
+                }
+                if (dem == 2)
+                {
+                    TempData["loi"] = "abc";
                 }
                 else
                 {
-                    var loai = db.Tbl_LopHoc.Where(x => x.maLop == maLop).FirstOrDefault();
-                    Tbl_PhanCong phancong = new Tbl_PhanCong();
-                    phancong.maLop = maLop;
-                    phancong.maLoai = loai.maLoai;
-                    phancong.maNamHoc = nh.maNamHoc;
-                    phancong.maGV = maGV;
-                    db.Tbl_PhanCong.Add(phancong);
-                    db.SaveChanges();
+
+                    var pc = db.Tbl_PhanCong.Where(x => x.maGV == maGV).FirstOrDefault();
+                    if (pc != null)
+                    {
+                        TempData["loipc"] = "Mỗi giáo viên chỉ được dạy 1 lớp";
+                    }
+                    else
+                    {
+                        var loai = db.Tbl_LopHoc.Where(x => x.maLop == maLop).FirstOrDefault();
+                        Tbl_PhanCong phancong = new Tbl_PhanCong();
+                        phancong.maLop = maLop;
+                        phancong.maLoai = loai.maLoai;
+                        phancong.maNamHoc = nh.maNamHoc;
+                        phancong.maGV = maGV;
+                        db.Tbl_PhanCong.Add(phancong);
+                        db.SaveChanges();
+                    }
                 }
             }
             return RedirectToAction("Indexpl");

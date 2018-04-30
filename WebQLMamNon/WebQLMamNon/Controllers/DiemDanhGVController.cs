@@ -14,7 +14,7 @@ namespace WebQLMamNon.Controllers
         public ActionResult Index()
         {
           
-            return View(db.Tbl_DiemDanh.ToList());
+            return View(db.Tbl_DiemDanh.ToList().OrderByDescending(x=>x.ngayDiemDanh).OrderByDescending(x=>x.maThang).OrderByDescending(x=>x.maNamHoc));
         }
         public ActionResult DiemDanhNgay()
         {
@@ -53,7 +53,7 @@ namespace WebQLMamNon.Controllers
             {
                 Tbl_ChiTietDiemDanh chitiet = new Tbl_ChiTietDiemDanh();
                 chitiet.maDiemDanh = diemdanh.maDiemDanh;
-                chitiet.trangThai = "Vắng";
+                chitiet.trangThai = "Có";
                 chitiet.maGV = item.maGV;
                 chitiet.maLoai = item.maLoai;
                 chitiet.maLop = item.maLop;
@@ -86,5 +86,6 @@ namespace WebQLMamNon.Controllers
           
             return Redirect(loai);
         }
+       
     }
 }

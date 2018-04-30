@@ -5,22 +5,23 @@
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h1 style="margin-left:20px">Quản lý lớp học</h1>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm("Create", "LopHoc", FormMethod.Get))
+    {
+        <input class="btn btn-primary" style="float:left;margin-left:20px" type="submit" value="Thêm lớp" />
+    }
 </p>
 <table class="table">
-    <tr>
+    <tr style="background:orange;font-size:15px">
         <th>
-            @Html.DisplayNameFor(model => model.tenLop)
+            Tên lớp
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.soLuongHS)
+            Số lượng học sinh
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tbl_LoaiLop.tenLoai)
-        </th>
+       
         <th></th>
     </tr>
 
@@ -32,13 +33,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.soLuongHS)
         </td>
+       
         <td>
-            @Html.DisplayFor(modelItem => item.Tbl_LoaiLop.tenLoai)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.maLop }) |
-            @Html.ActionLink("Details", "Details", new { id=item.maLop }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.maLop })
+            <a href="@Url.Action("Edit", "LopHoc",new { id = item.maLop })"><i class="fa fa-wrench"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+            <a href="@Url.Action("Details", "LopHoc",new { id = item.maLop })"><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+            <a href="@Url.Action("Delete", "LopHoc",new { id = item.maLop })"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+
         </td>
     </tr>
 }

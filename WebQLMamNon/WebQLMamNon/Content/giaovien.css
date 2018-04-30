@@ -1,0 +1,32 @@
+﻿.table{
+    margin:20px;
+    border:1px solid #e7e7e7;
+    width:96%;
+  
+}
+th
+{
+    padding-top:10px;
+    padding-bottom:10px;
+    border-left:1px solid #e7e7e7;
+    text-align:center;
+}
+ td{ 
+    padding-top:10px;
+    padding-bottom:10px;
+    border-left:1px solid #e7e7e7;
+    border-top:1px solid #e7e7e7;
+    text-align:center;
+}
+.form-label{
+    margin-left:50px;
+    float: left;
+    margin-top: 8px;
+    width:15%;
+}
+.form-control{
+  
+    width: 40%;
+    float: left;
+    border-radius: 5px;
+}

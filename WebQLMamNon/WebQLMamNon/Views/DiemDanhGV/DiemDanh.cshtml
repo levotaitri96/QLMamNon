@@ -5,63 +5,45 @@
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
 
-<h2>DiemDanh</h2>
+<h1 style="margin-left:25px">Điểm Danh</h1>
 @Html.Hidden("loai", this.Request.RawUrl)
 <table class="table">
-    <tr>
+    <tr style="background:orange;font-size:15px">
         <th>
-            @Html.DisplayNameFor(model => model.trangThai)
+           Họ tên
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tbl_DiemDanh.maNamHoc)
+            Lớp
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tbl_GiaoVien.trinhDo)
+            Điểm danh
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tbl_HocSinh.hoTenCha)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tbl_LoaiLop.tenLoai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tbl_LopHoc.tenLop)
-        </th>
-        <th></th>
+      <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.trangThai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tbl_DiemDanh.maNamHoc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tbl_GiaoVien.trinhDo)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Tbl_GiaoVien.hoTen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tbl_LoaiLop.tenLoai)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Tbl_LopHoc.tenLop)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.trangThai)
+        </td>
+      
+        <td>
             @using (Html.BeginForm("DoiTrangThaiDiemDanh", "DiemDanhGV", new { id = item.maChiTietDiemDanh }, FormMethod.Get))
             {
                 if (item.trangThai == "Có")
                 {
-                    <input style="float:left" type="submit" value="Hủy" />
+                    <input class="btn btn-primary" style="font-size:12px" type="submit" value="Vắng" />
                     @Html.Hidden("loai", this.Request.RawUrl)
                 }
                 else
                 {
-                    <input style="float:left" type="submit" value="Điểm Danh" />
+                    <input class="btn btn-danger" style="font-size:12px" type="submit" value="Điểm Danh" />
                     @Html.Hidden("loai", this.Request.RawUrl)
                 }
             }

@@ -33,6 +33,8 @@ namespace WebQLMamNon.Models
         public string diaChi { get; set; }
         public string gioiTinh { get; set; }
         public string hinhAnh { get; set; }
+        public string tonGiao { get; set; }
+        public string danToc { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_BaiViet> Tbl_BaiViet { get; set; }
