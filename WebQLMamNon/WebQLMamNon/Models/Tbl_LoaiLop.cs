@@ -28,7 +28,6 @@ namespace WebQLMamNon.Models
         public string maLoai { get; set; }
         public string tenLoai { get; set; }
         public int soLuongLop { get; set; }
-        public int hocPhi { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_ChiTietDiemDanh> Tbl_ChiTietDiemDanh { get; set; }

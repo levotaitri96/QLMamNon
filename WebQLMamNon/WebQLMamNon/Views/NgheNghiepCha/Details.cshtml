@@ -1,0 +1,27 @@
+﻿@model WebQLMamNon.Models.Tbl_NgheNghiepCha
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tbl_NgheNghiepCha</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenNgheNghiepCha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenNgheNghiepCha)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maNgheNghiepCha }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

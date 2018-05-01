@@ -38,11 +38,14 @@ namespace WebQLMamNon.Controllers
             }
             return RedirectToAction("Index");
         }
+
         public void TaoChiTietHP(string thang, string nam)
         {
+
             var temp = db.Tbl_HocPhi.Where(x => x.maThang == thang && x.maNamHoc == nam).FirstOrDefault();
             var demngay = db.Tbl_DiemDanhHS.ToList().Where(x => x.maThang == temp.maThang && x.maNamHoc == temp.maNamHoc);
             var listpl = db.Tbl_PhanLop.ToList();
+
             var namhoc = db.Tbl_NamHoc.Where(x => x.maNamHoc == nam).FirstOrDefault();
             foreach (var item in listpl)
             {
@@ -50,19 +53,8 @@ namespace WebQLMamNon.Controllers
                 int dem = 0;
                 ctp.maHP = temp.maHP;
                 ctp.maHS = item.maHS;
-                var loaiHP = db.Tbl_HocSinh.Where(x => x.maHS == item.maHS).FirstOrDefault();
-                if (loaiHP.maLoai == "L01")
-                {
-                    ctp.soTien = 3000000;
-                }
-                else if (loaiHP.maLoai == "L02")
-                {
-                    ctp.soTien = 4000000;
-                }
-                else
-                {
-                    ctp.soTien = 5000000;
-                }
+
+
                 //tổng số ngày làm
                 foreach (var dd in demngay)
                 {
@@ -76,19 +68,36 @@ namespace WebQLMamNon.Controllers
 
                 }
                 ctp.soNgayHoc = dem;
+                if (item.maLoai == "L01")
+                {
+                    ctp.soTien = (namhoc.tienNgayHS * ctp.soNgayHoc);
+                }
+                else if (item.maLoai == "L02")
+                {
+                    ctp.soTien = 2 * (namhoc.tienNgayHS * ctp.soNgayHoc);
+                }
+                else
+                {
+                    ctp.soTien = 3 * (namhoc.tienNgayHS * ctp.soNgayHoc);
+                }
+
+                ctp.maLop = item.maLop;
+
+                var y = db.Tbl_LopHoc.Where(x => x.maLop == item.maLop).ToList();
 
                 db.Tbl_ChiTietHocPhi.Add(ctp);
                 db.SaveChanges();
             }
-        }
-        public ActionResult HPChiTiet_View(int id, string thang, string nam, int page = 1, int pageSize = 5, string maLop = "")
-        {
-            ViewBag.thangct = thang;
-            ViewBag.namct = nam;
-            ViewBag.maLops = db.Tbl_LopHoc.ToList();
-            int?[] lstMaHS = db.Tbl_PhanLop.Select(x => x.maHS).ToArray();//lấy list maHS trong bảng Phan Lop
 
-            return View(db.Tbl_ChiTietHocPhi.Where(x => x.maHP == id).ToList().ToPagedList(page, pageSize));
+        }
+        public ActionResult HPChiTiet_View(int id, string thang, string nam, string maLop = "")
+        {
+
+            Session["thangct"] = thang;
+            Session["namct"] = nam;
+            ViewBag.maLops = db.Tbl_LopHoc.ToList();
+            ViewBag.selectedId = maLop;
+            return View(db.Tbl_ChiTietHocPhi.Where(x => x.maHP == id && maLop == "" ? true : x.maLop == maLop).ToList());
 
         }
         public ActionResult CalendarDiemDanh(int id)
@@ -110,9 +119,10 @@ namespace WebQLMamNon.Controllers
                         lst.Add(ct);
                     }
                 }
+
             }
-            string thang = ViewBag["thangct"].ToString();
-            string nam = ViewBag["namct"].ToString();
+            string thang = Session["thangct"].ToString();
+            string nam = Session["namct"].ToString();
             return View(lst.ToList().Where(x => x.thang == thang && x.nam == nam));
         }
 

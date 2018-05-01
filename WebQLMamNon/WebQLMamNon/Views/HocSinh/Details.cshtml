@@ -25,7 +25,7 @@
     <hr />
     <div class="row">
         <div class="col-md-3">
-            <div class="form-group">
+            <div>
                 <img src="~/images/@Html.DisplayFor(model=>model.hinhAnh)" width="180px" height="240px" style="padding:1px;border:5px groove #ff6a00" />
             </div>
         </div>
@@ -100,6 +100,6 @@
 
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.maHS }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Cập nhật thông tin học sinh", "Edit", new { id = Model.maHS }) |
+    @Html.ActionLink("Quay lại", "Index")
 </p>

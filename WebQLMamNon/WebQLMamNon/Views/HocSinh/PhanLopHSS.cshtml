@@ -19,7 +19,7 @@
 <!-- bootstrap-daterangepicker -->
 <link href="~/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 <!-- Custom Theme Style -->
-<link href="~/Content/css/custom.min.css" rel="stylesheet">
+@*<link href="~/Content/css/custom.min.css" rel="stylesheet">*@
 <link href="~/Content/giaovien.css" rel="stylesheet" />
 @*calender*@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet">
@@ -36,54 +36,51 @@
     <script>
         alert("Mỗi lớp tối đa 20 học sinh ");
     </script>
-}
-@if (TempData["Success"] != null)
-{
-    <script>
-        alert("Xếp lớp học sinh thành công ");
-    </script>
-}
-<h2>Phân Lớp Học Sinh</h2>
-
-
-<table class="table">
-    <tr>
-        <th>
-            Năm Học
-        </th>
-        <th>
-            Tên Lớp
-        </th>
-        <th>
-            Tên Học Sinh
-        </th>
-        <th>
-            Sỉ Số Học Sinh=
-            @Model.Count()
-
-        </th>
-
-
-
-    </tr>
-
-    @foreach (var item in Model)
-    {
+}<body style=" background-color #f7f7f7;">
+    <table class="table" style="margin: 7px;">
         <tr>
+            <th>
+                Năm Học
+            </th>
+            <th>
+                Tên Lớp
+            </th>
+            <th>
+                Tên Học Sinh
+            </th>
+            <th>
+                Sỉ Số Học Sinh=
+                @Model.Count()
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Tbl_NamHoc.tenNamHoc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tbl_LopHoc.tenLop)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tbl_HocSinh.hoTen)
-            </td>
+            </th>
 
-            <td></td>
+
 
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tbl_NamHoc.tenNamHoc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tbl_LopHoc.tenLop)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tbl_HocSinh.hoTen)
+                </td>
+
+                <td></td>
+
+            </tr>
+        }
+
+    </table>
+</body>
+
+
+@*<div>
+        @Html.ActionLink("Quay lại", "IndexPhanLopHS")
+    </div>*@

@@ -12,17 +12,18 @@ namespace WebQLMamNon.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Tbl_ChiTietHocPhi
+    public partial class Tbl_InDanhSachHS
     {
-        public int maChiTietHP { get; set; }
-        public Nullable<int> maHP { get; set; }
-        public Nullable<int> soTien { get; set; }
-        public Nullable<int> soNgayHoc { get; set; }
-        public Nullable<int> maHS { get; set; }
+        public string hoTenHS { get; set; }
+        public string tenLop { get; set; }
         public string maLop { get; set; }
-    
-        public virtual Tbl_HocPhi Tbl_HocPhi { get; set; }
-        public virtual Tbl_HocSinh Tbl_HocSinh { get; set; }
-        public virtual Tbl_LopHoc Tbl_LopHoc { get; set; }
+        public int maHS { get; set; }
+        public string maNamHoc { get; set; }
+        public string tenNamHoc { get; set; }
+        public string gioiTinh { get; set; }
+        public System.DateTime ngaySinh { get; set; }
+        public string soDTNha { get; set; }
+        public string diaChi { get; set; }
+        public int idPhanLop { get; set; }
     }
 }

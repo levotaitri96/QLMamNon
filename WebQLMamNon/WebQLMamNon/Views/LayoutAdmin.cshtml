@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="images/favicon.ico" type="image/ico" />
-    <title>Gentelella Alela! | </title>
+    <title>Quản lý Mầm Non | </title>
     <!-- Bootstrap -->
     <link href="~/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -125,15 +125,13 @@
                                         <li>
                                             <a><i class="fa fa-edit"></i> Quản lý học sinh <span class="fa fa-chevron-down"></span></a>
                                             <ul class="nav child_menu">
-                                                <li><a href="@Url.Action("IndexPhanLopHS", "Hocsinh")">Xếp lớp</a></li>
-                                                <li><a href="@Url.Action("Index", "Hocsinh")">Học Sinh</a></li>
-                                                <li><a href="@Url.Action("Index", "HocPhiHS")">Học Phí</a></li>
-                                                <li><a href="@Url.Action("Index", "HSLenLop")">Lên Lớp</a></li>
+                                                <li><a href="@Url.Action("IndexPhanLopHS", "Hocsinh")">Phân lớp</a></li>
+                                                <li><a href="@Url.Action("Index", "Hocsinh")">Học sinh</a></li>
+                                                <li><a href="@Url.Action("Index", "HocPhiHS")">Học phí</a></li>
+                                                <li><a href="@Url.Action("Index", "HSLenLop")">Lên lớp</a></li>
+                                                <li><a href="@Url.Action("Index","Ad_DiemDanhHS")">Điểm danh học sinh</a></li>
                                             
                                             </ul>
-                                        </li>
-                                        <li>
-                                            <a href="@Url.Action("Index","Ad_DiemDanhHS")"><i class="fa fa-desktop"></i> Điểm danh học sinh <span class="fa fa-chevron-down"></span></a>
                                         </li>
                                         <li>
                                             <a href="@Url.Action("Index","BaiViet")"><i class="fa fa-book"></i> Quản lý bài viết</a>
@@ -144,7 +142,7 @@
                                         <li>
                                             <a><i class="fa fa-table"></i> Báo Cáo<span class="fa fa-chevron-down"></span></a>
                                             <ul class="nav child_menu">
-                                                <li><a href="@Url.Action("BaoCaoLuong", "InBaoCao")">Báo Cáo Lương</a></li>                                              
+                                                <li><a href="@Url.Action("BaoCaoLuong", "InBaoCao")">Báo cáo lương</a></li>                                              
                                             </ul>
                                         </li>
                                         <li>
@@ -154,7 +152,11 @@
                                             <a href="@Url.Action("Index","DanToc")"><i class="fa fa-blind"></i> Quản lý dân tộc </a>
                                         </li>
                                         <li>
-                                            <a href="@Url.Action("Index","NgheNghiep")"><i class="fa fa-neuter"></i> Quản lý nghề nghiệp </a>
+                                            <a><i class="fa fa-table"></i> Quản lý nghề nghiệp<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li><a href="@Url.Action("Index", "NgheNghiepMe")">Nghề nghiệp mẹ</a></li>
+                                                <li><a href="@Url.Action("Index", "NgheNghiepCha")">Nghề nghiệp cha</a></li>
+                                            </ul>
                                         </li>
                                         <li>
                                             <a href="@Url.Action("Index","TonGiao")"><i class="fa fa-globe"></i> Quản lý tôn giáo </a>

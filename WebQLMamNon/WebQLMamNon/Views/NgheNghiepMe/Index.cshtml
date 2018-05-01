@@ -1,0 +1,67 @@
+﻿@model IEnumerable<WebQLMamNon.Models.Tbl_NgheNghiepMe>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("Create", "NgheNghiepMe", FormMethod.Get))
+{
+    <input class="btn btn-primary" style="float:left;margin-left:20px" type="submit" value="Thêm Nghề Nghiệp" />
+
+}
+<br />
+
+<table class="table" border="1">
+    <tr style="background:orange;font-size:15px">
+        <th>
+            Tên Nghề Nghiệp
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tenNgheNghiepMe)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "NgheNghiepMe",new { id = item.maNgheNghiepMe })"><i class="fa fa-wrench"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+
+
+                <a href="#" id="@item.maNgheNghiepMe" onclick="deleteNghe(this.id)"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("Quay lại", "Index", "TaiKhoan")
+<script type="text/javascript">
+    function deleteNghe(maNghe) {
+            if (confirm("Bạn muốn xóa nghề nghiệp này?")) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/NgheNghiepMe/Delete',
+                    data: { id: maNghe },
+                    success: function (data) {
+                        if (data.status == 0) {
+                            $('#tr-' + maNghe).remove();
+                            alert("Bạn xóa thành công");
+                            window.location = "@Url.Action("Index","NgheNghiepMe")";
+                        }
+                        if (data.status == 1)
+                            alert('Không tìm thấy Xóa thất bại.');
+                        window.location = "@Url.Action("Index", "NgheNghiepMe")";
+
+                    },
+                    error: function (data) {
+                        alert('Lỗi hệ thống');
+                        window.location = "@Url.Action("Index", "NgheNghiepMe")";
+                    }
+
+                })
+            }
+        }
+
+</script>

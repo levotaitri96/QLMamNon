@@ -7,6 +7,12 @@
 
 <h2>Cập Nhật Học Sinh</h2>
 
+
+<style>
+    .col-md-offset-3 .col-md-10 {
+        padding-top: 5px;
+    }
+</style>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -19,15 +25,12 @@
 
         <div class="row">
             <div class="col-md-3">
-                <div>
-                    <img src="~/images/@Html.DisplayFor(model=>model.hinhAnh)" width="180px" height="240px" style="border:5px groove #ff6a00" />
-                    <input type="file" id="hinhAnh" name="hinhAnh" />
-                </div>
-
+                <img src="~/images/@Html.DisplayFor(model=>model.hinhAnh)" width="180px" height="240px" style="border:5px groove #ff6a00" />
+                <input type="file" id="hinhAnh" name="hinhAnh" />
             </div>
             <div class="col-md-offset-3">
                 <br />
-                <div class="form-group">
+                <div>
                     @Html.LabelFor(model => model.hoTen, "Họ Tên: ", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.hoTen, new { htmlAttributes = new { @class = "form-control" } })
@@ -35,14 +38,14 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div>
                     @Html.LabelFor(model => model.ngaySinh, "Ngày Sinh: ", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <input name="ngaySinh" value="@ViewBag.ngaySinh" class="form-control" />
-                        @Html.ValidationMessageFor(model => model.ngaySinh, "*(dd-mm-yyyy) VD: 09-22-2016", new { @class = "text-danger" })
+                        <input type="date" name="ngaySinh" value="@ViewBag.birth" class="form-control" />
+                        @Html.ValidationMessageFor(model => model.ngaySinh, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="form-group">
+                <div>
                     @Html.LabelFor(model => model.gioiTinh, "Giới Tính: ", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <select class="form-control" id="gioiTinh" name="gioiTinh">
@@ -53,7 +56,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div>
                     @Html.LabelFor(model => model.soDTNha, "Số Điện Thoại: ", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.soDTNha, new { htmlAttributes = new { @class = "form-control" } })
@@ -61,47 +64,47 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div>
                     @Html.Label("Dân Tộc: ", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("maDanToc", new SelectList(ViewBag.maDanToc, "maDanToc", "tenDanToc"), htmlAttributes: new { @class = "form-control", @style = "width:40%; float: left ;margin-right: 10px", @value = "maDanToc" })
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div>
                     @Html.Label("Tôn Giáo: ", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("maTonGiao", new SelectList(ViewBag.maTonGiao, "maTonGiao", "tenTonGiao"), htmlAttributes: new { @class = "form-control", @style = "width:40%; float: left ;margin-right: 10px", @value = "maTonGiao" })
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div>
                     @Html.LabelFor(model => model.hoTenCha, "Họ Tên Cha: ", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.hoTenCha, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.hoTenCha, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="form-group">
+                <div>
                     @Html.LabelFor(model => model.maNgheNghiepCha, "Nghe Nghiep: ", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("maNgheNghiepCha", new SelectList(ViewBag.maNgheNghiepCha, "maNgheNghiepCha", "tenNgheNghiepCha"), htmlAttributes: new { @class = "form-control", @style = "width:40%; float: left ;margin-right: 10px", @value = "maNgheNghiepCha" })
                     </div>
                 </div>
-                <div class="form-group">
+                <div>
                     @Html.LabelFor(model => model.hoTenMe, "Họ Tên Mẹ : ", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.hoTenMe, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.hoTenMe, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="form-group">
+                <div>
                     @Html.LabelFor(model => model.maNgheNghiepMe, "Nghe Nghiep: ", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("maNgheNghiepMe", new SelectList(ViewBag.maNgheNghiepMe, "maNgheNghiepMe", "tenNgheNghiepMe"), htmlAttributes: new { @class = "form-control", @style = "width:40%; float: left ;margin-right: 10px", @value = "maNgheNghiepMe" })
                     </div>
                 </div>
-                <div class="form-group">
+                <div>
                     @Html.LabelFor(model => model.email, "Email: ", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
@@ -109,7 +112,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div>
                     @Html.LabelFor(model => model.diaChi, "Địa chỉ: ", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { @class = "form-control" } })
@@ -122,7 +125,7 @@
 
 
 
-                <div class="form-group">
+                <div>
                     <div class="col-md-offset-2 col-md-10">
                         <h6>Vui lòng kiểm tra kỹ trước khi LƯU</h6>
                         <input type="submit" value="Lưu" class="btn btn-default" style="background-color:#0094ff" />

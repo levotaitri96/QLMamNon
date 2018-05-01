@@ -186,8 +186,11 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HSLenLopController.cs" />
     <Compile Include="Controllers\InBaoCaoController.cs" />
+    <Compile Include="Controllers\InBaoCaoHSController.cs" />
     <Compile Include="Controllers\LopHocController.cs" />
     <Compile Include="Controllers\NamHocController.cs" />
+    <Compile Include="Controllers\NgheNghiepChaController.cs" />
+    <Compile Include="Controllers\NgheNghiepMeController.cs" />
     <Compile Include="Controllers\PhanCongController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Controllers\TinhLuongController.cs" />
@@ -250,6 +253,9 @@
     <Compile Include="Models\Tbl_HocSinh.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tbl_InDanhSachHS.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_InLuong.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
@@ -293,6 +299,12 @@
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\InDanhSachHS.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InDanhSachHS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\Luong.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1743,9 +1755,21 @@
     <Content Include="Views\PhanCong\LoadGVvaLop.cshtml" />
     <Content Include="Views\LopHoc\MenuLopHoc.cshtml" />
     <Content Include="Views\LopHoc\Indexlop.cshtml" />
+    <Content Include="Views\HocSinh\PhanLopHSS.cshtml" />
+    <Content Include="Views\NgheNghiepMe\Create.cshtml" />
+    <Content Include="Views\NgheNghiepMe\Delete.cshtml" />
+    <Content Include="Views\NgheNghiepMe\Details.cshtml" />
+    <Content Include="Views\NgheNghiepMe\Edit.cshtml" />
+    <Content Include="Views\NgheNghiepMe\Index.cshtml" />
+    <Content Include="Views\NgheNghiepCha\Create.cshtml" />
+    <Content Include="Views\NgheNghiepCha\Delete.cshtml" />
+    <Content Include="Views\NgheNghiepCha\Details.cshtml" />
+    <Content Include="Views\NgheNghiepCha\Edit.cshtml" />
+    <Content Include="Views\NgheNghiepCha\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\InBaoCaoHS\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1764,6 +1788,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\InDanhSachHS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InDanhSachHS.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Luong.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Luong.cs</LastGenOutput>

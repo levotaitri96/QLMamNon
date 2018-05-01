@@ -100,11 +100,13 @@ namespace WebQLMamNon.Controllers
             ViewBag.maNgheNghiepCha = db.Tbl_NgheNghiepCha.ToList();
 
             Tbl_HocSinh tbl_HocSinh = db.Tbl_HocSinh.Find(id);
+            DateTime birth = Convert.ToDateTime(tbl_HocSinh.ngaySinh);
+            ViewBag.birth = birth.ToString("yyyy-MM-dd");
             if (tbl_HocSinh == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ngaySinh = tbl_HocSinh.ngaySinh.Value.ToShortDateString();
+
             return View(tbl_HocSinh);
         }
 
@@ -188,7 +190,10 @@ namespace WebQLMamNon.Controllers
         {
             List<string> lstMaNamHoc = db.Tbl_PhanLop.Select(x => x.maNamHoc).ToList();
             List<string> lstMaLoai = db.Tbl_PhanLop.Select(x => x.maLoai).ToList();
-
+            var z = db.Tbl_HocSinh.ToList();
+            ViewBag.hocsinh = z;
+            TempData["lstLop"] = db.Tbl_LopHoc.ToList();
+            TempData["maNH"] = db.Tbl_NamHoc.ToList();
             ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop.ToList(), "maLoai", "tenLoai");
             ViewBag.maNH = new SelectList(db.Tbl_NamHoc.ToList(), "maNamHoc", "tenNamHoc");
             // ViewBag.maLop = new SelectList(db.Tbl_LopHoc.ToList(), "maLop", "tenLop");
@@ -196,10 +201,11 @@ namespace WebQLMamNon.Controllers
 
             return View(db.Tbl_LopHoc.ToList());
         }
+        [HttpPost]
         public ActionResult PhanLopHS(string maLop, string maNH, string maLoai)
         {
-            int countHS_Lop = db.Tbl_PhanLop.Where(x => x.maLop == maLop).Count();
-
+            int countHS_Lop = db.Tbl_PhanLop.Where(x => x.maLop == maLop && x.maNamHoc == maNH).Count();
+            var q = db.Tbl_PhanLop.Where(x => x.maLop == maLop).ToList();
             int?[] lstMaHS = db.Tbl_PhanLop.Select(x => x.maHS).ToArray();
             List<Tbl_HocSinh> hsNew = db.Tbl_HocSinh.Where(x => x.maLoai == maLoai && !lstMaHS.Contains(x.maHS)).ToList();
 
@@ -209,11 +215,11 @@ namespace WebQLMamNon.Controllers
                 {
                     db.Tbl_PhanLop.Add(new Tbl_PhanLop { maNamHoc = maNH, maLop = maLop, maLoai = maLoai, maHS = item.maHS });
                     countHS_Lop++;
-
+                    TempData["Success"] = "Xếp lớp học sinh thành công";
                 }
                 else
                 {
-                    break;
+                    TempData["loi"] = "Mỗi lớp tối đa 20 học sinh";
                 }
             }
 
@@ -223,9 +229,22 @@ namespace WebQLMamNon.Controllers
             ViewBag.maNH = new SelectList(db.Tbl_NamHoc.ToList(), "maNamHoc", "tenNamHoc");
             return View(db.Tbl_PhanLop.Where(x => x.maLop == maLop && x.maNamHoc == maNH && x.maLoai == maLoai).ToList());
         }
+
+        public ActionResult PhanLopHSS(string maLop, string maNH, string maLoai)
+        {
+            int countHS_Lop = db.Tbl_PhanLop.Where(x => x.maLop == maLop && x.maNamHoc == maNH).Count();
+            var q = db.Tbl_PhanLop.Where(x => x.maLop == maLop).ToList();
+            int?[] lstMaHS = db.Tbl_PhanLop.Select(x => x.maHS).ToArray();
+            List<Tbl_HocSinh> hsNew = db.Tbl_HocSinh.Where(x => x.maLoai == maLoai && !lstMaHS.Contains(x.maHS)).ToList();
+            ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop.ToList(), "maLoai", "tenLoai");
+            ViewBag.maNH = new SelectList(db.Tbl_NamHoc.ToList(), "maNamHoc", "tenNamHoc");
+            return View(db.Tbl_PhanLop.Where(x => x.maLop == maLop && x.maNamHoc == maNH && x.maLoai == maLoai).ToList());
+        }
         public ActionResult LoadLopTheoLoai(string maLoai, string maNH)
         {
-
+            int?[] lstMaHS = db.Tbl_PhanLop.Where(x => x.maNamHoc == maNH).Select(x => x.maHS).ToArray();//phải truyền vào maNH vì có thể chưa đc phân lớp năm nay, nhưng đã đc phân lớp ở những năm trước
+            var z = db.Tbl_HocSinh.Where(x => x.maLoai == maLoai && !lstMaHS.Contains(x.maHS)).ToList();
+            ViewBag.hocsinh = z;// ViewBag học sinh chưa được phân lớp
             List<Tbl_LopHoc> lstmalop = db.Tbl_LopHoc.Where(n => n.maLoai == maLoai && n.maNamHoc == maNH).ToList();
             // List<Tbl_LopHoc> lstLop = db.Tbl_LopHoc.Where(n => lstmalop.Contains(n.maLop)).ToList();
 

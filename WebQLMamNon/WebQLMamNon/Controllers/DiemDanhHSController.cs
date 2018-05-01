@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebQLMamNon.Models;
+using PagedList;
 
 namespace WebQLMamNon.Controllers
 {
@@ -77,7 +78,7 @@ namespace WebQLMamNon.Controllers
             }
         }
         string a = "";
-        public ActionResult DiemDanh_View(int id, string maLop = "")
+        public ActionResult DiemDanh_View(int id, string maLop = "", int page = 1, int pageSize = 5)
         {
             //ViewBag.maLops = new SelectList(db.Tbl_LopHoc.ToList(), "maLop", "tenLop");
 
@@ -115,7 +116,7 @@ namespace WebQLMamNon.Controllers
             //             n.tenNamHoc,
             //         };
 
-            return View(db.Tbl_CTDiemDanhHS.Where(x => x.maDiemDanhHS == id && x.maLop == a).ToList());
+            return View(db.Tbl_CTDiemDanhHS.Where(x => x.maDiemDanhHS == id && x.maLop == a).ToList().ToPagedList(page, pageSize));
 
 
         }

@@ -36,7 +36,9 @@ namespace WebQLMamNon.Models
         public virtual DbSet<Tbl_GiaoVien> Tbl_GiaoVien { get; set; }
         public virtual DbSet<Tbl_HocPhi> Tbl_HocPhi { get; set; }
         public virtual DbSet<Tbl_HocSinh> Tbl_HocSinh { get; set; }
+        public virtual DbSet<Tbl_InDanhSachHS> Tbl_InDanhSachHS { get; set; }
         public virtual DbSet<Tbl_InLuong> Tbl_InLuong { get; set; }
+        public virtual DbSet<Tbl_InPhanCong> Tbl_InPhanCong { get; set; }
         public virtual DbSet<Tbl_LoaiBaiViet> Tbl_LoaiBaiViet { get; set; }
         public virtual DbSet<Tbl_LoaiLop> Tbl_LoaiLop { get; set; }
         public virtual DbSet<Tbl_LopHoc> Tbl_LopHoc { get; set; }
@@ -49,6 +51,5 @@ namespace WebQLMamNon.Models
         public virtual DbSet<Tbl_ThangHoc> Tbl_ThangHoc { get; set; }
         public virtual DbSet<Tbl_TienLuong> Tbl_TienLuong { get; set; }
         public virtual DbSet<Tbl_TonGiao> Tbl_TonGiao { get; set; }
-        public virtual DbSet<Tbl_InPhanCong> Tbl_InPhanCong { get; set; }
     }
 }
