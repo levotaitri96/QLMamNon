@@ -44,8 +44,6 @@
     <!-- SKIN -->
     <link href="~/Content/css/skin.css" rel="stylesheet" />
 
-
-
 </head>
 
 <body lang="en">
@@ -53,8 +51,8 @@
     <header class="clearfix">
         <div class="wrapper clearfix">
             <a href="@Url.Action("Index", "BaiVietUser")" id="logo"><h2 style="color: #f1f1f1;">Happy Smile School</h2></a>
-            <nav>
-                <ul id="nav" class="sf-menu">
+        <nav>
+            <ul id="nav" class="sf-menu">
                     <li class="current-menu-item"><a href="@Url.Action("Index", "BaiVietUser")">Trang Chủ</a></li>
                     <li>
                         <a href="@Url.Action("Index", "BaiVietUser")">Góc Chia Sẻ</a>
@@ -67,44 +65,55 @@
                     <li><a href="@Url.Action("Contact","Home")">Liên Hệ</a></li>
                   
                     <li>
-                        <a style="cursor: pointer;" onclick="document.getElementById('id01').style.display='block'">
-                            Login
-
-                        </a>
-                        <!--FormLogin/-->
-                        @if(TempData["taikhoan"] !=null)
+                    @{
+                        if (Session["UserName"] != null)
                         {
-                            <script>
-                                alert("Tài khoản hoặc mật khẩu không đúng!")
-                            </script>
-                            
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="images/img.jpg" alt="">@Session["UserName"]
+                                    <span class="fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li><a href="@Url.Action("Index","TaiKhoan")"><i class="fa fa-sign-out pull-right"></i> Quản lý</a></li>
+                                    <li><a href="@Url.Action("LogOff","TaiKhoan")"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
+                                </ul>
+                            </li>
                         }
-                        <div id="id01" class="modal">
-                      
-                            <form class="modal-content animate" style="margin :139px; height:273px;width:429px;left :310px;position :absolute;" action="~/TaiKhoan/Login" method="post">
+                        else
+                        {  
+                            <a style="cursor: pointer;" onclick="document.getElementById('id01').style.display='block'"> Login </a>
+                            <!--FormLogin/-->
+                            if (TempData["taikhoan"] != null)
+                            {
+                                <script>
+                                    alert("Tài khoản hoặc mật khẩu không đúng!")
+                                </script>
+                            }
+                                <div id="id01" class="modal">
+
+                                    <form class="modal-content animate" style="margin :139px; height:273px;width:429px;left :310px;position :absolute;" action="~/TaiKhoan/Login" method="post">
 
 
-                                <div style="margin: 20px;" class="container">
-                                    
-                                   
-                                        <label for="uname"><b>Username</b></label>
-                                        <input type="text" placeholder="Enter Username" id="maGV" name="maGV" required>
+                                        <div style="margin: 20px;" class="container">
 
-                                        <label for="psw"><b>Password</b></label>
-                                        <input type="password" placeholder="Enter Password" id="matKhau" name="matKhau" required>
-                                        <button style="height: 44px;" type="submit">Login</button>
-                                    
-                                    <br />
-                                  
+
+                                            <label for="uname"><b>Username</b></label>
+                                            <input type="text" placeholder="Enter Username" id="maGV" name="maGV" required>
+
+                                            <label for="psw"><b>Password</b></label>
+                                            <input type="password" placeholder="Enter Password" id="matKhau" name="matKhau" required>
+                                            <button style="height: 44px;" type="submit">Login</button>
+
+                                            <br />
+
+                                        </div>
+
+                                    </form>
+
                                 </div>
+                         }
+                    }
 
-                            </form>
-                        
-                        </div>
-                       
-                     
-                    </li>
-                    
                 </ul>
                 <div id="combo-holder"></div>
             </nav>
@@ -129,3 +138,14 @@
 </body>
 
 </html>
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>

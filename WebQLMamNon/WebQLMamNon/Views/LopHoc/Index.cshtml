@@ -1,45 +1,31 @@
 ﻿@model IEnumerable<WebQLMamNon.Models.Tbl_LopHoc>
+<link href="~/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/LayoutAdmin.cshtml";
-}
+<link href="~/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<!-- NProgress -->
+<link href="~/vendors/nprogress/nprogress.css" rel="stylesheet">
+<!-- iCheck -->
+<link href="~/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+<!-- bootstrap-progressbar -->
+<link href="~/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+<!-- JQVMap -->
+<link href="~/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+<!-- bootstrap-daterangepicker -->
+<link href="~/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+<!-- Custom Theme Style -->
+<link href="~/Content/css/custom.min.css" rel="stylesheet">
+<link href="~/Content/giaovien.css" rel="stylesheet" />
+<body style="background-color: #f7f7f7;">
+    @{
+        ViewBag.Title = "Index";
+        Layout = null;
+    }
 
-<h1 style="margin-left:20px">Quản lý lớp học</h1>
+    <h2>Quản lý lớp học</h2>
 
-<p>
     @using (Html.BeginForm("Create", "LopHoc", FormMethod.Get))
     {
-        <input class="btn btn-primary" style="float:left;margin-left:20px" type="submit" value="Thêm lớp" />
+        <input class="btn btn-primary" style="float:left;margin-right:25px" type="submit" value="Thêm mới lớp học" />
     }
-</p>
-<table class="table">
-    <tr style="background:orange;font-size:15px">
-        <th>
-            Tên lớp
-        </th>
-        <th>
-            Số lượng học sinh
-        </th>
-       
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.tenLop)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.soLuongHS)
-        </td>
-       
-        <td>
-            <a href="@Url.Action("Edit", "LopHoc",new { id = item.maLop })"><i class="fa fa-wrench"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
-            <a href="@Url.Action("Delete", "LopHoc",new { id = item.maLop })"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
-
-        </td>
-    </tr>
-}
-
-</table>
+</body>

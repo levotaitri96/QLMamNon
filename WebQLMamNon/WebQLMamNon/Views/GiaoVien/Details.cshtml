@@ -4,96 +4,76 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
+<style>
+    th {
+        border: 1px dotted #4190b1;
+    }
 
-<h2>Details</h2>
+    tr {
+        border: 1px dotted #4190b1;
+    }
 
-<div>
-    <h4>Tbl_GiaoVien</h4>
+    td {
+        border: 1px dotted #4190b1;
+    }
+
+    table {
+        border: 1px dotted #4190b1;
+    }
+</style>
+<h2>Chi Tiết Giáo Viên</h2>
+
+<div class="form-horizontal" style="font-size:medium">
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.trinhDo)
-        </dt>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <img src="~/images/@Html.DisplayFor(model=>model.hinhAnh)" width="180px" height="240px" style="padding:1px;border:5px groove #ff6a00" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.hoTen, "Họ Tên:")  @Html.DisplayFor(model => model.hoTen)
 
-        <dd>
-            @Html.DisplayFor(model => model.trinhDo)
-        </dd>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.trinhDo, "Trình Độ:")  @Html.DisplayFor(model => model.trinhDo)
+            </div>
+            <div class="form-group">
+                @Html.Label("Ngày Sinh:") @String.Format("{0:d/M/yyyy}", Model.ngaySinh)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.hoTen)
-        </dt>
+            </div>
+            <div class="form-group">
+                @Html.Label("Giới Tính:")
+                @Html.DisplayFor(model => model.gioiTinh)
 
-        <dd>
-            @Html.DisplayFor(model => model.hoTen)
-        </dd>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.soDT)
-        </dt>
+            <div class="form-group">
+                @Html.Label("Địa Chỉ:")
+                @Html.DisplayFor(model => model.diaChi)
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.Label("Tôn Giáo:")
+                @Html.DisplayFor(model => model.Tbl_TonGiao.tenTonGiao)
+            </div>
+            <div class="form-group">
+                @Html.Label("Số Điện Thoại")
+                @Html.DisplayFor(model => model.soDT)
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.soDT)
-        </dd>
+            <div class="form-group">
+                @Html.Label("Dân Tộc:")
+                @Html.DisplayFor(model => model.Tbl_DanToc.tenDanToc)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ngaySinh)
-        </dt>
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ngaySinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.diaChi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.diaChi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.gioiTinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.gioiTinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.hinhAnh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.hinhAnh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tbl_DanToc.tenDanToc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tbl_DanToc.tenDanToc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tbl_TonGiao.tenTonGiao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tbl_TonGiao.tenTonGiao)
-        </dd>
-
-    </dl>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.maGV }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Sửa Thông Tin", "Edit", new { id = Model.maGV }) |
+    @Html.ActionLink("Trở Về", "Index")
 </p>

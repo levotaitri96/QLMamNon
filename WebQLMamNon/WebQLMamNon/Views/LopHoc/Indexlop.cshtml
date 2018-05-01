@@ -1,0 +1,66 @@
+﻿@model IEnumerable<WebQLMamNon.Models.Tbl_LopHoc>
+<link href="~/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+
+<link href="~/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<!-- NProgress -->
+<link href="~/vendors/nprogress/nprogress.css" rel="stylesheet">
+<!-- iCheck -->
+<link href="~/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+<!-- bootstrap-progressbar -->
+<link href="~/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+<!-- JQVMap -->
+<link href="~/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+<!-- bootstrap-daterangepicker -->
+<link href="~/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+<!-- Custom Theme Style -->
+<link href="~/Content/css/custom.min.css" rel="stylesheet">
+<link href="~/Content/giaovien.css" rel="stylesheet" />
+<body style="background-color: #f7f7f7;">
+    @{
+        Layout = null;
+    }
+
+    <table class="table" border="1">
+        <tr style="background:orange;font-size:15px">
+            <th>
+                Tên Lớp
+            </th>
+            <th>
+                Sỉ Số
+            </th>
+            <th>
+                Loại Lớp
+            </th>
+            <th>
+                Năm Học
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tenLop)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.soLuongHS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tbl_LoaiLop.tenLoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tbl_NamHoc.tenNamHoc)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "LopHoc",new { id = item.maLop })"><i class="fa fa-wrench"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;                   
+                    <a href="#" id="@item.maLop" onclick="deletetk(this.id)"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    </body>
+

@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<WebQLMamNon.Models.Tbl_DiemDanh>
-
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/LayoutAdmin.cshtml";
@@ -12,22 +12,32 @@
         alert("Ngày Điểm Danh Hôm Nay Đã Tạo");
     </script>
 }
-<p>
-    @using (Html.BeginForm("DiemDanhNgay", "DiemDanhGV", FormMethod.Get))
-    {
-        <input class="btn btn-primary" style="float:left;margin-left:20px" type="submit" value="Tạo mới bảng điểm danh" />
-        <input type="date" name="ngaydiemdanh" />
-    }
-</p>
-@using (Html.BeginForm("LichSuDiemDanh", "DiemDanhGV", FormMethod.Get))
+@if (TempData["tb"] != null)
 {
-    <div class="form-group" style="width:90%">
-        @Html.DropDownList("maNamHoc", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maNamHoc" })
-        @Html.DropDownList("maThang", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maThang" })
-    </div>
-
-    <input style="padding-top:5px" type="submit" value="Tìm Kiếm" />
+    <script>
+        alert("Chọn ngày,tháng,năm tạo điểm danh");
+    </script>
 }
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("DiemDanhNgay", "DiemDanhGV", FormMethod.Get))
+        {
+            <input class="btn btn-primary" style="float:left;margin-left:20px" type="submit" value="Tạo mới bảng điểm danh" />
+            <input type="date" style="padding:4px;margin-left: 20px" name="ngaydiemdanh" />
+        }
+    </div>
+    <div class="col-md-6" style="margin-top: -12px;">
+        @using (Html.BeginForm("LichSuDiemDanh", "DiemDanhGV", FormMethod.Post))
+        {
+            <div class="form-group" style="width:90%">
+                @Html.DropDownList("maNamHoc", null, htmlAttributes: new { @class = "form-control", @style = "width: 27%;", @value = "maNamHoc" })
+                @Html.DropDownList("maThang", null, htmlAttributes: new { @class = "form-control", @style = "width: 27%;", @value = "maThang" })
+            </div>
+
+            <input style="" class="btn btn-primary" type="submit" value="Tìm Kiếm" />
+        }
+    </div>
+</div>
 <table class="table">
     <tr style="background:orange;font-size:15px">
         <th>
@@ -51,5 +61,5 @@
             </td>
         </tr>
     }
-
 </table>
+@*@Html.PagedListPager(Model, pagee => Url.Action("LichSuDiemDanh", new { pagee }))*@

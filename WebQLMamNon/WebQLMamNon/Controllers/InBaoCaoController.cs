@@ -14,31 +14,31 @@ namespace WebQLMamNon.Controllers
     {
         private QuanLyMamNonEntities db = new QuanLyMamNonEntities();
         // GET: InBaoCao
-        public ActionResult BaoCaoLuong(string maNamHoc, string maThang)
-        {
-            if(maNamHoc== null && maThang== null)
-            {
-                ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");
-                ViewBag.maThang = new SelectList(db.Tbl_ThangHoc, "maThang", "tenThang");
-            }
-            else
-            {
-                ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");
-                ViewBag.maThang = new SelectList(db.Tbl_ThangHoc, "maThang", "tenThang");
-                var baocaoluong = db.Tbl_TienLuong.Where(x => x.maNamHoc == maNamHoc && x.maThang == maThang).ToList();
-                int d = 0;
-                foreach(var item in baocaoluong)
-                {
-                     d = item.maLuong;
+        //public ActionResult BaoCaoLuong(string maNamHoc, string maThang)
+        //{
+        //    if(maNamHoc== null && maThang== null)
+        //    {
+        //        ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");
+        //        ViewBag.maThang = new SelectList(db.Tbl_ThangHoc, "maThang", "tenThang");
+        //    }
+        //    else
+        //    {
+        //        ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");
+        //        ViewBag.maThang = new SelectList(db.Tbl_ThangHoc, "maThang", "tenThang");
+        //        var baocaoluong = db.Tbl_TienLuong.Where(x => x.maNamHoc == maNamHoc && x.maThang == maThang).ToList();
+        //        int d = 0;
+        //        foreach(var item in baocaoluong)
+        //        {
+        //             d = item.maLuong;
                    
                     
-                }
-                var chitiet = db.Tbl_ChiTietLuong.Where(x => x.maLuong == d).ToList(); ViewBag.a = chitiet;
-            }
+        //        }
+        //        var chitiet = db.Tbl_ChiTietLuong.Where(x => x.maLuong == d).ToList(); ViewBag.a = chitiet;
+        //    }
            
-            return View();
-        }
-        public ActionResult InLuongTheoThang(string loai)
+        //    return View();
+        //}
+        public ActionResult InLuongTheoThang()
         {
             int a = Convert.ToInt32(TempData["maluongin"]);
             var ctll = db.Tbl_ChiTietLuong.Where(x => x.maLuong == a).ToList();
@@ -110,6 +110,45 @@ namespace WebQLMamNon.Controllers
             return File(stream, "application/pdf", "Luong.pdf");
             // return Redirect(loai);
             
+        }
+        public ActionResult InPhanCongLopTheoNam ()
+        {
+            string a = (TempData["maphancong"]).ToString();
+            var pc = db.Tbl_PhanCong.Where(x => x.maNamHoc == a).ToList();
+
+            foreach (var item in pc)
+            {
+                Tbl_InPhanCong inpc = new Tbl_InPhanCong();
+                inpc.maGV = item.maGV;
+                inpc.Idphancong = item.Idphancong;
+                inpc.maLop = item.maLop;
+                inpc.maLoai = item.maLoai;
+                inpc.maNamHoc = item.maNamHoc;
+                inpc.tenLop = item.Tbl_LopHoc.tenLop;
+                inpc.tenNamHoc = item.Tbl_NamHoc.tenNamHoc;
+                inpc.hoTen = item.Tbl_GiaoVien.hoTen;
+                db.Tbl_InPhanCong.Add(inpc);
+                db.SaveChanges();
+            }
+
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Reports/PhanCong.rpt")));
+            rd.Refresh();
+
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            stream.Seek(0, SeekOrigin.Begin);
+
+            foreach (var item in pc)
+            {
+                var ab = db.Tbl_InPhanCong.Where(x => x.maNamHoc == a && x.Idphancong == item.Idphancong).FirstOrDefault();
+                db.Tbl_InPhanCong.Remove(ab);
+                db.SaveChanges();
+            }
+
+            return File(stream, "application/pdf", "PhanCong.pdf");
         }
     }
 }

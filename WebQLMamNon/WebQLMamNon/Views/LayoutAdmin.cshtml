@@ -26,16 +26,7 @@
     <!-- Custom Theme Style -->
     <link href="~/Content/css/custom.min.css" rel="stylesheet">
     <link href="~/Content/giaovien.css" rel="stylesheet" />
-    @*calender*@
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet">
-    <style>
-        #calendar {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-    </style>
-    @*calender*@
+    
 </head>
 <body class="nav-md">
     <div class="container body">
@@ -127,7 +118,7 @@
                                             <ul class="nav child_menu">
                                                 <li><a href="@Url.Action("Index", "DiemDanhGV")">Điểm danh</a></li>
                                                 <li><a href="@Url.Action("Index", "GiaoVien")">Giáo viên</a></li>
-                                                <li><a href="@Url.Action("Indexpl", "PhanCong")">Phân lớp</a></li>
+                                                <li><a href="@Url.Action("MenuPhanCong", "PhanCong")">Phân công</a></li>
                                                 <li><a href="@Url.Action("Index", "TinhLuong")">Tính lương</a></li>
                                             </ul>
                                         </li>
@@ -147,13 +138,8 @@
                                         <li>
                                             <a href="@Url.Action("Index","BaiViet")"><i class="fa fa-book"></i> Quản lý bài viết</a>
                                         </li>
-                                        <li> 
-                                            <a><i class="fa fa-table"></i> Quản lý lớp <span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li><a href="@Url.Action("Index", "LopHoc", new { id = "L01" })">Mầm</a></li>
-                                                <li><a href="@Url.Action("Index", "LopHoc", new { id = "L02" })">Chồi</a></li>
-                                                <li><a href="@Url.Action("Index", "LopHoc", new { id = "L03" })">Lá</a></li>
-                                            </ul>
+                                        <li>
+                                            <a href="@Url.Action("MenuLopHoc","LopHoc")"><i class="fa fa-table"></i> Quản lý lớp học</a>                         
                                         </li>
                                         <li>
                                             <a><i class="fa fa-table"></i> Báo Cáo<span class="fa fa-chevron-down"></span></a>
@@ -199,66 +185,6 @@
                                     <li><a href="@Url.Action("LogOff","TaiKhoan")"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
                                 </ul>
                             </li>
-                            <li role="presentation" class="dropdown">
-                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                    <li>
-                                        <a>
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a>
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a>
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a>
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="text-center">
-                                            <a>
-                                                <strong>See All Alerts</strong>
-                                                <i class="fa fa-angle-right"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -282,11 +208,7 @@
         </div>
     </div>
     <!-- jQuery -->
-    @*calender*@
-    <script src="https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/moment.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
-    @*calender*@
+   
     <script src="~/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>

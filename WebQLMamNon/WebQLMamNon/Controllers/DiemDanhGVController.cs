@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,11 +12,11 @@ namespace WebQLMamNon.Controllers
     {
         private QuanLyMamNonEntities db = new QuanLyMamNonEntities();
         // GET: DiemDanhGV
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 5)
         {
             ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");
             ViewBag.maThang = new SelectList(db.Tbl_ThangHoc, "maThang", "tenThang");
-            return View(db.Tbl_DiemDanh.ToList().OrderByDescending(x => x.ngayDiemDanh).OrderByDescending(x => x.maThang).OrderByDescending(x => x.maNamHoc));
+            return View(db.Tbl_DiemDanh.ToList().OrderByDescending(x => x.ngayDiemDanh).OrderByDescending(x => x.maThang).OrderByDescending(x => x.maNamHoc).ToPagedList(page, pageSize));
         }
         public ActionResult DiemDanhNgay(string ngaydiemdanh)
         {
@@ -97,11 +98,12 @@ namespace WebQLMamNon.Controllers
 
             return Redirect(loai);
         }
+        [HttpPost]
         public ActionResult LichSuDiemDanh(string maNamHoc,string maThang)
         {
             ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");
             ViewBag.maThang = new SelectList(db.Tbl_ThangHoc, "maThang", "tenThang");
-            return View(db.Tbl_DiemDanh.ToList().Where(x=> x.maNamHoc == maNamHoc && x.maThang == maThang));
+            return View(db.Tbl_DiemDanh.ToList().Where(x=> x.maNamHoc == maNamHoc && x.maThang == maThang).OrderBy(x => x.ngayDiemDanh).OrderBy(x => x.maThang).OrderBy(x => x.maNamHoc));
         }
     }
 }

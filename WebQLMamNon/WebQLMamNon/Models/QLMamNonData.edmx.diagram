@@ -68,6 +68,7 @@
         <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_PhanLop_Tbl_NamHoc" />
         <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_TienLuong_Tbl_NamHoc" />
         <AssociationConnector Association="QuanLyMamNonModel.FK_Tbl_TienLuong_Tbl_ThangHoc" />
+        <EntityTypeShape EntityType="QuanLyMamNonModel.Tbl_InPhanCong" Width="1.5" PointX="10.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

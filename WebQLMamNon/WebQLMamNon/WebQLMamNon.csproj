@@ -253,6 +253,9 @@
     <Compile Include="Models\Tbl_InLuong.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tbl_InPhanCong.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_LoaiBaiViet.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
@@ -294,6 +297,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Luong.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\PhanCong.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PhanCong.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
@@ -1730,6 +1739,10 @@
     <Content Include="Views\HocPhiHS\Index.cshtml" />
     <Content Include="Views\HocPhiHS\HPChiTiet_View.cshtml" />
     <Content Include="Views\HSLenLop\Index.cshtml" />
+    <Content Include="Views\PhanCong\MenuPhanCong.cshtml" />
+    <Content Include="Views\PhanCong\LoadGVvaLop.cshtml" />
+    <Content Include="Views\LopHoc\MenuLopHoc.cshtml" />
+    <Content Include="Views\LopHoc\Indexlop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1754,6 +1767,10 @@
     <EmbeddedResource Include="Reports\Luong.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Luong.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PhanCong.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PhanCong.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -13,34 +13,24 @@ namespace WebQLMamNon.Controllers
     public class LopHocController : Controller
     {
         private QuanLyMamNonEntities db = new QuanLyMamNonEntities();
-
+        Random a = new Random();
         // GET: LopHoc
-        public ActionResult Index(string id)
-        {
-            var tbl_LopHoc = db.Tbl_LopHoc.Include(t => t.Tbl_LoaiLop);
-            if(id=="L01")
-            {
-                return View(db.Tbl_LopHoc.ToList().Where(x => x.maLoai == id));
-            }
-            else if(id=="L02")
-            {
-                return View(db.Tbl_LopHoc.ToList().Where(x => x.maLoai == id));
-
-            }
-            else
-            {
-                return View(db.Tbl_LopHoc.ToList().Where(x => x.maLoai == id));
-
-            }
-            
+        public ActionResult Index()
+        {           
+            return View();
         }
-
-
-
+        public ActionResult Indexlop()
+        {
+            var tbl_LopHoc = db.Tbl_LopHoc.Include(t => t.Tbl_LoaiLop).Include(t => t.Tbl_NamHoc);
+            return View(tbl_LopHoc.ToList());
+        }
+        // GET: LopHoc/Details/5
+   
         // GET: LopHoc/Create
         public ActionResult Create()
         {
             ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop, "maLoai", "tenLoai");
+            ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");
             return View();
         }
 
@@ -53,12 +43,14 @@ namespace WebQLMamNon.Controllers
         {
             if (ModelState.IsValid)
             {
+                tbl_LopHoc.maLop = "M" + a.Next(100000);
                 db.Tbl_LopHoc.Add(tbl_LopHoc);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop, "maLoai", "tenLoai", tbl_LopHoc.maLoai);
+            ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc", tbl_LopHoc.maNamHoc);
             return View(tbl_LopHoc);
         }
 
@@ -75,6 +67,7 @@ namespace WebQLMamNon.Controllers
                 return HttpNotFound();
             }
             ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop, "maLoai", "tenLoai", tbl_LopHoc.maLoai);
+            ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc", tbl_LopHoc.maNamHoc);
             return View(tbl_LopHoc);
         }
 
@@ -83,7 +76,7 @@ namespace WebQLMamNon.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maLop,tenLop,soLuongHS,maLoai")] Tbl_LopHoc tbl_LopHoc)
+        public ActionResult Edit([Bind(Include = "maLop,tenLop,soLuongHS,maLoai,maNamHoc")] Tbl_LopHoc tbl_LopHoc)
         {
             if (ModelState.IsValid)
             {
@@ -92,6 +85,7 @@ namespace WebQLMamNon.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop, "maLoai", "tenLoai", tbl_LopHoc.maLoai);
+            ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc", tbl_LopHoc.maNamHoc);
             return View(tbl_LopHoc);
         }
 
@@ -120,7 +114,10 @@ namespace WebQLMamNon.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        public ActionResult MenuLopHoc()
+        {
+            return View();
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

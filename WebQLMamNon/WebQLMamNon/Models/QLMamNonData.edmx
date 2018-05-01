@@ -140,6 +140,20 @@
           <Property Name="maLuong" Type="int" Nullable="false" />
           <Property Name="tenThang" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Tbl_InPhanCong">
+          <Key>
+            <PropertyRef Name="maGV" />
+            <PropertyRef Name="Idphancong" />
+          </Key>
+          <Property Name="maGV" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Idphancong" Type="int" Nullable="false" />
+          <Property Name="maLop" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="maLoai" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="maNamHoc" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="tenLop" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="tenNamHoc" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="hoTen" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Tbl_LoaiBaiViet">
           <Key>
             <PropertyRef Name="maLoai" />
@@ -721,6 +735,7 @@
           <EntitySet Name="Tbl_HocPhi" EntityType="Self.Tbl_HocPhi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_HocSinh" EntityType="Self.Tbl_HocSinh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_InLuong" EntityType="Self.Tbl_InLuong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_InPhanCong" EntityType="Self.Tbl_InPhanCong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_LoaiBaiViet" EntityType="Self.Tbl_LoaiBaiViet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_LoaiLop" EntityType="Self.Tbl_LoaiLop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_LopHoc" EntityType="Self.Tbl_LopHoc" Schema="dbo" store:Type="Tables" />
@@ -1075,6 +1090,7 @@
             <End Role="Tbl_ThangHoc" EntitySet="Tbl_ThangHoc" />
             <End Role="Tbl_TienLuong" EntitySet="Tbl_TienLuong" />
           </AssociationSet>
+          <EntitySet Name="Tbl_InPhanCong" EntityType="QuanLyMamNonModel.Tbl_InPhanCong" />
         </EntityContainer>
         <EntityType Name="Tbl_BaiViet">
           <Key>
@@ -1857,6 +1873,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Tbl_InPhanCong">
+          <Key>
+            <PropertyRef Name="maGV" />
+            <PropertyRef Name="Idphancong" />
+          </Key>
+          <Property Name="maGV" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Idphancong" Type="Int32" Nullable="false" />
+          <Property Name="maLop" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="maLoai" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="maNamHoc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="tenLop" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tenNamHoc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="hoTen" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2118,6 +2148,20 @@
               <MappingFragment StoreEntitySet="Tbl_TonGiao">
                 <ScalarProperty Name="tenTonGiao" ColumnName="tenTonGiao" />
                 <ScalarProperty Name="maTonGiao" ColumnName="maTonGiao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_InPhanCong">
+            <EntityTypeMapping TypeName="QuanLyMamNonModel.Tbl_InPhanCong">
+              <MappingFragment StoreEntitySet="Tbl_InPhanCong">
+                <ScalarProperty Name="hoTen" ColumnName="hoTen" />
+                <ScalarProperty Name="tenNamHoc" ColumnName="tenNamHoc" />
+                <ScalarProperty Name="tenLop" ColumnName="tenLop" />
+                <ScalarProperty Name="maNamHoc" ColumnName="maNamHoc" />
+                <ScalarProperty Name="maLoai" ColumnName="maLoai" />
+                <ScalarProperty Name="maLop" ColumnName="maLop" />
+                <ScalarProperty Name="Idphancong" ColumnName="Idphancong" />
+                <ScalarProperty Name="maGV" ColumnName="maGV" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

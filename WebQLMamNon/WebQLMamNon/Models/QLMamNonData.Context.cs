@@ -49,5 +49,6 @@ namespace WebQLMamNon.Models
         public virtual DbSet<Tbl_ThangHoc> Tbl_ThangHoc { get; set; }
         public virtual DbSet<Tbl_TienLuong> Tbl_TienLuong { get; set; }
         public virtual DbSet<Tbl_TonGiao> Tbl_TonGiao { get; set; }
+        public virtual DbSet<Tbl_InPhanCong> Tbl_InPhanCong { get; set; }
     }
 }

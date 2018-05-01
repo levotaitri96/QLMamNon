@@ -13,6 +13,16 @@ namespace WebQLMamNon.Controllers
         private QuanLyMamNonEntities db = new QuanLyMamNonEntities();
         // GET: PhanLop
 
+        public ActionResult MenuPhanCong()
+        {
+            return View();
+        }
+        public ActionResult LoadGVvaLop()
+        {
+            XuLiLoadGVCB();
+            XuLiLoadLopCB();
+            return View();
+        }
         public ActionResult Indexpl()
         {
             // giáo viên đã được phân công lớp thì sẽ không hiển thị trong list
@@ -138,11 +148,12 @@ namespace WebQLMamNon.Controllers
             db.SaveChanges();
             return RedirectToAction("Indexpl");
         }
-        public ActionResult LichSuPhanCong(string maNamHoc, string maLoai)
-        {          
+        public ActionResult LichSuPhanCong(string maNamHoc)
+        {
+            TempData["maphancong"] = maNamHoc;
             ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");
-            ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop, "maLoai", "tenLoai");
-            var pc = db.Tbl_PhanCong.Where(x => x.maNamHoc == maNamHoc && x.maLoai == maLoai).ToList();
+
+            var pc = db.Tbl_PhanCong.Where(x => x.maNamHoc == maNamHoc).ToList();
             if (pc == null)
             {
                 return RedirectToAction("Indexpl");
