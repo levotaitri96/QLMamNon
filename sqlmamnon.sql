@@ -1,81 +1,6 @@
-USE [master]
+USE [QuanLyMamNon]
 GO
-/****** Object:  Database [QuanLyMamNon1]    Script Date: 4/28/2018 2:00:06 PM ******/
-CREATE DATABASE [QuanLyMamNon1]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'QuanLyMamNon1', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\QuanLyMamNon1.mdf' , SIZE = 3264KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
- LOG ON 
-( NAME = N'QuanLyMamNon1_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\QuanLyMamNon1_log.ldf' , SIZE = 816KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
-GO
-ALTER DATABASE [QuanLyMamNon1] SET COMPATIBILITY_LEVEL = 120
-GO
-IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
-begin
-EXEC [QuanLyMamNon1].[dbo].[sp_fulltext_database] @action = 'enable'
-end
-GO
-ALTER DATABASE [QuanLyMamNon1] SET ANSI_NULL_DEFAULT OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET ANSI_NULLS OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET ANSI_PADDING OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET ANSI_WARNINGS OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET ARITHABORT OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET AUTO_CLOSE ON 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET AUTO_SHRINK OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET AUTO_UPDATE_STATISTICS ON 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET CURSOR_CLOSE_ON_COMMIT OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET CURSOR_DEFAULT  GLOBAL 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET CONCAT_NULL_YIELDS_NULL OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET NUMERIC_ROUNDABORT OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET QUOTED_IDENTIFIER OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET RECURSIVE_TRIGGERS OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET  ENABLE_BROKER 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET DATE_CORRELATION_OPTIMIZATION OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET TRUSTWORTHY OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET ALLOW_SNAPSHOT_ISOLATION OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET PARAMETERIZATION SIMPLE 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET READ_COMMITTED_SNAPSHOT OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET HONOR_BROKER_PRIORITY OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET RECOVERY SIMPLE 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET  MULTI_USER 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET PAGE_VERIFY CHECKSUM  
-GO
-ALTER DATABASE [QuanLyMamNon1] SET DB_CHAINING OFF 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET TARGET_RECOVERY_TIME = 0 SECONDS 
-GO
-ALTER DATABASE [QuanLyMamNon1] SET DELAYED_DURABILITY = DISABLED 
-GO
-USE [QuanLyMamNon1]
-GO
-/****** Object:  Table [dbo].[Tbl_BaiViet]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_BaiViet]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -95,7 +20,7 @@ CREATE TABLE [dbo].[Tbl_BaiViet](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_ChiTietDiemDanh]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_ChiTietDiemDanh]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -114,7 +39,7 @@ CREATE TABLE [dbo].[Tbl_ChiTietDiemDanh](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_ChiTietHocPhi]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_ChiTietHocPhi]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -132,7 +57,7 @@ CREATE TABLE [dbo].[Tbl_ChiTietHocPhi](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_ChiTietLuong]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_ChiTietLuong]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -150,7 +75,7 @@ CREATE TABLE [dbo].[Tbl_ChiTietLuong](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_CTDiemDanhHS]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_CTDiemDanhHS]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -169,7 +94,7 @@ CREATE TABLE [dbo].[Tbl_CTDiemDanhHS](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_DanToc]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_DanToc]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -184,7 +109,7 @@ CREATE TABLE [dbo].[Tbl_DanToc](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_DiemDanh]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_DiemDanh]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -201,7 +126,7 @@ CREATE TABLE [dbo].[Tbl_DiemDanh](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_DiemDanhHS]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_DiemDanhHS]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -218,7 +143,7 @@ CREATE TABLE [dbo].[Tbl_DiemDanhHS](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_GiaoVien]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_GiaoVien]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -242,7 +167,7 @@ CREATE TABLE [dbo].[Tbl_GiaoVien](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_HocPhi]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_HocPhi]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -258,7 +183,7 @@ CREATE TABLE [dbo].[Tbl_HocPhi](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_HocSinh]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_HocSinh]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -286,7 +211,49 @@ CREATE TABLE [dbo].[Tbl_HocSinh](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_LoaiBaiViet]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_InLuong]    Script Date: 4/30/2018 11:59:49 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Tbl_InLuong](
+	[hoTen] [nvarchar](50) NOT NULL,
+	[soNgayLam] [int] NOT NULL,
+	[soTien] [float] NOT NULL,
+	[maGV] [nvarchar](10) NOT NULL,
+	[maLuong] [int] NOT NULL,
+	[tenThang] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_Tbl_InLuong_1] PRIMARY KEY CLUSTERED 
+(
+	[maGV] ASC,
+	[maLuong] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Tbl_InPhanCong]    Script Date: 4/30/2018 11:59:49 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Tbl_InPhanCong](
+	[maGV] [nvarchar](10) NOT NULL,
+	[Idphancong] [int] NOT NULL,
+	[maLop] [nvarchar](10) NOT NULL,
+	[maLoai] [nvarchar](10) NOT NULL,
+	[maNamHoc] [nvarchar](10) NOT NULL,
+	[tenLop] [nvarchar](50) NOT NULL,
+	[tenNamHoc] [nvarchar](20) NOT NULL,
+	[hoTen] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_Tbl_InPhanCong] PRIMARY KEY CLUSTERED 
+(
+	[maGV] ASC,
+	[Idphancong] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Tbl_LoaiBaiViet]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -301,7 +268,7 @@ CREATE TABLE [dbo].[Tbl_LoaiBaiViet](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_LoaiLop]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_LoaiLop]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -318,7 +285,7 @@ CREATE TABLE [dbo].[Tbl_LoaiLop](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_LopHoc]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_LopHoc]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -336,7 +303,7 @@ CREATE TABLE [dbo].[Tbl_LopHoc](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_NamHoc]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_NamHoc]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -352,7 +319,7 @@ CREATE TABLE [dbo].[Tbl_NamHoc](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_NgheNghiepCha]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_NgheNghiepCha]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -367,7 +334,7 @@ CREATE TABLE [dbo].[Tbl_NgheNghiepCha](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_NgheNghiepMe]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_NgheNghiepMe]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -382,7 +349,7 @@ CREATE TABLE [dbo].[Tbl_NgheNghiepMe](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_PhanCong]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_PhanCong]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -401,7 +368,7 @@ CREATE TABLE [dbo].[Tbl_PhanCong](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_PhanLop]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_PhanLop]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -419,7 +386,7 @@ CREATE TABLE [dbo].[Tbl_PhanLop](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_TaiKhoan]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_TaiKhoan]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -436,7 +403,7 @@ CREATE TABLE [dbo].[Tbl_TaiKhoan](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_ThangHoc]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_ThangHoc]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -451,7 +418,7 @@ CREATE TABLE [dbo].[Tbl_ThangHoc](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_TienLuong]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_TienLuong]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -467,7 +434,7 @@ CREATE TABLE [dbo].[Tbl_TienLuong](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tbl_TonGiao]    Script Date: 4/28/2018 2:00:06 PM ******/
+/****** Object:  Table [dbo].[Tbl_TonGiao]    Script Date: 4/30/2018 11:59:49 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -518,7 +485,7 @@ INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDan
 INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (261, N'Vắng', 46, N'GV05', N'L02', N'M02')
 INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (262, N'Có', 46, N'GV20554', N'L03', N'M03')
 INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (263, N'Có', 46, N'GV77696', N'L03', N'M03')
-INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (264, N'Có', 47, N'GV02', N'L01', N'M01')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (264, N'Vắng', 47, N'GV02', N'L01', N'M01')
 INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (265, N'Có', 47, N'GV03', N'L01', N'M01')
 INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (266, N'Có', 47, N'GV04', N'L02', N'M02')
 INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (267, N'Có', 47, N'GV05', N'L02', N'M02')
@@ -553,6 +520,34 @@ INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDan
 INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (296, N'Có', 51, N'GV20554', N'L03', N'M03')
 INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (297, N'Có', 51, N'GV77696', N'L03', N'M03')
 INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (298, N'Có', 51, N'GV25945', N'L01', N'M04')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (299, N'Vắng', 53, N'GV02', N'L01', N'M01')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (300, N'Vắng', 53, N'GV03', N'L01', N'M01')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (301, N'Vắng', 53, N'GV04', N'L02', N'M02')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (302, N'Có', 53, N'GV05', N'L02', N'M02')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (303, N'Có', 53, N'GV20554', N'L03', N'M03')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (304, N'Có', 53, N'GV77696', N'L03', N'M03')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (305, N'Có', 53, N'GV25945', N'L01', N'M04')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (306, N'Có', 54, N'GV02', N'L01', N'M01')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (307, N'Có', 54, N'GV03', N'L01', N'M01')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (308, N'Có', 54, N'GV04', N'L02', N'M02')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (309, N'Có', 54, N'GV05', N'L02', N'M02')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (310, N'Có', 54, N'GV20554', N'L03', N'M03')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (311, N'Có', 54, N'GV77696', N'L03', N'M03')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (312, N'Có', 54, N'GV25945', N'L01', N'M04')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (313, N'Có', 55, N'GV02', N'L01', N'M01')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (314, N'Có', 55, N'GV03', N'L01', N'M01')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (315, N'Có', 55, N'GV04', N'L02', N'M02')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (316, N'Có', 55, N'GV05', N'L02', N'M02')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (317, N'Có', 55, N'GV20554', N'L03', N'M03')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (318, N'Có', 55, N'GV77696', N'L03', N'M03')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (319, N'Có', 55, N'GV25945', N'L01', N'M04')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (320, N'Có', 56, N'GV02', N'L01', N'M01')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (321, N'Có', 56, N'GV03', N'L01', N'M01')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (322, N'Có', 56, N'GV04', N'L02', N'M02')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (323, N'Có', 56, N'GV05', N'L02', N'M02')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (324, N'Có', 56, N'GV20554', N'L03', N'M03')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (325, N'Có', 56, N'GV77696', N'L03', N'M03')
+INSERT [dbo].[Tbl_ChiTietDiemDanh] ([maChiTietDiemDanh], [trangThai], [maDiemDanh], [maGV], [maLoai], [maLop]) VALUES (326, N'Có', 56, N'GV25945', N'L01', N'M04')
 SET IDENTITY_INSERT [dbo].[Tbl_ChiTietDiemDanh] OFF
 SET IDENTITY_INSERT [dbo].[Tbl_ChiTietHocPhi] ON 
 
@@ -577,17 +572,31 @@ INSERT [dbo].[Tbl_ChiTietHocPhi] ([maChiTietHP], [maHP], [soTien], [soNgayHoc], 
 SET IDENTITY_INSERT [dbo].[Tbl_ChiTietHocPhi] OFF
 SET IDENTITY_INSERT [dbo].[Tbl_ChiTietLuong] ON 
 
-INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (40, 15, 6, 2000000, N'GV02')
-INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (41, 15, 5, 1500000, N'GV03')
-INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (42, 15, 6, 1000000, N'GV04')
-INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (43, 15, 5, 1000000, N'GV05')
-INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (44, 15, 4, 2000000, N'GV20554')
-INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (45, 15, 5, 2000000, N'GV77696')
-INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (46, 15, 3, 1000000, N'GV25945')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (40, 15, 6, 12000000, N'GV02')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (41, 15, 6, 9000000, N'GV03')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (42, 15, 7, 7000000, N'GV04')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (43, 15, 6, 6000000, N'GV05')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (44, 15, 5, 10000000, N'GV20554')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (45, 15, 6, 12000000, N'GV77696')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (46, 15, 4, 4000000, N'GV25945')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (47, 16, 1, 2000000, N'GV02')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (48, 16, 1, 1500000, N'GV03')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (49, 16, 1, 1000000, N'GV04')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (50, 16, 2, 2000000, N'GV05')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (51, 16, 2, 4000000, N'GV20554')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (52, 16, 2, 4000000, N'GV77696')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (53, 16, 2, 2000000, N'GV25945')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (54, 17, 2, 4000000, N'GV02')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (55, 17, 2, 3000000, N'GV03')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (56, 17, 2, 2000000, N'GV04')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (57, 17, 2, 2000000, N'GV05')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (58, 17, 2, 4000000, N'GV20554')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (59, 17, 2, 4000000, N'GV77696')
+INSERT [dbo].[Tbl_ChiTietLuong] ([maChiTietLuong], [maLuong], [soNgayLam], [soTien], [maGV]) VALUES (60, 17, 2, 2000000, N'GV25945')
 SET IDENTITY_INSERT [dbo].[Tbl_ChiTietLuong] OFF
 SET IDENTITY_INSERT [dbo].[Tbl_CTDiemDanhHS] ON 
 
-INSERT [dbo].[Tbl_CTDiemDanhHS] ([maCTDiemDanhHS], [trangThai], [maDiemDanhHS], [maHS], [maLoai], [maLop]) VALUES (66, N'Vắng', 16, 16, N'L01', N'M01')
+INSERT [dbo].[Tbl_CTDiemDanhHS] ([maCTDiemDanhHS], [trangThai], [maDiemDanhHS], [maHS], [maLoai], [maLop]) VALUES (66, N'Có', 16, 16, N'L01', N'M01')
 INSERT [dbo].[Tbl_CTDiemDanhHS] ([maCTDiemDanhHS], [trangThai], [maDiemDanhHS], [maHS], [maLoai], [maLop]) VALUES (67, N'Có', 16, 20, N'L01', N'M01')
 INSERT [dbo].[Tbl_CTDiemDanhHS] ([maCTDiemDanhHS], [trangThai], [maDiemDanhHS], [maHS], [maLoai], [maLop]) VALUES (68, N'Vắng', 16, 21, N'L01', N'M01')
 INSERT [dbo].[Tbl_CTDiemDanhHS] ([maCTDiemDanhHS], [trangThai], [maDiemDanhHS], [maHS], [maLoai], [maLop]) VALUES (69, N'Có', 16, 23, N'L01', N'M01')
@@ -657,6 +666,10 @@ INSERT [dbo].[Tbl_DiemDanh] ([maNamHoc], [ngayDiemDanh], [maThang], [maDiemDanh]
 INSERT [dbo].[Tbl_DiemDanh] ([maNamHoc], [ngayDiemDanh], [maThang], [maDiemDanh]) VALUES (N'2018', N'26', N'03', 50)
 INSERT [dbo].[Tbl_DiemDanh] ([maNamHoc], [ngayDiemDanh], [maThang], [maDiemDanh]) VALUES (N'2018', N'22', N'04', 51)
 INSERT [dbo].[Tbl_DiemDanh] ([maNamHoc], [ngayDiemDanh], [maThang], [maDiemDanh]) VALUES (N'2018', N'17', N'04', 52)
+INSERT [dbo].[Tbl_DiemDanh] ([maNamHoc], [ngayDiemDanh], [maThang], [maDiemDanh]) VALUES (N'2018', N'01', N'05', 53)
+INSERT [dbo].[Tbl_DiemDanh] ([maNamHoc], [ngayDiemDanh], [maThang], [maDiemDanh]) VALUES (N'2018', N'02', N'05', 54)
+INSERT [dbo].[Tbl_DiemDanh] ([maNamHoc], [ngayDiemDanh], [maThang], [maDiemDanh]) VALUES (N'2018', N'01', N'06', 55)
+INSERT [dbo].[Tbl_DiemDanh] ([maNamHoc], [ngayDiemDanh], [maThang], [maDiemDanh]) VALUES (N'2018', N'02', N'06', 56)
 SET IDENTITY_INSERT [dbo].[Tbl_DiemDanh] OFF
 SET IDENTITY_INSERT [dbo].[Tbl_DiemDanhHS] ON 
 
@@ -665,25 +678,25 @@ INSERT [dbo].[Tbl_DiemDanhHS] ([maDiemDanhHS], [maNamHoc], [ngayDiemDanh], [maTh
 INSERT [dbo].[Tbl_DiemDanhHS] ([maDiemDanhHS], [maNamHoc], [ngayDiemDanh], [maThang]) VALUES (18, N'2018', N'27', N'04')
 SET IDENTITY_INSERT [dbo].[Tbl_DiemDanhHS] OFF
 INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV01', N'Đại Học', N'Lê Võ Tài Trí', N'01658788708', CAST(N'1996-05-01 00:00:00.000' AS DateTime), N'nam@gmail.com', N'32 Lê lợi', N'Nam', N'dat.jpg', 1, 1)
-INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV02', N'Đại Học', N'Lê Nguyễn Trung Nhân', N'01634799710', CAST(N'1996-05-01 00:00:00.000' AS DateTime), N'nhan@gmail.com', N'45 Bình Thạnh', N'Nam', N'dat.jpg', NULL, NULL)
-INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV03', N'Cao Đẳng', N'Hà Tuấn Lâm', N'01468200139', CAST(N'1996-05-01 00:00:00.000' AS DateTime), N'lam@gmail.com', N'63 Gò Vấp', N'Nữ', N'dat.jpg', NULL, NULL)
-INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV04', N'Trung Cấp', N'Bùi Hoàng Nam', N'01489725148', CAST(N'1996-05-01 00:00:00.000' AS DateTime), N'nam@gmail.com', N'96 Quận 10', N'Nam', N'Image.jpg', NULL, NULL)
-INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV05', N'Trung Cấp', N'Nguyễn Đình Khá', N'0165789742', CAST(N'1986-02-02 00:00:00.000' AS DateTime), N'Kha@gmail.com', N'456 Quang Trung Gò Vấp', N'Nam', N'dat.jpg', NULL, NULL)
-INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV20554', N'Đại Học', N'Quách Quốc Quý', N'01239789456', CAST(N'1992-07-03 00:00:00.000' AS DateTime), N'Quy@gmail.com', N'96 Quang Trung , Gò Vấp', N'Nam', N'dat.jpg', NULL, NULL)
-INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV25945', N'Trung Cấp', N'Trần Thanh Hiệp', N'0165789708', CAST(N'1990-04-04 00:00:00.000' AS DateTime), N'Hiep@gmail.com', N'65 Thủ Đức', N'Nam', N'dat.jpg', NULL, NULL)
-INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV45275', N'Đại Học', N'Nguyễn Văn Tèo', N'0123456789', CAST(N'1994-03-01 00:00:00.000' AS DateTime), N'Teo@gmail.com', N'34 Quang Trung', N'Nam', N'dat.jpg', NULL, NULL)
-INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV77696', N'Đại Học', N'Đặng Lê Diệu Ly', N'0157897426', CAST(N'1994-12-20 00:00:00.000' AS DateTime), N'ly@gmail.com', N'123 Trần Văn Đang', N'Nữ', N'dat.jpg', NULL, NULL)
-INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV91766', N'Đại Học', N'Trịnh Thiên Ân', N'123456789', CAST(N'1980-03-21 00:00:00.000' AS DateTime), N'an@gmail.com', N'65 Lê Lợi', N'Nam', N'dat.jpg', NULL, NULL)
+INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV02', N'Đại Học', N'Lê Nguyễn Trung Nhân', N'01634799710', CAST(N'1996-05-01 00:00:00.000' AS DateTime), N'nhan@gmail.com', N'45 Bình Thạnh', N'Nam', N'dat.jpg', 1, 1)
+INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV03', N'Cao Đẳng', N'Hà Tuấn Lâm', N'01468200139', CAST(N'1996-05-01 00:00:00.000' AS DateTime), N'lam@gmail.com', N'63 Gò Vấp', N'Nữ', N'dat.jpg', 1, 1)
+INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV04', N'Trung Cấp', N'Bùi Hoàng Nam', N'01489725148', CAST(N'1996-05-01 00:00:00.000' AS DateTime), N'nam@gmail.com', N'96 Quận 10', N'Nam', N'Image.jpg', 1, 1)
+INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV05', N'Trung Cấp', N'Nguyễn Đình Khá', N'0165789742', CAST(N'1986-02-02 00:00:00.000' AS DateTime), N'Kha@gmail.com', N'456 Quang Trung Gò Vấp', N'Nam', N'dat.jpg', 1, 1)
+INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV20554', N'Đại Học', N'Quách Quốc Quý', N'01239789456', CAST(N'1992-07-03 00:00:00.000' AS DateTime), N'Quy@gmail.com', N'96 Quang Trung , Gò Vấp', N'Nam', N'dat.jpg', 1, 1)
+INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV25945', N'Trung Cấp', N'Trần Thanh Hiệp', N'0165789708', CAST(N'1990-04-04 00:00:00.000' AS DateTime), N'Hiep@gmail.com', N'65 Thủ Đức', N'Nam', N'dat.jpg', 1, 1)
+INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV45275', N'Đại Học', N'Nguyễn Văn Tèo', N'0123456789', CAST(N'1994-03-01 00:00:00.000' AS DateTime), N'Teo@gmail.com', N'34 Quang Trung', N'Nam', N'dat.jpg', 1, 1)
+INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV77696', N'Đại Học', N'Đặng Lê Diệu Ly', N'0157897426', CAST(N'1994-12-20 00:00:00.000' AS DateTime), N'ly@gmail.com', N'123 Trần Văn Đang', N'Nữ', N'dat.jpg', 1, 1)
+INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV91766', N'Đại Học', N'Trịnh Thiên Ân', N'123456789', CAST(N'1980-03-21 00:00:00.000' AS DateTime), N'an@gmail.com', N'65 Lê Lợi', N'Nam', N'dat.jpg', 1, 1)
 INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV93246', N'Đại Học', N'Nguyễn Văn B', N'0123456789', CAST(N'1993-02-01 00:00:00.000' AS DateTime), N'B@gmail.com', N'99 Quang Trung', N'Nam', N'dat.jpg', 3, 11)
-INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV95350', N'Đại Học', N'Nguyễn Anh phong', N'0157742159', CAST(N'1996-02-04 00:00:00.000' AS DateTime), N'Phong@gmail.com', N'96 Quận 3', N'Nam', N'dat.jpg', NULL, NULL)
-INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV99087', N'Đại Học', N'Lê Văn Tèo', N'0123456789', CAST(N'1986-03-01 00:00:00.000' AS DateTime), N'Teo@gmail.com', N'67 Quang Trung Lê Lợi', N'Nam', N'dat.jpg', NULL, NULL)
+INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV95350', N'Đại Học', N'Nguyễn Anh phong', N'0157742159', CAST(N'1996-02-04 00:00:00.000' AS DateTime), N'Phong@gmail.com', N'96 Quận 3', N'Nam', N'dat.jpg', 1, 1)
+INSERT [dbo].[Tbl_GiaoVien] ([maGV], [trinhDo], [hoTen], [soDT], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maTonGiao], [maDanToc]) VALUES (N'GV99087', N'Đại Học', N'Lê Văn Tèo', N'0123456789', CAST(N'1986-03-01 00:00:00.000' AS DateTime), N'Teo@gmail.com', N'67 Quang Trung Lê Lợi', N'Nam', N'dat.jpg', 1, 1)
 SET IDENTITY_INSERT [dbo].[Tbl_HocPhi] ON 
 
 INSERT [dbo].[Tbl_HocPhi] ([maHP], [maThang], [maNamHoc]) VALUES (4, N'04', N'2018')
 SET IDENTITY_INSERT [dbo].[Tbl_HocPhi] OFF
 SET IDENTITY_INSERT [dbo].[Tbl_HocSinh] ON 
 
-INSERT [dbo].[Tbl_HocSinh] ([maHS], [hoTenCha], [hoTenMe], [hoTen], [soDTNha], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maLoai], [maTonGiao], [maDanToc], [maNgheNghiepMe], [maNgheNghiepCha]) VALUES (14, N'Nguyễn Tuấn Kiệt', N'Trần Thị Bé', N'Nguyễn Hoàng Bách', N'0165799704', CAST(N'2013-06-09 00:00:00.000' AS DateTime), N'kiet@gmail.com', N'1/25 Gò Vấp', N'Nam', N'DSC04526.jpg', N'L02', 1, 1, 1, 1)
+INSERT [dbo].[Tbl_HocSinh] ([maHS], [hoTenCha], [hoTenMe], [hoTen], [soDTNha], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maLoai], [maTonGiao], [maDanToc], [maNgheNghiepMe], [maNgheNghiepCha]) VALUES (14, N'Nguyễn Tuấn Kiệt', N'Trần Thị Bé', N'Nguyễn Hoàng Bách', N'0165799704', CAST(N'2013-06-09 00:00:00.000' AS DateTime), N'kiet@gmail.com', N'1/25 Gò Vấp', N'Nam', N'1.png', N'L02', 1, 1, 1, 1)
 INSERT [dbo].[Tbl_HocSinh] ([maHS], [hoTenCha], [hoTenMe], [hoTen], [soDTNha], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maLoai], [maTonGiao], [maDanToc], [maNgheNghiepMe], [maNgheNghiepCha]) VALUES (15, N'Bùi Hoàng', N'Nguyễn Thị Thoa', N'Bùi Thị Lệ', N'01664879925', CAST(N'2013-02-20 00:00:00.000' AS DateTime), N'Hoang@gmail.com', N'89 Võ Văn kiệt Quận 7', N'Nam', N'4.PNG', N'L03', 1, 1, 1, 1)
 INSERT [dbo].[Tbl_HocSinh] ([maHS], [hoTenCha], [hoTenMe], [hoTen], [soDTNha], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maLoai], [maTonGiao], [maDanToc], [maNgheNghiepMe], [maNgheNghiepCha]) VALUES (16, N'Đặng Văn Ngữ', N'Nguyễn Thị A', N'Đặng Lê Diệu Ly', N'012578919', CAST(N'2015-09-22 00:00:00.000' AS DateTime), N'Ngu@gmail.com', N'65 Quận 7', N'Nam', N'3.PNG', N'L01', 1, 1, 1, 1)
 INSERT [dbo].[Tbl_HocSinh] ([maHS], [hoTenCha], [hoTenMe], [hoTen], [soDTNha], [ngaySinh], [email], [diaChi], [gioiTinh], [hinhAnh], [maLoai], [maTonGiao], [maDanToc], [maNgheNghiepMe], [maNgheNghiepCha]) VALUES (20, N'Nguyễn Đình Nam', N'Hà Thị Phương', N'Nguyễn Đình Khoa', N'0123456789', CAST(N'2014-10-30 00:00:00.000' AS DateTime), N'khoa@gmail.com', N'26 lê lợi', N'Nam', N'4.PNG', N'L01', 1, 1, 1, 1)
@@ -708,12 +721,12 @@ SET IDENTITY_INSERT [dbo].[Tbl_LoaiBaiViet] OFF
 INSERT [dbo].[Tbl_LoaiLop] ([maLoai], [tenLoai], [soLuongLop], [hocPhi]) VALUES (N'L01', N'Mầm', 4, 3000000)
 INSERT [dbo].[Tbl_LoaiLop] ([maLoai], [tenLoai], [soLuongLop], [hocPhi]) VALUES (N'L02', N'Chồi', 4, 4000000)
 INSERT [dbo].[Tbl_LoaiLop] ([maLoai], [tenLoai], [soLuongLop], [hocPhi]) VALUES (N'L03', N'Lá', 4, 3000000)
-INSERT [dbo].[Tbl_LopHoc] ([maLop], [tenLop], [soLuongHS], [maLoai], [maNamHoc]) VALUES (N'M01', N'Mầm1', 20, N'L01', N'2017')
-INSERT [dbo].[Tbl_LopHoc] ([maLop], [tenLop], [soLuongHS], [maLoai], [maNamHoc]) VALUES (N'M02', N'Chồi1', 20, N'L02', N'2017')
+INSERT [dbo].[Tbl_LopHoc] ([maLop], [tenLop], [soLuongHS], [maLoai], [maNamHoc]) VALUES (N'M01', N'Mầm1', 20, N'L01', N'2018')
+INSERT [dbo].[Tbl_LopHoc] ([maLop], [tenLop], [soLuongHS], [maLoai], [maNamHoc]) VALUES (N'M02', N'Chồi1', 20, N'L02', N'2018')
 INSERT [dbo].[Tbl_LopHoc] ([maLop], [tenLop], [soLuongHS], [maLoai], [maNamHoc]) VALUES (N'M03', N'Lá1', 20, N'L03', N'2018')
 INSERT [dbo].[Tbl_LopHoc] ([maLop], [tenLop], [soLuongHS], [maLoai], [maNamHoc]) VALUES (N'M04', N'Mầm2', 20, N'L01', N'2018')
 INSERT [dbo].[Tbl_LopHoc] ([maLop], [tenLop], [soLuongHS], [maLoai], [maNamHoc]) VALUES (N'M05', N'Chồi2', 20, N'L02', N'2018')
-INSERT [dbo].[Tbl_LopHoc] ([maLop], [tenLop], [soLuongHS], [maLoai], [maNamHoc]) VALUES (N'M06', N'Lá2', 20, N'L03', N'2017')
+INSERT [dbo].[Tbl_LopHoc] ([maLop], [tenLop], [soLuongHS], [maLoai], [maNamHoc]) VALUES (N'M06', N'Lá2', 20, N'L03', N'2018')
 INSERT [dbo].[Tbl_LopHoc] ([maLop], [tenLop], [soLuongHS], [maLoai], [maNamHoc]) VALUES (N'M07', N'Mầm3', 20, N'L01', N'2018')
 INSERT [dbo].[Tbl_NamHoc] ([maNamHoc], [tenNamHoc], [tienThang]) VALUES (N'2017', N'2017-2018', NULL)
 INSERT [dbo].[Tbl_NamHoc] ([maNamHoc], [tenNamHoc], [tienThang]) VALUES (N'2018', N'2018-2019', 1000000)
@@ -745,6 +758,8 @@ INSERT [dbo].[Tbl_PhanCong] ([Idphancong], [maNamHoc], [maLop], [maLoai], [maGV]
 INSERT [dbo].[Tbl_PhanCong] ([Idphancong], [maNamHoc], [maLop], [maLoai], [maGV], [trangThai]) VALUES (5, N'2018', N'M03', N'L03', N'GV20554', NULL)
 INSERT [dbo].[Tbl_PhanCong] ([Idphancong], [maNamHoc], [maLop], [maLoai], [maGV], [trangThai]) VALUES (6, N'2018', N'M03', N'L03', N'GV77696', NULL)
 INSERT [dbo].[Tbl_PhanCong] ([Idphancong], [maNamHoc], [maLop], [maLoai], [maGV], [trangThai]) VALUES (7, N'2018', N'M04', N'L01', N'GV25945', NULL)
+INSERT [dbo].[Tbl_PhanCong] ([Idphancong], [maNamHoc], [maLop], [maLoai], [maGV], [trangThai]) VALUES (8, N'2018', N'M04', N'L01', N'GV45275', NULL)
+INSERT [dbo].[Tbl_PhanCong] ([Idphancong], [maNamHoc], [maLop], [maLoai], [maGV], [trangThai]) VALUES (9, N'2018', N'M05', N'L02', N'GV91766', NULL)
 SET IDENTITY_INSERT [dbo].[Tbl_PhanCong] OFF
 SET IDENTITY_INSERT [dbo].[Tbl_PhanLop] ON 
 
@@ -766,6 +781,7 @@ INSERT [dbo].[Tbl_PhanLop] ([idPhanLop], [maNamHoc], [maLop], [maLoai], [maHS]) 
 INSERT [dbo].[Tbl_PhanLop] ([idPhanLop], [maNamHoc], [maLop], [maLoai], [maHS]) VALUES (17, N'2019', N'M07', N'L03', 27)
 INSERT [dbo].[Tbl_PhanLop] ([idPhanLop], [maNamHoc], [maLop], [maLoai], [maHS]) VALUES (19, N'2019', N'M07', N'L03', 32)
 INSERT [dbo].[Tbl_PhanLop] ([idPhanLop], [maNamHoc], [maLop], [maLoai], [maHS]) VALUES (20, N'2018', N'M03', N'L03', 33)
+INSERT [dbo].[Tbl_PhanLop] ([idPhanLop], [maNamHoc], [maLop], [maLoai], [maHS]) VALUES (21, N'2018', N'M05', N'L02', 34)
 SET IDENTITY_INSERT [dbo].[Tbl_PhanLop] OFF
 SET IDENTITY_INSERT [dbo].[Tbl_TaiKhoan] ON 
 
@@ -798,6 +814,8 @@ INSERT [dbo].[Tbl_ThangHoc] ([maThang], [tenThang]) VALUES (N'12', N'Tháng 12')
 SET IDENTITY_INSERT [dbo].[Tbl_TienLuong] ON 
 
 INSERT [dbo].[Tbl_TienLuong] ([maLuong], [maThang], [maNamHoc]) VALUES (15, N'04', N'2018')
+INSERT [dbo].[Tbl_TienLuong] ([maLuong], [maThang], [maNamHoc]) VALUES (16, N'05', N'2018')
+INSERT [dbo].[Tbl_TienLuong] ([maLuong], [maThang], [maNamHoc]) VALUES (17, N'06', N'2018')
 SET IDENTITY_INSERT [dbo].[Tbl_TienLuong] OFF
 SET IDENTITY_INSERT [dbo].[Tbl_TonGiao] ON 
 
@@ -1003,8 +1021,4 @@ ALTER TABLE [dbo].[Tbl_TienLuong]  WITH CHECK ADD  CONSTRAINT [FK_Tbl_TienLuong_
 REFERENCES [dbo].[Tbl_ThangHoc] ([maThang])
 GO
 ALTER TABLE [dbo].[Tbl_TienLuong] CHECK CONSTRAINT [FK_Tbl_TienLuong_Tbl_ThangHoc]
-GO
-USE [master]
-GO
-ALTER DATABASE [QuanLyMamNon1] SET  READ_WRITE 
 GO
