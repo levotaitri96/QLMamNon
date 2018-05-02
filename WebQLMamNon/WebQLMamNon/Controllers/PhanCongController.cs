@@ -91,9 +91,8 @@ namespace WebQLMamNon.Controllers
         public ActionResult PhanCong(string maLop,string maGV)
         {
             int dem = 0;
-            DateTime dt = DateTime.Now;
-            string y = String.Format("{0:yyyy}", dt);
-            var nh = db.Tbl_NamHoc.Where(x => x.maNamHoc == y).FirstOrDefault();
+            var lh = db.Tbl_LopHoc.Where(x => x.maLop == maLop).FirstOrDefault();
+            var nh = db.Tbl_NamHoc.Where(x => x.maNamHoc == lh.maNamHoc).FirstOrDefault();
             if (maGV == null || maLop == null)
             {
                 TempData["loinull"] = "abc";
