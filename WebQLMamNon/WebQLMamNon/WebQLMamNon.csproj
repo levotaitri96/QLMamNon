@@ -1766,6 +1766,9 @@
     <Content Include="Views\NgheNghiepCha\Details.cshtml" />
     <Content Include="Views\NgheNghiepCha\Edit.cshtml" />
     <Content Include="Views\NgheNghiepCha\Index.cshtml" />
+    <Content Include="Views\LopHoc\FilterByLoaiLop.cshtml" />
+    <Content Include="Views\TinhLuong\SuaTien.cshtml" />
+    <Content Include="Views\GiaoVien\TimKiemGV.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

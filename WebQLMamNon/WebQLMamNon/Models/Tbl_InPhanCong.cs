@@ -22,5 +22,7 @@ namespace WebQLMamNon.Models
         public string tenLop { get; set; }
         public string tenNamHoc { get; set; }
         public string hoTen { get; set; }
+        public Nullable<int> ngayBatDau { get; set; }
+        public Nullable<int> ngayKetThuc { get; set; }
     }
 }

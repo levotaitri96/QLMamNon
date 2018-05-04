@@ -15,9 +15,6 @@
         <th>
             @Html.DisplayNameFor(model => model.tenNamHoc)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tienThang)
-        </th>
         <th></th>
     </tr>
 
@@ -25,10 +22,7 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.tenNamHoc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tienThang)
-        </td>
+        </td>       
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.maNamHoc }) |
             @Html.ActionLink("Details", "Details", new { id=item.maNamHoc }) |

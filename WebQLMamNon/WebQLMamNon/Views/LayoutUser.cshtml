@@ -89,28 +89,32 @@
                                     alert("Tài khoản hoặc mật khẩu không đúng!")
                                 </script>
                             }
-                                <div id="id01" class="modal">
+                                <div id="id01" class="modal">                                    
+                                        
 
-                                    <form class="modal-content animate" style="margin :139px; height:273px;width:429px;left :310px;position :absolute;" action="~/TaiKhoan/Login" method="post">
+                                        <form class="modal-content animate" style="margin :139px; height:273px;width:429px;left :310px;position :absolute;" action="~/TaiKhoan/Login" method="post">
+                                           <div>
+                                               <span onclick="document.getElementById('id01').style.display='none'" style="position:absolute;right:0;top:0" class="close" title="Close Modal">&times;</span>
+                                           </div>
+                                             
+
+                                            <div style="margin: 20px;" class="container">
 
 
-                                        <div style="margin: 20px;" class="container">
+                                                <label for="uname"><b>Username</b></label>
+                                                <input type="text" placeholder="Enter Username" id="maGV" name="maGV" required>
 
+                                                <label for="psw"><b>Password</b></label>
+                                                <input type="password" placeholder="Enter Password" id="matKhau" name="matKhau" required>
+                                                <button style="height: 44px;" type="submit">Login</button>
 
-                                            <label for="uname"><b>Username</b></label>
-                                            <input type="text" placeholder="Enter Username" id="maGV" name="maGV" required>
+                                                <br />
 
-                                            <label for="psw"><b>Password</b></label>
-                                            <input type="password" placeholder="Enter Password" id="matKhau" name="matKhau" required>
-                                            <button style="height: 44px;" type="submit">Login</button>
+                                            </div>
 
-                                            <br />
+                                        </form>
 
-                                        </div>
-
-                                    </form>
-
-                                </div>
+                                    </div>
                          }
                     }
 

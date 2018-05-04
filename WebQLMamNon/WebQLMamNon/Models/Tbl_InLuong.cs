@@ -20,5 +20,7 @@ namespace WebQLMamNon.Models
         public string maGV { get; set; }
         public int maLuong { get; set; }
         public string tenThang { get; set; }
+        public string maNamHoc { get; set; }
+        public string tenNamHoc { get; set; }
     }
 }

@@ -13,34 +13,11 @@ namespace WebQLMamNon.Controllers
     public class InBaoCaoController : Controller
     {
         private QuanLyMamNonEntities db = new QuanLyMamNonEntities();
-        // GET: InBaoCao
-        //public ActionResult BaoCaoLuong(string maNamHoc, string maThang)
-        //{
-        //    if(maNamHoc== null && maThang== null)
-        //    {
-        //        ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");
-        //        ViewBag.maThang = new SelectList(db.Tbl_ThangHoc, "maThang", "tenThang");
-        //    }
-        //    else
-        //    {
-        //        ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");
-        //        ViewBag.maThang = new SelectList(db.Tbl_ThangHoc, "maThang", "tenThang");
-        //        var baocaoluong = db.Tbl_TienLuong.Where(x => x.maNamHoc == maNamHoc && x.maThang == maThang).ToList();
-        //        int d = 0;
-        //        foreach(var item in baocaoluong)
-        //        {
-        //             d = item.maLuong;
-                   
-                    
-        //        }
-        //        var chitiet = db.Tbl_ChiTietLuong.Where(x => x.maLuong == d).ToList(); ViewBag.a = chitiet;
-        //    }
-           
-        //    return View();
-        //}
+
         public ActionResult InLuongTheoThang()
         {
             int a = Convert.ToInt32(TempData["maluongin"]);
+            //var tienluong = db.Tbl_TienLuong.Where(x => x.maLuong == a).ToList();
             var ctll = db.Tbl_ChiTietLuong.Where(x => x.maLuong == a).ToList();
 
             foreach (var item in ctll)
@@ -52,6 +29,11 @@ namespace WebQLMamNon.Controllers
                 inluong.soTien = Convert.ToInt32(item.soTien);
                 inluong.hoTen = item.Tbl_GiaoVien.hoTen;
                 inluong.tenThang = item.Tbl_TienLuong.maThang;
+                inluong.maNamHoc = item.Tbl_TienLuong.maNamHoc;
+                int b = Convert.ToInt16(inluong.maNamHoc);
+                int c = b + 1;
+                string d = b.ToString() +"-"+ c.ToString(); ;
+                inluong.tenNamHoc = d;
                 db.Tbl_InLuong.Add(inluong);
                 db.SaveChanges();
             }
@@ -127,6 +109,8 @@ namespace WebQLMamNon.Controllers
                 inpc.tenLop = item.Tbl_LopHoc.tenLop;
                 inpc.tenNamHoc = item.Tbl_NamHoc.tenNamHoc;
                 inpc.hoTen = item.Tbl_GiaoVien.hoTen;
+                inpc.ngayBatDau = Convert.ToInt32(item.maNamHoc);
+                inpc.ngayKetThuc = inpc.ngayBatDau + 1;
                 db.Tbl_InPhanCong.Add(inpc);
                 db.SaveChanges();
             }

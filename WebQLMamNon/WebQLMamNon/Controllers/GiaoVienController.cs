@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using WebQLMamNon.Models;
 using PagedList;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace WebQLMamNon.Controllers
 {
@@ -170,5 +172,29 @@ namespace WebQLMamNon.Controllers
         {
             ViewBag.maTonGiao = new SelectList(db.Tbl_TonGiao, "maTonGiao", "tenTonGiao");
         }
+        public ActionResult TimKiemGV(string name, int page = 1, int pageSize = 10)
+        {
+            var list = db.Tbl_GiaoVien.ToList();
+            Session["noidungsearch"] = name;
+            if (name == "")
+            {
+                TempData["tb"] = "Nhập tên cần tìm";
+                return View(list.ToList().ToPagedList(page, pageSize));
+            }
+            else
+            {
+                int k = list.Where(x => x.hoTen.Contains(name)).Count();
+                if (k==0) {
+                    TempData["kq"] = "Không tìm thấy";
+                    return View(list.ToList().ToPagedList(page, pageSize));
+                }
+                return View(list.ToList().Where(x => x.hoTen.Contains(name)).ToPagedList(page, pageSize));
+            }
+            
+        }
+       
+
+
+       
     }
 }

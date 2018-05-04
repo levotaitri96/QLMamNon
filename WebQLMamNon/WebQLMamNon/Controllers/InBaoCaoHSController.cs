@@ -15,9 +15,9 @@ namespace WebQLMamNon.Controllers
         // GET: InBaoCaoHS
         public ActionResult InDanhSachHSTheoLop(string malop, string manamhoc)
         {
-            string a = (TempData["maNH"]).ToString();
-            string b= (TempData["lstLop"]).ToString();
-            var pl = db.Tbl_PhanLop.Where(x => x.maNamHoc == a && x.maLop == b ).ToList();
+            string a = Session["malopin"].ToString();
+            string b = Session["manamin"].ToString();
+            var pl = db.Tbl_PhanLop.Where(x => x.maNamHoc == b && x.maLop == a ).ToList();
 
             foreach (var item in pl)
             {
@@ -46,12 +46,9 @@ namespace WebQLMamNon.Controllers
             Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
             stream.Seek(0, SeekOrigin.Begin);
 
-            //foreach (var item in pl)
-            //{
-            //    var ab = db.Tbl_InPhanCong.Where(x => x.maNamHoc == a && x.Idphancong == item.Idphancong).FirstOrDefault();
-            //    db.Tbl_InPhanCong.Remove(ab);
-            //    db.SaveChanges();
-            //}
+            var dss = db.Tbl_InDanhSachHS.ToList().Where(x => x.maLop == a).FirstOrDefault();
+            db.Tbl_InDanhSachHS.Remove(dss);
+            db.SaveChanges();
 
             return File(stream, "application/pdf", "InDanhSachHS.pdf");
         }

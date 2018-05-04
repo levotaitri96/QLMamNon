@@ -1,10 +1,16 @@
 ﻿@model IEnumerable<WebQLMamNon.Models.Tbl_TienLuong>
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
-
+@{ 
+   <style>
+       body{
+           font-size:12px;
+       }
+   </style>
+}
 <h1 style="margin-left:25px">Bảng lương</h1>
 @if (TempData["dd"] != null)
 {
@@ -12,12 +18,25 @@
         alert("Tháng này đã tạo bảng lương");
     </script>
 }
+@if (TempData["tt"] != null)
+{
+    <script>
+            alert("Nhập số tiền ");
+    </script>
+}
+@if (TempData["sotien"] != null)
+{
+    <script>
+            alert("Nhập số tiền ");
+    </script>
+}
 <p>
     @using (Html.BeginForm("TaoBangLuong", "TinhLuong", FormMethod.Get))
     {
         <input class="btn btn-primary" style="float:left;margin-left:25px" type="submit" value="Tạo mới bảng lương" />
-        @Html.DropDownList("maNamHoc", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 20px;margin-left:20px", @value = "maNamHoc" })
-        @Html.DropDownList("maThang", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maThang" })
+        @Html.DropDownList("maNamHoc", null, htmlAttributes: new { @class = "form-control", @style = "width:140px; float: left ;margin-right: 20px;margin-left:20px", @value = "maNamHoc" })
+        @Html.DropDownList("maThang", null, htmlAttributes: new { @class = "form-control", @style = "width:140px; float: left ;margin-right: 10px", @value = "maThang" })
+        <label class="form-label">Số tiền 1 ngày:</label><input style="padding: 5px" type="number" id="" name="sotienngay" />
     }
 </p>
 
@@ -26,6 +45,10 @@
         <th>
            Lương Tháng
         </th>
+        <th>
+            Số Tiền 1 Ngày
+        </th>
+        <th></th>
         <th></th>
     </tr>
 
@@ -35,17 +58,40 @@
             @item.maThang-@item.maNamHoc
         </td>
         <td>
-            @using (Html.BeginForm("ChiTietLuong", "TinhLuong", new { id = item.maLuong }, FormMethod.Get))
+            @item.soTienNgay
+        </td>
+        <td><button  class="btn btn-primary" style="width: 100%;"  href="#" onclick="document.getElementById('id01').style.display='block'" >Sửa</button>
+           
+            <div class="w3-container">
+                <div id="id01" class="w3-modal" >
+                    <div class="w3-modal-content" style="width: 40%;">
+                        <div class="w3-container"style="height: 200px">
+                            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                            
+                             <form action="@Url.Action("SuaTien", "TinhLuong",new { @maThang = item.maThang, @maNamHoc=item.maNamHoc, @sotienmoi=item.soTienNgay })" method="post" @*enctype="multipart/form-data" target="my_iframe"*@ style="margin-top: 50px" >                             
+                                <div>
+                                    <label class="form-label">Số tiền thay đổi:</label><input style="padding: 5px" type="number" id="" name="sotienmoi" />
+                                </div>
+                                <input type="submit" class="btn btn-primary" style="width: 100px;margin-top: 20px" value="Lưu"   onclick="document.getElementById('id01').style.display='none'" />
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>@*<iframe hidden id="my_iframe" name="my_iframe"></iframe>*@
+        </td>
+        
+        <td>
+            @using (Html.BeginForm("ChiTietLuong", "TinhLuong", new { id = item.maLuong,sotienngay= item.soTienNgay }, FormMethod.Get))
             {
                 <input class="btn btn-danger" style="font-size:12px" type="submit" value="Xem bảng lương" />
                 <input type="hidden" id="thang" name="thang" value="@item.maThang"/>
                 <input type="hidden" id="nam" name="nam" value="@item.maNamHoc"/>
                 <input type="hidden" id="" name="maLuong" value="@item.maLuong" />
-                @*<input type="hidden" id="" name="nam" value="@item.maNamHoc" />
-                <input type="hidden" id="" name="nam" value="@item.maNamHoc" />*@
+                <input type="hidden" id="" name="sotienngay" value="@item.soTienNgay" />
             }
         </td>
     </tr>
 }
-
+    
 </table>

@@ -50,7 +50,7 @@ namespace WebQLMamNon.Controllers
             }
 
             ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop, "maLoai", "tenLoai", tbl_LopHoc.maLoai);
-            ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc", tbl_LopHoc.maNamHoc);
+            //ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc", tbl_LopHoc.maNamHoc);
             return View(tbl_LopHoc);
         }
 
@@ -118,6 +118,21 @@ namespace WebQLMamNon.Controllers
         {
             return View();
         }
+        public ActionResult FilterByLoaiLop(string filterby)
+        {
+
+            var lophoc = db.Tbl_LopHoc.ToList();
+          
+            if (filterby == "all")
+            {
+                return View(lophoc.ToList());
+            }          
+            else 
+            {
+                return View(lophoc.ToList().Where(x => x.maLoai == filterby ));
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -124,9 +124,10 @@
                         </form>
                         <form action="@Url.Action("PhanLopHSS", "HocSinh",new { @maLop = item.maLop, @maNH=item.maNamHoc, @maLoai=item.maLoai })" method="post" target="my_iframe">
                             <input type="submit" class="btn btn-primary" style="width: 100%;" value="Xem lớp" href="#" onclick="document.getElementById('id01').style.display='block'" />
+                            
                         </form>
                         <div class="w3-container">
-
+                          
 
 
                             <div id="id01" class="w3-modal" style="margin-left:50px">
@@ -135,9 +136,11 @@
                                         <h3>Danh Sách Học Sinh Phân Lớp</h3>
                                         <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                                         <iframe name="my_iframe" id="my_iframe" style="border: unset;resize: vertical;height: 283px;width: 100%;"></iframe>
-                                        @using (Html.BeginForm("InDanhSachHSTheoLop", "InBaoCaoHS", FormMethod.Get))
+                                        @using (Html.BeginForm("InDanhSachHSTheoLop", "InBaoCaoHS", FormMethod.Post, new { @malop = item.maLop, @manamhoc = item.maNamHoc }))
                                         {
-                                        <input type="submit" class="btn btn-primary" value="In Danh Sách" />
+                                           
+                                            <input type="submit" class="btn btn-primary" value="In Danh Sách"  />
+
                                         }
                                     </div>
                                 </div>

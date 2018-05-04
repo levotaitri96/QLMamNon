@@ -14,6 +14,7 @@ namespace WebQLMamNon.Models
     
     public partial class Tbl_InDanhSachHS
     {
+        public int idInHS { get; set; }
         public string hoTenHS { get; set; }
         public string tenLop { get; set; }
         public string maLop { get; set; }

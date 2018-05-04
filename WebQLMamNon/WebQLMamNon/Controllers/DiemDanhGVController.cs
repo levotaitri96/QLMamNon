@@ -57,7 +57,7 @@ namespace WebQLMamNon.Controllers
             string thang = TempData["thang"].ToString();
             string nam = TempData["nam"].ToString();
             var diemdanh = db.Tbl_DiemDanh.Where(x => x.ngayDiemDanh == ngay && x.maThang == thang && x.maNamHoc == nam).FirstOrDefault();
-            var listpc = db.Tbl_PhanCong.ToList();
+            var listpc = db.Tbl_PhanCong.ToList().Where(x=> x.maNamHoc == nam);
             foreach (var item in listpc)
             {
                 Tbl_ChiTietDiemDanh chitiet = new Tbl_ChiTietDiemDanh();

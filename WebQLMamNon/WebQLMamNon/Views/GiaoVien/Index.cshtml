@@ -4,95 +4,118 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
-
-<h1 style="margin-left:20px">Danh Sách Giáo Viên</h1>
-@using (Html.BeginForm("Create", "GiaoVien", FormMethod.Get))
+@if (TempData["tb"] != null)
 {
-    <input class="btn btn-primary" style="float:left;margin-left:20px" type="submit" value="Thêm giáo viên" />
-
+    <script>
+        alert("Nhập tên cần tìm");
+    </script>
 }
-<br />
+@if (TempData["kq"] != null)
+{
+    <script>
+        alert("Không tìm thấy");
+    </script>
+}
+<h1 style="margin-left:20px">Danh Sách Giáo Viên</h1>
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("Create", "GiaoVien", FormMethod.Get))
+        {
+            <input class="btn btn-primary" style="float:left;margin-left:20px" type="submit" value="Thêm giáo viên" />
 
-<table class="table" border="1">
-    <tr style="background:orange;font-size:15px">
-        <th>
-            Mã giáo viên
-        </th>
-        <th>
-            Họ tên
-        </th>
-        <th>
-            Ngày sinh
-        </th>
-        <th>
-            Giới tính
-        </th>
-        <th>
-            Trình độ
-        </th>
-        <th>
-            Số điện thoại
-        </th>
-        <th>
-            Email
-        </th>
-        <th>
-            Tôn giáo
-        </th>
-        <th>
-            Dân tộc
-        </th>
-        <th>
-            Địa chỉ
-        </th>
-        <th></th>
-    </tr>
+        }
+    </div>
+    <div class="col-md-6">
+        @using (Html.BeginForm("TimKiemGV", "GiaoVien", FormMethod.Get))
+        {
+            <div>
+                <input style="padding: 5px" type="text" placeholder="Tìm kiếm.." name="name" value="@Session["noidungsearch"]">
+                <button style="padding: 5px" type="submit"><i class="fa fa-search"></i></button>
+            </div>
+        }
+    </div>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.maGV)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.hoTen)
-            </td>
-            <td>
-                @String.Format("{0:d/M/yyyy}", item.ngaySinh)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.gioiTinh)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.trinhDo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.soDT)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tbl_TonGiao.tenTonGiao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tbl_DanToc.tenDanToc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.diaChi)
-            </td>
-            <td>
-                <a href="@Url.Action("Edit", "GiaoVien",new { id = item.maGV })"><i class="fa fa-wrench"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
-                <a href="@Url.Action("Details", "GiaoVien",new { id = item.maGV })"><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
-                <a href="#" id="@item.maGV" onclick="deletetk(this.id)"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
-            </td>
+</div>
+    <table class="table" border="1">
+        <tr style="background:orange;font-size:15px">
+            <th>
+                Mã giáo viên
+            </th>
+            <th>
+                Họ tên
+            </th>
+            <th>
+                Ngày sinh
+            </th>
+            <th>
+                Giới tính
+            </th>
+            <th>
+                Trình độ
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Tôn giáo
+            </th>
+            <th>
+                Dân tộc
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.maGV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hoTen)
+                </td>
+                <td>
+                    @String.Format("{0:d/M/yyyy}", item.ngaySinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gioiTinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.trinhDo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.soDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tbl_TonGiao.tenTonGiao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tbl_DanToc.tenDanToc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.diaChi)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "GiaoVien",new { id = item.maGV })"><i class="fa fa-wrench" title="Cập Nhập"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                    <a href="@Url.Action("Details", "GiaoVien",new { id = item.maGV })"><i class="fa fa-book" title="Chi Tiết"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" id="@item.maGV" onclick="deletetk(this.id)"><i class="fa fa-trash" title="Xóa"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                </td>
+            </tr>
+        }
 
-<script type="text/javascript">
+    </table>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+    <script type="text/javascript">
         function deletetk(idtk) {
             if (confirm("Bạn muốn xóa giáo viên này?")) {
                 $.ajax({
@@ -117,4 +140,4 @@
             }
         }
 
-</script>
+    </script>

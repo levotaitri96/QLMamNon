@@ -23,6 +23,7 @@ namespace WebQLMamNon.Models
         public int maLuong { get; set; }
         public string maThang { get; set; }
         public string maNamHoc { get; set; }
+        public Nullable<int> soTienNgay { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_ChiTietLuong> Tbl_ChiTietLuong { get; set; }

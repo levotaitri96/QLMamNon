@@ -26,9 +26,10 @@
     @using (Html.BeginForm("PhanCong", "PhanCong", FormMethod.Get, new { enctype = "multipart/form-data", target = "eee" }))
     {
         <div class="form-group" style="float:left;width:70%;margin-left:20px">
-            @Html.DropDownList("maLop", null, htmlAttributes: new { @class = "form-control", @style = " float: left ;margin-right: 10px", @value = "maLop" })
-            @Html.DropDownList("maGV", null, htmlAttributes: new { @class = "form-control", @style = "margin-right: 10px;width: 170px;", @value = "maGV" })
+            @Html.DropDownList("maLop", null, htmlAttributes: new { @class = "form-control", @style = " float: left ;margin-right: 10px;width: 170px", @value = "maLop" })
+            @Html.DropDownList("maGV", null, htmlAttributes: new { @class = "form-control", @style = "margin-right: 10px;width: 170px", @value = "maGV" })         
+            @Html.DropDownList("maNamHoc", null, htmlAttributes: new { @class = "form-control", @style = "width: 170px;", @value = "maNamHoc" })
         </div>
-        <input class="btn btn-primary" style="float:right" type="submit" value="Phân công" onclick="window.setTimeout(function () { location.reload(true) }, 2000)" />
+        <input class="btn btn-primary" style="float:right;padding-right: 40px;padding-left: 40px" type="submit" value="Phân công" onclick="window.setTimeout(function () { location.reload(true) }, 2000)" />
     }
 </body>

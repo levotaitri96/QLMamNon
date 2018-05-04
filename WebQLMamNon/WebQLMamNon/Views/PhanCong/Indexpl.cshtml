@@ -39,6 +39,12 @@
             alert("Hiện tại không có giáo viên hoặc không có lớp trống");
         </script>
     }
+    @if (TempData["loitd"] != null)
+    {
+        <script>
+            alert("Không có giáo viên để phân công");
+        </script>
+    }
 
     <h2 style="margin-left:20px">Danh Sách Phân Công</h2>
 

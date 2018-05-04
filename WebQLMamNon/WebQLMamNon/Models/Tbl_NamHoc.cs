@@ -27,7 +27,6 @@ namespace WebQLMamNon.Models
     
         public string maNamHoc { get; set; }
         public string tenNamHoc { get; set; }
-        public Nullable<double> tienThang { get; set; }
         public Nullable<int> tienNgayHS { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

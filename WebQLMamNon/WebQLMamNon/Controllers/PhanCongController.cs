@@ -17,18 +17,20 @@ namespace WebQLMamNon.Controllers
         {
             return View();
         }
-        public ActionResult LoadGVvaLop()
+        public ActionResult LoadGVvaLop( string maNamHoc)
         {
             XuLiLoadGVCB();
             XuLiLoadLopCB();
+ ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");
             return View();
         }
         public ActionResult Indexpl()
         {
             // giáo viên đã được phân công lớp thì sẽ không hiển thị trong list
+            
             XuLiLoadGVCB();
             XuLiLoadLopCB();
-
+           
             return View(db.Tbl_PhanCong.ToList());
         }
         public void XuLiLoadGVCB()
@@ -88,11 +90,11 @@ namespace WebQLMamNon.Controllers
             ViewBag.maLop = new SelectList(lslh, "maLop", "tenLop");
         }
         // phân công 1 lớp chỉ có 1 giáo viên
-        public ActionResult PhanCong(string maLop,string maGV)
+        public ActionResult PhanCong(string maLop,string maGV,string maNamHoc)
         {
             int dem = 0;
             var lh = db.Tbl_LopHoc.Where(x => x.maLop == maLop).FirstOrDefault();
-            var nh = db.Tbl_NamHoc.Where(x => x.maNamHoc == lh.maNamHoc).FirstOrDefault();
+            //var nh = db.Tbl_NamHoc.Where(x => x.maNamHoc == lh.maNamHoc).FirstOrDefault();
             if (maGV == null || maLop == null)
             {
                 TempData["loinull"] = "abc";
@@ -124,27 +126,36 @@ namespace WebQLMamNon.Controllers
                         Tbl_PhanCong phancong = new Tbl_PhanCong();
                         phancong.maLop = maLop;
                         phancong.maLoai = loai.maLoai;
-                        phancong.maNamHoc = nh.maNamHoc;
+                        phancong.maNamHoc = maNamHoc;
                         phancong.maGV = maGV;
                         db.Tbl_PhanCong.Add(phancong);
                         db.SaveChanges();
                     }
                 }
             }
+            
             return RedirectToAction("Indexpl");
         }
 
         public ActionResult ThaydoiGV(string maGVcu,string id,string maGV)
         {
-            Tbl_PhanCong pc = new Tbl_PhanCong();
-            //Id = TempData["malop"].ToString();
-            
-            pc = db.Tbl_PhanCong.Where(x => x.maLop == id && x.maGV==maGVcu).FirstOrDefault();
-           
-            pc.maGV = maGV;
+            if (maGV == null)
+            {
+                TempData["loitd"] = "Không có giáo viên để thay đổi";
+            }
+            else
+            {
+                Tbl_PhanCong pc = new Tbl_PhanCong();
+                //Id = TempData["malop"].ToString();
 
-            db.Entry(pc).State = EntityState.Modified;
-            db.SaveChanges();
+                pc = db.Tbl_PhanCong.Where(x => x.maLop == id && x.maGV == maGVcu).FirstOrDefault();
+
+                pc.maGV = maGV;
+
+                db.Entry(pc).State = EntityState.Modified;
+                db.SaveChanges();
+                
+            }
             return RedirectToAction("Indexpl");
         }
         public ActionResult LichSuPhanCong(string maNamHoc)

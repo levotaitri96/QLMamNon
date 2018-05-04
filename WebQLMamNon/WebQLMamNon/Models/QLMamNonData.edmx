@@ -131,11 +131,9 @@
         </EntityType>
         <EntityType Name="Tbl_InDanhSachHS">
           <Key>
-            <PropertyRef Name="maLop" />
-            <PropertyRef Name="maHS" />
-            <PropertyRef Name="maNamHoc" />
-            <PropertyRef Name="idPhanLop" />
+            <PropertyRef Name="idInHS" />
           </Key>
+          <Property Name="idInHS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="hoTenHS" Type="nvarchar" MaxLength="50" />
           <Property Name="tenLop" Type="nvarchar" MaxLength="50" />
           <Property Name="maLop" Type="nvarchar" MaxLength="10" Nullable="false" />
@@ -159,6 +157,8 @@
           <Property Name="maGV" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="maLuong" Type="int" Nullable="false" />
           <Property Name="tenThang" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="maNamHoc" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="tenNamHoc" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Tbl_InPhanCong">
           <Key>
@@ -173,6 +173,8 @@
           <Property Name="tenLop" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="tenNamHoc" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="hoTen" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ngayBatDau" Type="int" />
+          <Property Name="ngayKetThuc" Type="int" />
         </EntityType>
         <EntityType Name="Tbl_LoaiBaiViet">
           <Key>
@@ -205,7 +207,6 @@
           </Key>
           <Property Name="maNamHoc" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="tenNamHoc" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="tienThang" Type="float" />
           <Property Name="tienNgayHS" Type="int" />
         </EntityType>
         <EntityType Name="Tbl_NgheNghiepCha">
@@ -231,7 +232,6 @@
           <Property Name="maLop" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="maLoai" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="maGV" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="trangThai" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Tbl_PhanLop">
           <Key>
@@ -266,6 +266,7 @@
           <Property Name="maLuong" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="maThang" Type="nvarchar" MaxLength="50" />
           <Property Name="maNamHoc" Type="nvarchar" MaxLength="10" />
+          <Property Name="soTienNgay" Type="int" />
         </EntityType>
         <EntityType Name="Tbl_TonGiao">
           <Key>
@@ -1300,21 +1301,19 @@
         </EntityType>
         <EntityType Name="Tbl_InDanhSachHS">
           <Key>
-            <PropertyRef Name="maLop" />
-            <PropertyRef Name="maHS" />
-            <PropertyRef Name="maNamHoc" />
-            <PropertyRef Name="idPhanLop" />
+            <PropertyRef Name="idInHS" />
           </Key>
+          <Property Name="idInHS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="hoTenHS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="tenLop" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="maLop" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="maHS" Type="Int32" Nullable="false" />
           <Property Name="maNamHoc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="tenNamHoc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="gioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ngaySinh" Type="DateTime" Precision="3" Nullable="false" />
-          <Property Name="soDTNha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="diaChi" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tenNamHoc" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="gioiTinh" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ngaySinh" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="soDTNha" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="diaChi" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
           <Property Name="idPhanLop" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Tbl_InLuong">
@@ -1328,6 +1327,8 @@
           <Property Name="maGV" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="maLuong" Type="Int32" Nullable="false" />
           <Property Name="tenThang" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="maNamHoc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="tenNamHoc" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Tbl_InPhanCong">
           <Key>
@@ -1342,6 +1343,8 @@
           <Property Name="tenLop" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="tenNamHoc" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="hoTen" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngayBatDau" Type="Int32" />
+          <Property Name="ngayKetThuc" Type="Int32" />
         </EntityType>
         <EntityType Name="Tbl_LoaiBaiViet">
           <Key>
@@ -1388,7 +1391,6 @@
           </Key>
           <Property Name="maNamHoc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="tenNamHoc" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="tienThang" Type="Double" />
           <Property Name="tienNgayHS" Type="Int32" />
           <NavigationProperty Name="Tbl_DiemDanh" Relationship="QuanLyMamNonModel.FK_Tbl_DiemDanh_Tbl_NamHoc" FromRole="Tbl_NamHoc" ToRole="Tbl_DiemDanh" />
           <NavigationProperty Name="Tbl_HocPhi" Relationship="QuanLyMamNonModel.FK_Tbl_HocPhi_Tbl_NamHoc" FromRole="Tbl_NamHoc" ToRole="Tbl_HocPhi" />
@@ -1422,7 +1424,6 @@
           <Property Name="maLop" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="maLoai" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="maGV" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="trangThai" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Tbl_GiaoVien" Relationship="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_GiaoVien" FromRole="Tbl_PhanCong" ToRole="Tbl_GiaoVien" />
           <NavigationProperty Name="Tbl_LoaiLop" Relationship="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_LoaiLop" FromRole="Tbl_PhanCong" ToRole="Tbl_LoaiLop" />
           <NavigationProperty Name="Tbl_LopHoc" Relationship="QuanLyMamNonModel.FK_Tbl_PhanCong_Tbl_LopHoc" FromRole="Tbl_PhanCong" ToRole="Tbl_LopHoc" />
@@ -1470,6 +1471,7 @@
           <Property Name="maLuong" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="maThang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="maNamHoc" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="soTienNgay" Type="Int32" />
           <NavigationProperty Name="Tbl_ChiTietLuong" Relationship="QuanLyMamNonModel.FK_Tbl_ChiTietLuong_Tbl_TienLuong" FromRole="Tbl_TienLuong" ToRole="Tbl_ChiTietLuong" />
           <NavigationProperty Name="Tbl_NamHoc" Relationship="QuanLyMamNonModel.FK_Tbl_TienLuong_Tbl_NamHoc" FromRole="Tbl_TienLuong" ToRole="Tbl_NamHoc" />
           <NavigationProperty Name="Tbl_ThangHoc" Relationship="QuanLyMamNonModel.FK_Tbl_TienLuong_Tbl_ThangHoc" FromRole="Tbl_TienLuong" ToRole="Tbl_ThangHoc" />
@@ -2118,12 +2120,15 @@
                 <ScalarProperty Name="maLop" ColumnName="maLop" />
                 <ScalarProperty Name="tenLop" ColumnName="tenLop" />
                 <ScalarProperty Name="hoTenHS" ColumnName="hoTenHS" />
+                <ScalarProperty Name="idInHS" ColumnName="idInHS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tbl_InLuong">
             <EntityTypeMapping TypeName="QuanLyMamNonModel.Tbl_InLuong">
               <MappingFragment StoreEntitySet="Tbl_InLuong">
+                <ScalarProperty Name="tenNamHoc" ColumnName="tenNamHoc" />
+                <ScalarProperty Name="maNamHoc" ColumnName="maNamHoc" />
                 <ScalarProperty Name="tenThang" ColumnName="tenThang" />
                 <ScalarProperty Name="maLuong" ColumnName="maLuong" />
                 <ScalarProperty Name="maGV" ColumnName="maGV" />
@@ -2136,6 +2141,8 @@
           <EntitySetMapping Name="Tbl_InPhanCong">
             <EntityTypeMapping TypeName="QuanLyMamNonModel.Tbl_InPhanCong">
               <MappingFragment StoreEntitySet="Tbl_InPhanCong">
+                <ScalarProperty Name="ngayKetThuc" ColumnName="ngayKetThuc" />
+                <ScalarProperty Name="ngayBatDau" ColumnName="ngayBatDau" />
                 <ScalarProperty Name="hoTen" ColumnName="hoTen" />
                 <ScalarProperty Name="tenNamHoc" ColumnName="tenNamHoc" />
                 <ScalarProperty Name="tenLop" ColumnName="tenLop" />
@@ -2179,7 +2186,6 @@
             <EntityTypeMapping TypeName="QuanLyMamNonModel.Tbl_NamHoc">
               <MappingFragment StoreEntitySet="Tbl_NamHoc">
                 <ScalarProperty Name="tienNgayHS" ColumnName="tienNgayHS" />
-                <ScalarProperty Name="tienThang" ColumnName="tienThang" />
                 <ScalarProperty Name="tenNamHoc" ColumnName="tenNamHoc" />
                 <ScalarProperty Name="maNamHoc" ColumnName="maNamHoc" />
               </MappingFragment>
@@ -2204,7 +2210,6 @@
           <EntitySetMapping Name="Tbl_PhanCong">
             <EntityTypeMapping TypeName="QuanLyMamNonModel.Tbl_PhanCong">
               <MappingFragment StoreEntitySet="Tbl_PhanCong">
-                <ScalarProperty Name="trangThai" ColumnName="trangThai" />
                 <ScalarProperty Name="maGV" ColumnName="maGV" />
                 <ScalarProperty Name="maLoai" ColumnName="maLoai" />
                 <ScalarProperty Name="maLop" ColumnName="maLop" />
@@ -2245,6 +2250,7 @@
           <EntitySetMapping Name="Tbl_TienLuong">
             <EntityTypeMapping TypeName="QuanLyMamNonModel.Tbl_TienLuong">
               <MappingFragment StoreEntitySet="Tbl_TienLuong">
+                <ScalarProperty Name="soTienNgay" ColumnName="soTienNgay" />
                 <ScalarProperty Name="maNamHoc" ColumnName="maNamHoc" />
                 <ScalarProperty Name="maThang" ColumnName="maThang" />
                 <ScalarProperty Name="maLuong" ColumnName="maLuong" />

@@ -232,6 +232,9 @@ namespace WebQLMamNon.Controllers
 
         public ActionResult PhanLopHSS(string maLop, string maNH, string maLoai)
         {
+            Session["malopin"] = maLop;
+            Session["manamin"] = maNH;
+            
             int countHS_Lop = db.Tbl_PhanLop.Where(x => x.maLop == maLop && x.maNamHoc == maNH).Count();
             var q = db.Tbl_PhanLop.Where(x => x.maLop == maLop).ToList();
             int?[] lstMaHS = db.Tbl_PhanLop.Select(x => x.maHS).ToArray();

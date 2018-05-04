@@ -4,7 +4,7 @@
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
 
-<h2>Chi tiết điểm danh tháng : @ViewBag.a</h2>
+<h2>Chi tiết điểm danh tháng : @Session["thang"]</h2>
 <h2>Tên giáo viên : @ViewBag.b</h2>
      @{ 
          int a = 0;
@@ -24,7 +24,7 @@
             {
                 <a class="table-bordered" style="font-size:50px;">@item.ngay</a>
                 b += 1;
-                ViewBag.b = b;
+                ViewBag.cc = b;
             }
         </div>
 
@@ -32,13 +32,13 @@
 </div>
 
 <br />
-Tổng ngày làm(màu cam):@ViewBag.a <br /><br />Tổng ngày nghỉ(không màu):@ViewBag.b
+Tổng ngày làm(màu cam):@ViewBag.a <br /><br />Tổng ngày nghỉ(không màu):@{if (ViewBag.cc == null) { <text>0</text> } else{ @ViewBag.cc; } }
 
 
 
 
- 
 
 
-        
+
+
 
