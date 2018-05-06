@@ -17,7 +17,6 @@ namespace WebQLMamNon.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tbl_GiaoVien()
         {
-            this.Tbl_BaiViet = new HashSet<Tbl_BaiViet>();
             this.Tbl_ChiTietDiemDanh = new HashSet<Tbl_ChiTietDiemDanh>();
             this.Tbl_ChiTietLuong = new HashSet<Tbl_ChiTietLuong>();
             this.Tbl_PhanCong = new HashSet<Tbl_PhanCong>();
@@ -36,8 +35,6 @@ namespace WebQLMamNon.Models
         public Nullable<int> maTonGiao { get; set; }
         public Nullable<int> maDanToc { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_BaiViet> Tbl_BaiViet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_ChiTietDiemDanh> Tbl_ChiTietDiemDanh { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

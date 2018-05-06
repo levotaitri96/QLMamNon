@@ -1,0 +1,54 @@
+﻿@model WebQLMamNon.Models.Tbl_BaiViet
+@{
+    ViewBag.Title = "XemChiTiet";
+    Layout = "~/Views/LayoutUser.cshtml";
+}
+<div id="main" style="text-align:center;background-color:#f8934a">
+    <div class="wrapper">
+        <div class="book-details" style="padding:15px;">
+            <div style="text-align:center"><h1 style="color:#ffffff">@Html.DisplayFor(model => model.tenBaiViet)</h1><hr /></div>
+            <div class="img-details" style="padding:20px">
+                <img src="~/images/@Model.hinhBV" alt="Alt text" style="height:400px;width:660px" />
+            </div>
+            <hr />
+            <div style="font-size:120%; color:#ffffff" )">
+                <p>
+                    <h3>Tóm Tắt:</h3><hr /></br> @Html.DisplayFor(model => model.noiDung)
+                </p>
+
+
+                <p>
+                    </br>
+                    <h3> Ngày Đăng: </h3><hr />
+                    </br> @String.Format("{0:dd/MM/yyyy}", Html.DisplayFor(model => model.ngayDang))
+                </p>
+
+
+            </div>
+        </div>
+        <div class="home-block">
+            <h2 class="home-block-heading"><span>Có thể bạn muốn xem</span></h2>
+            <div class="one-third-thumbs clearfix" style="padding:10px">
+                @foreach (var item in ViewBag.lstBVLQ)
+            {
+                    <figure class="last" style="padding-right:6px">
+                        <figcaption>
+                            <strong>@item.tenBaiViet</strong>
+                            @if (item.noiDung.Length > 150)
+                            {
+                                <span>Tóm Tắt:<p>@item.noiDung.Substring(0, 150)...</p></span>
+                            }
+
+                            <em>@String.Format("{0:d/M/yyyy}", item.ngayDang)</em>
+                            <a href="@Url.Action("Details","BaiViet")" class="opener"></a>
+                        </figcaption>
+                        <a href="@Url.Action("Details","BaiViet", new {@id=item.maBaiViet })" class="thumb"><img src="~/images/@item.hinhBV" alt="Alt text" width="294" height="227" /></a>
+                    </figure>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="link">@Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })</div>

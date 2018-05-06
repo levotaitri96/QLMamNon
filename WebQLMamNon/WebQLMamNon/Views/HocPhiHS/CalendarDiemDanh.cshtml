@@ -1,0 +1,57 @@
+﻿@model IEnumerable<WebQLMamNon.Models.ModelChiTietDiemDanhHS>
+@{
+    ViewBag.Title = "Calendar";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+<script src="~/Scripts/calendar.js"></script>
+
+<h1>Lịch sử điểm danh</h1>
+<h4>Học Sinh: @ViewBag.hs</h4>
+<h4>Tháng: @ViewBag.t-@ViewBag.nam</h4>
+</hr>
+@{
+    int a = 0;
+    int b = 0;
+}
+
+@foreach (var item in Model)
+{
+    <div class="col-md-1" id="calendar">
+        @if (item.trangthai == "Có")
+        {
+            <a class="calendar" style="background:#f69556;font-size:40px;">@item.ngay</a>
+            a += 1;
+            ViewBag.a = a;
+        }
+        else
+        {
+            <a class="table-bordered" style="font-size:40px;">@item.ngay</a>
+            b += 1;
+            ViewBag.cc = b;
+        }
+    </div>
+
+
+
+}
+
+<table class="table" border="1">
+    <tr style="background:orange;font-size:15px">
+        <th>
+            Số ngày học
+        </th>
+        <th>Số ngày nghỉ</th>
+        <th>Học phí</th>
+    </tr>
+    <tr>
+        <td>@ViewBag.a</td>
+        <td>
+            @ViewBag.cc
+        </td>
+        <td>@ViewBag.sotien</td>
+    </tr>
+
+</table>
+
+<div id='datepicker'></div>
+

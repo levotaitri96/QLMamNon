@@ -5,18 +5,18 @@
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Thêm bài viết</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Thêm Bài Viết</h4>
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.tenBaiViet, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tenBaiViet, "Tên Bài Viết", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.tenBaiViet, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.tenBaiViet, "", new { @class = "text-danger" })
@@ -24,50 +24,46 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.noiDung, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.noiDung, "Nội Dung", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.noiDung, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.noiDung, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.noiDung, "", new { @class = "text-danger" })
             </div>
         </div>
 
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ngayDang, "Ngày đăng", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="date" name="ngayDang" value="" />
+                @Html.ValidationMessageFor(model => model.ngayDang, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.Label("Loại Bài Viết", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("maLoai", null, htmlAttributes: new { @class = "form-control", @style = "width:40%; float: left ;margin-right: 10px", @value = "maLoai" })
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.hinhBV, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.hinhBV, new { htmlAttributes = new { @class = "form-control" } })
+                <input type="file" id="hinhBV" name="hinhBV" />
                 @Html.ValidationMessageFor(model => model.hinhBV, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ngayDang, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ngayDang, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ngayDang, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.maLoai, "Loại: ", htmlAttributes: new { @class = "control-label col-md-2", Model.Tbl_LoaiBaiViet.tenLoai })
-            <div class="col-md-10">
-                <select>
-                    @*@foreach (var item in Model)
-                        {
-                         <option>@Model.Tbl_LoaiBaiViet.tenLoai</option>
-                        }*@
-
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Thêm" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Quay lại", "Index")
 </div>

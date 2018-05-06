@@ -46,9 +46,12 @@ namespace WebQLMamNon.Controllers
             Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
             stream.Seek(0, SeekOrigin.Begin);
 
-            var dss = db.Tbl_InDanhSachHS.ToList().Where(x => x.maLop == a).FirstOrDefault();
-            db.Tbl_InDanhSachHS.Remove(dss);
-            db.SaveChanges();
+            foreach (var item in pl)
+            {
+                var dss = db.Tbl_InDanhSachHS.ToList().Where(x => x.maLop == a && x.maNamHoc == b).FirstOrDefault();
+                db.Tbl_InDanhSachHS.Remove(dss);
+                db.SaveChanges();
+            }
 
             return File(stream, "application/pdf", "InDanhSachHS.pdf");
         }

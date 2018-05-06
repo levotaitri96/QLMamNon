@@ -3,7 +3,7 @@
     ViewBag.Title = "XemChiTiet";
     Layout = "~/Views/LayoutUser.cshtml";
 }
-<div id="main" style="text-align:center">
+<div id="main" style="text-align:center;background-color:#82b441">
     <div class="wrapper">
         <div class="book-details" style="padding:15px;">
             <div style="text-align:center"><h1 style="color:#ffffff">@Html.DisplayFor(model => model.tenBaiViet)</h1><hr /></div>
@@ -26,29 +26,6 @@
 
             </div>
         </div>
-        <div class="home-block">
-            <h2 class="home-block-heading"><span>Có thể bạn muốn xem</span></h2>
-            <div class="one-third-thumbs clearfix" style="padding:10px">
-                @foreach (var item in ViewBag.lstBVLQ)
-            {
-                    <figure class="last" style="padding-right:6px">
-                        <figcaption>
-                            <strong>@item.tenBaiViet</strong>
-                            @if (item.noiDung.Length > 150)
-                            {
-                                <span>Tóm Tắt:<p>@item.noiDung.Substring(0, 150)...</p></span>
-                            }
-
-                            <em>@String.Format("{0:d/M/yyyy}", item.ngayDang)</em>
-                            <a href="@Url.Action("Details","BaiViet")" class="opener"></a>
-                        </figcaption>
-                        <a href="@Url.Action("Details","BaiViet", new {@id=item.maBaiViet })" class="thumb"><img src="~/images/@item.hinhBV" alt="Alt text" width="294" height="227" /></a>
-                    </figure>
-                }
-
-
-            </div>
-        </div>
     </div>
+    <div id="link">@Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })</div>
 </div>
-<div id="link">@Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })</div>

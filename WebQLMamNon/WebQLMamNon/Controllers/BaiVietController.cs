@@ -17,8 +17,9 @@ namespace WebQLMamNon.Controllers
         // GET: BaiViet
         public ActionResult Index()
         {
-            var tbl_BaiViet = db.Tbl_BaiViet.Include(t => t.Tbl_GiaoVien);
-            return View(tbl_BaiViet.ToList());
+            var tbl_Book = db.Tbl_BaiViet.Include(t => t.Tbl_LoaiBaiViet);
+            tbl_Book = tbl_Book.OrderByDescending(n => n.ngayDang);
+            return View(tbl_Book.ToList());
         }
 
         // GET: BaiViet/Details/5
@@ -36,7 +37,7 @@ namespace WebQLMamNon.Controllers
         // GET: BaiViet/Create
         public ActionResult Create()
         {
-            ViewBag.maGV = new SelectList(db.Tbl_GiaoVien, "maGV", "trinhDo");
+            ViewBag.maLoai = new SelectList(db.Tbl_LoaiBaiViet, "maLoai", "TenLoai");
             return View();
         }
 
@@ -45,7 +46,7 @@ namespace WebQLMamNon.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "maBaiViet,noiDung,hinhBV,maGV,ngayDang")] Tbl_BaiViet tbl_BaiViet)
+        public ActionResult Create([Bind(Include = "maBaiViet,tenBaiViet,noiDung,hinhBV,maLoai,ngayDang")] Tbl_BaiViet tbl_BaiViet)
         {
             if (ModelState.IsValid)
             {
@@ -54,20 +55,20 @@ namespace WebQLMamNon.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.maGV = new SelectList(db.Tbl_GiaoVien, "maGV", "trinhDo", tbl_BaiViet.maGV);
+            ViewBag.maLoai = new SelectList(db.Tbl_LoaiBaiViet, "maLoai", "TenLoai");
             return View(tbl_BaiViet);
         }
 
         // GET: BaiViet/Edit/5
         public ActionResult Edit(int id)
         {
-          
+
             Tbl_BaiViet tbl_BaiViet = db.Tbl_BaiViet.Find(id);
             if (tbl_BaiViet == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.maGV = new SelectList(db.Tbl_GiaoVien, "maGV", "trinhDo", tbl_BaiViet.maGV);
+            ViewBag.maLoai = db.Tbl_LoaiBaiViet.ToList();
             return View(tbl_BaiViet);
         }
 
@@ -76,7 +77,7 @@ namespace WebQLMamNon.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maBaiViet,noiDung,hinhBV,maGV,ngayDang")] Tbl_BaiViet tbl_BaiViet)
+        public ActionResult Edit([Bind(Include = "maBaiViet,tenBaiViet,noiDung,hinhBV,maLoai")] Tbl_BaiViet tbl_BaiViet)
         {
             if (ModelState.IsValid)
             {
@@ -84,14 +85,17 @@ namespace WebQLMamNon.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.maGV = new SelectList(db.Tbl_GiaoVien, "maGV", "trinhDo", tbl_BaiViet.maGV);
+
             return View(tbl_BaiViet);
         }
 
         // GET: BaiViet/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-           
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             Tbl_BaiViet tbl_BaiViet = db.Tbl_BaiViet.Find(id);
             if (tbl_BaiViet == null)
             {
@@ -103,7 +107,7 @@ namespace WebQLMamNon.Controllers
         // POST: BaiViet/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Tbl_BaiViet tbl_BaiViet = db.Tbl_BaiViet.Find(id);
             db.Tbl_BaiViet.Remove(tbl_BaiViet);

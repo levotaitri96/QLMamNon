@@ -12,18 +12,20 @@ namespace WebQLMamNon.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Tbl_PhanCong
+    public partial class Tbl_QuanLyHocPhi
     {
-        public int Idphancong { get; set; }
-        public string maNamHoc { get; set; }
-        public string maLop { get; set; }
-        public string maLoai { get; set; }
-        public string maGV { get; set; }
-        public string trangThai { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tbl_QuanLyHocPhi()
+        {
+            this.Tbl_ChiTietHocPhi = new HashSet<Tbl_ChiTietHocPhi>();
+        }
     
-        public virtual Tbl_GiaoVien Tbl_GiaoVien { get; set; }
+        public int idQLHP { get; set; }
+        public Nullable<double> tienThangHP { get; set; }
+        public string maLoai { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_ChiTietHocPhi> Tbl_ChiTietHocPhi { get; set; }
         public virtual Tbl_LoaiLop Tbl_LoaiLop { get; set; }
-        public virtual Tbl_LopHoc Tbl_LopHoc { get; set; }
-        public virtual Tbl_NamHoc Tbl_NamHoc { get; set; }
     }
 }

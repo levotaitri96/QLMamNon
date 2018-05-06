@@ -16,13 +16,15 @@ namespace WebQLMamNon.Models
     {
         public int maChiTietHP { get; set; }
         public Nullable<int> maHP { get; set; }
-        public Nullable<int> soTien { get; set; }
+        public Nullable<double> soTien { get; set; }
         public Nullable<int> soNgayHoc { get; set; }
         public Nullable<int> maHS { get; set; }
         public string maLop { get; set; }
+        public Nullable<int> idQLHP { get; set; }
     
         public virtual Tbl_HocPhi Tbl_HocPhi { get; set; }
         public virtual Tbl_HocSinh Tbl_HocSinh { get; set; }
         public virtual Tbl_LopHoc Tbl_LopHoc { get; set; }
+        public virtual Tbl_QuanLyHocPhi Tbl_QuanLyHocPhi { get; set; }
     }
 }

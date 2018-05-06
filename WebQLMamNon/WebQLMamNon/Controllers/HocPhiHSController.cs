@@ -45,7 +45,6 @@ namespace WebQLMamNon.Controllers
             var temp = db.Tbl_HocPhi.Where(x => x.maThang == thang && x.maNamHoc == nam).FirstOrDefault();
             var demngay = db.Tbl_DiemDanhHS.ToList().Where(x => x.maThang == temp.maThang && x.maNamHoc == temp.maNamHoc);
             var listpl = db.Tbl_PhanLop.ToList();
-
             var namhoc = db.Tbl_NamHoc.Where(x => x.maNamHoc == nam).FirstOrDefault();
             foreach (var item in listpl)
             {
@@ -68,24 +67,14 @@ namespace WebQLMamNon.Controllers
 
                 }
                 ctp.soNgayHoc = dem;
-                if (item.maLoai == "L01")
-                {
-                    ctp.soTien = (namhoc.tienNgayHS * ctp.soNgayHoc);
-                }
-                else if (item.maLoai == "L02")
-                {
-                    ctp.soTien = 2 * (namhoc.tienNgayHS * ctp.soNgayHoc);
-                }
-                else
-                {
-                    ctp.soTien = 3 * (namhoc.tienNgayHS * ctp.soNgayHoc);
-                }
-
+                var idqlhp = db.Tbl_QuanLyHocPhi.Where(x => x.maLoai == item.maLoai).Select(x => x.idQLHP).Max();
+                var tien = db.Tbl_QuanLyHocPhi.Where(x => x.idQLHP == idqlhp).FirstOrDefault();
+                ctp.idQLHP = tien.idQLHP;
+                //tiền thực trả= tiền 1tháng trừ số tiền 1day x số day nghỉ. Một tháng đi học cố định 22 ngày                      
+                ctp.soTien = Math.Round((double)(tien.tienThangHP - ((tien.tienThangHP) / 22) * (22 - ctp.soNgayHoc)));
                 ctp.maLop = item.maLop;
-
-                var y = db.Tbl_LopHoc.Where(x => x.maLop == item.maLop).ToList();
-
                 db.Tbl_ChiTietHocPhi.Add(ctp);
+                ViewBag.sotien = ctp.soTien;
                 db.SaveChanges();
             }
 
@@ -102,6 +91,7 @@ namespace WebQLMamNon.Controllers
         }
         public ActionResult CalendarDiemDanh(int id)
         {
+            var hs = db.Tbl_HocSinh.Where(x => x.maHS == id).Select(x => x.hoTen).FirstOrDefault();
             List<ModelChiTietDiemDanhHS> lst = new List<ModelChiTietDiemDanhHS>();
             var ctdd = db.Tbl_CTDiemDanhHS.ToList().Where(x => x.maHS == id);
 
@@ -113,7 +103,9 @@ namespace WebQLMamNon.Controllers
                     {
                         ModelChiTietDiemDanhHS ct = new ModelChiTietDiemDanhHS();
                         ct.nam = i.maNamHoc;
+                        ViewBag.nam = ct.nam;
                         ct.thang = i.maThang;
+                        ViewBag.t = ct.thang;
                         ct.ngay = i.ngayDiemDanh;
                         ct.trangthai = item.trangThai;
                         lst.Add(ct);
@@ -121,6 +113,8 @@ namespace WebQLMamNon.Controllers
                 }
 
             }
+            ViewBag.hs = hs;
+            ViewBag.sotien = db.Tbl_ChiTietHocPhi.Where(x => x.maHS == id).Select(x => x.soTien).FirstOrDefault();
             string thang = Session["thangct"].ToString();
             string nam = Session["namct"].ToString();
             return View(lst.ToList().Where(x => x.thang == thang && x.nam == nam));

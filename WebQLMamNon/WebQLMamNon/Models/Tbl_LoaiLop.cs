@@ -23,6 +23,7 @@ namespace WebQLMamNon.Models
             this.Tbl_LopHoc = new HashSet<Tbl_LopHoc>();
             this.Tbl_PhanCong = new HashSet<Tbl_PhanCong>();
             this.Tbl_PhanLop = new HashSet<Tbl_PhanLop>();
+            this.Tbl_QuanLyHocPhi = new HashSet<Tbl_QuanLyHocPhi>();
         }
     
         public string maLoai { get; set; }
@@ -41,5 +42,7 @@ namespace WebQLMamNon.Models
         public virtual ICollection<Tbl_PhanCong> Tbl_PhanCong { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_PhanLop> Tbl_PhanLop { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_QuanLyHocPhi> Tbl_QuanLyHocPhi { get; set; }
     }
 }

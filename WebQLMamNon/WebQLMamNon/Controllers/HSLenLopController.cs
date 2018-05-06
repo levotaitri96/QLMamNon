@@ -19,22 +19,36 @@ namespace WebQLMamNon.Controllers
             return View(db.Tbl_PhanLop.ToList());
         }
         [HttpPost]
-        public ActionResult LenLop(string maLop, string maNamHoc)
+        public ActionResult LenLop(string maLop)
         {
-            var e = db.Tbl_PhanLop.Where(x => x.maLop == maLop && x.maNamHoc == maNamHoc).ToList();
-            foreach (var item in e)
+            var manam = db.Tbl_PhanLop.Where(x => x.maLop == maLop).FirstOrDefault();
+            var e = db.Tbl_PhanLop.Where(x => x.maLop == maLop && x.maNamHoc == manam.maNamHoc).FirstOrDefault();
+            int a = Convert.ToInt32(e.maNamHoc);
+            a = a + 1;
+            e.maNamHoc = a.ToString();
+            var lophoc = db.Tbl_LopHoc.Where(x => x.maLop == maLop).FirstOrDefault();
+            lophoc.maNamHoc = e.maNamHoc;
+            if (e.maLoai == "L01")
             {
-                int a = Convert.ToInt16(item.maNamHoc);
-                a = a + 1;
-                string b = Convert.ToString(a);
-                item.maNamHoc = b;
-                //item.Tbl_LopHoc.maNamHoc = item.maNamHoc;
-                if (item.maLoai == "L01") { item.maLoai = "L02"; }
-                if (item.maLoai == "L02") { item.maLoai = "L03"; }
-                db.Tbl_PhanLop.Add(item);
-                db.SaveChanges();
+                e.maLoai = "L02";
+                var tenlop = db.Tbl_LopHoc.Where(x => x.maLop == e.maLop).FirstOrDefault();
+                string abc = tenlop.tenLop.Substring(3);
+                tenlop.tenLop = "Chồi" + abc;
+
             }
-            return View(db.Tbl_PhanLop.ToList());
+            else if (e.maLoai == "L02")
+            {
+                e.maLoai = "L03";
+                var tenlop = db.Tbl_LopHoc.Where(x => x.maLop == e.maLop).FirstOrDefault();
+                string abc = tenlop.tenLop.Substring(4);
+                tenlop.tenLop = "Lá" + abc;
+            }
+            else
+            {
+                TempData["abc"] = "Tốt nghiệp rồi";
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
     }

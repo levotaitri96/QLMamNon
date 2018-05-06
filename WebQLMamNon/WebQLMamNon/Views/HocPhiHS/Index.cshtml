@@ -38,7 +38,7 @@
             <td>
                 @using (Html.BeginForm("HPChiTiet_View", "HocPhiHS", new { id = item.maHP }, FormMethod.Get))
                 {
-                    <input class="btn btn-danger" style="font-size:12px" type="submit" value="Xem bảng lương" />
+                    <input class="btn btn-danger" style="font-size:12px" type="submit" value="Xem bảng học phí" />
                     <input type="hidden" id="thang" name="thang" value="@item.maThang" />
                     <input type="hidden" id="nam" name="nam" value="@item.maNamHoc" />
                 }

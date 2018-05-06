@@ -134,7 +134,7 @@ namespace WebQLMamNon.Controllers
  
                 }
                ctl.soNgayLam = dem;
-                ctl.soTien = ctl.soTien * ctl.soNgayLam;
+               ctl.soTien = ctl.soTien * ctl.soNgayLam;
                db.Entry(ctl).State = EntityState.Modified;
                db.SaveChanges();
                 }

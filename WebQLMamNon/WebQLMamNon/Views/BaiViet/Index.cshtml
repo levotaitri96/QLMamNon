@@ -5,25 +5,25 @@
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Danh sách Bài Viết</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm("Create", "BaiViet", FormMethod.Get))
+    {
+        <input type="submit" class="btn btn-primary" value="Thêm mới" />
+    }
 </p>
-<table class="table">
-    <tr>
+<table class="table" border="1">
+    <tr style="background:orange;font-size:15px">
         <th>
-            Tên Bài Viết:
+            Tên Bài Viết
         </th>
 
         <th>
-            Nội Dung:
+            Nội Dung
         </th>
         <th>
-            Ngày Đăng:
-        </th>
-        <th>
-            Người Đăng:
+            Ngày Đăng
         </th>
         <th></th>
     </tr>
@@ -31,23 +31,31 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            <td style="text-align:left">
                 @Html.DisplayFor(modelItem => item.tenBaiViet)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.noiDung)
+            <td style="text-align:left">
+                @if (item.noiDung.Length < 50)
+                {
+                    @Html.DisplayFor(modelItem => item.noiDung)
+                }
+                else
+                {
+
+                    @item.noiDung.Substring(0, 50)<span>,...</span>
+
+                }
+
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.ngayDang)
+                @String.Format("{0:dd/MM/yyyy}", Html.DisplayFor(modelItem => item.ngayDang))
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Tbl_GiaoVien.hoTen)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.maBaiViet }) |
-                @Html.ActionLink("Details", "Details", new { id = item.maBaiViet }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.maBaiViet })
+                <a href="@Url.Action("Edit", "BaiViet", new { id = item.maBaiViet })"><i class="fa fa-wrench" title="Chỉnh Sửa"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                <a href="@Url.Action("Details", "BaiViet", new { id = item.maBaiViet })"><i class="fa fa-book" title="Xem Chi Tiết"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+
+                <a href="@Url.Action("Delete", "BaiViet", new { id = item.maBaiViet })"><i class="fa fa-trash" title="Xóa"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
             </td>
         </tr>
     }

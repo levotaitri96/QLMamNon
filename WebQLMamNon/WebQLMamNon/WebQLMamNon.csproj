@@ -235,6 +235,9 @@
     <Compile Include="Models\Tbl_CTDiemDanhHS.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tbl_DanhSachHocSinh.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_DanToc.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
@@ -284,6 +287,9 @@
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_PhanLop.cs">
+      <DependentUpon>QLMamNonData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_QuanLyHocPhi.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_TaiKhoan.cs">
@@ -1719,11 +1725,6 @@
     <Content Include="Views\TinhLuong\CalendarDiemDanh.cshtml" />
     <Content Include="Views\LayoutUser.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\BaiViet\Create.cshtml" />
-    <Content Include="Views\BaiViet\Delete.cshtml" />
-    <Content Include="Views\BaiViet\Details.cshtml" />
-    <Content Include="Views\BaiViet\Edit.cshtml" />
-    <Content Include="Views\BaiViet\Index.cshtml" />
     <Content Include="Views\BaiVietUser\Index.cshtml" />
     <Content Include="Views\DiemDanhHS\DiemDanh_View.cshtml" />
     <Content Include="Views\DiemDanhHS\Index.cshtml" />
@@ -1769,6 +1770,13 @@
     <Content Include="Views\LopHoc\FilterByLoaiLop.cshtml" />
     <Content Include="Views\TinhLuong\SuaTien.cshtml" />
     <Content Include="Views\GiaoVien\TimKiemGV.cshtml" />
+    <Content Include="Views\BaiViet\Create.cshtml" />
+    <Content Include="Views\BaiViet\Delete.cshtml" />
+    <Content Include="Views\BaiViet\Details.cshtml" />
+    <Content Include="Views\BaiViet\Edit.cshtml" />
+    <Content Include="Views\BaiViet\Index.cshtml" />
+    <Content Include="Views\HocPhiHS\CalendarDiemDanh.cshtml" />
+    <Content Include="Views\BaiVietUser\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

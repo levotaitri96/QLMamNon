@@ -15,16 +15,16 @@ namespace WebQLMamNon.Models
     public partial class Tbl_InDanhSachHS
     {
         public int idInHS { get; set; }
-        public string hoTenHS { get; set; }
-        public string tenLop { get; set; }
-        public string maLop { get; set; }
         public int maHS { get; set; }
-        public string maNamHoc { get; set; }
-        public string tenNamHoc { get; set; }
-        public string gioiTinh { get; set; }
+        public string maLop { get; set; }
+        public string tenLop { get; set; }
+        public string hoTenHS { get; set; }
         public System.DateTime ngaySinh { get; set; }
         public string soDTNha { get; set; }
         public string diaChi { get; set; }
+        public string gioiTinh { get; set; }
+        public string maNamHoc { get; set; }
+        public string tenNamHoc { get; set; }
         public int idPhanLop { get; set; }
     }
 }
