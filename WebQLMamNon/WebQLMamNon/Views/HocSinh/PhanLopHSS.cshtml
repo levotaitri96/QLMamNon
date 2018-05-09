@@ -4,6 +4,8 @@
     ViewBag.Title = "PhanLopHS";
     Layout = null;
 }
+<script src="~/vendors/jquery/dist/jquery.min.js"></script>
+<script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <link href="~/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- Font Awesome -->
 
@@ -49,8 +51,11 @@
                 Tên Học Sinh
             </th>
             <th>
+
+            </th>
+            <th>
                 Sỉ Số Học Sinh=
-                @Model.Count()
+                @*@Model.Count()*@
 
             </th>
 
@@ -63,7 +68,7 @@
             <tr>
 
                 <td>
-                    @Html.DisplayFor(modelItem => item.Tbl_NamHoc.tenNamHoc)
+                   @Session["getnamhoc"]
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Tbl_LopHoc.tenLop)
@@ -71,7 +76,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Tbl_HocSinh.hoTen)
                 </td>
-
+                <td>
+                    <a href="#" id="@item.idPhanLop" onclick="deletehs(this.id)"><i class="fa fa-trash" title="Xóa"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                </td>
                 <td></td>
 
             </tr>
@@ -81,6 +88,31 @@
 </body>
 
 
-@*<div>
-        @Html.ActionLink("Quay lại", "IndexPhanLopHS")
-    </div>*@
+<script type="text/javascript">
+    function deletehs(idPhanLop) {
+            if (confirm("Bạn muốn xóa học sinh này ra khỏi phân lớp?")) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/HocSinh/DeleteHSPhanLop',
+                    data: { id: idPhanLop },
+                    success: function (data) {
+                        if (data.status == 0) {
+                            $('#tr-' + idPhanLop).remove();
+                            alert("Bạn xóa thành công");
+                            @*window.location = "@Url.Action("Index","HocSinh")";*@
+                        }
+                        if (data.status == 1)
+                            alert('Xóa thất bại');
+                        window.location = "@Url.Action("PhanLopHSS","HocSinh")";
+
+                    },
+                    error: function (data) {
+                        alert('Lỗi hệ thống');
+                        window.location = "@Url.Action("PhanLopHSS", "HocSinh")";
+                    }
+
+                })
+            }
+        }
+
+</script>

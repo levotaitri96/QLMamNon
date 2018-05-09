@@ -43,6 +43,13 @@
                     </div>
                 </div>
                 <div>
+                    @Html.LabelFor(model => model.ngayDang, "Ngày Đăng: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="date" name="ngayDang" value="@ViewBag.birth" class="form-control" />
+                        @Html.ValidationMessageFor(model => model.ngayDang, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div>
                     @Html.Label("Loại Bài Viết: ", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("maLoai", new SelectList(ViewBag.maLoai, "maLoai", "tenLoai"), htmlAttributes: new { @class = "form-control", @style = "width:40%; float: left", @value = "maLoai" })

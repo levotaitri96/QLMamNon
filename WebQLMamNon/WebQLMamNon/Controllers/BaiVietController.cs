@@ -68,6 +68,8 @@ namespace WebQLMamNon.Controllers
             {
                 return HttpNotFound();
             }
+            DateTime birth = Convert.ToDateTime(tbl_BaiViet.ngayDang);
+            ViewBag.birth = birth.ToString("yyyy-MM-dd");
             ViewBag.maLoai = db.Tbl_LoaiBaiViet.ToList();
             return View(tbl_BaiViet);
         }
@@ -77,7 +79,7 @@ namespace WebQLMamNon.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maBaiViet,tenBaiViet,noiDung,hinhBV,maLoai")] Tbl_BaiViet tbl_BaiViet)
+        public ActionResult Edit([Bind(Include = "maBaiViet,tenBaiViet,noiDung,hinhBV,maLoai,ngayDang")] Tbl_BaiViet tbl_BaiViet)
         {
             if (ModelState.IsValid)
             {

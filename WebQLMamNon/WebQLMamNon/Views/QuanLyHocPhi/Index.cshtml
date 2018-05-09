@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebQLMamNon.Models.Tbl_QuanLyHocPhi>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+
+<h2>Quản lý học phí</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>        
+            Số tiền quy định một tháng:
+        </th>
+        <th>
+           Loại Lớp:
+        </th>
+  
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tienThangHP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_LoaiLop.tenLoai)
+        </td>
+       
+    </tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Quay lại", "Index", "HocPhiHS")
+</div>

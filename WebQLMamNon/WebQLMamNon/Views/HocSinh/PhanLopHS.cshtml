@@ -59,7 +59,7 @@
         </th>
         <th>
             Sỉ Số Học Sinh=
-            @Model.Count()
+            @*@Model.Count()*@
 
         </th>
 
@@ -72,7 +72,7 @@
         <tr>
 
             <td>
-                @Html.DisplayFor(modelItem => item.Tbl_NamHoc.tenNamHoc)
+                @Session["getnamhoc"]
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tbl_LopHoc.tenLop)

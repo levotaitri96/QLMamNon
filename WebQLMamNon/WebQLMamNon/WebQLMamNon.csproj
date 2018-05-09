@@ -192,6 +192,7 @@
     <Compile Include="Controllers\NgheNghiepChaController.cs" />
     <Compile Include="Controllers\NgheNghiepMeController.cs" />
     <Compile Include="Controllers\PhanCongController.cs" />
+    <Compile Include="Controllers\QuanLyHocPhiController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Controllers\TinhLuongController.cs" />
     <Compile Include="Controllers\TonGiaoController.cs" />
@@ -340,6 +341,7 @@
     <Content Include="Content\css\loginform.css" />
     <Content Include="Content\css\multi-level-menu.css" />
     <Content Include="Content\css\reset.css" />
+    <Content Include="Content\css\Search.css" />
     <Content Include="Content\css\skin.css" />
     <Content Include="Content\css\social.css" />
     <Content Include="Content\css\style.css" />
@@ -385,12 +387,14 @@
     <Content Include="images\8.jpg" />
     <Content Include="images\84579b75ec51733.jpg" />
     <Content Include="images\9.png" />
+    <Content Include="images\background.png" />
     <Content Include="images\demen.jpg" />
     <Content Include="images\giao-vien-mam-non-tu-va-chuyen-ke-nhan-ngay-20-11-0.jpg" />
     <Content Include="images\Image.jpg" />
     <Content Include="images\images.jpg" />
     <Content Include="images\ky-nang-song.jpg" />
     <Content Include="images\Nhung-cau-chuc-tet-de-thuong-va-y-nghia-cho-tre-01-550x320.jpg" />
+    <Content Include="images\search-icon.png" />
     <Content Include="images\tuyen-tap-18-hinh-nen-mam-non-danh-cho-tre-em-vo-cung-dang-yeu-1489243419-7.jpg" />
     <Content Include="images\xu-ly_xbnb.jpg" />
     <Content Include="Models\QLMamNonData.Context.tt">
@@ -407,6 +411,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\c3modal.css" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -1777,6 +1782,11 @@
     <Content Include="Views\BaiViet\Index.cshtml" />
     <Content Include="Views\HocPhiHS\CalendarDiemDanh.cshtml" />
     <Content Include="Views\BaiVietUser\Details.cshtml" />
+    <Content Include="Views\QuanLyHocPhi\Create.cshtml" />
+    <Content Include="Views\QuanLyHocPhi\Delete.cshtml" />
+    <Content Include="Views\QuanLyHocPhi\Details.cshtml" />
+    <Content Include="Views\QuanLyHocPhi\Edit.cshtml" />
+    <Content Include="Views\QuanLyHocPhi\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

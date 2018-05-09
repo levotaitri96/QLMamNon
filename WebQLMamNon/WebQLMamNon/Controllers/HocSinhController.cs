@@ -20,7 +20,9 @@ namespace WebQLMamNon.Controllers
             ViewBag.lstLoai = db.Tbl_LoaiLop.ToList();
             ViewBag.lstLop = db.Tbl_LopHoc.ToList();
 
-            return View(db.Tbl_HocSinh.ToList().ToPagedList(page, pageSize));
+            return View(db.Tbl_HocSinh.ToList().OrderBy(x => x.hoTen.Split(' ').Last()).ToPagedList(page, pageSize));
+
+
 
         }
 
@@ -178,7 +180,7 @@ namespace WebQLMamNon.Controllers
         public ActionResult LoadHS(string id)
         {
             //lấy danh sách học sinh đã được phân lớp 
-            List<int?> lstMaHS = db.Tbl_PhanLop.Where(n => n.maLop == id).Select(x => x.maHS).ToList();
+            List<int> lstMaHS = db.Tbl_HocSinh.Where(n => n.maLoai == id).Select(x => x.maHS).ToList();
 
             //truy xuat danh sach HS theo loai
             List<Tbl_HocSinh> lstHS = db.Tbl_HocSinh.Where(n => lstMaHS.Contains(n.maHS)).ToList();
@@ -188,73 +190,94 @@ namespace WebQLMamNon.Controllers
         }
         public ActionResult IndexPhanLopHS()
         {
-            List<string> lstMaNamHoc = db.Tbl_PhanLop.Select(x => x.maNamHoc).ToList();
-            List<string> lstMaLoai = db.Tbl_PhanLop.Select(x => x.maLoai).ToList();
+            //List<string> lstMaNamHoc = db.Tbl_PhanLop.Select(x => x.maNamHoc).ToList();
+            //List<string> lstMaLoai = db.Tbl_PhanLop.Select(x => x.maLoai).ToList();
             var z = db.Tbl_HocSinh.ToList();
             ViewBag.hocsinh = z;
-            TempData["lstLop"] = db.Tbl_LopHoc.ToList();
-            TempData["maNH"] = db.Tbl_NamHoc.ToList();
-            ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop.ToList(), "maLoai", "tenLoai");
-            ViewBag.maNH = new SelectList(db.Tbl_NamHoc.ToList(), "maNamHoc", "tenNamHoc");
-            // ViewBag.maLop = new SelectList(db.Tbl_LopHoc.ToList(), "maLop", "tenLop");
-            //ViewBag.maHS = new SelectList(db.Tbl_HocSinh.Where(x => !listMaHS.Contains(x.maHS)), "maHS", "hoTen");
 
+
+            ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop.ToList().Where(x => x.maLoai != "L04"), "maLoai", "tenLoai");
+            int a = DateTime.Now.Year;
+            ViewBag.namhocs = db.Tbl_NamHoc.Where(x => x.maNamHoc.CompareTo(a.ToString()) >= 0).ToList();//hiển thị năm hiện tại và tương lai
             return View(db.Tbl_LopHoc.ToList());
         }
         [HttpPost]
-        public ActionResult PhanLopHS(string maLop, string maNH, string maLoai)
+        public ActionResult PhanLopHS(string maLop, string maNamHoc, string maLoai, string loai)
         {
-            int countHS_Lop = db.Tbl_PhanLop.Where(x => x.maLop == maLop && x.maNamHoc == maNH).Count();
-            var q = db.Tbl_PhanLop.Where(x => x.maLop == maLop).ToList();
+            maNamHoc = Session["getnamhoc"].ToString();
+            int countHS_Lop = db.Tbl_PhanLop.Where(x => x.maLop == maLop && x.maNamHoc == maNamHoc).Count();// đếm học sinh theo năm truyền vào, và hiển thị phân lớp của năm đó.
+            //var q = db.Tbl_PhanLop.Where(x => x.maLop == maLop).ToList();
             int?[] lstMaHS = db.Tbl_PhanLop.Select(x => x.maHS).ToArray();
             List<Tbl_HocSinh> hsNew = db.Tbl_HocSinh.Where(x => x.maLoai == maLoai && !lstMaHS.Contains(x.maHS)).ToList();
-
+            var lop = db.Tbl_LopHoc.Where(x => x.maLop == maLop).FirstOrDefault();
             foreach (Tbl_HocSinh item in hsNew)
             {
-                if (countHS_Lop <= 5)
-                {
-                    db.Tbl_PhanLop.Add(new Tbl_PhanLop { maNamHoc = maNH, maLop = maLop, maLoai = maLoai, maHS = item.maHS });
+                if (countHS_Lop < 5)
+                { // chỉ phân lớp cho năm học hiện tại
+                    db.Tbl_PhanLop.Add(new Tbl_PhanLop { maNamHoc = maNamHoc, maLop = maLop, maLoai = maLoai, maHS = item.maHS });
                     countHS_Lop++;
                     TempData["Success"] = "Xếp lớp học sinh thành công";
+                    //return RedirectToAction("Index");
                 }
                 else
                 {
                     TempData["loi"] = "Mỗi lớp tối đa 20 học sinh";
                 }
             }
-
+            lop.soLuongHS += countHS_Lop;
             db.SaveChanges();
 
-            ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop.ToList(), "maLoai", "tenLoai");
+
+
+            ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop.ToList().Where(x => x.maLoai != "L04"), "maLoai", "tenLoai");
             ViewBag.maNH = new SelectList(db.Tbl_NamHoc.ToList(), "maNamHoc", "tenNamHoc");
-            return View(db.Tbl_PhanLop.Where(x => x.maLop == maLop && x.maNamHoc == maNH && x.maLoai == maLoai).ToList());
+            return View(db.Tbl_PhanLop.Where(x => x.maLop == maLop && x.maNamHoc == maNamHoc && x.maLoai == maLoai).ToList());
         }
 
         public ActionResult PhanLopHSS(string maLop, string maNH, string maLoai)
         {
-            Session["malopin"] = maLop;
-            Session["manamin"] = maNH;
-            
+            maNH = Session["getnamhoc"].ToString();
             int countHS_Lop = db.Tbl_PhanLop.Where(x => x.maLop == maLop && x.maNamHoc == maNH).Count();
-            var q = db.Tbl_PhanLop.Where(x => x.maLop == maLop).ToList();
+            //var q = db.Tbl_PhanLop.Where(x => x.maLop == maLop).ToList();
             int?[] lstMaHS = db.Tbl_PhanLop.Select(x => x.maHS).ToArray();
             List<Tbl_HocSinh> hsNew = db.Tbl_HocSinh.Where(x => x.maLoai == maLoai && !lstMaHS.Contains(x.maHS)).ToList();
             ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop.ToList(), "maLoai", "tenLoai");
             ViewBag.maNH = new SelectList(db.Tbl_NamHoc.ToList(), "maNamHoc", "tenNamHoc");
+            Session["malopin"] = maLop;
+            Session["manamin"] = maNH;
             return View(db.Tbl_PhanLop.Where(x => x.maLop == maLop && x.maNamHoc == maNH && x.maLoai == maLoai).ToList());
         }
-        public ActionResult LoadLopTheoLoai(string maLoai, string maNH)
+        public ActionResult LoadLopTheoLoai(string maLoai, string maNamHoc)
         {
-            int?[] lstMaHS = db.Tbl_PhanLop.Where(x => x.maNamHoc == maNH).Select(x => x.maHS).ToArray();//phải truyền vào maNH vì có thể chưa đc phân lớp năm nay, nhưng đã đc phân lớp ở những năm trước
+            Session["getnamhoc"] = maNamHoc;
+            int?[] lstMaHS = db.Tbl_PhanLop.Select(x => x.maHS).ToArray();
             var z = db.Tbl_HocSinh.Where(x => x.maLoai == maLoai && !lstMaHS.Contains(x.maHS)).ToList();
             ViewBag.hocsinh = z;// ViewBag học sinh chưa được phân lớp
-            List<Tbl_LopHoc> lstmalop = db.Tbl_LopHoc.Where(n => n.maLoai == maLoai && n.maNamHoc == maNH).ToList();
+            List<Tbl_LopHoc> lstmalop = db.Tbl_LopHoc.Where(n => n.maLoai == maLoai).ToList();
             // List<Tbl_LopHoc> lstLop = db.Tbl_LopHoc.Where(n => lstmalop.Contains(n.maLop)).ToList();
-
-            ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop.ToList(), "maLoai", "tenLoai");
-            ViewBag.maNH = new SelectList(db.Tbl_NamHoc.ToList(), "maNamHoc", "tenNamHoc");
+            ViewBag.maLoai = new SelectList(db.Tbl_LoaiLop.ToList().Where(x => x.maLoai != "L04"), "maLoai", "tenLoai");
+            int a = DateTime.Now.Year;
+            ViewBag.namhocs = db.Tbl_NamHoc.Where(x => x.maNamHoc.CompareTo(a.ToString()) >= 0).ToList();//hiển thị năm hiện tại và tương lai
             return View("IndexPhanLopHS", lstmalop);
         }
 
+        [HttpPost]
+        public JsonResult DeleteHSPhanLop(int id)
+        {
+
+            var hs = db.Tbl_PhanLop.Where(x => x.idPhanLop == id).FirstOrDefault();
+            if (hs != null)
+            {
+                Tbl_PhanLop pl = db.Tbl_PhanLop.Find(id);
+                db.Tbl_PhanLop.Remove(pl);
+                db.SaveChanges();
+                return Json(new { status = 0 }, JsonRequestBehavior.AllowGet);
+            }
+            else
+                return Json(new { status = 1 }, JsonRequestBehavior.AllowGet);
+
+        }
+
     }
+
 }

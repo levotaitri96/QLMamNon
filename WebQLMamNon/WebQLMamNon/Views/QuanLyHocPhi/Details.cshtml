@@ -1,0 +1,35 @@
+﻿@model WebQLMamNon.Models.Tbl_QuanLyHocPhi
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tbl_QuanLyHocPhi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tienThangHP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tienThangHP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_LoaiLop.tenLoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_LoaiLop.tenLoai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idQLHP }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

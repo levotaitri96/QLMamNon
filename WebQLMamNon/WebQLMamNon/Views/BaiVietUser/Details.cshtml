@@ -32,7 +32,7 @@
                 @foreach (var item in ViewBag.lstBVLQ)
             {
                     <figure class="last" style="padding-right:6px">
-                        <figcaption>
+                        <figcaption style="width:96%">
                             <strong>@item.tenBaiViet</strong>
                             @if (item.noiDung.Length > 150)
                             {
@@ -40,9 +40,9 @@
                             }
 
                             <em>@String.Format("{0:d/M/yyyy}", item.ngayDang)</em>
-                            <a href="@Url.Action("Details","BaiViet")" class="opener"></a>
+                            <a href="@Url.Action("Details","BaiVietUser")" class="opener"></a>
                         </figcaption>
-                        <a href="@Url.Action("Details","BaiViet", new {@id=item.maBaiViet })" class="thumb"><img src="~/images/@item.hinhBV" alt="Alt text" width="294" height="227" /></a>
+                        <a href="@Url.Action("Details","BaiVietUser", new {@id=item.maBaiViet })" class="thumb"><img src="~/images/@item.hinhBV" alt="Alt text" width="294" height="227" /></a>
                     </figure>
                 }
 
@@ -50,5 +50,5 @@
             </div>
         </div>
     </div>
+    <div id="link">@Html.ActionLink("Quay Lai", null, null, null, new { href = Request.UrlReferrer })</div>
 </div>
-<div id="link">@Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })</div>

@@ -33,7 +33,7 @@ namespace WebQLMamNon.Controllers
                 var dd = db.Tbl_DiemDanh.Where(x => x.ngayDiemDanh == ngay && x.maThang == maThang && x.maNamHoc == maNamHoc).FirstOrDefault();
                 if (dd != null)
                 {
-                    TempData["dd"] = "Ngày Điểm Danh Hôm Nay Đã Tạo";
+                    TempData["dd"] = "Ngày Điểm Danh Đã Tạo";
                 }
                 else
                 {

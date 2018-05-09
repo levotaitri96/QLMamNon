@@ -127,23 +127,31 @@
                                             <ul class="nav child_menu">
                                                 <li><a href="@Url.Action("IndexPhanLopHS", "Hocsinh")">Phân lớp</a></li>
                                                 <li><a href="@Url.Action("Index", "Hocsinh")">Học sinh</a></li>
-                                                <li><a href="@Url.Action("Index", "HocPhiHS")">Học phí</a></li>
+                                                <li><a href="@Url.Action("Index", "HocPhiHS")">Tính Học phí</a></li>
                                                 <li><a href="@Url.Action("Index", "HSLenLop")">Lên lớp</a></li>
                                                 <li><a href="@Url.Action("Index","Ad_DiemDanhHS")">Điểm danh học sinh</a></li>
                                             
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="@Url.Action("Index","BaiViet")"><i class="fa fa-book"></i> Quản lý bài viết</a>
-                                        </li>
-                                        <li>
-                                            <a href="@Url.Action("MenuLopHoc","LopHoc")"><i class="fa fa-table"></i> Quản lý lớp học</a>                         
-                                        </li>
-                                        <li>
-                                            <a href="@Url.Action("Index","NamHoc")"><i class="fa fa-blind"></i> Quản lý năm học </a>
-                                        </li>
-                                        <li>
-                                            <a href="@Url.Action("Index","DanToc")"><i class="fa fa-blind"></i> Quản lý dân tộc </a>
+                                            <a><i class="fa fa-edit"></i> Quản lý chung <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li>
+                                                    <a href="@Url.Action("Index","BaiViet")"><i class="fa fa-book"></i> Quản lý bài viết</a>
+                                                </li>
+                                                <li>
+                                                    <a href="@Url.Action("MenuLopHoc","LopHoc")"><i class="fa fa-table"></i> Quản lý lớp học</a>
+                                                </li>
+                                                <li>
+                                                    <a href="@Url.Action("Index","NamHoc")"><i class="fa fa-blind"></i> Quản lý năm học </a>
+                                                </li>
+                                                <li>
+                                                    <a href="@Url.Action("Index","DanToc")"><i class="fa fa-blind"></i> Quản lý dân tộc </a>
+                                                </li>
+                                                <li>
+                                                    <a href="@Url.Action("Index","TonGiao")"><i class="fa fa-globe"></i> Quản lý tôn giáo </a>
+                                                </li>
+                                            </ul>
                                         </li>
                                         <li>
                                             <a><i class="fa fa-table"></i> Quản lý nghề nghiệp<span class="fa fa-chevron-down"></span></a>
@@ -152,9 +160,12 @@
                                                 <li><a href="@Url.Action("Index", "NgheNghiepCha")">Nghề nghiệp cha</a></li>
                                             </ul>
                                         </li>
-                                        <li>
-                                            <a href="@Url.Action("Index","TonGiao")"><i class="fa fa-globe"></i> Quản lý tôn giáo </a>
-                                        </li>
+                                       
+                                        
+                                        
+                                        
+                                        
+                                       
                                     </ul>
                                     }
 </div>                      

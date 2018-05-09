@@ -29,12 +29,12 @@
 @using (Html.BeginForm("LoadLopTheoLoai", "HocSinh", FormMethod.Get))
 {
     <div class="form-group" style="width:90%">
-        @Html.DropDownList("maNH", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maNamHoc" })
+        @Html.DropDownList("maNamHoc", new SelectList(ViewBag.namhocs, "maNamHoc", "tenNamHoc"), htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maNamHoc" })
         @Html.DropDownList("maLoai", null, htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maLoai" })
         @*@Html.DropDownList("maHS", null, htmlAttributes: new { @class = "form-control", @style = "width:25%; margin-right: 10px", @value = "maHS" })*@
     </div>
 
-    <input style="padding-top:5px" type="submit" value="Xem theo lớp" />
+    <input style="padding-top:5px" class="btn btn-primary" type="submit" value="Xem theo lớp" />
 }
 <div class="row">
     <div class="col-md-5">
@@ -107,41 +107,40 @@
             {
                 <tr>
 
-                    <td style="text-align:left">
-                        @Html.DisplayFor(modelItem => item.Tbl_NamHoc.tenNamHoc)
+                    <td>
+                        @Session["getnamhoc"]
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.tenLop)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Tbl_PhanLop.Count)
+                        @Html.DisplayFor(modelItem => item.soLuongHS)
+
                     </td>
 
 
                     <td>
-                        <form action="@Url.Action("PhanLopHS", "HocSinh",new { @maLop = item.maLop, @maNH=item.maNamHoc, @maLoai=item.maLoai })" method="post" target="my_iframe">
-                            <input type="submit" class="btn btn-primary" style="width: 100%;" value="Phân Lớp" onclick="location.reload();" href="#" />
+                        <form action="@Url.Action("PhanLopHS", "HocSinh",new { @maLop = item.maLop, @maNamHoc=item.maNamHoc, @maLoai=item.maLoai })" method="post" target="my_iframe">
+                            <input type="submit" class="btn btn-primary" style="width: 100%;" value="Phân lớp" onclick="location.reload()" href="#" />
+                            @Html.Hidden("loai", this.Request.RawUrl)
                         </form>
-                        <form action="@Url.Action("PhanLopHSS", "HocSinh",new { @maLop = item.maLop, @maNH=item.maNamHoc, @maLoai=item.maLoai })" method="post" target="my_iframe">
+                        <form action="@Url.Action("PhanLopHSS", "HocSinh",new { @maLop = item.maLop, @maNamHoc=item.maNamHoc, @maLoai=item.maLoai })" method="post" target="my_iframe">
+
                             <input type="submit" class="btn btn-primary" style="width: 100%;" value="Xem lớp" href="#" onclick="document.getElementById('id01').style.display='block'" />
-                            
                         </form>
                         <div class="w3-container">
-                          
-
-
                             <div id="id01" class="w3-modal" style="margin-left:50px">
                                 <div class="w3-modal-content">
                                     <div class="w3-container">
                                         <h3>Danh Sách Học Sinh Phân Lớp</h3>
                                         <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                                         <iframe name="my_iframe" id="my_iframe" style="border: unset;resize: vertical;height: 283px;width: 100%;"></iframe>
-                                        @using (Html.BeginForm("InDanhSachHSTheoLop", "InBaoCaoHS", FormMethod.Post, new { @malop = item.maLop, @manamhoc = item.maNamHoc }))
-                                        {
-                                           
-                                            <input type="submit" class="btn btn-primary" value="In Danh Sách"  />
+                                        <form action="@Url.Action("InDanhSachHSTheoLop", "InBaoCaoHS",new { @maLop = item.maLop, @maNamHoc=item.maNamHoc, @maLoai=item.maLoai })" method="post" target="my_iframe">
 
-                                        }
+                                            <input type="submit" class="btn btn-primary" style="width: 100%;" value="In danh sách" href="#"/>
+                                        </form>
+
+                                       
                                     </div>
                                 </div>
                             </div>

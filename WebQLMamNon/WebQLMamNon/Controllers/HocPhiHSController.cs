@@ -14,7 +14,8 @@ namespace WebQLMamNon.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");
+            int a = DateTime.Now.Year;
+            ViewBag.namhocs = db.Tbl_NamHoc.Where(x => x.maNamHoc.CompareTo(a.ToString()) >= 0).ToList();
             ViewBag.maThang = new SelectList(db.Tbl_ThangHoc, "maThang", "tenThang");
             return View(db.Tbl_HocPhi.ToList().OrderByDescending(x => x.maThang).OrderByDescending(x => x.maNamHoc));
         }

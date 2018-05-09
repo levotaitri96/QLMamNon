@@ -3,27 +3,46 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
+@if (TempData["loi"] != null)
+{
+    <script>
+        alert("Mỗi năm chỉ được nhấn lên lớp vào tháng 6");
+    </script>
+}
 @{
+    using (Html.BeginForm("Index", "HSLenLop", FormMethod.Get))
+    {
+        @Html.DropDownList("maLop", new SelectList(ViewBag.maLops, "maLop", "tenLop"), htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maLop" })
+        @Html.DropDownList("maNamHoc", new SelectList(ViewBag.namhocs, "maNamHoc", "tenNamHoc"), htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maNamHoc" })
+
+        <input type="submit" class="btn btn-primary" value="Xem" />
+    }
+
     using (Html.BeginForm("LenLop", "HSLenLop", FormMethod.Post))
     {
+         <input type="submit" value="Lên Lớp" class="btn btn-primary" /> 
         <h2>Lên Lớp Học Sinh</h2>
         <div class="row">
             <div class="col-md-12">
-                <div>
-                    @Html.DropDownList("maLop", new SelectList(ViewBag.maLops, "maLop", "tenLop"), "--Tất cả--", htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px", @value = "maLop" })
-                    @Html.Hidden("loai", this.Request.RawUrl)
-                </div><br /><br />
+                <br /><br />
                 <div class="list-group">
                     <table class="table" style="font-size-adjust:unset">
                         <tr style="background:orange">
+                            <th>
+                                Năm Học
+                            </th>
+                            <th>
+                                Tên Lớp
+                            </th>
+                            <th>
+                                Họ Tên Học Sinh 
+                            </th>
                             @foreach (var item in Model)
                             {
 
                             <tr>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.maLop)
-                                </td>
+
                                 <td>
                                     @Html.DisplayFor(modelItem => item.maNamHoc)
                                 </td>
@@ -32,7 +51,7 @@
 
                                 </td>
 
-                                <td>
+                                <td style="text-align:left">
                                     @Html.DisplayFor(modelItem => item.Tbl_HocSinh.hoTen)
                                 </td>
 
@@ -52,24 +71,13 @@
             @Html.AntiForgeryToken()
 
             <div class="form-actions no-color">
-                @*@Html.DropDownList("maLop", new SelectList(ViewBag.maLops, "maLop", "tenLop"), "--Tất cả--", htmlAttributes: new { @class = "form-control", @style = "width:20%; float: left ;margin-right: 10px",@value="maLop" })*@
+            
 
-                <input type="submit" value="Lên Lớp" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
+               
+                @Html.ActionLink("Quay lại", "Index")
             </div>
     }
 
 }
 
 <script src="~/Scripts/jquery-3.2.1.min.js"></script>
-<script>
-    @*$(function () {
-        if (@ViewBag.selectedId!="") {
-            $('#maLop option:eq(' + @ViewBag.selectedId +')').prop('selected', true)
-        }*@
-        $("#maLop").on("change", function () {
-            $("tr").has("td").hide();
-            $("td:contains('" + $("#maLop").val() + "')").parent().show();
-        })
-
-</script>

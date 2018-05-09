@@ -5,15 +5,35 @@
     Layout = "~/Views/LayoutAdmin.cshtml";
 
 }
+<style>
+    #myInput {
+        background-size: contain;
+        background-image: url('../../images/search-icon.png');
+        /* Add a search icon to input */
+        background-position: 0px; /* Position the search icon */
+        background-repeat: no-repeat; /* Do not repeat the icon image */
+        width: 20%; /* Full-width */
+        font-size: 16px; /* Increase font-size */
+        padding: 12px 20px 12px 40px; /* Add some padding */
+        border: 1px solid #ddd; /* Add a grey border */
+        margin-bottom: 12px; /* Add some space below the*/
+    }
+</style>
 <h1>Quản lý học sinh</h1>
+
 
 @using (Html.BeginForm("Create", "HocSinh", FormMethod.Get))
 {
     <input class="btn btn-primary" style="float:left;margin-left:20px" type="submit" value="Thêm Học Sinh" />
 
 }
+
+<p>
+    <input type="text" style="float:left;margin-left:20px" class="form-control-plaintext" id="myInput" onkeyup="myFunction()" placeholder="Tìm theo tên..">
+</p>
+
 <br />
-<table class="table" border="1">
+<table class="table" id="myTable" border="1">
     <tr style="background:orange;font-size:15px">
 
         <th>
@@ -57,10 +77,10 @@
                 @Html.DisplayFor(modelItem => item.diaChi)
             </td>
             <td>
-                <a href="@Url.Action("Edit", "HocSinh",new { id = item.maHS })"><i class="fa fa-wrench"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
-                <a href="@Url.Action("Details", "HocSinh",new { id = item.maHS })"><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                <a href="@Url.Action("Edit", "HocSinh",new { id = item.maHS })"><i class="fa fa-wrench" title="Chỉnh Sửa"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                <a href="@Url.Action("Details", "HocSinh",new { id = item.maHS })"><i class="fa fa-book" title="Xem Chi Tiết"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
                 @*xóa được học sinh nào chưa phân lớp*@
-                <a href="#" id="@item.maHS" onclick="deletehs(this.id)"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                <a href="#" id="@item.maHS" onclick="deletehs(this.id)"><i class="fa fa-trash" title="Xóa"></i>&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;
             </td>
         </tr>
 
@@ -98,4 +118,26 @@
             }
         }
 
+</script>
+<script>
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
 </script>

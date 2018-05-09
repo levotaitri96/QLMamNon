@@ -11,43 +11,62 @@ namespace WebQLMamNon.Controllers
     {
         private QuanLyMamNonEntities db = new QuanLyMamNonEntities();
         // GET: HSLenLop
-        public ActionResult Index(string maLop)
+        public ActionResult Index(string maLop, string maNamHoc)
         {
             ViewBag.maLops = db.Tbl_LopHoc.ToList();
-            ViewBag.maNamHocs = db.Tbl_NamHoc.ToList();
 
-            return View(db.Tbl_PhanLop.ToList());
+            int a = DateTime.Now.Year;
+            ViewBag.namhocs = db.Tbl_NamHoc.Where(x => x.maNamHoc.CompareTo(a.ToString()) >= 0).ToList();
+            if (maLop == null && maNamHoc == null)
+            {
+                return View(db.Tbl_PhanLop.ToList().OrderBy(x => x.Tbl_HocSinh.hoTen.Split(' ').Last()));
+            }
+            else if (maLop == "")
+            {
+                return View(db.Tbl_PhanLop.ToList().Where(x => x.maNamHoc == maNamHoc).OrderBy(x => x.Tbl_HocSinh.hoTen.Split(' ').Last()));
+            }
+            else { return View(db.Tbl_PhanLop.Where(x => x.maLop == maLop && x.maNamHoc == maNamHoc).ToList().OrderBy(x=>x.Tbl_HocSinh.hoTen.Split(' ').Last())); }
+
         }
         [HttpPost]
-        public ActionResult LenLop(string maLop)
+        public ActionResult LenLop()
         {
-            var manam = db.Tbl_PhanLop.Where(x => x.maLop == maLop).FirstOrDefault();
-            var e = db.Tbl_PhanLop.Where(x => x.maLop == maLop && x.maNamHoc == manam.maNamHoc).FirstOrDefault();
-            int a = Convert.ToInt32(e.maNamHoc);
-            a = a + 1;
-            e.maNamHoc = a.ToString();
-            var lophoc = db.Tbl_LopHoc.Where(x => x.maLop == maLop).FirstOrDefault();
-            lophoc.maNamHoc = e.maNamHoc;
-            if (e.maLoai == "L01")
+            string ab = (DateTime.Now.Year).ToString();
+            int n = DateTime.Now.Year;
+            var c = db.Tbl_PhanLop.Select(x => x.maNamHoc).Max();
+            if ((n + 1 == Convert.ToInt32(c)))
             {
-                e.maLoai = "L02";
-                var tenlop = db.Tbl_LopHoc.Where(x => x.maLop == e.maLop).FirstOrDefault();
-                string abc = tenlop.tenLop.Substring(3);
-                tenlop.tenLop = "Chồi" + abc;
-
-            }
-            else if (e.maLoai == "L02")
-            {
-                e.maLoai = "L03";
-                var tenlop = db.Tbl_LopHoc.Where(x => x.maLop == e.maLop).FirstOrDefault();
-                string abc = tenlop.tenLop.Substring(4);
-                tenlop.tenLop = "Lá" + abc;
+                TempData["loi"] = "Bạn đã lên lớp cho những học sinh năm này rồi!";
             }
             else
             {
-                TempData["abc"] = "Tốt nghiệp rồi";
+                var e = db.Tbl_PhanLop.ToList().Where(x => x.maNamHoc == ab);
+                foreach (var item in e)
+                {
+                    int a = Convert.ToInt16(item.maNamHoc);
+                    a = a + 1;
+                    string b = Convert.ToString(a);
+                    item.maNamHoc = b;
+                    string abc = item.maLop.Substring(1);
+                    if (item.maLoai == "L01")
+                    {
+                        item.maLoai = "L02";
+                        item.maLop = "C" + abc;
+                    }
+                    else if (item.maLoai == "L02")
+                    {
+                        item.maLoai = "L03";
+                        item.maLop = "L" + abc;
+                    }
+                    else
+                    {
+                        item.maLoai = "L04";
+
+                    }
+                    db.Tbl_PhanLop.Add(item);
+                    db.SaveChanges();
+                }
             }
-            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

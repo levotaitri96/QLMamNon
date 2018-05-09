@@ -20,8 +20,8 @@
         <th>
             Trạng Thái
         </th>
-
         <th></th>
+
     </tr>
     @foreach (var item in Model)
     {
@@ -60,6 +60,8 @@
                     @Html.Hidden("loai", this.Request.RawUrl)
                 }
             </td>
+           
+            
         </tr>
     }
 </table>
