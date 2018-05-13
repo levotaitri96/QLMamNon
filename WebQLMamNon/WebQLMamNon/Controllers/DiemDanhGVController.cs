@@ -14,6 +14,9 @@ namespace WebQLMamNon.Controllers
         // GET: DiemDanhGV
         public ActionResult Index(int page = 1, int pageSize = 5)
         {
+            DateTime e = DateTime.Now;
+            string a = e.ToString("yyyy-MM-dd");
+            ViewBag.cv = a;
             ViewBag.maNamHoc = new SelectList(db.Tbl_NamHoc, "maNamHoc", "tenNamHoc");
             ViewBag.maThang = new SelectList(db.Tbl_ThangHoc, "maThang", "tenThang");
             return View(db.Tbl_DiemDanh.ToList().OrderByDescending(x => x.ngayDiemDanh).OrderByDescending(x => x.maThang).OrderByDescending(x => x.maNamHoc).ToPagedList(page, pageSize));
@@ -73,9 +76,11 @@ namespace WebQLMamNon.Controllers
             }
         }
 
-        public ActionResult DiemDanh(int id)
+        public ActionResult DiemDanh(int id, string ngay, string thang , string nam)
         {
-
+            ViewBag.ngay = ngay;
+            ViewBag.thang = thang;
+            ViewBag.nam = nam;
             return View(db.Tbl_ChiTietDiemDanh.ToList().Where(x => x.maDiemDanh == id));
 
         }

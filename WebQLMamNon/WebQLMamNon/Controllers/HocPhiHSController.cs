@@ -85,6 +85,7 @@ namespace WebQLMamNon.Controllers
 
             Session["thangct"] = thang;
             Session["namct"] = nam;
+            Session["malop"] = maLop;
             ViewBag.maLops = db.Tbl_LopHoc.ToList();
             ViewBag.selectedId = maLop;
             return View(db.Tbl_ChiTietHocPhi.Where(x => x.maHP == id && maLop == "" ? true : x.maLop == maLop).ToList());

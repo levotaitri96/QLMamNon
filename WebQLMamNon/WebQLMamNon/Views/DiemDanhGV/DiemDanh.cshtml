@@ -5,7 +5,7 @@
     Layout = "~/Views/LayoutAdmin.cshtml";
 }
 
-<h1 style="margin-left:25px">Điểm Danh</h1>
+<h1 style="margin-left:25px">Điểm Danh Ngày :@ViewBag.ngay / @ViewBag.thang / @ViewBag.nam</h1> 
 @Html.Hidden("loai", this.Request.RawUrl)
 <table class="table">
     <tr style="background:orange;font-size:15px">
