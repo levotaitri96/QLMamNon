@@ -60,13 +60,6 @@
           <Property Name="maLoai" Type="nvarchar" MaxLength="10" />
           <Property Name="maLop" Type="nvarchar" MaxLength="10" />
         </EntityType>
-        <EntityType Name="Tbl_DanhSachHocSinh">
-          <Key>
-            <PropertyRef Name="maNH1" />
-          </Key>
-          <Property Name="maNH1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="tenNH" Type="nvarchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="Tbl_DanToc">
           <Key>
             <PropertyRef Name="maDanToc" />
@@ -788,7 +781,6 @@
           <EntitySet Name="Tbl_ChiTietHocPhi" EntityType="Self.Tbl_ChiTietHocPhi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_ChiTietLuong" EntityType="Self.Tbl_ChiTietLuong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_CTDiemDanhHS" EntityType="Self.Tbl_CTDiemDanhHS" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tbl_DanhSachHocSinh" EntityType="Self.Tbl_DanhSachHocSinh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_DanToc" EntityType="Self.Tbl_DanToc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_DiemDanh" EntityType="Self.Tbl_DiemDanh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_DiemDanhHS" EntityType="Self.Tbl_DiemDanhHS" Schema="dbo" store:Type="Tables" />
@@ -986,7 +978,6 @@
           <EntitySet Name="Tbl_ChiTietHocPhi" EntityType="QuanLyMamNonModel.Tbl_ChiTietHocPhi" />
           <EntitySet Name="Tbl_ChiTietLuong" EntityType="QuanLyMamNonModel.Tbl_ChiTietLuong" />
           <EntitySet Name="Tbl_CTDiemDanhHS" EntityType="QuanLyMamNonModel.Tbl_CTDiemDanhHS" />
-          <EntitySet Name="Tbl_DanhSachHocSinh" EntityType="QuanLyMamNonModel.Tbl_DanhSachHocSinh" />
           <EntitySet Name="Tbl_DanToc" EntityType="QuanLyMamNonModel.Tbl_DanToc" />
           <EntitySet Name="Tbl_DiemDanh" EntityType="QuanLyMamNonModel.Tbl_DiemDanh" />
           <EntitySet Name="Tbl_DiemDanhHS" EntityType="QuanLyMamNonModel.Tbl_DiemDanhHS" />
@@ -1243,13 +1234,6 @@
           <NavigationProperty Name="Tbl_HocSinh" Relationship="QuanLyMamNonModel.FK_Tbl_CTDiemDanhHS_Tbl_HocSinh" FromRole="Tbl_CTDiemDanhHS" ToRole="Tbl_HocSinh" />
           <NavigationProperty Name="Tbl_LoaiLop" Relationship="QuanLyMamNonModel.FK_Tbl_CTDiemDanhHS_Tbl_LoaiLop" FromRole="Tbl_CTDiemDanhHS" ToRole="Tbl_LoaiLop" />
           <NavigationProperty Name="Tbl_LopHoc" Relationship="QuanLyMamNonModel.FK_Tbl_CTDiemDanhHS_Tbl_LopHoc" FromRole="Tbl_CTDiemDanhHS" ToRole="Tbl_LopHoc" />
-        </EntityType>
-        <EntityType Name="Tbl_DanhSachHocSinh">
-          <Key>
-            <PropertyRef Name="maNH1" />
-          </Key>
-          <Property Name="maNH1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tenNH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Tbl_DanToc">
           <Key>
@@ -2096,14 +2080,6 @@
                 <ScalarProperty Name="maDiemDanhHS" ColumnName="maDiemDanhHS" />
                 <ScalarProperty Name="trangThai" ColumnName="trangThai" />
                 <ScalarProperty Name="maCTDiemDanhHS" ColumnName="maCTDiemDanhHS" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tbl_DanhSachHocSinh">
-            <EntityTypeMapping TypeName="QuanLyMamNonModel.Tbl_DanhSachHocSinh">
-              <MappingFragment StoreEntitySet="Tbl_DanhSachHocSinh">
-                <ScalarProperty Name="tenNH" ColumnName="tenNH" />
-                <ScalarProperty Name="maNH1" ColumnName="maNH1" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

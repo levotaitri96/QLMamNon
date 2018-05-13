@@ -63,6 +63,10 @@ namespace WebQLMamNon.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "maHS,hoTenCha,hoTenMe,hoTen,soDTNha,ngaySinh,email,diaChi,gioiTinh,hinhAnh,maNgheNghiepMe,maNgheNghiepCha,maTonGiao,maDanToc")] Tbl_HocSinh tbl_HocSinh)
         {
+            ViewBag.maDanToc = db.Tbl_DanToc.ToList();
+            ViewBag.maTonGiao = db.Tbl_TonGiao.ToList();
+            ViewBag.maNgheNghiepMe = db.Tbl_NgheNghiepMe.ToList();
+            ViewBag.maNgheNghiepCha = db.Tbl_NgheNghiepCha.ToList();
             if (ModelState.IsValid)
             {
                 if (tbl_HocSinh.ngaySinh == null)

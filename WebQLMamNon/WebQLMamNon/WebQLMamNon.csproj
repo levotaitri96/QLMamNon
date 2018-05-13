@@ -236,9 +236,6 @@
     <Compile Include="Models\Tbl_CTDiemDanhHS.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Tbl_DanhSachHocSinh.cs">
-      <DependentUpon>QLMamNonData.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Tbl_DanToc.cs">
       <DependentUpon>QLMamNonData.tt</DependentUpon>
     </Compile>
